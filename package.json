@@ -1,0 +1,89 @@
+{
+	"name": "ydh-app-api-next",
+	"version": "0.0.1",
+	"description": "Yeovil District Hospital NHSFT's YDH App backend API to support CRUD functionality",
+	"main": "src/app.js",
+	"repository": "git+https://github.com/Fdawgs/ydh-app-api-next.git",
+	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
+	"license": "MIT",
+	"engines": {
+		"node": ">=10.22.0"
+	},
+	"scripts": {
+		"changelog": "conventional-changelog -p @commitlint/config-conventional -s -i CHANGELOG.md && prettier CHANGELOG.md --write",
+		"jest": "jest --detectOpenHandles --runInBand",
+		"jest-coverage": "jest --coverage --runInBand",
+		"license-checker": "license-checker --production --summary --onlyAllow=\"MIT;ISC;BSD-3-Clause;BSD-2-Clause\" --excludePackages=\"obfuscated-querystring@0.0.2\"",
+		"lint": "eslint . --cache --ext js,jsx,ts,tsx --ignore-path .gitignore",
+		"lint:prettier": "prettier . --write --ignore-path .gitignore",
+		"lint:prettier:ci": "prettier . --check --ignore-path .gitignore",
+		"start": "node .",
+		"start:dev": "nodemon | pino-pretty --colorize",
+		"test": "yarn lint && yarn jest"
+	},
+	"jest": {
+		"clearMocks": true,
+		"collectCoverageFrom": [
+			"src/**/*.js",
+			"!src/app.js"
+		],
+		"testEnvironment": "node",
+		"testTimeout": 10000
+	},
+	"nodemonConfig": {
+		"env": {
+			"NODE_ENV": "development",
+			"SUPPRESS_SUPPORT": 1
+		},
+		"ignore": [
+			"test_resources"
+		],
+		"verbose": true,
+		"watch": [
+			".env",
+			"src"
+		]
+	},
+	"prettier": {
+		"endOfLine": "lf",
+		"semi": true,
+		"tabWidth": 4,
+		"useTabs": true
+	},
+	"devDependencies": {
+		"@commitlint/config-conventional": "^11.0.0",
+		"autocannon": "^7.0.1",
+		"conventional-changelog-cli": "^2.1.1",
+		"coveralls": "^3.1.0",
+		"eslint": "^7.17.0",
+		"eslint-config-airbnb-base": "^14.2.1",
+		"eslint-config-prettier": "^7.1.0",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-jest": "^24.1.3",
+		"eslint-plugin-jsdoc": "^30.7.13",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-security": "^1.4.0",
+		"faker": "^5.1.0",
+		"jest": "^26.6.3",
+		"license-checker": "^25.0.1",
+		"lodash": "^4.17.20",
+		"nodemon": "^2.0.6",
+		"pino-pretty": "^4.3.0",
+		"prettier": "2.2.1"
+	},
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"env-schema": "^2.0.1",
+		"fastify": "^3.9.2",
+		"fastify-autoload": "^3.4.0",
+		"fastify-bearer-auth": "^5.0.2",
+		"fastify-cors": "^5.1.0",
+		"fastify-helmet": "^5.0.3",
+		"fastify-plugin": "^3.0.0",
+		"fastify-swagger": "^3.5.0",
+		"file-stream-rotator": "^0.5.7",
+		"fluent-json-schema": "^2.0.3",
+		"http-errors": "^1.8.0",
+		"pino": "^6.9.0"
+	}
+}
