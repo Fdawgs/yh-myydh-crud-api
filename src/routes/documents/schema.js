@@ -156,7 +156,7 @@ const receiptDeleteSchema = {
 			id: {
 				description: "Logical id of the artifact",
 				examples: ["EXAMPLE-GUID"],
-				type: "number",
+				type: "string",
 			},
 		},
 		required: ["id"],
@@ -184,7 +184,7 @@ const receiptPutSchema = {
 			id: {
 				description: "Logical id of the artifact",
 				examples: ["EXAMPLE-GUID"],
-				type: "number",
+				type: "string",
 			},
 		},
 		required: ["id"],
