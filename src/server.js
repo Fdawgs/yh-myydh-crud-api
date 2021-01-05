@@ -26,11 +26,18 @@ async function plugin(server, config) {
 			contentSecurityPolicy: {
 				directives: {
 					defaultSrc: ["'self'"], // default source is mandatory
+					baseUri: ["'self'"],
+					blockAllMixedContent: [],
+					frameAncestors: ["'self'"],
+					fontSrc: ["'self'"],
+					formAction: ["'self'"],
 					imgSrc: ["'self'", "data:", "validator.swagger.io"],
+					objectSrc: ["'none'"],
 					scriptSrc: ["'self'"].concat(instance.swaggerCSP.script),
 					styleSrc: ["'self'", "https:"].concat(
 						instance.swaggerCSP.style
 					),
+					upgradeInsecureRequests: [],
 				},
 			},
 		}))
