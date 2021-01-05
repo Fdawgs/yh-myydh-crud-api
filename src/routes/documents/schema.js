@@ -1,20 +1,15 @@
+const S = require("fluent-json-schema");
+
 /**
  * Fastify uses AJV for JSON Schema Validation,
  * see https://www.fastify.io/docs/latest/Validation-and-Serialization/
  *
  * This validation protects against XSS and HPP attacks.
  */
-const headerSchema = {
-	type: "object",
-	properties: {
-		Authorization: {
-			description: "Bearer token for authorization",
-			examples: ["Bearer testtoken"],
-			type: "string",
-		},
-	},
-	required: ["Authorization"],
-};
+const headerSchema = S.object().prop(
+	"Authorization",
+	S.string().description("Bearer token for authorization").required()
+);
 
 // TODO: Add 300 response schema
 const registerGetSchema = {
