@@ -1,11 +1,7 @@
 const autoLoad = require("fastify-autoload");
 const path = require("path");
 
-const {
-	registerGetSchema,
-	receiptPutSchema,
-	receiptDeleteSchema,
-} = require("./schema");
+const { optionsGetSchema, userGetSchema, userPutSchema } = require("./schema");
 
 /**
  * @author Frazer Smith
@@ -16,8 +12,17 @@ const {
 async function route(server, options) {
 	server.route({
 		method: "GET",
-		url: "/register",
-		schema: registerGetSchema,
+		url: "/options",
+		schema: optionsGetSchema,
+		async handler(req, res) {
+			res.send("hi");
+		},
+	});
+
+	server.route({
+		method: "GET",
+		url: "/user/:id",
+		schema: userGetSchema,
 		async handler(req, res) {
 			res.send("hi");
 		},
@@ -25,17 +30,8 @@ async function route(server, options) {
 
 	server.route({
 		method: "PUT",
-		url: "/receipt/:id",
-		schema: receiptPutSchema,
-		async handler(req, res) {
-			res.send("hi");
-		},
-	});
-
-	server.route({
-		method: "DELETE",
-		url: "/receipt/:id",
-		schema: receiptDeleteSchema,
+		url: "/user/:id",
+		schema: userPutSchema,
 		async handler(req, res) {
 			res.send("hi");
 		},
