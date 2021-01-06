@@ -6,7 +6,7 @@ const { optionsGetSchema, userGetSchema, userPutSchema } = require("./schema");
  * @param {Function} server - Fastify instance.
  * @param {object} options - Object containing route config objects.
  */
-async function route(server, options) {
+async function route(server) {
 	server.route({
 		method: "GET",
 		url: "/options",
