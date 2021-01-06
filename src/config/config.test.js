@@ -27,6 +27,13 @@ describe("configuration", () => {
 		]);
 		const AUTH_BEARER_TOKEN_ARRAY =
 			'[{"service": "test", "value": "testtoken"}]';
+		const DB_CONNECTION_STRING =
+			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
+		const DB_DOCUMENT_REGISTER_TABLE = "YDHAPPDOC.dbo.SPINDEX";
+		const DB_PATIENT_PREFERENCES_TABLE = "patient.preferences";
+		const DB_PATIENT_PREFERENCES_TYPE_TABLE = "lookup.preferenceType";
+		const DB_PATIENT_PREFERENCES_VALUE_TABLE = "lookup.preferenceValue";
+		const DB_READ_RECEIPT_DOCS_TABLE = "receipt.documents";
 
 		Object.assign(process.env, {
 			SERVICE_HOST,
@@ -36,6 +43,12 @@ describe("configuration", () => {
 			CORS_ORIGIN,
 			LOG_LEVEL,
 			AUTH_BEARER_TOKEN_ARRAY,
+			DB_CONNECTION_STRING,
+			DB_DOCUMENT_REGISTER_TABLE,
+			DB_PATIENT_PREFERENCES_TABLE,
+			DB_PATIENT_PREFERENCES_TYPE_TABLE,
+			DB_PATIENT_PREFERENCES_VALUE_TABLE,
+			DB_READ_RECEIPT_DOCS_TABLE,
 		});
 
 		const config = await getConfig();
@@ -68,6 +81,17 @@ describe("configuration", () => {
 			origin: CORS_ORIGIN,
 			methods: ["Accept"],
 			allowedHeaders: ["GET", "OPTIONS"],
+		});
+
+		expect(config.database).toEqual({
+			connection: DB_CONNECTION_STRING,
+			tables: {
+				documentRegister: DB_DOCUMENT_REGISTER_TABLE,
+				patientPref: DB_PATIENT_PREFERENCES_TABLE,
+				patientPrefTypeLookup: DB_PATIENT_PREFERENCES_TYPE_TABLE,
+				patientPrefValueLookup: DB_PATIENT_PREFERENCES_VALUE_TABLE,
+				readReceipt: DB_READ_RECEIPT_DOCS_TABLE,
+			},
 		});
 	});
 
