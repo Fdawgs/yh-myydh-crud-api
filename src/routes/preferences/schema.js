@@ -25,28 +25,27 @@ const optionsGetSchema = {
 					S.object()
 						.prop(
 							"display",
-							S.string().enum([
-								"SMS",
-								"Email",
-								"Phone",
-								"Letters",
-							])
+							S.string()
+								.enum(["SMS", "Email", "Phone", "Letters"])
+								.required()
 						)
-						.prop("id", S.number().enum([1, 2, 3, 4]))
-						.prop("priority", S.number().enum([0, 1, 2, 3]))
-						.prop("selected", S.number().enum([1, 2]))
-						.prop("display", S.string().required())
-						.prop("value", S.number(1).required())
+						.prop("id", S.number().enum([1, 2, 3, 4]).required())
+						.prop(
+							"priority",
+							S.number().enum([0, 1, 2, 3]).required()
+						)
+						.prop("selected", S.number().enum([1, 2]).required())
 						.prop(
 							"options",
-							S.array().items(
-								S.object()
-									.prop(
-										"display",
-										S.string().enum(["yes", "no"])
-									)
-									.prop("value", S.number().enum([1, 2]))
-							)
+							S.array()
+								.items(
+									S.object()
+										.prop("display", S.enum(["yes", "no"]))
+										.prop("value", S.enum([1, 2]))
+								)
+								.minItems(2)
+								.maxItems(2)
+								.required()
 						)
 				)
 			)
