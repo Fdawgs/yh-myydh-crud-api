@@ -1,6 +1,3 @@
-const autoLoad = require("fastify-autoload");
-const path = require("path");
-
 const {
 	registerGetSchema,
 	receiptPutSchema,
