@@ -62,7 +62,8 @@ async function getConfig() {
 				S.string().enum(["custom", "daily", "test"]).default("daily")
 			)
 			.prop("LOG_ROTATION_MAX_LOGS", S.anyOf([S.string(), S.null()]))
-			.prop("LOG_ROTATION_MAX_SIZE", S.anyOf([S.string(), S.null()])),
+			.prop("LOG_ROTATION_MAX_SIZE", S.anyOf([S.string(), S.null()]))
+			.prop("AUTH_BEARER_TOKEN_ARRAY", S.anyOf([S.string(), S.null()])),
 	});
 
 	const config = {
@@ -120,6 +121,14 @@ async function getConfig() {
 			},
 		},
 	};
+
+	if (env.AUTH_BEARER_TOKEN_ARRAY) {
+		const keys = new Set();
+		JSON.parse(env.AUTH_BEARER_TOKEN_ARRAY).forEach((element) => {
+			keys.add(element.value);
+		});
+		config.authKeys = keys;
+	}
 
 	// Enable HTTPS using cert/key or passphrase/pfx combinations
 	if (env.HTTPS_SSL_CERT_PATH && env.HTTPS_SSL_KEY_PATH) {

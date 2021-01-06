@@ -25,6 +25,8 @@ describe("configuration", () => {
 			"warn",
 			"silent",
 		]);
+		const AUTH_BEARER_TOKEN_ARRAY =
+			'[{"service": "test", "value": "testtoken"}]';
 
 		Object.assign(process.env, {
 			SERVICE_HOST,
@@ -33,9 +35,12 @@ describe("configuration", () => {
 			HTTPS_SSL_KEY_PATH,
 			CORS_ORIGIN,
 			LOG_LEVEL,
+			AUTH_BEARER_TOKEN_ARRAY,
 		});
 
 		const config = await getConfig();
+
+		expect(config.authKeys).toContain("testtoken");
 
 		expect(config.fastify).toEqual({
 			host: SERVICE_HOST,
