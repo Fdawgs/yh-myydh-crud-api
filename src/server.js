@@ -3,6 +3,7 @@ const fastifyPlugin = require("fastify-plugin");
 const path = require("path");
 
 // Import plugins
+const bearer = require("fastify-bearer-auth");
 const cors = require("fastify-cors");
 const helmet = require("fastify-helmet");
 const swagger = require("fastify-swagger");
@@ -42,10 +43,18 @@ async function plugin(server, config) {
 			},
 		}))
 
-		// Import and register service routes
-		.register(autoLoad, {
-			dir: path.join(__dirname, "routes"),
-			options: config,
+		/**
+		 * Encapsulate bearer token auth and routes into child server, so that swagger
+		 * route doesn't inherit bearer token auth plugin
+		 */
+		.register(async (childServer) => {
+			childServer
+				.register(bearer, { keys: config.authKeys })
+				// Import and register service routes
+				.register(autoLoad, {
+					dir: path.join(__dirname, "routes"),
+					options: config,
+				});
 		});
 }
 
