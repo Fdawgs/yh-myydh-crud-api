@@ -149,6 +149,18 @@ const receiptDeleteSchema = {
 			.examples([9999999999])
 			.required()
 	),
+	response: {
+		204: S.null(),
+		500: S.object()
+			.prop("statusCode", S.number().const(500))
+			.prop("error", S.string().const("Internal Server Error"))
+			.prop(
+				"message",
+				S.string().const(
+					"Unable to update delete read receipt from database"
+				)
+			),
+	},
 };
 
 // TODO: Add 200 and 300 response schema
@@ -177,6 +189,16 @@ const receiptPutSchema = {
 				.format("date-time")
 				.required()
 		),
+	response: {
+		204: S.null(),
+		500: S.object()
+			.prop("statusCode", S.number().const(500))
+			.prop("error", S.string().const("Internal Server Error"))
+			.prop(
+				"message",
+				S.string().const("Unable to update read receipt in database")
+			),
+	},
 };
 
 module.exports = { registerGetSchema, receiptDeleteSchema, receiptPutSchema };
