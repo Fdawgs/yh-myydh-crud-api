@@ -131,7 +131,6 @@ const registerGetSchema = {
 	},
 };
 
-// TODO: Add 200 and 300 response schema
 const receiptDeleteSchema = {
 	description: "Delete document read receipt",
 	headers: headerSchema,
@@ -163,7 +162,6 @@ const receiptDeleteSchema = {
 	},
 };
 
-// TODO: Add 200 and 300 response schema
 const receiptPutSchema = {
 	description: "Create document read receipt",
 	headers: headerSchema,

@@ -11,7 +11,6 @@ const headerSchema = S.object().prop(
 	S.string().description("Bearer token for authorization").required()
 );
 
-// TODO: Add 300 response schema
 const optionsGetSchema = {
 	description:
 		"Retrieve default available list of patient contact preferences that can be set",
@@ -40,8 +39,11 @@ const optionsGetSchema = {
 							S.array()
 								.items(
 									S.object()
-										.prop("display", S.enum(["yes", "no"]))
-										.prop("value", S.enum([1, 2]))
+										.prop(
+											"display",
+											S.string().enum(["yes", "no"])
+										)
+										.prop("value", S.number().enum([1, 2]))
 								)
 								.minItems(2)
 								.maxItems(2)
@@ -50,18 +52,43 @@ const optionsGetSchema = {
 				)
 			)
 		),
+		404: S.object()
+			.prop("statusCode", S.number().const(404))
+			.prop("error", S.string().const("Not Found"))
+			.prop(
+				"message",
+				S.string().const("Invalid or expired search results")
+			),
+		500: S.object()
+			.prop("statusCode", S.number().const(500))
+			.prop("error", S.string().const("Internal Server Error"))
+			.prop(
+				"message",
+				S.string().const("Unable to return result(s) from database")
+			),
 	},
 };
 
-// TODO: Add 200 and 300 response schema
 const userGetSchema = {
 	params: S.object().prop(
 		"id",
 		S.number().description("Unique patient identifier").examples([1])
 	),
+	response: {
+		404: S.object()
+			.prop("statusCode", S.number().const(404))
+			.prop("error", S.string().const("Not Found"))
+			.prop("message", S.string().const("User not found")),
+		500: S.object()
+			.prop("statusCode", S.number().const(500))
+			.prop("error", S.string().const("Internal Server Error"))
+			.prop(
+				"message",
+				S.string().const("Unable to return result(s) from database")
+			),
+	},
 };
 
-// TODO: Add 200 and 300 response schema
 const userPutSchema = {
 	params: S.object().prop(
 		"id",
@@ -76,6 +103,25 @@ const userPutSchema = {
 				.prop("selected", S.number().required())
 		)
 	),
+	response: {
+		204: S.null(),
+		400: S.object()
+			.prop("statusCode", S.number().const(400))
+			.prop("error", S.string().const("Bad Request"))
+			.prop(
+				"message",
+				S.string().const("Malformed body or body missing")
+			),
+		500: S.object()
+			.prop("statusCode", S.number().const(500))
+			.prop("error", S.string().const("Internal Server Error"))
+			.prop(
+				"message",
+				S.string().const(
+					"Unable to update patient preference in database"
+				)
+			),
+	},
 };
 
 module.exports = { optionsGetSchema, userGetSchema, userPutSchema };

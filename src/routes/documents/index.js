@@ -71,7 +71,16 @@ async function route(server, options) {
 						req.query.lastModified
 					)
 					.query(
-						`SELECT *
+						`SELECT GUID AS 'guid',
+						   fhir_id,
+						   Title AS 'title',
+						   Specialty AS 'specialty',
+						   Clinic AS 'clinic',
+						   Document_Type AS 'document_type',
+						   Filesname AS 'file_name',
+						   URL AS 'url',
+						   CreatedDate AS 'created_date',
+						   Modified AS 'modified'
 						   FROM ${options.database.tables.documentRegister}
 						   WHERE Modified ${operator} @timestamp
 						   ORDER BY Modified DESC
@@ -79,7 +88,10 @@ async function route(server, options) {
 						   FETCH NEXT ${perPage} ROWS ONLY`
 					);
 
-				if (queryResult.recordset) {
+				if (
+					queryResult.recordset &&
+					queryResult.recordset.length !== 0
+				) {
 					result.data = clean(queryResult.recordset);
 					res.send(result);
 				} else {
