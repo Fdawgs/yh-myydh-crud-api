@@ -6,15 +6,9 @@ const S = require("fluent-json-schema");
  *
  * This validation protects against XSS and HPP attacks.
  */
-const headerSchema = S.object().prop(
-	"Authorization",
-	S.string().description("Bearer token for authorization").required()
-);
-
 const optionsGetSchema = {
 	description:
 		"Retrieve default available list of patient contact preferences that can be set",
-	headers: headerSchema,
 	response: {
 		200: S.object().prop(
 			"preferences",

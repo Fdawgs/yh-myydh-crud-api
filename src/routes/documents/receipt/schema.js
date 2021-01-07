@@ -6,14 +6,8 @@ const S = require("fluent-json-schema");
  *
  * This validation protects against XSS and HPP attacks.
  */
-const headerSchema = S.object().prop(
-	"Authorization",
-	S.string().description("Bearer token for authorization").required()
-);
-
 const receiptDeleteSchema = {
 	description: "Delete document read receipt",
-	headers: headerSchema,
 	params: S.object().prop(
 		"id",
 		S.string()
@@ -44,7 +38,7 @@ const receiptDeleteSchema = {
 
 const receiptPutSchema = {
 	description: "Create document read receipt",
-	headers: headerSchema,
+
 	params: S.object().prop(
 		"id",
 		S.string()
