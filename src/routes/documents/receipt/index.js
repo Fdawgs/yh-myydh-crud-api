@@ -1,7 +1,7 @@
 const createError = require("http-errors");
-const sqlServer = require("mssql");
 
-const { receiptPutSchema, receiptDeleteSchema } = require("./schema");
+const { receiptDeleteSchema, receiptPutSchema } = require("./schema");
+const { receiptDelete, receiptInsert } = require("./query");
 
 /**
  * @author Frazer Smith
@@ -16,28 +16,15 @@ async function route(server, options) {
 		schema: receiptPutSchema,
 		async handler(req, res) {
 			try {
-				await server.mssql
-					.request()
-					.input("guid", sqlServer.Char(36), req.params.id)
-					.input(
-						"patientId",
-						sqlServer.VarChar(255),
-						req.query.patientId
-					)
-					.input("timestamp", sqlServer.VarChar, req.query.timestamp)
-					.query(
-						`IF EXISTS(SELECT guid 
-									 FROM ${options.database.tables.readReceipt}
-									   WHERE guid = @guid
-									   AND patientId = @patientId)
-							UPDATE ${options.database.tables.readReceipt}
-							  SET ts = @timestamp
-						  WHERE guid = @guid
-							  AND patientId = @patientId
-							  ELSE
-						INSERT INTO ${options.database.tables.readReceipt} (guid, patientId, ts)
-								VALUES(@guid, @patientId, @timestamp)`
-					);
+				await server.mssql.query(
+					receiptInsert({
+						id: req.params.id,
+						patientId: req.query.patientId,
+						timestamp: req.query.timestamp,
+						readReceiptTable: options.database.tables.readReceipt,
+					})
+				);
+
 				res.status(204);
 			} catch (err) {
 				server.log.error(err);
@@ -57,29 +44,17 @@ async function route(server, options) {
 		schema: receiptDeleteSchema,
 		async handler(req, res) {
 			try {
-				await server.mssql
-					.request()
-					.input("guid", sqlServer.Char(36), req.params.id)
-					.input(
-						"patientId",
-						sqlServer.VarChar(255),
-						req.query.patientId
-					)
-					.query(
-						`DELETE
-						   FROM ${options.database.tables.readReceipt}
-						  WHERE guid = @guid
-							  AND patientId = @patientId`
-					);
+				await server.mssql.query(
+					receiptDelete({
+						id: req.params.id,
+						patientId: req.query.patientId,
+						readReceiptTable: options.database.tables.readReceipt,
+					})
+				);
 				res.status(204);
 			} catch (err) {
 				server.log.error(err);
-				res.send(
-					createError(
-						500,
-						"Unable to update delete read receipt from database"
-					)
-				);
+				res.send(createError(500, err));
 			}
 		},
 	});
