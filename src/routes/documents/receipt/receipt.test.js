@@ -36,14 +36,12 @@ describe("receipt", () => {
 		});
 
 		test("Should delete a document read receipt", async () => {
-			const mockQueryFn = jest
-				.fn()
-				.mockImplementation(() => ({ recordSet: [1] }));
+			const mockQueryFn = jest.fn().mockResolvedValue({
+				rowsAffected: [1],
+			});
 
 			server.mssql = {
-				query: () => {
-					mockQueryFn();
-				},
+				query: mockQueryFn,
 			};
 
 			const response = await server.inject({
@@ -61,15 +59,37 @@ describe("receipt", () => {
 			expect(response.statusCode).toEqual(204);
 		});
 
-		test("Should throw error", async () => {
-			const mockQueryFn = jest.fn().mockImplementation(() => {
-				throw new Error("Failed to connect to DB");
+		test("Should fail to delete document read receipt if document missing or already deleted", async () => {
+			const mockQueryFn = jest.fn().mockResolvedValue({
+				rowsAffected: [0],
 			});
 
 			server.mssql = {
-				query: () => {
-					mockQueryFn();
+				query: mockQueryFn,
+			};
+
+			const response = await server.inject({
+				method: "DELETE",
+				url: "/",
+				params: {
+					id: mockId,
 				},
+				query: {
+					patientId: mockPatientId,
+				},
+			});
+
+			expect(mockQueryFn).toHaveBeenCalledTimes(1);
+			expect(response.statusCode).toEqual(404);
+		});
+
+		test("Should throw error", async () => {
+			const mockQueryFn = jest
+				.fn()
+				.mockRejectedValue(Error("Failed to connect to DB"));
+
+			server.mssql = {
+				query: mockQueryFn,
 			};
 
 			const response = await server.inject({
@@ -109,15 +129,13 @@ describe("receipt", () => {
 			server.close();
 		});
 
-		test("Should delete a document read receipt", async () => {
-			const mockQueryFn = jest
-				.fn()
-				.mockImplementation(() => ({ recordSet: [1] }));
+		test("Should create a document read receipt", async () => {
+			const mockQueryFn = jest.fn().mockResolvedValue({
+				rowsAffected: [1],
+			});
 
 			server.mssql = {
-				query: () => {
-					mockQueryFn();
-				},
+				query: mockQueryFn,
 			};
 
 			const response = await server.inject({
@@ -136,15 +154,38 @@ describe("receipt", () => {
 			expect(response.statusCode).toEqual(204);
 		});
 
-		test("Should throw error", async () => {
-			const mockQueryFn = jest.fn().mockImplementation(() => {
-				throw new Error("Failed to connect to DB");
+		test("Should fail to create document read receipt if client cannot write to database", async () => {
+			const mockQueryFn = jest.fn().mockResolvedValue({
+				rowsAffected: [0],
 			});
 
 			server.mssql = {
-				query: () => {
-					mockQueryFn();
+				query: mockQueryFn,
+			};
+
+			const response = await server.inject({
+				method: "PUT",
+				url: "/",
+				params: {
+					id: mockId,
 				},
+				query: {
+					patientId: mockPatientId,
+					timestamp: mockTimeStamp,
+				},
+			});
+
+			expect(mockQueryFn).toHaveBeenCalledTimes(1);
+			expect(response.statusCode).toEqual(500);
+		});
+
+		test("Should throw error", async () => {
+			const mockQueryFn = jest
+				.fn()
+				.mockRejectedValue(Error("Failed to connect to DB"));
+
+			server.mssql = {
+				query: mockQueryFn,
 			};
 
 			const response = await server.inject({

@@ -63,6 +63,15 @@ const receiptPutSchema = {
 		),
 	response: {
 		204: S.null(),
+		404: S.object()
+			.prop("statusCode", S.number().const(404))
+			.prop("error", S.string().const("Not Found"))
+			.prop(
+				"message",
+				S.string().const(
+					"Record does not exist and/or has already been deleted"
+				)
+			),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))

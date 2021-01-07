@@ -16,7 +16,7 @@ async function route(server, options) {
 		schema: receiptPutSchema,
 		async handler(req, res) {
 			try {
-				await server.mssql.query(
+				const { rowsAffected } = await server.mssql.query(
 					receiptInsert({
 						id: req.params.id,
 						patientId: req.query.patientId,
@@ -25,7 +25,16 @@ async function route(server, options) {
 					})
 				);
 
-				res.status(204);
+				if (rowsAffected[0] > 0) {
+					res.status(204);
+				} else {
+					res.send(
+						createError(
+							500,
+							"Unable to update read receipt in database"
+						)
+					);
+				}
 			} catch (err) {
 				server.log.error(err);
 				res.send(
@@ -44,17 +53,32 @@ async function route(server, options) {
 		schema: receiptDeleteSchema,
 		async handler(req, res) {
 			try {
-				await server.mssql.query(
+				const { rowsAffected } = await server.mssql.query(
 					receiptDelete({
 						id: req.params.id,
 						patientId: req.query.patientId,
 						readReceiptTable: options.database.tables.readReceipt,
 					})
 				);
-				res.status(204);
+
+				if (rowsAffected[0] > 0) {
+					res.status(204);
+				} else {
+					res.send(
+						createError(
+							404,
+							"Record does not exist and/or has already been deleted"
+						)
+					);
+				}
 			} catch (err) {
 				server.log.error(err);
-				res.send(createError(500, err));
+				res.send(
+					createError(
+						500,
+						"Unable to update read receipt in database"
+					)
+				);
 			}
 		},
 	});
