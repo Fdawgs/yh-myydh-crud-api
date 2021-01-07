@@ -63,7 +63,13 @@ async function getConfig() {
 			)
 			.prop("LOG_ROTATION_MAX_LOGS", S.anyOf([S.string(), S.null()]))
 			.prop("LOG_ROTATION_MAX_SIZE", S.anyOf([S.string(), S.null()]))
-			.prop("AUTH_BEARER_TOKEN_ARRAY", S.anyOf([S.string(), S.null()])),
+			.prop("AUTH_BEARER_TOKEN_ARRAY", S.anyOf([S.string(), S.null()]))
+			.prop("DB_CONNECTION_STRING", S.string())
+			.prop("DB_DOCUMENT_REGISTER_TABLE", S.string())
+			.prop("DB_PATIENT_PREFERENCES_TABLE", S.string())
+			.prop("DB_PATIENT_PREFERENCES_TYPE_TABLE", S.string())
+			.prop("DB_PATIENT_PREFERENCES_VALUE_TABLE", S.string())
+			.prop("DB_READ_RECEIPT_DOCS_TABLE", S.string()),
 	});
 
 	const config = {
@@ -118,6 +124,16 @@ async function getConfig() {
 					description,
 					version,
 				},
+			},
+		},
+		database: {
+			connection: env.DB_CONNECTION_STRING,
+			tables: {
+				documentRegister: env.DB_DOCUMENT_REGISTER_TABLE,
+				patientPref: env.DB_PATIENT_PREFERENCES_TABLE,
+				patientPrefTypeLookup: env.DB_PATIENT_PREFERENCES_TYPE_TABLE,
+				patientPrefValueLookup: env.DB_PATIENT_PREFERENCES_VALUE_TABLE,
+				readReceipt: env.DB_READ_RECEIPT_DOCS_TABLE,
 			},
 		},
 	};

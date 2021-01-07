@@ -13,7 +13,7 @@
 		"changelog": "conventional-changelog -p @commitlint/config-conventional -s -i CHANGELOG.md && prettier CHANGELOG.md --write",
 		"jest": "jest --detectOpenHandles --runInBand",
 		"jest-coverage": "jest --coverage --runInBand",
-		"license-checker": "license-checker --production --summary --onlyAllow=\"MIT;ISC;BSD-3-Clause;BSD-2-Clause\" --excludePackages=\"obfuscated-querystring@0.0.2\"",
+		"license-checker": "license-checker --production --summary",
 		"lint": "eslint . --cache --ext js,jsx,ts,tsx --ignore-path .gitignore",
 		"lint:prettier": "prettier . --write --ignore-path .gitignore",
 		"lint:prettier:ci": "prettier . --check --ignore-path .gitignore",
@@ -84,6 +84,7 @@
 		"file-stream-rotator": "^0.5.7",
 		"fluent-json-schema": "^2.0.3",
 		"http-errors": "^1.8.0",
+		"mssql": "^6.3.1",
 		"pino": "^6.9.0"
 	}
 }

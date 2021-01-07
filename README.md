@@ -14,7 +14,7 @@ This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s backen
 
 -   [Node.js](https://nodejs.org/en/)
 -   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads)
--   [Yarn](https://yarnpkg.com)
+-   [Yarn](https://classic.yarnpkg.com)
 
 ## Deployment
 
