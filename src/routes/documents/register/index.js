@@ -1,9 +1,9 @@
 const createError = require("http-errors");
-const sqlServer = require("mssql");
 const clean = require("../../../utils/clean-objects");
 const convertDateParamOperator = require("../../../utils/convert-date-param-operation");
 
 const { registerGetSchema } = require("./schema");
+const { registerSelect } = require("./query");
 
 /**
  * @author Frazer Smith
@@ -33,67 +33,33 @@ async function route(server, options) {
 					);
 				}
 
-				// Create meta object with pagination data
-				const count = await server.mssql
-					.request()
-					.input(
-						"timestamp",
-						sqlServer.DateTime,
-						req.query.lastModified
-					).query(`SELECT COUNT(*) AS total
-							  FROM ${options.database.tables.documentRegister}
-							 WHERE Modified ${operator} @timestamp`);
+				const { recordsets } = await server.mssql.query(
+					registerSelect({
+						timestamp: req.query.lastModified,
+						operator,
+						documentRegisterTable:
+							options.database.tables.documentRegister,
+						page,
+						perPage,
+					})
+				);
 
-				const result = {
+				const count = recordsets[0][0].total;
+
+				const response = {
 					data: [],
 					meta: {
 						pagination: {
-							total: count.recordset[0].total,
+							total: count,
 							per_page: perPage,
 							current_page: page + 1,
-							total_pages: Math.ceil(
-								count.recordset[0].total / perPage
-							),
+							total_pages: Math.ceil(count / perPage),
 						},
 					},
 				};
 
-				const queryResult = await server.mssql
-					.request()
-					.input(
-						"timestamp",
-						sqlServer.DateTime,
-						req.query.lastModified
-					)
-					.query(
-						`SELECT GUID AS 'guid',
-						   fhir_id,
-						   Title AS 'title',
-						   Specialty AS 'specialty',
-						   Clinic AS 'clinic',
-						   Document_Type AS 'document_type',
-						   Filesname AS 'file_name',
-						   URL AS 'url',
-						   CreatedDate AS 'created_date',
-						   Modified AS 'modified'
-						   FROM ${options.database.tables.documentRegister}
-						   WHERE Modified ${operator} @timestamp
-						   ORDER BY Modified DESC
-						   OFFSET ${page * perPage} ROWS
-						   FETCH NEXT ${perPage} ROWS ONLY`
-					);
-
-				if (
-					queryResult.recordset &&
-					queryResult.recordset.length !== 0
-				) {
-					result.data = clean(queryResult.recordset);
-					res.send(result);
-				} else {
-					res.send(
-						createError(404, "Invalid or expired search results")
-					);
-				}
+				response.data = clean(recordsets[1]);
+				res.send(response);
 			} catch (err) {
 				server.log.error(err);
 				res.send(
