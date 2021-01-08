@@ -23,6 +23,6 @@ FROM ${documentRegisterTable}
 WHERE Modified ${operator} '${timestamp}'
 ORDER BY Modified DESC
 OFFSET ${page * perPage} ROWS
-FETCH NEXT ${perPage} ROWS ONLY`;
+FETCH NEXT ${perPage} ROWS ONLY;`;
 
 module.exports = { registerSelect };

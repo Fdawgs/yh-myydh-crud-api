@@ -18,6 +18,6 @@ WHERE guid = '${id}'
  AND patientId = '${patientId}'
  ELSE
 INSERT INTO ${readReceiptTable} (guid, patientId, ts)
-   VALUES('${id}', '${patientId}', '${timestamp}')`;
+   VALUES('${id}', '${patientId}', '${timestamp}');`;
 
 module.exports = { receiptDelete, receiptInsert };

@@ -11,6 +11,6 @@ prefType.preferenceType AS preference_type_display,
 prefVal.preferenceValue AS preference_option_display,
 prefVal.preferenceValueId AS preference_option_value
 FROM ${patientPreferencesTypeTable} prefType
-CROSS JOIN ${patientPreferencesValueTable} prefVal`;
+CROSS JOIN ${patientPreferencesValueTable} prefVal;`;
 
 module.exports = { optionsSelect };
