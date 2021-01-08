@@ -8,7 +8,7 @@
 
 ## Intro
 
-This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s backend API, a Node.js application using the [Fastify](https://www.fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the patient and clinician app at https://my.ydh.nhs.uk.
+This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s YDH App backend API, a Node.js application using the [Fastify](https://www.fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the patient and clinician app at https://my.ydh.nhs.uk.
 
 ## Prerequisites
 
