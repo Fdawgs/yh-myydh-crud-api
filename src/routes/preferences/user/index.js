@@ -102,47 +102,39 @@ async function route(server, options) {
 		url: "/:id",
 		schema: userPutSchema,
 		async handler(req, res) {
-			if (
-				req.body &&
-				Object.keys(req.body).length &&
-				req.body.preferences
-			) {
-				try {
-					const results = await Promise.all(
-						clean(req.body.preferences).map(async (preference) => {
-							const { rowsAffected } = await server.mssql.query(
-								userInsert({
-									patientId: req.params.id,
-									preferenceTypeId: preference.id,
-									preferenceValueId: preference.selected,
-									preferencePriority: preference.priority,
-									patientPreferencesTable:
-										options.database.tables.patientPref,
-								})
-							);
+			try {
+				const results = await Promise.all(
+					clean(req.body.preferences).map(async (preference) => {
+						const { rowsAffected } = await server.mssql.query(
+							userInsert({
+								patientId: req.params.id,
+								preferenceTypeId: preference.id,
+								preferenceValueId: preference.selected,
+								preferencePriority: preference.priority,
+								patientPreferencesTable:
+									options.database.tables.patientPref,
+							})
+						);
 
-							return rowsAffected;
-						})
-					);
+						return rowsAffected;
+					})
+				);
 
-					results.forEach((element) => {
-						if (element[0] !== 1) {
-							throw Error;
-						}
-					});
+				results.forEach((element) => {
+					if (element[0] !== 1) {
+						throw Error;
+					}
+				});
 
-					res.status(204);
-				} catch (err) {
-					server.log.error(err);
-					res.send(
-						createError(
-							500,
-							"Unable to update user preferences in database"
-						)
-					);
-				}
-			} else {
-				res.send(createError(400, "Malformed body or body missing"));
+				res.status(204);
+			} catch (err) {
+				server.log.error(err);
+				res.send(
+					createError(
+						500,
+						"Unable to update user preferences in database"
+					)
+				);
 			}
 		},
 	});
