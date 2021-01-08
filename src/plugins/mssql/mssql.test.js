@@ -7,8 +7,7 @@ describe("mssql plugin", () => {
 	let options;
 	let server;
 
-	const query =
-		"SELECT table_schema, table_name FROM information_schema.tables";
+	const query = "SELECT @@version";
 	const client = {
 		query: jest.fn().mockResolvedValue({}),
 	};
