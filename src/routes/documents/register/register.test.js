@@ -134,7 +134,7 @@ describe("register", () => {
 			expect(response.statusCode).toEqual(200);
 		});
 
-		test("Should throw error", async () => {
+		test("Should return HTTP status code 500 if connection issue encountered", async () => {
 			const mockQueryFn = jest
 				.fn()
 				.mockRejectedValue(Error("Failed to connect to DB"));

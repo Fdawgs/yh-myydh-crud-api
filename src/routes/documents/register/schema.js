@@ -46,7 +46,7 @@ const registerGetSchema = {
 				S.array().items(
 					S.object()
 						.prop("guid", S.string().examples(["EXAMPLE-GUID"]))
-						.prop("fhir_id", S.number().examples(["99999"]))
+						.prop("fhirId", S.number().examples(["99999"]))
 						.prop(
 							"title",
 							S.string().examples([
@@ -59,11 +59,11 @@ const registerGetSchema = {
 						)
 						.prop("clinic", S.string().examples(["CLO/BIA"]))
 						.prop(
-							"document_type",
+							"documentType",
 							S.string().examples(['"Clinic Letter"'])
 						)
 						.prop(
-							"file_name",
+							"fileName",
 							S.string().examples([
 								"99999   DUCK 11 July 2015 11 27.pdf",
 							])
@@ -77,13 +77,13 @@ const registerGetSchema = {
 								.format("uri")
 						)
 						.prop(
-							"created_date",
+							"createdDate",
 							S.string()
 								.examples(["2015-09-30T05:40:14.000Z"])
 								.format("date-time")
 						)
 						.prop(
-							"modified",
+							"modifiedDate",
 							S.string()
 								.examples(["2020-08-10T03:51:54.000Z"])
 								.format("date-time")

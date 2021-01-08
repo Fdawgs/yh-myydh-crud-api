@@ -59,7 +59,7 @@ describe("receipt", () => {
 			expect(response.statusCode).toEqual(204);
 		});
 
-		test("Should fail to delete document read receipt if document missing or already deleted", async () => {
+		test("Should return HTTP status code 404 if document missing or already deleted", async () => {
 			const mockQueryFn = jest.fn().mockResolvedValue({
 				rowsAffected: [0],
 			});
@@ -83,7 +83,7 @@ describe("receipt", () => {
 			expect(response.statusCode).toEqual(404);
 		});
 
-		test("Should throw error", async () => {
+		test("Should return HTTP status code 500 if connection issue encountered", async () => {
 			const mockQueryFn = jest
 				.fn()
 				.mockRejectedValue(Error("Failed to connect to DB"));
