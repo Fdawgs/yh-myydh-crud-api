@@ -28,12 +28,7 @@ async function route(server, options) {
 				if (rowsAffected[0] > 0) {
 					res.status(204);
 				} else {
-					res.send(
-						createError(
-							500,
-							"Unable to update read receipt in database"
-						)
-					);
+					throw Error;
 				}
 			} catch (err) {
 				server.log.error(err);

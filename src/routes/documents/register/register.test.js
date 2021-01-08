@@ -125,8 +125,6 @@ describe("register", () => {
 				url: "/",
 				query: {
 					lastModified: `ge${mockLastModified}`,
-					perPage: mockPage,
-					page: mockPage,
 				},
 			});
 
