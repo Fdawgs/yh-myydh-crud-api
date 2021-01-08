@@ -4,8 +4,8 @@ Contributions are welcome and any help that can be offered is greatly appreciate
 Please take a moment to read the entire contributing guide.
 
 This repository uses the [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow),
-meaning that development should take place in `feat/` branches, with the `main` branch kept in a stable state.
-When you submit pull requests, please make sure to fork from and submit back to `main`.
+meaning that development should take place in `feat/` branches, with the `master` branch kept in a stable state.
+When you submit pull requests, please make sure to fork from and submit back to `master`.
 
 Other processes and specifications that are in use in this repository are:
 
@@ -37,7 +37,7 @@ After cloning and installing all the dependencies, there are several commands av
 
 Prior to submitting a pull request back to the main repository, please make sure you have completed the following steps:
 
-1. Pull request base branch is set to `main`. All pull requests should be forked from and merged back to `main`
+1. Pull request base branch is set to `master`. All pull requests should be forked from and merged back to `master`
 2. Run `yarn test` to check the code adheres to the defined style and that it passes the Jest tests
 3. Run `yarn lint:prettier` to run the Prettier code formatter over the code
 
