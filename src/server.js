@@ -7,7 +7,7 @@ const bearer = require("fastify-bearer-auth");
 const cors = require("fastify-cors");
 const helmet = require("fastify-helmet");
 const swagger = require("fastify-swagger");
-const mssql = require("./plugins/fastify-mssql");
+const mssql = require("./plugins/mssql");
 
 /**
  * @author Frazer Smith
@@ -51,7 +51,7 @@ async function plugin(server, config) {
 		.register(async (childServer) => {
 			childServer
 				.register(bearer, { keys: config.authKeys })
-				.register(mssql, config.database.connection)
+				.register(mssql, config)
 				// Import and register service routes
 				.register(autoLoad, {
 					dir: path.join(__dirname, "routes"),

@@ -6,16 +6,9 @@ const S = require("fluent-json-schema");
  *
  * This validation protects against XSS and HPP attacks.
  */
-const headerSchema = S.object().prop(
-	"Authorization",
-	S.string().description("Bearer token for authorization").required()
-);
 
-// TODO: Add 300 response schema
 const registerGetSchema = {
 	description: "Retrieve document metadata from register",
-	headers: headerSchema,
-
 	querystring: S.object()
 		.prop(
 			"lastModified",
@@ -53,7 +46,7 @@ const registerGetSchema = {
 				S.array().items(
 					S.object()
 						.prop("guid", S.string().examples(["EXAMPLE-GUID"]))
-						.prop("fhir_id", S.number().examples(["99999"]))
+						.prop("fhirId", S.number().examples(["99999"]))
 						.prop(
 							"title",
 							S.string().examples([
@@ -66,11 +59,11 @@ const registerGetSchema = {
 						)
 						.prop("clinic", S.string().examples(["CLO/BIA"]))
 						.prop(
-							"document_type",
+							"documentType",
 							S.string().examples(['"Clinic Letter"'])
 						)
 						.prop(
-							"file_name",
+							"fileName",
 							S.string().examples([
 								"99999   DUCK 11 July 2015 11 27.pdf",
 							])
@@ -84,13 +77,13 @@ const registerGetSchema = {
 								.format("uri")
 						)
 						.prop(
-							"created_date",
+							"createdDate",
 							S.string()
 								.examples(["2015-09-30T05:40:14.000Z"])
 								.format("date-time")
 						)
 						.prop(
-							"modified",
+							"modifiedDate",
 							S.string()
 								.examples(["2020-08-10T03:51:54.000Z"])
 								.format("date-time")
@@ -131,72 +124,4 @@ const registerGetSchema = {
 	},
 };
 
-const receiptDeleteSchema = {
-	description: "Delete document read receipt",
-	headers: headerSchema,
-	params: S.object().prop(
-		"id",
-		S.string()
-			.description("Logical id of the artifact")
-			.examples(["EXAMPLE-GUID"])
-			.required()
-	),
-	querystring: S.object().prop(
-		"patientId",
-		S.number()
-			.description("Unique patient identifier")
-			.examples([9999999999])
-			.required()
-	),
-	response: {
-		204: S.null(),
-		500: S.object()
-			.prop("statusCode", S.number().const(500))
-			.prop("error", S.string().const("Internal Server Error"))
-			.prop(
-				"message",
-				S.string().const(
-					"Unable to update delete read receipt from database"
-				)
-			),
-	},
-};
-
-const receiptPutSchema = {
-	description: "Create document read receipt",
-	headers: headerSchema,
-	params: S.object().prop(
-		"id",
-		S.string()
-			.description("Logical id of the artifact")
-			.examples(["EXAMPLE-GUID"])
-			.required()
-	),
-	querystring: S.object()
-		.prop(
-			"patientId",
-			S.number()
-				.description("Unique patient identifier")
-				.examples([9999999999])
-				.required()
-		)
-		.prop(
-			"timestamp",
-			S.string()
-				.description("Read time of document")
-				.format("date-time")
-				.required()
-		),
-	response: {
-		204: S.null(),
-		500: S.object()
-			.prop("statusCode", S.number().const(500))
-			.prop("error", S.string().const("Internal Server Error"))
-			.prop(
-				"message",
-				S.string().const("Unable to update read receipt in database")
-			),
-	},
-};
-
-module.exports = { registerGetSchema, receiptDeleteSchema, receiptPutSchema };
+module.exports = registerGetSchema;
