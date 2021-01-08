@@ -108,7 +108,7 @@ describe("receipt", () => {
 		});
 	});
 
-	describe("POST requests", () => {
+	describe("PUT requests", () => {
 		let options;
 		let server;
 
