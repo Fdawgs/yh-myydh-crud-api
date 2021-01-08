@@ -10,7 +10,8 @@ const mockPage = faker.random.number({
 
 const mockLastModified = faker.date.past().toISOString().split("T")[0];
 
-describe("Server deployment", () => {
+// TODO: look at standing up test SQL Server instance with Docker and disable skip for this
+describe.skip("Server deployment", () => {
 	let config;
 	let server;
 
