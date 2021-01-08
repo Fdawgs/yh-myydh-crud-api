@@ -6,10 +6,11 @@ const S = require("fluent-json-schema");
  *
  * This validation protects against XSS and HPP attacks.
  */
+// TODO: raise issue regarding S.number() for params.id and Fastify HTTP injections
 const userGetSchema = {
 	params: S.object().prop(
 		"id",
-		S.number().description("Unique patient identifier").examples([1])
+		S.string().description("Unique patient identifier").examples([1])
 	),
 	response: {
 		404: S.object()
@@ -26,10 +27,11 @@ const userGetSchema = {
 	},
 };
 
+// TODO: raise issue regarding S.number() for params.id and Fastify HTTP injections
 const userPutSchema = {
 	params: S.object().prop(
 		"id",
-		S.number().description("Unique patient identifier").examples([1])
+		S.string().description("Unique patient identifier").examples([1])
 	),
 	body: S.object().prop(
 		"preferences",
