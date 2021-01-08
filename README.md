@@ -16,6 +16,13 @@ This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s backen
 -   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads)
 -   [Yarn](https://classic.yarnpkg.com)
 
+### SQL Server setup
+
+1. Connect to your SQL Server instance and use the script found in `./sql/create_tables.sql` to create the tables required for this app to function
+2. Create a separate user account with read/write access to the database where you have chosen to create these tables, and the tables themselves
+
+Make a note of the credentials of the user created, the server, the database the tables reside in, and the name of the tables (if changed from the originals in the script), as these are needed for the `DB_` environment variables in the `.env` file mentioned in the following deployment sections.
+
 ## Deployment
 
 ### Standard deployment
