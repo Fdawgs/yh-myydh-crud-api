@@ -1,9 +1,8 @@
 const createError = require("http-errors");
-const sqlServer = require("mssql");
-
 const clean = require("../../../utils/clean-objects");
 
 const { optionsGetSchema } = require("./schema");
+const { optionsSelect } = require("./query");
 
 /**
  * @author Frazer Smith
@@ -18,25 +17,19 @@ async function route(server, options) {
 		schema: optionsGetSchema,
 		async handler(req, res) {
 			try {
-				const prefType = await server.mssql
-					.request()
-					.input("input_parameter", sqlServer.Int, req.params.id)
-					.query(
-						`SELECT prefType.preferenceTypeId AS preference_type_id,
-								prefType.preferenceType AS preference_type_display
-						   FROM ${options.database.tables.patientPrefTypeLookup} prefType`
-					);
-
-				const prefList = await server.mssql.request().query(
-					`SELECT prefType.preferenceTypeId AS preference_type_id,
-							prefType.preferenceType AS preference_type_display,
-							prefVal.preferenceValue AS preference_option_display,
-							prefVal.preferenceValueId AS preference_option_value
-					   FROM ${options.database.tables.patientPrefTypeLookup} prefType
-				 CROSS JOIN ${options.database.tables.patientPrefValueLookup} prefVal`
+				const { recordsets } = await server.mssql.query(
+					optionsSelect({
+						patientPreferencesTypeTable:
+							options.database.tables.patientPrefTypeLookup,
+						patientPreferencesValueTable:
+							options.database.tables.patientPrefValueLookup,
+					})
 				);
 
-				if (prefType.recordset && prefType.recordset.length !== 0) {
+				const prefType = recordsets[0];
+				const prefList = recordsets[1];
+
+				if (prefType && prefType.length !== 0) {
 					// Build patient object
 					const patientObj = {
 						preferences: [],
@@ -44,8 +37,8 @@ async function route(server, options) {
 
 					let priorityCount = 0;
 
-					// Build preference objects, merging in results from preferenceList query
-					prefType.recordset.forEach((element) => {
+					// Build preference objects, merging in results from preference list query
+					prefType.forEach((element) => {
 						const preferenceObj = {
 							type: {
 								display: element.preference_type_display,
@@ -57,11 +50,8 @@ async function route(server, options) {
 						};
 
 						// Build option objects to populate options array
-						if (
-							prefList.recordset &&
-							prefList.recordset.length !== 0
-						) {
-							prefList.recordset.forEach((option) => {
+						if (prefList && prefList.length !== 0) {
+							prefList.forEach((option) => {
 								if (
 									option.preference_type_id ===
 									element.preference_type_id
