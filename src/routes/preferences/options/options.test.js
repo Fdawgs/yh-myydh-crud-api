@@ -2,7 +2,7 @@ const Fastify = require("fastify");
 const plugin = require(".");
 const getConfig = require("../../../config");
 
-describe("register", () => {
+describe("options", () => {
 	describe("GET requests", () => {
 		let options;
 		let server;
@@ -24,7 +24,7 @@ describe("register", () => {
 			server.close();
 		});
 
-		test("Should return documents from register", async () => {
+		test("Should return preference options", async () => {
 			const mockQueryFn = jest.fn().mockResolvedValue({
 				recordsets: [
 					[

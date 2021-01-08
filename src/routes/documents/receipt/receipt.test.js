@@ -129,7 +129,7 @@ describe("receipt", () => {
 			server.close();
 		});
 
-		test("Should create a document read receipt", async () => {
+		test("Should upsert document read receipt", async () => {
 			const mockQueryFn = jest.fn().mockResolvedValue({
 				rowsAffected: [1],
 			});
@@ -154,35 +154,10 @@ describe("receipt", () => {
 			expect(response.statusCode).toEqual(204);
 		});
 
-		test("Should fail to create document read receipt if client cannot write to database", async () => {
+		test("Should return HTTP status code 500 if connection issue encountered", async () => {
 			const mockQueryFn = jest.fn().mockResolvedValue({
 				rowsAffected: [0],
 			});
-
-			server.mssql = {
-				query: mockQueryFn,
-			};
-
-			const response = await server.inject({
-				method: "PUT",
-				url: "/",
-				params: {
-					id: mockId,
-				},
-				query: {
-					patientId: mockPatientId,
-					timestamp: mockTimeStamp,
-				},
-			});
-
-			expect(mockQueryFn).toHaveBeenCalledTimes(1);
-			expect(response.statusCode).toEqual(500);
-		});
-
-		test("Should throw error", async () => {
-			const mockQueryFn = jest
-				.fn()
-				.mockRejectedValue(Error("Failed to connect to DB"));
 
 			server.mssql = {
 				query: mockQueryFn,
