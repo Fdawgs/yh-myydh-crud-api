@@ -10,7 +10,7 @@ FROM ${documentRegisterTable}
 WHERE Modified ${operator} '${timestamp}';
 
 SELECT GUID AS guid,
-fhir_id AS fhirID,
+fhir_id AS fhirId,
 Title AS title,
 Specialty AS specialty,
 Clinic AS clinic,
