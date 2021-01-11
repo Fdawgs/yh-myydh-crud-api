@@ -1,3 +1,20 @@
+## 1.1.0 (2021-01-11)
+
+-   chore: add benchmark script ([5c96a32](https://github.com/Fdawgs/ydh-app-api-next/commit/5c96a32))
+-   chore(deps-dev): bump eslint-plugin-jsdoc from 30.7.13 to 31.0.1 (#14) ([bbebc1a](https://github.com/Fdawgs/ydh-app-api-next/commit/bbebc1a)), closes [#14](https://github.com/Fdawgs/ydh-app-api-next/issues/14)
+-   chore(deps): bump pino from 6.9.0 to 6.10.0 (#13) ([2b9af96](https://github.com/Fdawgs/ydh-app-api-next/commit/2b9af96)), closes [#13](https://github.com/Fdawgs/ydh-app-api-next/issues/13)
+-   refactor(routes/preferences/options): removed unused branch ([c306093](https://github.com/Fdawgs/ydh-app-api-next/commit/c306093))
+-   refactor(routes/preferences/user): removed unused branch ([f7e7d32](https://github.com/Fdawgs/ydh-app-api-next/commit/f7e7d32))
+-   refactor(server): use helmet default csp directives function ([2a45afa](https://github.com/Fdawgs/ydh-app-api-next/commit/2a45afa))
+-   style: rename fastifyplugin variable to fp ([44963d1](https://github.com/Fdawgs/ydh-app-api-next/commit/44963d1))
+-   style(routes/preferences): rename variables to be meaningful ([f163946](https://github.com/Fdawgs/ydh-app-api-next/commit/f163946))
+-   style(server): rename child server param to be clearer ([4aea194](https://github.com/Fdawgs/ydh-app-api-next/commit/4aea194))
+-   fix(routes): export of schemas ([a67da6e](https://github.com/Fdawgs/ydh-app-api-next/commit/a67da6e))
+-   fix(routes/documents/register): key casing ([c92cfa2](https://github.com/Fdawgs/ydh-app-api-next/commit/c92cfa2))
+-   feat(routes): add healthcheck route ([b640424](https://github.com/Fdawgs/ydh-app-api-next/commit/b640424))
+-   build: add typoci config file ([67e7650](https://github.com/Fdawgs/ydh-app-api-next/commit/67e7650))
+-   docs(contributing): rename `main` to `master` ([11182f6](https://github.com/Fdawgs/ydh-app-api-next/commit/11182f6))
+
 ## 1.0.0 (2021-01-08)
 
 -   chore: commit template ([d1a95fc](https://github.com/Fdawgs/ydh-app-api-next/commit/d1a95fc))
