@@ -29,72 +29,60 @@ async function route(server, options) {
 					})
 				);
 
-				const patientPreferenceTypes = recordsets[0];
+				const patientPreferences = recordsets[0];
 				const patientPreferencesValues = recordsets[1];
 
-				if (
-					patientPreferenceTypes &&
-					patientPreferenceTypes.length !== 0
-				) {
+				if (patientPreferences && patientPreferences.length !== 0) {
 					// Build patient object
 					const patientObj = {
-						id: patientPreferenceTypes[0].id,
+						id: patientPreferences[0].id,
 						meta: {
-							created: patientPreferenceTypes[0].meta_created,
-							lastupdated:
-								patientPreferenceTypes[0].meta_lastupdated,
+							created: patientPreferences[0].meta_created,
+							lastupdated: patientPreferences[0].meta_lastupdated,
 						},
 						preferences: [],
 					};
 
-					// Build preference objects, merging in results from preferenceList query
-					patientPreferenceTypes.forEach((preferenceType) => {
+					// Build preference objects, merging in results from patientPreferencesValues query
+					patientPreferences.forEach((patientPreference) => {
 						const preferenceObj = {
 							type: {
-								display: preferenceType.preference_type_display,
-								id: preferenceType.preference_type_id,
+								display:
+									patientPreference.preference_type_display,
+								id: patientPreference.preference_type_id,
 								priority:
-									preferenceType.preference_type_priority,
+									patientPreference.preference_type_priority,
 								selected: undefined,
 								options: [],
 							},
 						};
 
 						// Build option objects to populate options array
-						if (
-							patientPreferencesValues &&
-							patientPreferencesValues.length !== 0
-						) {
-							patientPreferencesValues.forEach(
-								(preferenceValue) => {
-									if (
-										preferenceValue.preference_type_id ===
-										preferenceType.preference_type_id
-									) {
-										const optionObj = {
-											display:
-												preferenceValue.preference_option_display,
-											value:
-												preferenceValue.preference_option_value,
-										};
+						patientPreferencesValues.forEach((preferenceValue) => {
+							if (
+								preferenceValue.preference_type_id ===
+								patientPreference.preference_type_id
+							) {
+								const optionObj = {
+									display:
+										preferenceValue.preference_option_display,
+									value:
+										preferenceValue.preference_option_value,
+								};
 
-										if (
-											preferenceType.preferenceValueId ===
-											preferenceValue.preference_option_value
-										) {
-											preferenceObj.type.selected =
-												preferenceValue.preference_option_value;
-										}
-
-										preferenceObj.type.options.push(
-											optionObj
-										);
-									}
+								if (
+									patientPreference.preferenceValueId ===
+									preferenceValue.preference_option_value
+								) {
+									preferenceObj.type.selected =
+										preferenceValue.preference_option_value;
 								}
-							);
 
-							patientObj.preferences.push(preferenceObj);
-						}
+								preferenceObj.type.options.push(optionObj);
+							}
+						});
+
+						patientObj.preferences.push(preferenceObj);
 					});
 
 					res.send(clean(patientObj));

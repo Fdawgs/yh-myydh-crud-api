@@ -40,7 +40,7 @@ async function route(server, options) {
 
 					let priorityCount = 0;
 
-					// Build preference objects, merging in results from preference list query
+					// Build preference objects, merging in results from preferenceValueOptions query
 					preferenceTypeOptions.forEach((preferenceType) => {
 						const preferenceObj = {
 							type: {
