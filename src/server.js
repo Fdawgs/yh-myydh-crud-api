@@ -5,6 +5,7 @@ const path = require("path");
 // Import plugins
 const bearer = require("fastify-bearer-auth");
 const cors = require("fastify-cors");
+const helmConfig = require("helmet");
 const helmet = require("fastify-helmet");
 const swagger = require("fastify-swagger");
 const mssql = require("./plugins/mssql");
@@ -27,19 +28,12 @@ async function plugin(server, config) {
 		.register(helmet, (instance) => ({
 			contentSecurityPolicy: {
 				directives: {
-					defaultSrc: ["'self'"], // default source is mandatory
-					baseUri: ["'self'"],
-					blockAllMixedContent: [],
-					frameAncestors: ["'self'"],
-					fontSrc: ["'self'"],
-					formAction: ["'self'"],
-					imgSrc: ["'self'", "data:", "validator.swagger.io"],
-					objectSrc: ["'none'"],
-					scriptSrc: ["'self'"].concat(instance.swaggerCSP.script),
-					styleSrc: ["'self'", "https:"].concat(
+					...helmConfig.contentSecurityPolicy.getDefaultDirectives(),
+					"img-src": ["'self'", "data:", "validator.swagger.io"],
+					"script-src": ["'self'"].concat(instance.swaggerCSP.script),
+					"style-src": ["'self'", "https:"].concat(
 						instance.swaggerCSP.style
 					),
-					upgradeInsecureRequests: [],
 				},
 			},
 		}))

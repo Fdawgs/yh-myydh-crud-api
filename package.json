@@ -83,6 +83,7 @@
 		"fastify-swagger": "^3.5.0",
 		"file-stream-rotator": "^0.5.7",
 		"fluent-json-schema": "^2.0.3",
+		"helmet": "^4.3.1",
 		"http-errors": "^1.8.0",
 		"mssql": "^6.3.1",
 		"pino": "^6.9.0"
