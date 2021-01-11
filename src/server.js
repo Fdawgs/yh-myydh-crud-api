@@ -45,11 +45,11 @@ async function plugin(server, config) {
 		}))
 
 		/**
-		 * Encapsulate bearer token auth and routes into child server, so that swagger
+		 * Encapsulate plugins and routes into secured child context, so that swagger
 		 * route doesn't inherit bearer token auth plugin
 		 */
-		.register(async (childServer) => {
-			childServer
+		.register(async (securedContext) => {
+			securedContext
 				.register(bearer, { keys: config.authKeys })
 				.register(mssql, config)
 				// Import and register service routes
