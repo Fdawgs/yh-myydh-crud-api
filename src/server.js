@@ -32,6 +32,7 @@ async function plugin(server, config) {
 			contentSecurityPolicy: {
 				directives: {
 					...helmConfig.contentSecurityPolicy.getDefaultDirectives(),
+					"form-action": ["'self'"],
 					"img-src": ["'self'", "data:", "validator.swagger.io"],
 					"script-src": ["'self'"].concat(instance.swaggerCSP.script),
 					"style-src": ["'self'", "https:"].concat(
