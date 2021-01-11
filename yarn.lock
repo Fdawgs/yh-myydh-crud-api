@@ -2570,6 +2570,14 @@ fastify-cors@^5.1.0:
     fastify-plugin "^3.0.0"
     vary "^1.1.2"
 
+fastify-disablecache@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fastify-disablecache/-/fastify-disablecache-1.0.0.tgz#1b241ad3794d45748d74758870edca13c307cd56"
+  integrity sha512-ajtommqvotKiu5uCqL9A1RPyoywWuXZUHFUl5GrHTy0vPkUwNJd7xIYKxe5NZ/ojh4Th4/H24Wj/GlQGMeT38w==
+  dependencies:
+    fastify-plugin "^3.0.0"
+    nocache "^2.1.0"
+
 fastify-error@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/fastify-error/-/fastify-error-0.2.0.tgz#9a1c28d4f42b6259e7a549671c8e5e2d85660634"
@@ -4671,6 +4679,11 @@ nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
+
+nocache@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/nocache/-/nocache-2.1.0.tgz#120c9ffec43b5729b1d5de88cd71aa75a0ba491f"
+  integrity sha512-0L9FvHG3nfnnmaEQPjT9xhfN4ISk0A8/2j4M37Np4mcDesJjHgEUfgPhdCyZuFI954tjokaIj/A3NdpFNdEh4Q==
 
 node-int64@^0.4.0:
   version "0.4.0"
