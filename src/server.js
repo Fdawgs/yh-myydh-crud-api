@@ -1,5 +1,5 @@
 const autoLoad = require("fastify-autoload");
-const fastifyPlugin = require("fastify-plugin");
+const fp = require("fastify-plugin");
 const path = require("path");
 
 // Import plugins
@@ -60,4 +60,4 @@ async function plugin(server, config) {
 		});
 }
 
-module.exports = fastifyPlugin(plugin);
+module.exports = fp(plugin);

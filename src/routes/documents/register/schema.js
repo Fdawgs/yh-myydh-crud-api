@@ -6,7 +6,6 @@ const S = require("fluent-json-schema");
  *
  * This validation protects against XSS and HPP attacks.
  */
-
 const registerGetSchema = {
 	description: "Retrieve document metadata from register",
 	querystring: S.object()

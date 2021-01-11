@@ -1,4 +1,4 @@
-const fastifyPlugin = require("fastify-plugin");
+const fp = require("fastify-plugin");
 const sql = require("mssql");
 
 /**
@@ -39,4 +39,4 @@ async function plugin(server, options) {
 	server.addHook("onClose", async (instance, done) => mssql.close(done));
 }
 
-module.exports = fastifyPlugin(plugin);
+module.exports = fp(plugin);
