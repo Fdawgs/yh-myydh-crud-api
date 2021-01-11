@@ -63,4 +63,4 @@ const optionsGetSchema = {
 	},
 };
 
-module.exports = optionsGetSchema;
+module.exports = { optionsGetSchema };

@@ -123,4 +123,4 @@ const registerGetSchema = {
 	},
 };
 
-module.exports = registerGetSchema;
+module.exports = { registerGetSchema };

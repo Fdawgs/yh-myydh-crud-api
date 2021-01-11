@@ -14,4 +14,4 @@ const healthcheckGetSchema = {
 	},
 };
 
-module.exports = healthcheckGetSchema;
+module.exports = { healthcheckGetSchema };
