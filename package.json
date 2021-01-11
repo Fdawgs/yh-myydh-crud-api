@@ -1,9 +1,9 @@
 {
-	"name": "ydh-app-api-next",
+	"name": "ydh-app-api",
 	"version": "1.1.0",
 	"description": "Yeovil District Hospital NHSFT's YDH App backend API to support CRUD functionality",
 	"main": "src/app.js",
-	"repository": "git+https://github.com/Fdawgs/ydh-app-api-next.git",
+	"repository": "git+https://github.com/Fdawgs/ydh-app-api.git",
 	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
 	"license": "MIT",
 	"engines": {
