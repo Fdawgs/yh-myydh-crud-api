@@ -1,13 +1,17 @@
 const autoLoad = require("fastify-autoload");
-const fastifyPlugin = require("fastify-plugin");
+const fp = require("fastify-plugin");
 const path = require("path");
 
 // Import plugins
 const bearer = require("fastify-bearer-auth");
 const cors = require("fastify-cors");
+const helmConfig = require("helmet");
 const helmet = require("fastify-helmet");
 const swagger = require("fastify-swagger");
 const mssql = require("./plugins/mssql");
+
+// Import healthcheck route
+const healthCheck = require("./routes/healthcheck");
 
 /**
  * @author Frazer Smith
@@ -27,37 +31,33 @@ async function plugin(server, config) {
 		.register(helmet, (instance) => ({
 			contentSecurityPolicy: {
 				directives: {
-					defaultSrc: ["'self'"], // default source is mandatory
-					baseUri: ["'self'"],
-					blockAllMixedContent: [],
-					frameAncestors: ["'self'"],
-					fontSrc: ["'self'"],
-					formAction: ["'self'"],
-					imgSrc: ["'self'", "data:", "validator.swagger.io"],
-					objectSrc: ["'none'"],
-					scriptSrc: ["'self'"].concat(instance.swaggerCSP.script),
-					styleSrc: ["'self'", "https:"].concat(
+					...helmConfig.contentSecurityPolicy.getDefaultDirectives(),
+					"img-src": ["'self'", "data:", "validator.swagger.io"],
+					"script-src": ["'self'"].concat(instance.swaggerCSP.script),
+					"style-src": ["'self'", "https:"].concat(
 						instance.swaggerCSP.style
 					),
-					upgradeInsecureRequests: [],
 				},
 			},
 		}))
 
+		.register(healthCheck)
+
 		/**
-		 * Encapsulate bearer token auth and routes into child server, so that swagger
+		 * Encapsulate plugins and routes into secured child context, so that swagger
 		 * route doesn't inherit bearer token auth plugin
 		 */
-		.register(async (childServer) => {
-			childServer
+		.register(async (securedContext) => {
+			securedContext
 				.register(bearer, { keys: config.authKeys })
 				.register(mssql, config)
 				// Import and register service routes
 				.register(autoLoad, {
 					dir: path.join(__dirname, "routes"),
+					ignorePattern: /healthcheck/,
 					options: config,
 				});
 		});
 }
 
-module.exports = fastifyPlugin(plugin);
+module.exports = fp(plugin);
