@@ -70,14 +70,6 @@ async function route(server, options) {
 												preferenceValue.preference_option_value,
 										};
 
-										if (
-											preferenceType.preferenceValueId ===
-											preferenceValue.preference_option_value
-										) {
-											preferenceObj.type.selected =
-												preferenceValue.preference_option_value;
-										}
-
 										preferenceObj.type.options.push(
 											optionObj
 										);
