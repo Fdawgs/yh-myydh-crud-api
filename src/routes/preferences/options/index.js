@@ -26,10 +26,13 @@ async function route(server, options) {
 					})
 				);
 
-				const prefType = recordsets[0];
-				const prefList = recordsets[1];
+				const preferenceTypeOptions = recordsets[0];
+				const preferenceValueOptions = recordsets[1];
 
-				if (prefType && prefType.length !== 0) {
+				if (
+					preferenceTypeOptions &&
+					preferenceTypeOptions.length !== 0
+				) {
 					// Build patient object
 					const patientObj = {
 						preferences: [],
@@ -37,12 +40,12 @@ async function route(server, options) {
 
 					let priorityCount = 0;
 
-					// Build preference objects, merging in results from preference list query
-					prefType.forEach((element) => {
+					// Build preference objects, merging in results from preferenceValueOptions query
+					preferenceTypeOptions.forEach((preferenceType) => {
 						const preferenceObj = {
 							type: {
-								display: element.preference_type_display,
-								id: element.preference_type_id,
+								display: preferenceType.preference_type_display,
+								id: preferenceType.preference_type_id,
 								priority: priorityCount,
 								selected: 2,
 								options: [],
@@ -50,29 +53,29 @@ async function route(server, options) {
 						};
 
 						// Build option objects to populate options array
-						if (prefList && prefList.length !== 0) {
-							prefList.forEach((option) => {
-								if (
-									option.preference_type_id ===
-									element.preference_type_id
-								) {
-									const optionObj = {
-										display:
-											option.preference_option_display,
-										value: option.preference_option_value,
-									};
-
+						if (
+							preferenceValueOptions &&
+							preferenceValueOptions.length !== 0
+						) {
+							preferenceValueOptions.forEach(
+								(preferenceValue) => {
 									if (
-										element.preferenceValueId ===
-										option.preference_option_value
+										preferenceValue.preference_type_id ===
+										preferenceType.preference_type_id
 									) {
-										preferenceObj.type.selected =
-											option.preference_option_value;
-									}
+										const optionObj = {
+											display:
+												preferenceValue.preference_option_display,
+											value:
+												preferenceValue.preference_option_value,
+										};
 
-									preferenceObj.type.options.push(optionObj);
+										preferenceObj.type.options.push(
+											optionObj
+										);
+									}
 								}
-							});
+							);
 
 							patientObj.preferences.push(preferenceObj);
 						}
