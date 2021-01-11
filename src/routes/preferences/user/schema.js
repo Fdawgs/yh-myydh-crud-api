@@ -43,7 +43,7 @@ const userPutSchema = {
 		)
 	),
 	response: {
-		204: S.null(),
+		204: S.string().raw({ nullable: true }),
 		400: S.object()
 			.prop("statusCode", S.number().const(400))
 			.prop("error", S.string().const("Bad Request"))

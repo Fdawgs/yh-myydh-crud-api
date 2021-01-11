@@ -23,7 +23,7 @@ const receiptDeleteSchema = {
 			.required()
 	),
 	response: {
-		204: S.null(),
+		204: S.string().raw({ nullable: true }),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
@@ -62,7 +62,7 @@ const receiptPutSchema = {
 				.required()
 		),
 	response: {
-		204: S.null(),
+		204: S.string().raw({ nullable: true }),
 		404: S.object()
 			.prop("statusCode", S.number().const(404))
 			.prop("error", S.string().const("Not Found"))
