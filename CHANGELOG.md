@@ -1,3 +1,12 @@
+## <small>1.1.1 (2021-01-11)</small>
+
+-   fix(env): set default cors to wildcard as boolean option broken ([ed8754f](https://github.com/Fdawgs/ydh-app-api/commit/ed8754f))
+-   fix(server): add form-action csp directive ([c7d241c](https://github.com/Fdawgs/ydh-app-api/commit/c7d241c))
+-   fix(server): disable caching ([4a18b30](https://github.com/Fdawgs/ydh-app-api/commit/4a18b30))
+-   build(docker): ignore test_resources directory ([3a1c391](https://github.com/Fdawgs/ydh-app-api/commit/3a1c391))
+-   docs(readme): correct badge links ([34c4ff5](https://github.com/Fdawgs/ydh-app-api/commit/34c4ff5))
+-   chore: rename repository ([7c76a6c](https://github.com/Fdawgs/ydh-app-api/commit/7c76a6c))
+
 ## 1.1.0 (2021-01-11)
 
 -   chore: add benchmark script ([5c96a32](https://github.com/Fdawgs/ydh-app-api/commit/5c96a32))
