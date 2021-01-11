@@ -10,6 +10,9 @@ const helmet = require("fastify-helmet");
 const swagger = require("fastify-swagger");
 const mssql = require("./plugins/mssql");
 
+// Import healthcheck route
+const healthCheck = require("./routes/healthcheck");
+
 /**
  * @author Frazer Smith
  * @description Build Fastify instance
@@ -38,6 +41,8 @@ async function plugin(server, config) {
 			},
 		}))
 
+		.register(healthCheck)
+
 		/**
 		 * Encapsulate plugins and routes into secured child context, so that swagger
 		 * route doesn't inherit bearer token auth plugin
@@ -49,6 +54,7 @@ async function plugin(server, config) {
 				// Import and register service routes
 				.register(autoLoad, {
 					dir: path.join(__dirname, "routes"),
+					ignorePattern: /healthcheck/,
 					options: config,
 				});
 		});
