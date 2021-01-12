@@ -1,5 +1,8 @@
 const S = require("fluent-json-schema");
 
+const tags = ["Documents"];
+const security = [{ bearer_token: [] }];
+
 /**
  * Fastify uses AJV for JSON Schema Validation,
  * see https://www.fastify.io/docs/latest/Validation-and-Serialization/
@@ -7,7 +10,8 @@ const S = require("fluent-json-schema");
  * This validation protects against XSS and HPP attacks.
  */
 const receiptDeleteSchema = {
-	description: "Delete document read receipt",
+	tags,
+	summary: "Delete document read receipt",
 	params: S.object().prop(
 		"id",
 		S.string()
@@ -34,10 +38,12 @@ const receiptDeleteSchema = {
 				)
 			),
 	},
+	security,
 };
 
 const receiptPutSchema = {
-	description: "Create document read receipt",
+	tags,
+	summary: "Create or update read receipt",
 
 	params: S.object().prop(
 		"id",
@@ -80,6 +86,7 @@ const receiptPutSchema = {
 				S.string().const("Unable to update read receipt in database")
 			),
 	},
+	security,
 };
 
 module.exports = { receiptDeleteSchema, receiptPutSchema };

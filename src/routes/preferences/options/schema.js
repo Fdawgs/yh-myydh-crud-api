@@ -1,5 +1,8 @@
 const S = require("fluent-json-schema");
 
+const tags = ["Contact Preferences"];
+const security = [{ bearer_token: [] }];
+
 /**
  * Fastify uses AJV for JSON Schema Validation,
  * see https://www.fastify.io/docs/latest/Validation-and-Serialization/
@@ -7,7 +10,8 @@ const S = require("fluent-json-schema");
  * This validation protects against XSS and HPP attacks.
  */
 const optionsGetSchema = {
-	description:
+	tags,
+	summary:
 		"Retrieve default available list of patient contact preferences that can be set",
 	response: {
 		200: S.object().prop(
@@ -61,6 +65,7 @@ const optionsGetSchema = {
 				S.string().const("Unable to return result(s) from database")
 			),
 	},
+	security,
 };
 
 module.exports = { optionsGetSchema };

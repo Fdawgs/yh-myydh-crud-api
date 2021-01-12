@@ -133,6 +133,29 @@ async function getConfig() {
 					},
 					version,
 				},
+				tags: [
+					{
+						name: "Contact Preferences",
+						description:
+							"Endpoints relating to patient contact preferences",
+					},
+					{
+						name: "Documents",
+						description:
+							"Endpoints relating to patient clinical documents",
+					},
+					{
+						name: "System Administration",
+						description: "",
+					},
+				],
+				securityDefinitions: {
+					bearer_token: {
+						type: "apiKey",
+						name: "Authorization",
+						in: "header",
+					},
+				},
 			},
 		},
 		database: {
