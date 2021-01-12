@@ -13,6 +13,9 @@ GO
 CREATE SCHEMA receipt;
 GO
 
+CREATE SCHEMA register;
+GO
+
 CREATE TABLE lookup.preferenceType
 (
     preferenceTypeId INT IDENTITY(1,1) NOT NULL,
@@ -41,14 +44,32 @@ CREATE TABLE patient.preferences
     CONSTRAINT FK_PreferenceType FOREIGN KEY (preferenceTypeId) REFERENCES lookup.preferenceType(preferenceTypeId),
     CONSTRAINT FK_PreferenceValue FOREIGN KEY (preferenceValueId) REFERENCES lookup.preferenceValue(preferenceValueid)
 );
-GO 
+GO
 
 
 CREATE TABLE receipt.documents
 (
     patientId VARCHAR(255) NOT NULL,
-    [guid] CHAR(36) NOT NULL,
+    guid CHAR(36) NOT NULL,
     ts DATETIME NOT NULL,
-    CONSTRAINT CK_DocumentReceipt PRIMARY KEY (patientId, [guid])
+    CONSTRAINT CK_DocumentReceipt PRIMARY KEY (patientId, guid)
 );
+GO
+
+-- This table was created independent of this API, thus the mixture of snakecase and camelcase
+CREATE TABLE register.documents
+(
+    GUID NVARCHAR(36) NULL,
+    fhir_id NVARCHAR(19) NULL,
+    Title NVARCHAR(191) NULL,
+    Clinic NVARCHAR(191) NULL,
+    Document_Type NVARCHAR(191) NULL,
+    Filesname NVARCHAR(191) NULL,
+    URL NVARCHAR(191) NULL,
+    Patient_Visible TINYINT NULL,
+    CreatedDate DATETIME NULL,
+    Modified DATETIME NULL,
+    Specialty NVARCHAR(100) NULL,
+    FullPath NVARCHAR(555) NULL
+)
 GO 
