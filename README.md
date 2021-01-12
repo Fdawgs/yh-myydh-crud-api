@@ -45,6 +45,8 @@ The service should now be up and running on the port set in the config. You shou
 }
 ```
 
+You can now navigate to http://0.0.0.0:8204/docs to see the API documentation!
+
 ### Deploying using Docker
 
 This requires [Docker](https://www.docker.com/products) installed.
