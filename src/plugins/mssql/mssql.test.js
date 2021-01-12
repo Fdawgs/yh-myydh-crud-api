@@ -31,10 +31,6 @@ describe.skip("mssql plugin", () => {
 		server.mssql.connect = jest.fn();
 	});
 
-	beforeEach(() => {
-		jest.resetAllMocks();
-	});
-
 	afterAll(() => {
 		server.close();
 	});

@@ -27,10 +27,6 @@ describe("receipt", () => {
 			await server.ready();
 		});
 
-		beforeEach(() => {
-			jest.resetAllMocks();
-		});
-
 		afterAll(() => {
 			server.close();
 		});
@@ -119,10 +115,6 @@ describe("receipt", () => {
 			server.register(plugin, options);
 
 			await server.ready();
-		});
-
-		beforeEach(() => {
-			jest.resetAllMocks();
 		});
 
 		afterAll(() => {

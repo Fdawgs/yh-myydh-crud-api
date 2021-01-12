@@ -28,6 +28,7 @@
 			"src/**/*.js",
 			"!src/app.js"
 		],
+		"resetMocks": true,
 		"testEnvironment": "node",
 		"testTimeout": 10000
 	},

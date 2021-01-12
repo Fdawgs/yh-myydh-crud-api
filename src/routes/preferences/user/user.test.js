@@ -22,10 +22,6 @@ describe("user", () => {
 			await server.ready();
 		});
 
-		beforeEach(() => {
-			jest.resetAllMocks();
-		});
-
 		afterAll(() => {
 			server.close();
 		});
@@ -131,10 +127,6 @@ describe("user", () => {
 			server.register(plugin, options);
 
 			await server.ready();
-		});
-
-		beforeEach(() => {
-			jest.resetAllMocks();
 		});
 
 		afterAll(() => {
