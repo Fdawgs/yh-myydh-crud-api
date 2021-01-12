@@ -6,7 +6,7 @@ const fsp = require("fs").promises;
 const pino = require("pino");
 const rotatingLogStream = require("file-stream-rotator");
 
-const { name, description, version } = require("../../package.json");
+const { name, description, license, version } = require("../../package.json");
 
 /**
  * @author Frazer Smith
@@ -122,7 +122,39 @@ async function getConfig() {
 				info: {
 					title: name,
 					description,
+					contact: {
+						name: "Solutions Development Team",
+						email: "servicedesk@ydh.nhs.uk",
+					},
+					license: {
+						name: license,
+						url:
+							"https://raw.githubusercontent.com/Fdawgs/ydh-app-api/master/LICENSE",
+					},
 					version,
+				},
+				tags: [
+					{
+						name: "Contact Preferences",
+						description:
+							"Endpoints relating to patient contact preferences",
+					},
+					{
+						name: "Documents",
+						description:
+							"Endpoints relating to patient clinical documents",
+					},
+					{
+						name: "System Administration",
+						description: "",
+					},
+				],
+				securityDefinitions: {
+					bearer_token: {
+						type: "apiKey",
+						name: "Authorization",
+						in: "header",
+					},
 				},
 			},
 		},

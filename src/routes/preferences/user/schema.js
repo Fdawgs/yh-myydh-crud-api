@@ -1,5 +1,8 @@
 const S = require("fluent-json-schema");
 
+const tags = ["Contact Preferences"];
+const security = [{ bearer_token: [] }];
+
 /**
  * Fastify uses AJV for JSON Schema Validation,
  * see https://www.fastify.io/docs/latest/Validation-and-Serialization/
@@ -8,6 +11,8 @@ const S = require("fluent-json-schema");
  */
 // TODO: raise issue regarding S.number() for params.id and Fastify HTTP injections
 const userGetSchema = {
+	tags,
+	summary: "Retrieve list of patient contact preferences",
 	params: S.object().prop(
 		"id",
 		S.string().description("Unique patient identifier").examples([1])
@@ -25,10 +30,13 @@ const userGetSchema = {
 				S.string().const("Unable to return result(s) from database")
 			),
 	},
+	security,
 };
 
 // TODO: raise issue regarding S.number() for params.id and Fastify HTTP injections
 const userPutSchema = {
+	tags,
+	summary: "Create or update list of patient contact preferences",
 	params: S.object().prop(
 		"id",
 		S.string().description("Unique patient identifier").examples([1])
@@ -43,7 +51,7 @@ const userPutSchema = {
 		)
 	),
 	response: {
-		204: S.null(),
+		204: S.string().raw({ nullable: true }),
 		400: S.object()
 			.prop("statusCode", S.number().const(400))
 			.prop("error", S.string().const("Bad Request"))
@@ -61,6 +69,7 @@ const userPutSchema = {
 				)
 			),
 	},
+	security,
 };
 
 module.exports = { userGetSchema, userPutSchema };

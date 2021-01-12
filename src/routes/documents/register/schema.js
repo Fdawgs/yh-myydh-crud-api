@@ -1,5 +1,8 @@
 const S = require("fluent-json-schema");
 
+const tags = ["Documents"];
+const security = [{ bearer_token: [] }];
+
 /**
  * Fastify uses AJV for JSON Schema Validation,
  * see https://www.fastify.io/docs/latest/Validation-and-Serialization/
@@ -7,7 +10,8 @@ const S = require("fluent-json-schema");
  * This validation protects against XSS and HPP attacks.
  */
 const registerGetSchema = {
-	description: "Retrieve document metadata from register",
+	tags,
+	summary: "Retrieve document metadata from register",
 	querystring: S.object()
 		.prop(
 			"lastModified",
@@ -121,6 +125,7 @@ const registerGetSchema = {
 				S.string().const("Unable to return result(s) from database")
 			),
 	},
+	security,
 };
 
 module.exports = { registerGetSchema };
