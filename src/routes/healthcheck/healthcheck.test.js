@@ -16,10 +16,6 @@ describe("register", () => {
 			await server.ready();
 		});
 
-		beforeEach(() => {
-			jest.resetAllMocks();
-		});
-
 		afterAll(() => {
 			server.close();
 		});

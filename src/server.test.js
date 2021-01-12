@@ -24,10 +24,6 @@ describe.skip("Server deployment", () => {
 		await server.ready();
 	});
 
-	beforeEach(() => {
-		jest.resetAllMocks();
-	});
-
 	afterAll(() => {
 		server.close();
 	});
