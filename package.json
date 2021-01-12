@@ -1,6 +1,6 @@
 {
 	"name": "ydh-app-api",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "Yeovil District Hospital NHSFT's YDH App backend API to support CRUD functionality",
 	"main": "src/app.js",
 	"repository": "git+https://github.com/Fdawgs/ydh-app-api.git",
