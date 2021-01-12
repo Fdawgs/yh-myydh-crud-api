@@ -1,3 +1,14 @@
+## <small>1.1.2 (2021-01-12)</small>
+
+-   chore: add metadata to api schema ([b7c635f](https://github.com/Fdawgs/ydh-app-api/commit/b7c635f))
+-   chore: add securitydefinitions and tags ([e841359](https://github.com/Fdawgs/ydh-app-api/commit/e841359))
+-   chore: update license holder ([804973c](https://github.com/Fdawgs/ydh-app-api/commit/804973c))
+-   chore(deps-dev): bump eslint-plugin-jsdoc from 31.0.2 to 31.0.3 (#18) ([87022ea](https://github.com/Fdawgs/ydh-app-api/commit/87022ea)), closes [#18](https://github.com/Fdawgs/ydh-app-api/issues/18)
+-   chore(deps): bump fastify-disablecache from 1.0.0 to 1.0.1 (#19) ([d0cdaba](https://github.com/Fdawgs/ydh-app-api/commit/d0cdaba)), closes [#19](https://github.com/Fdawgs/ydh-app-api/issues/19)
+-   chore(sql): add `register.documents` table creation ([3dfbc06](https://github.com/Fdawgs/ydh-app-api/commit/3dfbc06))
+-   test: set resetmocks option in jest config ([2940577](https://github.com/Fdawgs/ydh-app-api/commit/2940577))
+-   fix(routes): correct schema to be nullable string ([3d0dfb6](https://github.com/Fdawgs/ydh-app-api/commit/3d0dfb6))
+
 ## <small>1.1.1 (2021-01-11)</small>
 
 -   fix(env): set default cors to wildcard as boolean option broken ([ed8754f](https://github.com/Fdawgs/ydh-app-api/commit/ed8754f))
