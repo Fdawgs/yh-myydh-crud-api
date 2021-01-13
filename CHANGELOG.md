@@ -1,3 +1,9 @@
+## <small>1.1.3 (2021-01-13)</small>
+
+-   fix(routes/documents/register): add missing table columns ([81ece65](https://github.com/Fdawgs/ydh-app-api/commit/81ece65))
+-   docs(readme): clarify on api documentation location ([1831643](https://github.com/Fdawgs/ydh-app-api/commit/1831643))
+-   ci: remove redundant javascript dictionary ([623ca92](https://github.com/Fdawgs/ydh-app-api/commit/623ca92))
+
 ## <small>1.1.2 (2021-01-12)</small>
 
 -   chore: add metadata to api schema ([b7c635f](https://github.com/Fdawgs/ydh-app-api/commit/b7c635f))
