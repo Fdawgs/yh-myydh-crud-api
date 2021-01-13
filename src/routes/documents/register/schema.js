@@ -49,7 +49,7 @@ const registerGetSchema = {
 				S.array().items(
 					S.object()
 						.prop("guid", S.string().examples(["EXAMPLE-GUID"]))
-						.prop("fhirId", S.number().examples(["99999"]))
+						.prop("fhirId", S.string().examples(["99999"]))
 						.prop(
 							"title",
 							S.string().examples([
@@ -71,6 +71,7 @@ const registerGetSchema = {
 								"99999   DUCK 11 July 2015 11 27.pdf",
 							])
 						)
+						.prop("fullPath", S.string())
 						.prop(
 							"url",
 							S.string()
@@ -91,6 +92,7 @@ const registerGetSchema = {
 								.examples(["2020-08-10T03:51:54.000Z"])
 								.format("date-time")
 						)
+						.prop("patientVisible", S.number())
 				)
 			)
 			.prop(

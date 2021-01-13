@@ -16,9 +16,11 @@ Specialty AS specialty,
 Clinic AS clinic,
 Document_Type AS documentType,
 Filesname AS fileName,
+FullPath AS fullPath,
 URL AS url,
 CreatedDate AS createdDate,
-Modified AS modifiedDate
+Modified AS modifiedDate,
+patient_visible AS patientVisible
 FROM ${documentRegisterTable}
 WHERE Modified ${operator} '${timestamp}'
 ORDER BY Modified DESC
