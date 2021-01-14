@@ -1,3 +1,9 @@
+## <small>1.1.4 (2021-01-14)</small>
+
+-   fix(server): set referrer policy with fallback ([83e0e0a](https://github.com/Fdawgs/ydh-app-api/commit/83e0e0a))
+-   style(server): rename plugin variable ([a1678dd](https://github.com/Fdawgs/ydh-app-api/commit/a1678dd))
+-   chore: disable cors in template ([3a2b770](https://github.com/Fdawgs/ydh-app-api/commit/3a2b770))
+
 ## <small>1.1.3 (2021-01-13)</small>
 
 -   fix(routes/documents/register): add missing table columns ([81ece65](https://github.com/Fdawgs/ydh-app-api/commit/81ece65))
