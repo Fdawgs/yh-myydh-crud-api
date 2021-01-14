@@ -7,7 +7,7 @@ const bearer = require("fastify-bearer-auth");
 const cors = require("fastify-cors");
 const helmConfig = require("helmet");
 const helmet = require("fastify-helmet");
-const nocache = require("fastify-disablecache");
+const disableCache = require("fastify-disablecache");
 const swagger = require("fastify-swagger");
 const mssql = require("./plugins/mssql");
 
@@ -26,7 +26,7 @@ async function plugin(server, config) {
 		// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 		.register(cors, config.cors)
 
-		.register(nocache)
+		.register(disableCache)
 
 		.register(swagger, config.swagger)
 
