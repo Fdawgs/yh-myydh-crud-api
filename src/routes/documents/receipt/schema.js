@@ -19,7 +19,7 @@ const receiptDeleteSchema = {
 			.examples(["EXAMPLE-GUID"])
 			.required()
 	),
-	querystring: S.object().prop(
+	query: S.object().prop(
 		"patientId",
 		S.number()
 			.description("Unique patient identifier")
@@ -52,7 +52,7 @@ const receiptPutSchema = {
 			.examples(["EXAMPLE-GUID"])
 			.required()
 	),
-	querystring: S.object()
+	query: S.object()
 		.prop(
 			"patientId",
 			S.number()

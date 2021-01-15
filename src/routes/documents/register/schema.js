@@ -12,7 +12,7 @@ const security = [{ bearer_token: [] }];
 const registerGetSchema = {
 	tags,
 	summary: "Retrieve document metadata from register",
-	querystring: S.object()
+	query: S.object()
 		.prop(
 			"lastModified",
 			S.string()
