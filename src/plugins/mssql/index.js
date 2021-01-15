@@ -5,7 +5,7 @@ const sql = require("mssql");
  * @author Frazer Smith
  * @description Decorator plugin that adds Microsoft SQL Server client.
  * @param {Function} server - Fastify instance.
- * @param {object} options Fastify config values.
+ * @param {object} options - Fastify config values.
  * @param {object|string} options.database.connection - mssql configuration values either as an object with options or as a connection string.
  * Example connection string: `mssql://username:password@localhost/database`.
  * @param {string=} options.database.connection.user - User name to use for authentication.
