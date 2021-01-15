@@ -9,13 +9,15 @@ const security = [{ bearer_token: [] }];
  *
  * This validation protects against XSS and HPP attacks.
  */
-// TODO: raise issue regarding S.number() for params.id and Fastify HTTP injections
 const userGetSchema = {
 	tags,
 	summary: "Retrieve list of patient contact preferences",
 	params: S.object().prop(
 		"id",
-		S.string().description("Unique patient identifier").examples([1])
+		S.string()
+			.description("Unique patient identifier")
+			.examples([1])
+			.pattern("^\\d*$")
 	),
 	response: {
 		404: S.object()
@@ -33,13 +35,15 @@ const userGetSchema = {
 	security,
 };
 
-// TODO: raise issue regarding S.number() for params.id and Fastify HTTP injections
 const userPutSchema = {
 	tags,
 	summary: "Create or update list of patient contact preferences",
 	params: S.object().prop(
 		"id",
-		S.string().description("Unique patient identifier").examples([1])
+		S.string()
+			.description("Unique patient identifier")
+			.examples([1])
+			.pattern("^\\d*$")
 	),
 	body: S.object().prop(
 		"preferences",
