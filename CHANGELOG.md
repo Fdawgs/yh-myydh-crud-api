@@ -1,3 +1,11 @@
+## <small>1.1.5 (2021-01-15)</small>
+
+-   chore: convert missed headers to uppercase ([5cd7765](https://github.com/Fdawgs/ydh-app-api/commit/5cd7765))
+-   chore(deps-dev): bump eslint-plugin-jsdoc from 31.0.3 to 31.0.5 (#26) ([54b6227](https://github.com/Fdawgs/ydh-app-api/commit/54b6227)), closes [#26](https://github.com/Fdawgs/ydh-app-api/issues/26)
+-   chore(deps): bump fastify from 3.9.2 to 3.10.1 (#25) ([bdeea5b](https://github.com/Fdawgs/ydh-app-api/commit/bdeea5b)), closes [#25](https://github.com/Fdawgs/ydh-app-api/issues/25)
+-   chore(plugins): add missing param descriptions ([f68f8e9](https://github.com/Fdawgs/ydh-app-api/commit/f68f8e9))
+-   fix(routes/preferences/user): set accepted pattern for id param ([40fe971](https://github.com/Fdawgs/ydh-app-api/commit/40fe971))
+
 ## <small>1.1.4 (2021-01-14)</small>
 
 -   fix(server): set referrer policy with fallback ([83e0e0a](https://github.com/Fdawgs/ydh-app-api/commit/83e0e0a))
