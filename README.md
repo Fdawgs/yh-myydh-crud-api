@@ -14,7 +14,6 @@ This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s YDH Ap
 
 -   [Node.js](https://nodejs.org/en/)
 -   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads)
--   [Yarn](https://classic.yarnpkg.com)
 
 ### SQL Server setup
 
@@ -28,10 +27,10 @@ Make a note of the credentials of the user created, the server, the database the
 ### Standard deployment
 
 1. Navigate to the repo
-2. Run `yarn install --production` to install dependencies
+2. Run `npm install --production` to install dependencies
 3. Make a copy of `.env.template` in the root directory and rename to `.env`
 4. Configure the application using the environment variables in `.env`
-5. Run `yarn start`
+5. Run `npm run start`
 
 The service should now be up and running on the port set in the config. You should see the following output in stdout or the log file specified using the `LOG_ROTATION_FILENAME` environment variable:
 
@@ -60,10 +59,10 @@ This requires [Docker](https://www.docker.com/products) installed.
 If you are unable to deploy this into production using Docker, it is recommended that you use a process manager such as [PM2](https://pm2.keymetrics.io/).
 
 1. Navigate to the repo
-2. Run `yarn install --production` to install dependencies
+2. Run `npm install --production` to install dependencies
 3. Make a copy of `.env.template` in the root directory and rename to `.env`
 4. Configure the application using the global variables in `.env`
-5. Run `yarn global add pm2` to install pm2 globally
+5. Run `npm install -g pm2` to install pm2 globally
 6. Launch application with `pm2 start .pm2.config.js --env production`
 7. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
