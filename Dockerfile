@@ -10,9 +10,9 @@ RUN chown -R node ./logs/
 # If appropriate env file missing, use template
 RUN cp .env.template .env
 
-RUN yarn install && yarn cache clean
+RUN npm install && npm cache clean --force
 
 # Node images provide 'node' unprivileged user to run apps and prevent
 # privilege escalation attacks
 USER node
-CMD ["yarn", "start"]
+CMD ["npm", "start"]

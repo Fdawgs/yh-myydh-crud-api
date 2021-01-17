@@ -20,7 +20,7 @@
 		"lint:prettier:ci": "prettier . --check --ignore-path .gitignore",
 		"start": "node .",
 		"start:dev": "nodemon | pino-pretty --colorize",
-		"test": "yarn lint && yarn jest"
+		"test": "npm run lint && npm run jest"
 	},
 	"jest": {
 		"clearMocks": true,
