@@ -30,7 +30,7 @@ Make a note of the credentials of the user created, the server, the database the
 2. Run `npm install --production` to install dependencies
 3. Make a copy of `.env.template` in the root directory and rename to `.env`
 4. Configure the application using the environment variables in `.env`
-5. Run `npm run start`
+5. Run `npm start`
 
 The service should now be up and running on the port set in the config. You should see the following output in stdout or the log file specified using the `LOG_ROTATION_FILENAME` environment variable:
 
