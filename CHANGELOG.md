@@ -1,3 +1,21 @@
+## <small>1.1.6 (2021-01-19)</small>
+
+-   chore(deps-dev): bump eslint-config-prettier from 7.1.0 to 7.2.0 (#31) ([6235796](https://github.com/Fdawgs/ydh-app-api/commit/6235796)), closes [#31](https://github.com/Fdawgs/ydh-app-api/issues/31)
+-   chore(deps-dev): bump eslint-plugin-jsdoc from 31.0.6 to 31.0.7 (#29) ([a386f5d](https://github.com/Fdawgs/ydh-app-api/commit/a386f5d)), closes [#29](https://github.com/Fdawgs/ydh-app-api/issues/29)
+-   chore(deps): bump fastify-disablecache from 1.0.1 to 1.0.3 (#30) ([81cea00](https://github.com/Fdawgs/ydh-app-api/commit/81cea00)), closes [#30](https://github.com/Fdawgs/ydh-app-api/issues/30)
+-   chore(deps): bump helmet from 4.3.1 to 4.4.1 (#32) ([ca85e6f](https://github.com/Fdawgs/ydh-app-api/commit/ca85e6f)), closes [#32](https://github.com/Fdawgs/ydh-app-api/issues/32)
+-   chore(package): add homepage and bug urls ([5edf454](https://github.com/Fdawgs/ydh-app-api/commit/5edf454))
+-   chore(routes/documents): update example guid ([a9dac38](https://github.com/Fdawgs/ydh-app-api/commit/a9dac38))
+-   fix(routes/documents/receipt): limit id param length to max of 36 ([dd3f2fc](https://github.com/Fdawgs/ydh-app-api/commit/dd3f2fc))
+-   fix(routes/preferences/user): limit id param length to max of 10 ([e5c49ad](https://github.com/Fdawgs/ydh-app-api/commit/e5c49ad))
+-   ci: lint lockfile ([dc85e75](https://github.com/Fdawgs/ydh-app-api/commit/dc85e75))
+-   ci(typo-ci): add `ydh` to list of excluded words ([2861af2](https://github.com/Fdawgs/ydh-app-api/commit/2861af2))
+-   test(routes): fix injection usage ([86d31bb](https://github.com/Fdawgs/ydh-app-api/commit/86d31bb))
+-   refactor(routes/healthcheck): remove unused `options` param ([5ac0a52](https://github.com/Fdawgs/ydh-app-api/commit/5ac0a52))
+-   docs(readme): correct script ([8992ccb](https://github.com/Fdawgs/ydh-app-api/commit/8992ccb))
+-   build: remove `yarn` as package manager, revert to `npm` ([7d872d8](https://github.com/Fdawgs/ydh-app-api/commit/7d872d8))
+-   style: rename `querystring` to `query` ([60c8c7a](https://github.com/Fdawgs/ydh-app-api/commit/60c8c7a))
+
 ## <small>1.1.5 (2021-01-15)</small>
 
 -   chore: convert missed headers to uppercase ([5cd7765](https://github.com/Fdawgs/ydh-app-api/commit/5cd7765))
