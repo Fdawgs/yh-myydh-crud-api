@@ -39,6 +39,8 @@ jobs:
               run: npm run lint:prettier:ci
             - name: Run License Checker
               run: npm run license-checker
+            - name: Run Lockfile Linter
+              run: npx lockfile-lint --path package-lock.json --type npm --allowed-hosts npm --validate-https
 
     unit-tests:
         name: Unit Tests
