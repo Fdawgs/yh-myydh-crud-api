@@ -42,10 +42,7 @@ describe("receipt", () => {
 
 			const response = await server.inject({
 				method: "DELETE",
-				url: "/",
-				params: {
-					id: mockId,
-				},
+				url: `/${mockId}`,
 				query: {
 					patientId: mockPatientId,
 				},
@@ -66,10 +63,7 @@ describe("receipt", () => {
 
 			const response = await server.inject({
 				method: "DELETE",
-				url: "/",
-				params: {
-					id: mockId,
-				},
+				url: `/${mockId}`,
 				query: {
 					patientId: mockPatientId,
 				},
@@ -90,10 +84,7 @@ describe("receipt", () => {
 
 			const response = await server.inject({
 				method: "DELETE",
-				url: "/",
-				params: {
-					id: mockId,
-				},
+				url: `/${mockId}`,
 				query: {
 					patientId: mockPatientId,
 				},
@@ -132,10 +123,7 @@ describe("receipt", () => {
 
 			const response = await server.inject({
 				method: "PUT",
-				url: "/",
-				params: {
-					id: mockId,
-				},
+				url: `/${mockId}`,
 				query: {
 					patientId: mockPatientId,
 					timestamp: mockTimeStamp,
@@ -157,10 +145,7 @@ describe("receipt", () => {
 
 			const response = await server.inject({
 				method: "PUT",
-				url: "/",
-				params: {
-					id: mockId,
-				},
+				url: `/${mockId}`,
 				query: {
 					patientId: mockPatientId,
 					timestamp: mockTimeStamp,

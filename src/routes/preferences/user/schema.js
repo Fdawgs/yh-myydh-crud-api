@@ -17,7 +17,7 @@ const userGetSchema = {
 		S.string()
 			.description("Unique patient identifier")
 			.examples([1])
-			.pattern("^\\d*$")
+			.pattern("^\\d{1,10}$")
 	),
 	response: {
 		404: S.object()
@@ -43,7 +43,7 @@ const userPutSchema = {
 		S.string()
 			.description("Unique patient identifier")
 			.examples([1])
-			.pattern("^\\d*$")
+			.pattern("^\\d{1,10}$")
 	),
 	body: S.object().prop(
 		"preferences",
