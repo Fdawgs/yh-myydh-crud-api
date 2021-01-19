@@ -63,10 +63,7 @@ describe("user", () => {
 
 			const response = await server.inject({
 				method: "GET",
-				url: "/",
-				params: {
-					id: mockPatientId,
-				},
+				url: `/${mockPatientId}`,
 			});
 
 			expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -84,10 +81,7 @@ describe("user", () => {
 
 			const response = await server.inject({
 				method: "GET",
-				url: "/",
-				params: {
-					id: mockPatientId,
-				},
+				url: `/${mockPatientId}`,
 			});
 
 			expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -105,10 +99,7 @@ describe("user", () => {
 
 			const response = await server.inject({
 				method: "GET",
-				url: "/",
-				params: {
-					id: mockPatientId,
-				},
+				url: `/${mockPatientId}`,
 			});
 
 			expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -144,14 +135,11 @@ describe("user", () => {
 
 			const response = await server.inject({
 				method: "PUT",
-				url: "/",
-				params: {
-					id: mockPatientId,
-				},
+				url: `/${mockPatientId}`,
 				headers: {
 					"content-type": "application/json",
 				},
-				body: {
+				payload: {
 					preferences: [
 						{
 							id: 1,
@@ -182,14 +170,11 @@ describe("user", () => {
 
 			const response = await server.inject({
 				method: "PUT",
-				url: "/",
-				params: {
-					id: mockPatientId,
-				},
+				url: `/${mockPatientId}`,
 				headers: {
 					"content-type": "application/json",
 				},
-				body: {
+				payload: {
 					preferences: [
 						{
 							id: 1,
