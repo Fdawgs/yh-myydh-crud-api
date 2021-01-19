@@ -16,7 +16,7 @@ const receiptDeleteSchema = {
 		"id",
 		S.string()
 			.description("Logical id of the artifact")
-			.examples(["EXAMPLE-GUID"])
+			.examples(["EXAMPLEGUID-0123456789-99999"])
 			.required()
 	),
 	query: S.object().prop(
@@ -49,7 +49,7 @@ const receiptPutSchema = {
 		"id",
 		S.string()
 			.description("Logical id of the artifact")
-			.examples(["EXAMPLE-GUID"])
+			.examples(["EXAMPLEGUID-0123456789-99999"])
 			.required()
 	),
 	query: S.object()

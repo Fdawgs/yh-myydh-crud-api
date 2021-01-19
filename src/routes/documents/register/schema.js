@@ -48,7 +48,12 @@ const registerGetSchema = {
 				"data",
 				S.array().items(
 					S.object()
-						.prop("guid", S.string().examples(["EXAMPLE-GUID"]))
+						.prop(
+							"guid",
+							S.string().examples([
+								"EXAMPLEGUID-0123456789-99999",
+							])
+						)
 						.prop("fhirId", S.string().examples(["99999"]))
 						.prop(
 							"title",
@@ -76,7 +81,7 @@ const registerGetSchema = {
 							"url",
 							S.string()
 								.examples([
-									"https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLE-GUID",
+									"https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
 								])
 								.format("uri")
 						)
