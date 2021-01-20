@@ -41,6 +41,8 @@ const registerGetSchema = {
 				.description("Number of documents to return per page")
 				.default(1)
 				.examples([1, 10])
+				.minimum(1)
+				.maximum(100)
 		),
 	response: {
 		200: S.object()
@@ -108,7 +110,11 @@ const registerGetSchema = {
 						.prop("total", S.number().examples([0, 1, 10]))
 						.prop(
 							"per_page",
-							S.number().default(1).examples([1, 10])
+							S.number()
+								.default(1)
+								.examples([1, 10])
+								.minimum(1)
+								.maximum(100)
 						)
 						.prop(
 							"current_page",
