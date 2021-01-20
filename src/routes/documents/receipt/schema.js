@@ -22,9 +22,10 @@ const receiptDeleteSchema = {
 	),
 	query: S.object().prop(
 		"patientId",
-		S.number()
+		S.string()
 			.description("Unique patient identifier")
 			.examples([9999999999])
+			.pattern("^\\d{1,10}$")
 			.required()
 	),
 	response: {
@@ -57,9 +58,10 @@ const receiptPutSchema = {
 	query: S.object()
 		.prop(
 			"patientId",
-			S.number()
+			S.string()
 				.description("Unique patient identifier")
 				.examples([9999999999])
+				.pattern("^\\d{1,10}$")
 				.required()
 		)
 		.prop(
