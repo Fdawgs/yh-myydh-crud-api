@@ -16,10 +16,91 @@ const userGetSchema = {
 		"id",
 		S.string()
 			.description("Unique patient identifier")
-			.examples([1])
+			.examples([9999999999])
 			.pattern("^\\d{1,10}$")
 	),
 	response: {
+		200: S.object()
+			.prop("id", S.string().pattern("^\\d{1,10}$"))
+			.required()
+			.prop(
+				"meta",
+				S.object()
+					.prop(
+						"created",
+						S.string()
+							.examples(["2020-08-10T03:51:54.000Z"])
+							.format("date-time")
+					)
+					.required()
+					.prop(
+						"lastupdated",
+						S.string()
+							.examples(["2020-08-10T03:51:54.000Z"])
+							.format("date-time")
+					)
+					.required()
+			)
+			.required()
+			.prop(
+				"preferences",
+				S.array()
+					.items(
+						S.object().prop(
+							"type",
+							S.object()
+								.prop(
+									"display",
+									S.string()
+										.enum([
+											"SMS",
+											"Email",
+											"Phone",
+											"Letters",
+										])
+										.required()
+								)
+								.prop(
+									"id",
+									S.number().enum([1, 2, 3, 4]).required()
+								)
+								.prop(
+									"priority",
+									S.number().enum([0, 1, 2, 3]).required()
+								)
+								.prop(
+									"selected",
+									S.number().enum([1, 2]).required()
+								)
+								.prop(
+									"options",
+									S.array()
+										.items(
+											S.object()
+												.prop(
+													"display",
+													S.string().enum([
+														"yes",
+														"no",
+													])
+												)
+												.prop(
+													"value",
+													S.number().enum([1, 2])
+												)
+										)
+										.minItems(2)
+										.maxItems(2)
+										.uniqueItems(true)
+										.required()
+								)
+						)
+					)
+					.minItems(1)
+					.maxItems(4)
+					.uniqueItems(true)
+					.required()
+			),
 		404: S.object()
 			.prop("statusCode", S.number().const(404))
 			.prop("error", S.string().const("Not Found"))
@@ -47,12 +128,17 @@ const userPutSchema = {
 	),
 	body: S.object().prop(
 		"preferences",
-		S.array().items(
-			S.object()
-				.prop("id", S.number().required())
-				.prop("priority", S.number().required())
-				.prop("selected", S.number().required())
-		)
+		S.array()
+			.items(
+				S.object()
+					.prop("id", S.number().required())
+					.prop("priority", S.number().required())
+					.prop("selected", S.number().required())
+			)
+			.minItems(1)
+			.maxItems(4)
+			.uniqueItems(true)
+			.required()
 	),
 	response: {
 		204: S.string().raw({ nullable: true }),
