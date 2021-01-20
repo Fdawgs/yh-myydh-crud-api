@@ -38,18 +38,18 @@ describe("register", () => {
 					],
 					[
 						{
-							GUID: "EXAMPLEGUID-0123456789-99999",
+							guid: "EXAMPLEGUID-0123456789-99999",
 							fhirId: "99999",
-							title: "99999   DUCK 11 July 2015 11 27.pdf",
+							title: "99999 DUCK 11 July 2015 11 27.pdf",
 							clinic: "CLO/BIA",
 							documentType: "Clinic Letter",
-							fileName: "99999   DUCK 11 July 2015 11 27.pdf",
+							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
 							fullPath: "./path/path/path",
-							URL:
+							url:
 								"https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
-							CreatedDate: "2015-09-30T05:40:14.000Z",
-							Modified: "2020-08-10T03:51:54.000Z",
-							Specialty: "General Surgery",
+							createdDate: "2015-09-30T05:40:14.000Z",
+							modifiedDate: "2020-08-10T03:51:54.000Z",
+							specialty: "General Surgery",
 							patientVisible: 1,
 						},
 					],
@@ -91,18 +91,18 @@ describe("register", () => {
 					],
 					[
 						{
-							GUID: "EXAMPLEGUID-0123456789-99999",
+							guid: "EXAMPLEGUID-0123456789-99999",
 							fhirId: "99999",
-							title: "99999   DUCK 11 July 2015 11 27.pdf",
+							title: "99999 DUCK 11 July 2015 11 27.pdf",
 							clinic: "CLO/BIA",
 							documentType: "Clinic Letter",
-							fileName: "99999   DUCK 11 July 2015 11 27.pdf",
+							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
 							fullPath: "./path/path/path",
-							URL:
+							url:
 								"https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
-							CreatedDate: "2015-09-30T05:40:14.000Z",
-							Modified: "2020-08-10T03:51:54.000Z",
-							Specialty: "General Surgery",
+							createdDate: "2015-09-30T05:40:14.000Z",
+							modifiedDate: "2020-08-10T03:51:54.000Z",
+							specialty: "General Surgery",
 							patientVisible: 1,
 						},
 					],

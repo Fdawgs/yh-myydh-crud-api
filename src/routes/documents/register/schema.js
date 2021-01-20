@@ -34,6 +34,7 @@ const registerGetSchema = {
 				.description("Page to retrieve")
 				.default(1)
 				.examples([1, 10])
+				.minimum(1)
 		)
 		.prop(
 			"perPage",
@@ -52,15 +53,21 @@ const registerGetSchema = {
 					S.object()
 						.prop(
 							"guid",
-							S.string().examples([
-								"EXAMPLEGUID-0123456789-99999",
-							])
+							S.string()
+								.examples(["EXAMPLEGUID-0123456789-99999"])
+								.pattern("^[a-zA-Z0-9\\-]{1,36}$")
 						)
-						.prop("fhirId", S.string().examples(["99999"]))
+						.prop(
+							"fhirId",
+							S.string()
+								.examples(["9999999999"])
+								.pattern("^\\d{1,10}$")
+						)
+
 						.prop(
 							"title",
 							S.string().examples([
-								"99999   DUCK 11 July 2015 11 27.pdf",
+								"99999 DUCK 11 July 2015 11 27.pdf",
 							])
 						)
 						.prop(
@@ -75,9 +82,10 @@ const registerGetSchema = {
 						.prop(
 							"fileName",
 							S.string().examples([
-								"99999   DUCK 11 July 2015 11 27.pdf",
+								"99999 DUCK 11 July 2015 11 27.pdf",
 							])
 						)
+
 						.prop("fullPath", S.string())
 						.prop(
 							"url",
@@ -118,7 +126,7 @@ const registerGetSchema = {
 						)
 						.prop(
 							"current_page",
-							S.number().default(1).examples([1, 10])
+							S.number().default(1).examples([1, 10]).minimum(1)
 						)
 						.prop("total_pages", S.number().examples([1, 10]))
 				)
