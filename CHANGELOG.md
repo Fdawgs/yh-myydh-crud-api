@@ -1,3 +1,14 @@
+## <small>1.1.7 (2021-01-20)</small>
+
+-   build(docker): add `--ignore-scripts` arg ([1b3ecfb](https://github.com/Fdawgs/ydh-app-api/commit/1b3ecfb))
+-   chore(deps-dev): bump eslint-plugin-jsdoc from 31.0.7 to 31.0.8 (#34) ([c76a228](https://github.com/Fdawgs/ydh-app-api/commit/c76a228)), closes [#34](https://github.com/Fdawgs/ydh-app-api/issues/34)
+-   fix(routes): set min and max items for arrays; set unique items ([7a0b6d0](https://github.com/Fdawgs/ydh-app-api/commit/7a0b6d0))
+-   fix(routes/documents/receipt): schema type from number to string ([9d131f1](https://github.com/Fdawgs/ydh-app-api/commit/9d131f1))
+-   fix(routes/documents/register): set querystring per_page max to 100 ([57bb639](https://github.com/Fdawgs/ydh-app-api/commit/57bb639))
+-   fix(routes/documents/register): set regex pattern for returned json ([03fc722](https://github.com/Fdawgs/ydh-app-api/commit/03fc722))
+-   fix(routes/preferences/user): validate body of request ([dc7a58f](https://github.com/Fdawgs/ydh-app-api/commit/dc7a58f))
+-   fix(routes/preferences/user): validate returned json ([f15fc16](https://github.com/Fdawgs/ydh-app-api/commit/f15fc16))
+
 ## <small>1.1.6 (2021-01-19)</small>
 
 -   chore(deps-dev): bump eslint-config-prettier from 7.1.0 to 7.2.0 (#31) ([6235796](https://github.com/Fdawgs/ydh-app-api/commit/6235796)), closes [#31](https://github.com/Fdawgs/ydh-app-api/issues/31)
