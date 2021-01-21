@@ -1,3 +1,10 @@
+## <small>1.1.8 (2021-01-21)</small>
+
+-   chore: rename repo to better reflect content ([1667997](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1667997))
+-   chore(deps-dev): bump autocannon from 7.0.1 to 7.0.2 (#36) ([a6238e7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a6238e7)), closes [#36](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/36)
+-   fix(routes): remove heavy-handed required responses ([ae89b16](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ae89b16))
+-   docs(readme): update name of app supported ([0644883](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0644883))
+
 ## <small>1.1.7 (2021-01-20)</small>
 
 -   build(docker): add `--ignore-scripts` arg ([1b3ecfb](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1b3ecfb))
