@@ -23,22 +23,16 @@ const optionsGetSchema = {
 						S.object()
 							.prop(
 								"display",
-								S.string()
-									.enum(["SMS", "Email", "Phone", "Letters"])
-									.required()
+								S.string().enum([
+									"SMS",
+									"Email",
+									"Phone",
+									"Letters",
+								])
 							)
-							.prop(
-								"id",
-								S.number().enum([1, 2, 3, 4]).required()
-							)
-							.prop(
-								"priority",
-								S.number().enum([0, 1, 2, 3]).required()
-							)
-							.prop(
-								"selected",
-								S.number().enum([1, 2]).required()
-							)
+							.prop("id", S.number().enum([1, 2, 3, 4]))
+							.prop("priority", S.number().enum([0, 1, 2, 3]))
+							.prop("selected", S.number().enum([1, 2]))
 							.prop(
 								"options",
 								S.array()
@@ -56,14 +50,12 @@ const optionsGetSchema = {
 									.minItems(2)
 									.maxItems(2)
 									.uniqueItems(true)
-									.required()
 							)
 					)
 				)
 				.minItems(1)
 				.maxItems(4)
 				.uniqueItems(true)
-				.required()
 		),
 		404: S.object()
 			.prop("statusCode", S.number().const(404))
