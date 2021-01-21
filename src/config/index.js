@@ -34,6 +34,7 @@ async function getConfig() {
 	const env = envSchema({
 		dotenv: true,
 		schema: S.object()
+			.prop("NODE_ENV", S.string())
 			.prop("SERVICE_HOST", S.string())
 			.prop("SERVICE_PORT", S.number())
 			.prop("HTTPS_PFX_PASSPHRASE", S.anyOf([S.string(), S.null()]))
