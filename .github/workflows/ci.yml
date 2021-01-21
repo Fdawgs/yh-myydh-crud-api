@@ -98,8 +98,8 @@ jobs:
     #         - uses: actions/checkout@v2
     #         - name: Build and Start App
     #           run: |
-    #               docker build --build-arg NODE_ENV=test -t ydh-app-api .
-    #               docker run --network --publish 8204:8204 ydh-app-api
+    #               docker build --build-arg NODE_ENV=test -t ydh-myydh-crud-api .
+    #               docker run --network --publish 8204:8204 ydh-myydh-crud-api
 
     docker-compose-tests:
         name: Docker Compose Build Tests

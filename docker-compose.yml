@@ -1,7 +1,7 @@
 version: "3.8"
 services:
     app:
-        container_name: ydh-app-api
+        container_name: ydh-myydh-crud-api
         build:
             context: .
         env_file: .env

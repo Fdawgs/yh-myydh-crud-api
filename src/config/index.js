@@ -129,7 +129,7 @@ async function getConfig() {
 					license: {
 						name: license,
 						url:
-							"https://raw.githubusercontent.com/Fdawgs/ydh-app-api/master/LICENSE",
+							"https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/master/LICENSE",
 					},
 					version,
 				},

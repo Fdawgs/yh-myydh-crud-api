@@ -2,7 +2,7 @@
 
 # Yeovil District Hospital NHS Foundation Trust - MyYDH RESTful CRUD API
 
-[![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-app-api.svg)](https://github.com/Fdawgs/ydh-app-api/releases/latest/) ![Build Status](https://github.com/Fdawgs/ydh-app-api/workflows/CI/badge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-app-api/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-app-api?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/Fdawgs/ydh-app-api/badge.svg)](https://snyk.io/test/github/Fdawgs/ydh-app-api) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-myydh-crud-api.svg)](https://github.com/Fdawgs/ydh-myydh-crud-api/releases/latest/) ![Build Status](https://github.com/Fdawgs/ydh-myydh-crud-api/workflows/CI/badge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-myydh-crud-api/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-myydh-crud-api?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/Fdawgs/ydh-myydh-crud-api/badge.svg)](https://snyk.io/test/github/Fdawgs/ydh-myydh-crud-api) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 > Yeovil District Hospital NHSFT's RESTful CRUD API for the MyYDH app
 
@@ -74,8 +74,8 @@ Yeovil District Hospital NHSFT is heavily entrenched in Microsoft's ecosystem; u
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](https://github.com/Fdawgs/ydh-app-api/blob/master/CONTRIBUTING.md) for more details regarding contributing to this project.
+Please see [CONTRIBUTING.md](https://github.com/Fdawgs/ydh-myydh-crud-api/blob/master/CONTRIBUTING.md) for more details regarding contributing to this project.
 
 ## License
 
-`ydh-app-api` is licensed under the [MIT](https://github.com/Fdawgs/ydh-app-api/blob/master/LICENSE) license.
+`ydh-myydh-crud-api` is licensed under the [MIT](https://github.com/Fdawgs/ydh-myydh-crud-api/blob/master/LICENSE) license.
