@@ -111,7 +111,6 @@ const registerGetSchema = {
 							.prop("patientVisible", S.number())
 					)
 					.uniqueItems(true)
-					.required()
 			)
 			.prop(
 				"meta",
