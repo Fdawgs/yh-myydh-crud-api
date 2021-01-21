@@ -11,7 +11,7 @@ module.exports = {
 			},
 			exec_mode: "cluster",
 			instances: "max",
-			name: "ydh-app-crud-api",
+			name: "ydh-myydh-crud-api",
 			script: "./src/app.js",
 			watch: [".env"],
 		},
