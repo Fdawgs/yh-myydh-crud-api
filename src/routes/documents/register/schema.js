@@ -56,7 +56,7 @@ const registerGetSchema = {
 								"guid",
 								S.string()
 									.examples(["EXAMPLEGUID-0123456789-99999"])
-									.pattern("^[a-zA-Z0-9\\-]{1,36}$")
+									.pattern("^[\\w\\-]{1,36}$")
 							)
 							.prop(
 								"fhirId",
