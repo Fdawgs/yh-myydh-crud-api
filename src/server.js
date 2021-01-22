@@ -1,8 +1,10 @@
 const autoLoad = require("fastify-autoload");
 const fp = require("fastify-plugin");
+const { NotAcceptable } = require("http-errors");
 const path = require("path");
 
 // Import plugins
+const accepts = require("fastify-accepts");
 const bearer = require("fastify-bearer-auth");
 const cors = require("fastify-cors");
 const helmConfig = require("helmet");
@@ -23,6 +25,8 @@ const healthCheck = require("./routes/healthcheck");
 async function plugin(server, config) {
 	// Enable plugins
 	server
+		.register(accepts)
+
 		// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 		.register(cors, config.cors)
 
@@ -48,11 +52,16 @@ async function plugin(server, config) {
 		.register(healthCheck)
 
 		/**
-		 * Encapsulate plugins and routes into secured child context, so that swagger
-		 * route doesn't inherit bearer token auth plugin
+		 * Encapsulate plugins and routes into secured child context, so that swagger and
+		 * healthcheck routes do not inherit `accepts` preHandler bearer token auth plugin
 		 */
 		.register(async (securedContext) => {
 			securedContext
+				.addHook("preHandler", async (req, res) => {
+					if (req.accepts().type(["json"]) !== "json") {
+						res.send(NotAcceptable());
+					}
+				})
 				.register(bearer, { keys: config.authKeys })
 				.register(mssql, config)
 				// Import and register service routes

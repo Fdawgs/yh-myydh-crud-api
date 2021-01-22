@@ -41,6 +41,7 @@ describe.skip("Server deployment", () => {
 			method: "GET",
 			url: "/documents/register",
 			headers: {
+				accept: "*/*",
 				authorization: "Bearer testtoken",
 			},
 			query: {
@@ -62,5 +63,27 @@ describe.skip("Server deployment", () => {
 			},
 		});
 		expect(response.statusCode).toEqual(200);
+	});
+
+	test("Should return HTTP status code 406 if content-type in `Accept` request header unsupported", async () => {
+		server.mssql = {
+			query: jest.fn(),
+		};
+
+		const response = await server.inject({
+			method: "GET",
+			url: "/documents/register",
+			headers: {
+				accept: "application/javascript",
+				authorization: "Bearer testtoken",
+			},
+			query: {
+				lastModified: mockLastModified,
+				perPage: mockPage,
+				page: mockPage,
+			},
+		});
+
+		expect(response.statusCode).toEqual(406);
 	});
 });
