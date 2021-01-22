@@ -1,3 +1,16 @@
+## <small>1.1.9 (2021-01-22)</small>
+
+-   refactor(pm2): use repo name for instances; remove redundant env setting ([1255e92](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1255e92))
+-   refactor(routes/documents): clean regex ([b4ac403](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b4ac403))
+-   refactor(server): use default helmet referrer policy ([1cd2d24](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1cd2d24))
+-   chore(deps-dev): bump autocannon from 7.0.2 to 7.0.3 (#38) ([bc416a7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/bc416a7)), closes [#38](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/38)
+-   chore(pm2): rename pm2 instances ([3a2855b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3a2855b))
+-   build(docker): speed up install by using `npm ci` over `npm install` ([84156d3](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/84156d3))
+-   fix(config): add `node_env` to schema ([80869bf](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/80869bf))
+-   fix(server): reject unsupported content-types in `Accept` req header ([1c4e352](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1c4e352))
+-   test(routes/healthcheck): correct description ([d1771b9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d1771b9))
+-   test(routes/preferences/user): 415 error res on unsupported content ([834024c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/834024c))
+
 ## <small>1.1.8 (2021-01-21)</small>
 
 -   chore: rename repo to better reflect content ([1667997](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1667997))
