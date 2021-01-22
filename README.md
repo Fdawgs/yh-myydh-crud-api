@@ -63,7 +63,7 @@ If you are unable to deploy this into production using Docker, it is recommended
 3. Make a copy of `.env.template` in the root directory and rename to `.env`
 4. Configure the application using the global variables in `.env`
 5. Run `npm install -g pm2` to install pm2 globally
-6. Launch application with `pm2 start .pm2.config.js --env production`
+6. Launch application with `pm2 start .pm2.config.js`
 7. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
 #### To install as a Windows service:
