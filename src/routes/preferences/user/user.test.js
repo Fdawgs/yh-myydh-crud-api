@@ -159,6 +159,40 @@ describe("user", () => {
 			expect(response.statusCode).toEqual(204);
 		});
 
+		test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
+			const mockQueryFn = jest.fn().mockResolvedValue({
+				rowsAffected: [1],
+			});
+
+			server.mssql = {
+				query: mockQueryFn,
+			};
+
+			const response = await server.inject({
+				method: "PUT",
+				url: `/${mockPatientId}`,
+				headers: {
+					"content-type": "application/javascript",
+				},
+				payload: {
+					preferences: [
+						{
+							id: 1,
+							priority: 0,
+							selected: 1,
+						},
+						{
+							id: 2,
+							priority: 1,
+							selected: 2,
+						},
+					],
+				},
+			});
+
+			expect(response.statusCode).toEqual(415);
+		});
+
 		test("Should return HTTP status code 500 if connection issue encountered", async () => {
 			const mockQueryFn = jest.fn().mockResolvedValue({
 				rowsAffected: [0],
