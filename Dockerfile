@@ -10,7 +10,7 @@ RUN chown -R node ./logs/
 # If appropriate env file missing, use template
 RUN cp .env.template .env
 
-RUN npm install --ignore-scripts && npm cache clean --force
+RUN npm ci --ignore-scripts && npm cache clean --force
 
 # Node images provide 'node' unprivileged user to run apps and prevent
 # privilege escalation attacks
