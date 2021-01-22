@@ -74,7 +74,7 @@ jobs:
                   cp .env.template .env
                   npm run jest-coverage
             - name: Coveralls Parallel
-              uses: coverallsapp/github-action@master
+              uses: coverallsapp/github-action@v1.1.2
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   parallel: true
@@ -120,7 +120,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Coveralls Finished
-              uses: coverallsapp/github-action@master
+              uses: coverallsapp/github-action@v1.1.2
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   parallel-finished: true
