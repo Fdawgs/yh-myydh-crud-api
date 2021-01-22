@@ -43,9 +43,6 @@ async function plugin(server, config) {
 					),
 				},
 			},
-			referrerPolicy: {
-				policy: ["no-referrer", "strict-origin-when-cross-origin"],
-			},
 		}))
 
 		.register(healthCheck)
