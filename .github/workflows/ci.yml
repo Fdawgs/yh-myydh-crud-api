@@ -28,9 +28,9 @@ jobs:
               id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
               with:
                   path: ${{ steps.npm-cache-dir.outputs.dir }}
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-${{ matrix.node-version }}-node-${{ hashFiles('**/package-lock.json') }}
                   restore-keys: |
-                      ${{ runner.os }}-node-
+                      ${{ runner.os }}-${{ matrix.node-version }}-node-
             - name: Install
               run: npm ci --ignore-scripts
             - name: Run ESLint
@@ -64,9 +64,9 @@ jobs:
               id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
               with:
                   path: ${{ steps.npm-cache-dir.outputs.dir }}
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-${{ matrix.node-version }}-node-${{ hashFiles('**/package-lock.json') }}
                   restore-keys: |
-                      ${{ runner.os }}-node-
+                      ${{ runner.os }}-${{ matrix.node-version }}-node-
             - name: Install
               run: npm ci --ignore-scripts
             - name: Run Tests
