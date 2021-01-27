@@ -70,7 +70,18 @@ async function getConfig() {
 			.prop("DB_PATIENT_PREFERENCES_TABLE", S.string())
 			.prop("DB_PATIENT_PREFERENCES_TYPE_TABLE", S.string())
 			.prop("DB_PATIENT_PREFERENCES_VALUE_TABLE", S.string())
-			.prop("DB_READ_RECEIPT_DOCS_TABLE", S.string()),
+			.prop("DB_READ_RECEIPT_DOCS_TABLE", S.string())
+			.required([
+				"NODE_ENV",
+				"SERVICE_HOST",
+				"SERVICE_PORT",
+				"DB_CONNECTION_STRING",
+				"DB_DOCUMENT_REGISTER_TABLE",
+				"DB_PATIENT_PREFERENCES_TABLE",
+				"DB_PATIENT_PREFERENCES_TYPE_TABLE",
+				"DB_PATIENT_PREFERENCES_VALUE_TABLE",
+				"DB_READ_RECEIPT_DOCS_TABLE",
+			]),
 	});
 
 	const config = {
