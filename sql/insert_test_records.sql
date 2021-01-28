@@ -23,10 +23,10 @@ GO
 INSERT INTO patient.preferences
     (patientId, preferenceTypeId, preferenceValueId, preferencePriority, created)
 VALUES
-    (1, 1, 1, 0, CURRENT_TIMESTAMP),
-    (1, 2, 2, 1, CURRENT_TIMESTAMP),
-    (1, 3, 1, 2, CURRENT_TIMESTAMP),
-    (1, 4, 2, 3, CURRENT_TIMESTAMP),
-    (2, 1, 1, 0, CURRENT_TIMESTAMP),
-    (2, 2, 2, 1, CURRENT_TIMESTAMP);
+    (9999999999, 1, 1, 0, CURRENT_TIMESTAMP),
+    (9999999999, 2, 2, 1, CURRENT_TIMESTAMP),
+    (9999999999, 3, 1, 2, CURRENT_TIMESTAMP),
+    (9999999999, 4, 2, 3, CURRENT_TIMESTAMP),
+    (9999999998, 1, 1, 0, CURRENT_TIMESTAMP),
+    (9999999998, 2, 2, 1, CURRENT_TIMESTAMP);
 GO
