@@ -1,3 +1,24 @@
+## 1.2.0 (2021-01-28)
+
+-   chore: add pull request template ([774b207](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/774b207))
+-   chore(deps-dev): bump eslint-plugin-jsdoc from 31.0.8 to 31.4.0 (#44) ([2d0fe12](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/2d0fe12)), closes [#44](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/44)
+-   chore(deps-dev): bump faker from 5.1.0 to 5.2.0 (#46) ([ea77258](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ea77258)), closes [#46](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/46)
+-   chore(deps): bump fastify from 3.10.1 to 3.11.0 (#47) ([573711b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/573711b)), closes [#47](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/47)
+-   chore(deps): bump fastify-autoload from 3.4.0 to 3.4.2 (#45) ([b00264c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b00264c)), closes [#45](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/45)
+-   chore(deps): bump fastify-cors from 5.1.0 to 5.2.0 (#42) ([c91356c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c91356c)), closes [#42](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/42)
+-   chore(deps): bump fastify-swagger from 3.5.0 to 4.0.0 (#43) ([46c9aaa](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/46c9aaa)), closes [#43](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/43)
+-   feat(config): allow configurable cors headers ([6bdad58](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6bdad58))
+-   style: capitalise headings correctly ([0b1255d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0b1255d))
+-   style(ci): capitalise jobs and job step names ([f017968](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f017968))
+-   style(readme): capitalise headings correctly ([9ba6ad0](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9ba6ad0))
+-   style(readme): prettier badge shape ([82361a9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/82361a9))
+-   fix(config): add required properties ([6394b40](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6394b40))
+-   ci: cache on `node-version` as well as `os` ([59c03de](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/59c03de))
+-   ci(github-actions): set `flag-name` for parallel coverage tests ([85a21ca](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/85a21ca))
+-   ci(github-actions): set semver for coverallsapp ([c9e9a25](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c9e9a25))
+-   build(deps-dev): add husky for git hook handling ([81ca50d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/81ca50d))
+-   docs: bump coc from v1.4.0 to v2.0.0 ([1c6a345](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1c6a345))
+
 ## <small>1.1.9 (2021-01-22)</small>
 
 -   refactor(pm2): use repo name for instances; remove redundant env setting ([1255e92](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1255e92))
