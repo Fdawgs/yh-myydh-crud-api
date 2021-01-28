@@ -2,7 +2,7 @@
 
 # Yeovil District Hospital NHS Foundation Trust - MyYDH RESTful CRUD API
 
-[![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-myydh-crud-api.svg)](https://github.com/Fdawgs/ydh-myydh-crud-api/releases/latest/) ![Build Status](https://github.com/Fdawgs/ydh-myydh-crud-api/workflows/CI/badge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-myydh-crud-api/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-myydh-crud-api?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/Fdawgs/ydh-myydh-crud-api/badge.svg)](https://snyk.io/test/github/Fdawgs/ydh-myydh-crud-api) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-myydh-crud-api.svg)](https://github.com/Fdawgs/ydh-myydh-crud-api/releases/latest/) ![Build Status](https://github.com/Fdawgs/ydh-myydh-crud-api/workflows/CI/badge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-myydh-crud-api/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-myydh-crud-api?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/Fdawgs/ydh-myydh-crud-api/badge.svg)](https://snyk.io/test/github/Fdawgs/ydh-myydh-crud-api) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 
 > Yeovil District Hospital NHSFT's RESTful CRUD API for the MyYDH app
 
