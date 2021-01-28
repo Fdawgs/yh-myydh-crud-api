@@ -41,7 +41,10 @@ async function getConfig() {
 			.prop("HTTPS_PFX_FILE_PATH", S.anyOf([S.string(), S.null()]))
 			.prop("HTTPS_SSL_CERT_PATH", S.anyOf([S.string(), S.null()]))
 			.prop("HTTPS_SSL_KEY_PATH", S.anyOf([S.string(), S.null()]))
-			.prop("CORS_ORIGIN", S.string().default("false"))
+			.prop("CORS_ORIGIN", S.anyOf([S.string(), S.null()]))
+			.prop("CORS_METHODS", S.anyOf([S.string(), S.null()]))
+			.prop("CORS_ALLOWED_HEADERS", S.anyOf([S.string(), S.null()]))
+			.prop("CORS_EXPOSED_HEADERS", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"LOG_LEVEL",
 				S.string()
@@ -70,7 +73,18 @@ async function getConfig() {
 			.prop("DB_PATIENT_PREFERENCES_TABLE", S.string())
 			.prop("DB_PATIENT_PREFERENCES_TYPE_TABLE", S.string())
 			.prop("DB_PATIENT_PREFERENCES_VALUE_TABLE", S.string())
-			.prop("DB_READ_RECEIPT_DOCS_TABLE", S.string()),
+			.prop("DB_READ_RECEIPT_DOCS_TABLE", S.string())
+			.required([
+				"NODE_ENV",
+				"SERVICE_HOST",
+				"SERVICE_PORT",
+				"DB_CONNECTION_STRING",
+				"DB_DOCUMENT_REGISTER_TABLE",
+				"DB_PATIENT_PREFERENCES_TABLE",
+				"DB_PATIENT_PREFERENCES_TYPE_TABLE",
+				"DB_PATIENT_PREFERENCES_VALUE_TABLE",
+				"DB_READ_RECEIPT_DOCS_TABLE",
+			]),
 	});
 
 	const config = {
@@ -113,8 +127,6 @@ async function getConfig() {
 		},
 		cors: {
 			origin: parseCorsParameter(env.CORS_ORIGIN) || false,
-			methods: ["Accept"],
-			allowedHeaders: ["GET", "OPTIONS"],
 		},
 		swagger: {
 			routePrefix: "/docs",
@@ -177,6 +189,16 @@ async function getConfig() {
 			keys.add(element.value);
 		});
 		config.authKeys = keys;
+	}
+
+	if (env.CORS_METHODS) {
+		config.cors.methods = env.CORS_METHODS;
+	}
+	if (env.CORS_ALLOWED_HEADERS) {
+		config.cors.allowedHeaders = env.CORS_ALLOWED_HEADERS;
+	}
+	if (env.CORS_EXPOSED_HEADERS) {
+		config.cors.exposedHeaders = env.CORS_EXPOSED_HEADERS;
 	}
 
 	// Enable HTTPS using cert/key or passphrase/pfx combinations

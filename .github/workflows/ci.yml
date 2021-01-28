@@ -20,7 +20,7 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   node-version: 14.x
-            - name: Get npm cache directory
+            - name: Get NPM Cache Directory
               id: npm-cache-dir
               run: |
                   echo "::set-output name=dir::$(npm config get cache)"
@@ -56,7 +56,7 @@ jobs:
               uses: actions/setup-node@v2
               with:
                   node-version: ${{ matrix.node-version }}
-            - name: Get npm cache directory
+            - name: Get NPM Cache Directory
               id: npm-cache-dir
               run: |
                   echo "::set-output name=dir::$(npm config get cache)"
@@ -127,7 +127,7 @@ jobs:
                   parallel-finished: true
 
     automerge:
-        name: Automatically merge Dependabot pull requests
+        name: Automatically Merge Dependabot Pull Requests
         if: github.event.pull_request.draft == false
         needs: [lint, unit-tests, docker-compose-tests]
         runs-on: ubuntu-latest
