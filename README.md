@@ -15,7 +15,7 @@ This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s RESTfu
 -   [Node.js](https://nodejs.org/en/)
 -   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads)
 
-### SQL Server setup
+### SQL Server Setup
 
 1. Connect to your SQL Server instance and use the script found in `./sql/create_tables.sql` to create the tables required for this app to function
 2. Create a separate user account with read/write access to the database where you have chosen to create these tables, and the tables themselves
