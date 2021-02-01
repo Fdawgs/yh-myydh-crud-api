@@ -12,6 +12,8 @@ const security = [{ bearer_token: [] }];
 const userGetSchema = {
 	tags,
 	summary: "Retrieve list of patient contact preferences",
+	operationId: "getUserOptions",
+	produces: ["application/json"],
 	params: S.object().prop(
 		"id",
 		S.string()
@@ -102,6 +104,8 @@ const userGetSchema = {
 const userPutSchema = {
 	tags,
 	summary: "Create or update list of patient contact preferences",
+	operationId: "createUserOptions",
+	consumes: ["application/json"],
 	params: S.object().prop(
 		"id",
 		S.string()
