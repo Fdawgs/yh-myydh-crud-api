@@ -13,6 +13,8 @@ const optionsGetSchema = {
 	tags,
 	summary:
 		"Retrieve default available list of patient contact preferences that can be set",
+	operationId: "getOptions",
+	produces: ["application/json"],
 	response: {
 		200: S.object().prop(
 			"preferences",

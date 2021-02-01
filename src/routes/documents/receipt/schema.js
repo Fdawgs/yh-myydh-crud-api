@@ -12,6 +12,7 @@ const security = [{ bearer_token: [] }];
 const receiptDeleteSchema = {
 	tags,
 	summary: "Delete document read receipt",
+	operationId: "deleteReceipt",
 	params: S.object().prop(
 		"id",
 		S.string()
@@ -46,7 +47,7 @@ const receiptDeleteSchema = {
 const receiptPutSchema = {
 	tags,
 	summary: "Create or update read receipt",
-
+	operationId: "createReceipt",
 	params: S.object().prop(
 		"id",
 		S.string()
