@@ -1,3 +1,24 @@
+## <small>1.2.1 (2021-02-01)</small>
+
+-   chore: add insomnia example requests ([aeaed49](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/aeaed49))
+-   chore: check direct dependency licenses only ([9d7c724](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9d7c724))
+-   chore: stop excess coverage files being generated ([57efb55](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/57efb55))
+-   chore(deps-dev): bump eslint from 7.18.0 to 7.19.0 (#55) ([677f7fd](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/677f7fd)), closes [#55](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/55)
+-   chore(deps-dev): bump eslint-plugin-jsdoc from 31.4.0 to 31.6.0 (#51) ([e719ceb](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e719ceb)), closes [#51](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/51)
+-   chore(deps-dev): bump pino-pretty from 4.3.0 to 4.4.0 (#53) ([87ccfd0](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/87ccfd0)), closes [#53](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/53)
+-   chore(deps): bump fastify-disablecache from 1.0.3 to 1.0.4 (#57) ([a7e7b23](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a7e7b23)), closes [#57](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/57)
+-   chore(deps): bump fastify-helmet from 5.1.0 to 5.2.0 (#54) ([5b4ecf1](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/5b4ecf1)), closes [#54](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/54)
+-   chore(deps): bump fastify-swagger from 4.0.0 to 4.0.1 (#52) ([3ae4a57](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3ae4a57)), closes [#52](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/52)
+-   chore(routes): specify further openapi spec values ([52978a4](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/52978a4))
+-   chore(sql): update example patient ids ([74a882a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/74a882a))
+-   style: rename `license-checker` to `lint:licenses` ([95d55c2](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/95d55c2))
+-   style(readme): capitalise sql server subheading ([08670cf](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/08670cf))
+-   refactor(server): use new exposed CSP dir from `fastify-helmet` ([15bcb46](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/15bcb46))
+-   fix(docker): use node command over npm ([2ccfd85](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/2ccfd85))
+-   docs(readme): remove superfluous text in pm2 install instructions ([b9f0b4d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b9f0b4d))
+-   build(deps-dev): remove coveralls, replaced by github action ([2f441ce](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/2f441ce))
+-   build(deps-dev): remove lodash ([b9f342b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b9f342b))
+
 ## 1.2.0 (2021-01-28)
 
 -   chore: add pull request template ([774b207](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/774b207))
