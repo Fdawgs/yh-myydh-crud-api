@@ -96,7 +96,7 @@
 		"fastify-disablecache": "^1.0.3",
 		"fastify-helmet": "^5.1.0",
 		"fastify-plugin": "^3.0.0",
-		"fastify-swagger": "^4.0.0",
+		"fastify-swagger": "^4.0.1",
 		"file-stream-rotator": "^0.5.7",
 		"fluent-json-schema": "^2.0.3",
 		"helmet": "^4.4.1",
