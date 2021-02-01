@@ -18,8 +18,8 @@
 		"changelog": "conventional-changelog -p @commitlint/config-conventional -s -i CHANGELOG.md && prettier CHANGELOG.md --write",
 		"jest": "jest --detectOpenHandles --runInBand",
 		"jest-coverage": "jest --coverage --runInBand",
-		"license-checker": "license-checker --production --summary",
 		"lint": "eslint . --cache --ext js,jsx,ts,tsx --ignore-path .gitignore",
+		"lint:licenses": "license-checker --direct --production --summary",
 		"lint:prettier": "prettier . --write --ignore-path .gitignore",
 		"lint:prettier:ci": "prettier . --check --ignore-path .gitignore",
 		"start": "node .",
@@ -99,7 +99,6 @@
 		"fastify-swagger": "^4.0.1",
 		"file-stream-rotator": "^0.5.7",
 		"fluent-json-schema": "^2.0.3",
-		"helmet": "^4.4.1",
 		"http-errors": "^1.8.0",
 		"mssql": "^6.3.1",
 		"pino": "^6.10.0"
