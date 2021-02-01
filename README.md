@@ -3,6 +3,7 @@
 # Yeovil District Hospital NHS Foundation Trust - MyYDH RESTful CRUD API
 
 [![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-myydh-crud-api.svg)](https://github.com/Fdawgs/ydh-myydh-crud-api/releases/latest/) ![Build Status](https://github.com/Fdawgs/ydh-myydh-crud-api/workflows/CI/badge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-myydh-crud-api/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-myydh-crud-api?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/Fdawgs/ydh-myydh-crud-api/badge.svg)](https://snyk.io/test/github/Fdawgs/ydh-myydh-crud-api) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FFdawgs%2Fydh-myydh-crud-api.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FFdawgs%2Fydh-myydh-crud-api?ref=badge_shield)
 
 > Yeovil District Hospital NHSFT's RESTful CRUD API for the MyYDH app
 
@@ -79,3 +80,6 @@ Please see [CONTRIBUTING.md](https://github.com/Fdawgs/ydh-myydh-crud-api/blob/m
 ## License
 
 `ydh-myydh-crud-api` is licensed under the [MIT](https://github.com/Fdawgs/ydh-myydh-crud-api/blob/master/LICENSE) license.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FFdawgs%2Fydh-myydh-crud-api.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FFdawgs%2Fydh-myydh-crud-api?ref=badge_large)
