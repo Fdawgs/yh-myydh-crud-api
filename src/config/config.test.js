@@ -25,6 +25,7 @@ describe("configuration", () => {
 			"warn",
 			"silent",
 		]);
+		const LOG_ROTATION_FILENAME = "./test_resources/test_log";
 		const AUTH_BEARER_TOKEN_ARRAY =
 			'[{"service": "test", "value": "testtoken"}]';
 		const DB_CONNECTION_STRING =
@@ -42,6 +43,7 @@ describe("configuration", () => {
 			HTTPS_SSL_KEY_PATH,
 			CORS_ORIGIN,
 			LOG_LEVEL,
+			LOG_ROTATION_FILENAME,
 			AUTH_BEARER_TOKEN_ARRAY,
 			DB_CONNECTION_STRING,
 			DB_DOCUMENT_REGISTER_TABLE,
@@ -69,6 +71,7 @@ describe("configuration", () => {
 					res: expect.any(Function),
 				},
 				timestamp: expect.any(Function),
+				stream: expect.any(Object),
 			})
 		);
 
