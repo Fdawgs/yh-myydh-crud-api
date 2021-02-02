@@ -1,3 +1,11 @@
+## <small>1.2.2 (2021-02-02)</small>
+
+-   test(config): delete test files ([2933009](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/2933009))
+-   test(config): log stream key ([38a2f40](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/38a2f40))
+-   chore(deps-dev): bump pino-pretty from 4.4.0 to 4.5.0 (#62) ([c6a6d22](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c6a6d22)), closes [#62](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/62)
+-   fix(config): stop rotatinglogstream flooding stdout ([8cce824](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8cce824))
+-   refactor(config): update openapi docs from v2._._ to v3._._ ([5928e61](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/5928e61))
+
 ## <small>1.2.1 (2021-02-01)</small>
 
 -   chore: add insomnia example requests ([aeaed49](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/aeaed49))

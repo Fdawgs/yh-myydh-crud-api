@@ -1,4 +1,6 @@
 const faker = require("faker/locale/en_GB");
+const fs = require("fs");
+const glob = require("glob");
 const getConfig = require(".");
 
 describe("configuration", () => {
@@ -6,6 +8,13 @@ describe("configuration", () => {
 
 	beforeAll(() => {
 		jest.resetModules();
+	});
+
+	afterAll(() => {
+		const files = glob.GlobSync(`./test_resources/test_log*`).found;
+		files.forEach((foundFile) => {
+			fs.unlinkSync(foundFile);
+		});
 	});
 
 	afterEach(() => {
