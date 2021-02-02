@@ -1,7 +1,7 @@
 const S = require("fluent-json-schema");
 
 const tags = ["Contact Preferences"];
-const security = [{ bearer_token: [] }];
+const security = [{ bearerToken: [] }];
 
 /**
  * Fastify uses AJV for JSON Schema Validation,
@@ -105,7 +105,6 @@ const userPutSchema = {
 	tags,
 	summary: "Create or update list of patient contact preferences",
 	operationId: "createUserOptions",
-	consumes: ["application/json"],
 	params: S.object().prop(
 		"id",
 		S.string()

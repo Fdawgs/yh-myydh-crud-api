@@ -1,7 +1,7 @@
 const S = require("fluent-json-schema");
 
 const tags = ["Contact Preferences"];
-const security = [{ bearer_token: [] }];
+const security = [{ bearerToken: [] }];
 
 /**
  * Fastify uses AJV for JSON Schema Validation,

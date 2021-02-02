@@ -131,7 +131,7 @@ async function getConfig() {
 		swagger: {
 			routePrefix: "/docs",
 			exposeRoute: true,
-			swagger: {
+			openapi: {
 				info: {
 					title: name,
 					description,
@@ -145,6 +145,16 @@ async function getConfig() {
 							"https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/master/LICENSE",
 					},
 					version,
+				},
+				components: {
+					securitySchemes: {
+						bearerToken: {
+							type: "apiKey",
+							name: "Authorization",
+							in: "header",
+							bearerFormat: "bearer token",
+						},
+					},
 				},
 				tags: [
 					{
@@ -162,13 +172,6 @@ async function getConfig() {
 						description: "",
 					},
 				],
-				securityDefinitions: {
-					bearer_token: {
-						type: "apiKey",
-						name: "Authorization",
-						in: "header",
-					},
-				},
 			},
 		},
 		database: {
