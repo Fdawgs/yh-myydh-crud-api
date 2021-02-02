@@ -113,15 +113,6 @@ async function getConfig() {
 					},
 				},
 				timestamp: () => pino.stdTimeFunctions.isoTime(),
-				// Rotation options: https://github.com/rogerc/file-stream-rotator/#options
-				stream: rotatingLogStream.getStream({
-					date_format: env.LOG_ROTATION_DATE_FORMAT || "YYYY-MM-DD",
-					filename: env.LOG_ROTATION_FILENAME,
-					frequency: env.LOG_ROTATION_FREQUENCY || "daily",
-					max_logs: env.LOG_ROTATION_MAX_LOG,
-					size: env.LOG_ROTATION_MAX_SIZE,
-					verbose: false,
-				}),
 			},
 			ignoreTrailingSlash: true,
 		},
@@ -185,6 +176,18 @@ async function getConfig() {
 			},
 		},
 	};
+
+	if (env.LOG_ROTATION_FILENAME) {
+		// Rotation options: https://github.com/rogerc/file-stream-rotator/#options
+		config.fastifyInit.logger.stream = rotatingLogStream.getStream({
+			date_format: env.LOG_ROTATION_DATE_FORMAT || "YYYY-MM-DD",
+			filename: env.LOG_ROTATION_FILENAME,
+			frequency: env.LOG_ROTATION_FREQUENCY || "daily",
+			max_logs: env.LOG_ROTATION_MAX_LOG,
+			size: env.LOG_ROTATION_MAX_SIZE,
+			verbose: false,
+		});
+	}
 
 	if (env.AUTH_BEARER_TOKEN_ARRAY) {
 		const keys = new Set();
