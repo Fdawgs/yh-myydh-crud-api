@@ -13,8 +13,8 @@ const mockPatientId = faker.random.number({
 });
 const mockTimeStamp = faker.date.past().toISOString();
 
-describe("receipt", () => {
-	describe("DELETE requests", () => {
+describe("Receipt Route", () => {
+	describe("DELETE Requests", () => {
 		let options;
 		let server;
 
@@ -95,7 +95,7 @@ describe("receipt", () => {
 		});
 	});
 
-	describe("PUT requests", () => {
+	describe("PUT Requests", () => {
 		let options;
 		let server;
 

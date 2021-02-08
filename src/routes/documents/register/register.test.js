@@ -10,8 +10,8 @@ const mockPage = faker.random.number({
 
 const mockLastModified = faker.date.past().toISOString().split("T")[0];
 
-describe("register", () => {
-	describe("GET requests", () => {
+describe("Register Route", () => {
+	describe("GET Requests", () => {
 		let options;
 		let server;
 

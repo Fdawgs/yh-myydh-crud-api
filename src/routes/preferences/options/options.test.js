@@ -2,8 +2,8 @@ const Fastify = require("fastify");
 const plugin = require(".");
 const getConfig = require("../../../config");
 
-describe("options", () => {
-	describe("GET requests", () => {
+describe("Options Route", () => {
+	describe("GET Requests", () => {
 		let options;
 		let server;
 

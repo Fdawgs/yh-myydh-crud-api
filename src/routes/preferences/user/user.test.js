@@ -8,8 +8,8 @@ const mockPatientId = faker.random.number({
 	max: 9999999999,
 });
 
-describe("user", () => {
-	describe("GET requests", () => {
+describe("User Route", () => {
+	describe("GET Requests", () => {
 		let options;
 		let server;
 
@@ -107,7 +107,7 @@ describe("user", () => {
 		});
 	});
 
-	describe("PUT requests", () => {
+	describe("PUT Requests", () => {
 		let options;
 		let server;
 

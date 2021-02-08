@@ -7,7 +7,7 @@ const obj = {
 	test4: 2,
 };
 
-describe("Object cleaning utility", () => {
+describe("Object Cleaning Utility", () => {
 	test("Should return object", () => {
 		const util = Util();
 

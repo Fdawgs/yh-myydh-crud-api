@@ -1,6 +1,6 @@
 const Util = require(".");
 
-describe("Data param operator utility", () => {
+describe("Data Param Operator Utility", () => {
 	test("Should return expected value", () => {
 		const values = {
 			ap: "=",
