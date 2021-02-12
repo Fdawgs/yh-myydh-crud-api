@@ -88,8 +88,9 @@ const registerGetSchema = {
 									"99999 DUCK 11 July 2015 11 27.pdf",
 								])
 							)
-
-							.prop("fullPath", S.string())
+							.prop("baseUrl", S.string().format("uri"))
+							.prop("baseSite", S.string().format("uri"))
+							.prop("fullPath", S.string().format("uri"))
 							.prop(
 								"url",
 								S.string()
