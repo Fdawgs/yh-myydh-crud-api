@@ -70,6 +70,8 @@ CREATE TABLE register.documents
     CreatedDate DATETIME NULL,
     Modified DATETIME NULL,
     Specialty NVARCHAR(100) NULL,
-    FullPath NVARCHAR(555) NULL
+    FullPath NVARCHAR(555) NULL,
+    BaseURL NVARCHAR(50) NULL,
+    BaseSite NVARCHAR(50) NULL
 )
 GO 

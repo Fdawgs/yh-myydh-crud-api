@@ -44,6 +44,8 @@ describe("Register Route", () => {
 							clinic: "CLO/BIA",
 							documentType: "Clinic Letter",
 							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
+							baseUrl: "https://notreal.ydh.nhs.uk",
+							baseSite: "/sites/MedicalRecords1",
 							fullPath: "./path/path/path",
 							url:
 								"https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
@@ -97,6 +99,8 @@ describe("Register Route", () => {
 							clinic: "CLO/BIA",
 							documentType: "Clinic Letter",
 							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
+							baseUrl: "https://notreal.ydh.nhs.uk",
+							baseSite: "/sites/MedicalRecords1",
 							fullPath: "./path/path/path",
 							url:
 								"https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
