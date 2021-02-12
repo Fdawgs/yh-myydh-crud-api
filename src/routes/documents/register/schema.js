@@ -89,8 +89,8 @@ const registerGetSchema = {
 								])
 							)
 							.prop("baseUrl", S.string().format("uri"))
-							.prop("baseSite", S.string())
-							.prop("fullPath", S.string())
+							.prop("baseSite", S.string().format("uri"))
+							.prop("fullPath", S.string().format("uri"))
 							.prop(
 								"url",
 								S.string()
