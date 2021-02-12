@@ -26,8 +26,14 @@
 		"start:dev": "nodemon | pino-pretty --colorize",
 		"test": "npm run lint && npm run jest"
 	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
 	"husky": {
 		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
 			"pre-push": "npm run lint:prettier:ci && npm run test"
 		}
 	},
@@ -66,6 +72,7 @@
 		"useTabs": true
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^11.0.0",
 		"@commitlint/config-conventional": "^11.0.0",
 		"autocannon": "^7.0.3",
 		"conventional-changelog-cli": "^2.1.1",
