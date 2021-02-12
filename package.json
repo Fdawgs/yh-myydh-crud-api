@@ -102,6 +102,6 @@
 		"fluent-json-schema": "^2.0.3",
 		"http-errors": "^1.8.0",
 		"mssql": "^6.3.1",
-		"pino": "^6.10.0"
+		"pino": "^6.11.1"
 	}
 }
