@@ -78,8 +78,8 @@ If using a Microsoft Windows OS utilise [pm2-installer](https://github.com/jesse
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](https://github.com/Fdawgs/ydh-myydh-crud-api/blob/master/CONTRIBUTING.md) for more details regarding contributing to this project.
+Please see [CONTRIBUTING.md](./CONTRIBUTING) for more details regarding contributing to this project.
 
 ## License
 
-`ydh-myydh-crud-api` is licensed under the [MIT](https://github.com/Fdawgs/ydh-myydh-crud-api/blob/master/LICENSE) license.
+`ydh-myydh-crud-api` is licensed under the [MIT](./LICENSE) license.
