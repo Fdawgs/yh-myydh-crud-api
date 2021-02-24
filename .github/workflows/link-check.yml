@@ -16,6 +16,4 @@ jobs:
             - uses: JustinBeckwith/linkinator-action@v1.5.4
               with:
                   concurrency: 1
-                  linksToSkip: '^https:\/\/github\.com\/.+\/.+\/(?:commit|issues)\/.+$, http://0.0.0.0, http://localhost'
-                  markdown: true
-                  paths: "*.md"
+                  linksToSkip: "https://github.com/Fdawgs/.*/issues/, https://github.com/Fdawgs/.*/commit/, http://0.0.0.0, http://localhost"
