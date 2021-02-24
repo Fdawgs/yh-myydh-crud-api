@@ -16,4 +16,5 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   node-version: 14.x
-            - run: npx linkinator *.md --skip 'https://github.com/Fdawgs/.*/issues/, https://github.com/Fdawgs/.*/commit/, http://0.0.0.0'
+            - name: Run Linkinator
+              run: npx linkinator *.md --skip 'https://github.com/Fdawgs/.*/issues/, https://github.com/Fdawgs/.*/commit/, http://0.0.0.0'
