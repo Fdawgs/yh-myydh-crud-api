@@ -1,3 +1,7 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
 ## 1.3.0 (2021-02-12)
 
 -   fix: missing dependencies ([ff69f63](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ff69f63))
@@ -28,7 +32,7 @@
 -   docs(contributing): add documentation style ([f3135bf](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f3135bf))
 -   docs(readme): add ignore scripts arg ([500b1b5](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/500b1b5))
 
-## <small>1.2.2 (2021-02-02)</small>
+### 1.2.2 (2021-02-02)
 
 -   test(config): delete test files ([2933009](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/2933009))
 -   test(config): log stream key ([38a2f40](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/38a2f40))
@@ -36,7 +40,7 @@
 -   fix(config): stop rotatinglogstream flooding stdout ([8cce824](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8cce824))
 -   refactor(config): update openapi docs from v2.\*.\* to v3.\*.\* ([5928e61](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/5928e61))
 
-## <small>1.2.1 (2021-02-01)</small>
+### 1.2.1 (2021-02-01)
 
 -   chore: add insomnia example requests ([aeaed49](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/aeaed49))
 -   chore: check direct dependency licenses only ([9d7c724](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9d7c724))
@@ -78,7 +82,7 @@
 -   build(deps-dev): add husky for git hook handling ([81ca50d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/81ca50d))
 -   docs: bump coc from v1.4.0 to v2.0.0 ([1c6a345](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1c6a345))
 
-## <small>1.1.9 (2021-01-22)</small>
+### 1.1.9 (2021-01-22)
 
 -   refactor(pm2): use repo name for instances; remove redundant env setting ([1255e92](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1255e92))
 -   refactor(routes/documents): clean regex ([b4ac403](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b4ac403))
@@ -91,14 +95,14 @@
 -   test(routes/healthcheck): correct description ([d1771b9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d1771b9))
 -   test(routes/preferences/user): 415 error res on unsupported content ([834024c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/834024c))
 
-## <small>1.1.8 (2021-01-21)</small>
+### 1.1.8 (2021-01-21)
 
 -   chore: rename repo to better reflect content ([1667997](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1667997))
 -   chore(deps-dev): bump autocannon from 7.0.1 to 7.0.2 (#36) ([a6238e7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a6238e7)), closes [#36](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/36)
 -   fix(routes): remove heavy-handed required responses ([ae89b16](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ae89b16))
 -   docs(readme): update name of app supported ([0644883](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0644883))
 
-## <small>1.1.7 (2021-01-20)</small>
+### 1.1.7 (2021-01-20)
 
 -   build(docker): add `--ignore-scripts` arg ([1b3ecfb](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1b3ecfb))
 -   chore(deps-dev): bump eslint-plugin-jsdoc from 31.0.7 to 31.0.8 (#34) ([c76a228](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c76a228)), closes [#34](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/34)
@@ -109,7 +113,7 @@
 -   fix(routes/preferences/user): validate body of request ([dc7a58f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/dc7a58f))
 -   fix(routes/preferences/user): validate returned json ([f15fc16](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f15fc16))
 
-## <small>1.1.6 (2021-01-19)</small>
+### 1.1.6 (2021-01-19)
 
 -   chore(deps-dev): bump eslint-config-prettier from 7.1.0 to 7.2.0 (#31) ([6235796](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6235796)), closes [#31](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/31)
 -   chore(deps-dev): bump eslint-plugin-jsdoc from 31.0.6 to 31.0.7 (#29) ([a386f5d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a386f5d)), closes [#29](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/29)
@@ -127,7 +131,7 @@
 -   build: remove `yarn` as package manager, revert to `npm` ([7d872d8](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/7d872d8))
 -   style: rename `querystring` to `query` ([60c8c7a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/60c8c7a))
 
-## <small>1.1.5 (2021-01-15)</small>
+### 1.1.5 (2021-01-15)
 
 -   chore: convert missed headers to uppercase ([5cd7765](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/5cd7765))
 -   chore(deps-dev): bump eslint-plugin-jsdoc from 31.0.3 to 31.0.5 (#26) ([54b6227](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/54b6227)), closes [#26](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/26)
@@ -135,19 +139,19 @@
 -   chore(plugins): add missing param descriptions ([f68f8e9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f68f8e9))
 -   fix(routes/preferences/user): set accepted pattern for id param ([40fe971](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/40fe971))
 
-## <small>1.1.4 (2021-01-14)</small>
+### 1.1.4 (2021-01-14)
 
 -   fix(server): set referrer policy with fallback ([83e0e0a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/83e0e0a))
 -   style(server): rename plugin variable ([a1678dd](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a1678dd))
 -   chore: disable cors in template ([3a2b770](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3a2b770))
 
-## <small>1.1.3 (2021-01-13)</small>
+### 1.1.3 (2021-01-13)
 
 -   fix(routes/documents/register): add missing table columns ([81ece65](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/81ece65))
 -   docs(readme): clarify on api documentation location ([1831643](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1831643))
 -   ci: remove redundant javascript dictionary ([623ca92](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/623ca92))
 
-## <small>1.1.2 (2021-01-12)</small>
+### 1.1.2 (2021-01-12)
 
 -   chore: add metadata to api schema ([b7c635f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b7c635f))
 -   chore: add securitydefinitions and tags ([e841359](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e841359))
@@ -158,7 +162,7 @@
 -   test: set resetmocks option in jest config ([2940577](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/2940577))
 -   fix(routes): correct schema to be nullable string ([3d0dfb6](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3d0dfb6))
 
-## <small>1.1.1 (2021-01-11)</small>
+### 1.1.1 (2021-01-11)
 
 -   fix(env): set default cors to wildcard as boolean option broken ([ed8754f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ed8754f))
 -   fix(server): add form-action csp directive ([c7d241c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c7d241c))
