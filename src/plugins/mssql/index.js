@@ -22,7 +22,7 @@ const sql = require("mssql");
  * (default: `15000`).
  * @param {number=} options.database.connection.requestTimeout - Request timeout in ms
  * (default: `15000`).
- * NOTE: msnodesqlv8 driver doesn't support timeouts < 1 second.
+ * NOTE: msnodesqlv8 driver does not support timeouts < 1 second.
  * When passed via connection string, the key must be `request timeout`
  * @param {boolean=} options.database.connection.stream - Stream recordsets/rows instead of returning
  * them all at once as an argument of callback (default: `false`).
