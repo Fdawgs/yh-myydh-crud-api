@@ -48,11 +48,12 @@ async function plugin(server, config) {
 			},
 		}))
 
+		// Basic healthcheck route to ping
 		.register(healthCheck)
 
 		/**
 		 * Encapsulate plugins and routes into secured child context, so that swagger and
-		 * healthcheck routes do not inherit `accepts` preHandler bearer token auth plugin
+		 * healthcheck routes do not inherit `accepts` preHandler, or bearer token auth
 		 */
 		.register(async (securedContext) => {
 			securedContext
