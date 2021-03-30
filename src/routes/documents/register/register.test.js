@@ -3,7 +3,7 @@ const Fastify = require("fastify");
 const plugin = require(".");
 const getConfig = require("../../../config");
 
-const mockPage = faker.random.number({
+const mockPage = faker.datatype.number({
 	min: 1,
 	max: 10,
 });
