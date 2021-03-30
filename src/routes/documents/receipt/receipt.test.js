@@ -3,11 +3,11 @@ const Fastify = require("fastify");
 const plugin = require(".");
 const getConfig = require("../../../config");
 
-const mockId = faker.random.number({
+const mockId = faker.datatype.number({
 	min: 1,
 	max: 10,
 });
-const mockPatientId = faker.random.number({
+const mockPatientId = faker.datatype.number({
 	min: 1000000000,
 	max: 9999999999,
 });
