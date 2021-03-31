@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.4.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v1.4.0...v1.4.1) (2021-03-31)
+
+
+### Miscellaneous
+
+* **tests:** standardise test file names ([92cf197](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/92cf19760f388c1811ccc9f78564ce5b89b2f385))
+
 ## [1.4.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v1.3.1...v1.4.0) (2021-03-30)
 
 
