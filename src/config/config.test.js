@@ -148,7 +148,7 @@ describe("Configuration", () => {
 		const SERVICE_HOST = faker.internet.ip();
 		const SERVICE_PORT = faker.datatype.number();
 		const CORS_ORIGIN = "https://ydh.nhs.uk";
-		const CORS_METHODS = "GET";
+
 		const CORS_ALLOWED_HEADERS =
 			"Accept, Authorization, Content-Type, Origin, X-Requested-With";
 		const CORS_EXPOSED_HEADERS = "Location";
@@ -162,7 +162,6 @@ describe("Configuration", () => {
 			SERVICE_HOST,
 			SERVICE_PORT,
 			CORS_ORIGIN,
-			CORS_METHODS,
 			CORS_ALLOWED_HEADERS,
 			CORS_EXPOSED_HEADERS,
 			LOG_LEVEL,
@@ -177,7 +176,6 @@ describe("Configuration", () => {
 
 		expect(config.cors).toEqual({
 			origin: CORS_ORIGIN,
-			methods: CORS_METHODS,
 			allowedHeaders: CORS_ALLOWED_HEADERS,
 			exposedHeaders: CORS_EXPOSED_HEADERS,
 		});

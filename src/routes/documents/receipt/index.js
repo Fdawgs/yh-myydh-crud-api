@@ -1,5 +1,8 @@
 const createError = require("http-errors");
 
+// Import plugins
+const cors = require("fastify-cors");
+
 const { receiptDeleteSchema, receiptPutSchema } = require("./schema");
 const { receiptDelete, receiptInsert } = require("./query");
 
@@ -10,6 +13,9 @@ const { receiptDelete, receiptInsert } = require("./query");
  * @param {object} options - Object containing route config objects.
  */
 async function route(server, options) {
+	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+	server.register(cors, { ...options.cors, methods: ["DELETE", "PUT"] });
+
 	server.route({
 		method: "PUT",
 		url: "/:id",
