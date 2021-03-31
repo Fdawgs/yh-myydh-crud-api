@@ -56,6 +56,10 @@ async function getConfig() {
 			.prop("CORS_ORIGIN", S.anyOf([S.string(), S.null()]))
 			.prop("CORS_METHODS", S.anyOf([S.string(), S.null()]))
 			.prop("CORS_ALLOWED_HEADERS", S.anyOf([S.string(), S.null()]))
+			.prop(
+				"CORS_ALLOW_CREDENTIALS",
+				S.anyOf([S.string().enum(["true"]), S.null()])
+			)
 			.prop("CORS_EXPOSED_HEADERS", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"LOG_LEVEL",
@@ -218,6 +222,9 @@ async function getConfig() {
 		config.authKeys = keys;
 	}
 
+	if (String(env.CORS_ALLOW_CREDENTIALS) === "true") {
+		config.cors.credentials = true;
+	}
 	if (env.CORS_ALLOWED_HEADERS) {
 		config.cors.allowedHeaders = env.CORS_ALLOWED_HEADERS;
 	}
