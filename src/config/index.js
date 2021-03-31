@@ -206,9 +206,6 @@ async function getConfig() {
 		config.authKeys = keys;
 	}
 
-	if (env.CORS_METHODS) {
-		config.cors.methods = env.CORS_METHODS;
-	}
 	if (env.CORS_ALLOWED_HEADERS) {
 		config.cors.allowedHeaders = env.CORS_ALLOWED_HEADERS;
 	}

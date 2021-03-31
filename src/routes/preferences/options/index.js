@@ -1,4 +1,9 @@
 const createError = require("http-errors");
+
+// Import plugins
+const cors = require("fastify-cors");
+
+// Import utils
 const clean = require("../../../utils/clean-objects");
 
 const { optionsGetSchema } = require("./schema");
@@ -11,6 +16,9 @@ const { optionsSelect } = require("./query");
  * @param {object} options - Object containing route config objects.
  */
 async function route(server, options) {
+	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+	server.register(cors, { ...options.cors, methods: ["GET"] });
+
 	server.route({
 		method: "GET",
 		url: "/",
