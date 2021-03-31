@@ -10,16 +10,28 @@ const { name, description, license, version } = require("../../package.json");
 
 /**
  * @author Frazer Smith
- * @description Convert string boolean to boolean.
+ * @description Convert string boolean to boolean
+ * or comma-delimited string to array.
  * @param {string} param - CORS parameter.
- * @returns {string|boolean} CORS parameter.
+ * @returns {boolean|Array|string} CORS parameter.
  */
 function parseCorsParameter(param) {
-	if (param === "true") {
+	if (param.trim() === "true") {
 		return true;
 	}
-	if (param === "false") {
+	if (param.trim() === "false") {
 		return false;
+	}
+	if (param.includes(",")) {
+		const paramArray = [];
+		param
+			.trim()
+			.split(",")
+			.forEach((value) => {
+				paramArray.push(value.trim());
+			});
+
+		return paramArray;
 	}
 	return param;
 }
@@ -44,6 +56,10 @@ async function getConfig() {
 			.prop("CORS_ORIGIN", S.anyOf([S.string(), S.null()]))
 			.prop("CORS_METHODS", S.anyOf([S.string(), S.null()]))
 			.prop("CORS_ALLOWED_HEADERS", S.anyOf([S.string(), S.null()]))
+			.prop(
+				"CORS_ALLOW_CREDENTIALS",
+				S.anyOf([S.string().enum(["true"]), S.null()])
+			)
 			.prop("CORS_EXPOSED_HEADERS", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"LOG_LEVEL",
@@ -206,6 +222,9 @@ async function getConfig() {
 		config.authKeys = keys;
 	}
 
+	if (String(env.CORS_ALLOW_CREDENTIALS) === "true") {
+		config.cors.credentials = true;
+	}
 	if (env.CORS_ALLOWED_HEADERS) {
 		config.cors.allowedHeaders = env.CORS_ALLOWED_HEADERS;
 	}
