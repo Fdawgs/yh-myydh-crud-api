@@ -54,7 +54,6 @@ async function getConfig() {
 			.prop("HTTPS_SSL_CERT_PATH", S.anyOf([S.string(), S.null()]))
 			.prop("HTTPS_SSL_KEY_PATH", S.anyOf([S.string(), S.null()]))
 			.prop("CORS_ORIGIN", S.anyOf([S.string(), S.null()]))
-			.prop("CORS_METHODS", S.anyOf([S.string(), S.null()]))
 			.prop("CORS_ALLOWED_HEADERS", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"CORS_ALLOW_CREDENTIALS",
