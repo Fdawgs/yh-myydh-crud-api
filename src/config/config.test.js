@@ -192,7 +192,8 @@ describe("Configuration", () => {
 	test("Should return values according to environment variables - HTTPS disabled and CORS set to comma-delimited string value", async () => {
 		const SERVICE_HOST = faker.internet.ip();
 		const SERVICE_PORT = faker.datatype.number();
-		const CORS_ORIGIN = "https://test1ydh.nhs.uk, https://test2.ydh.nhs.uk";
+		const CORS_ORIGIN =
+			"https://test1.ydh.nhs.uk, https://test2.ydh.nhs.uk";
 		const CORS_ALLOWED_HEADERS =
 			"Accept, Authorization, Content-Type, Origin, X-Requested-With";
 		const CORS_ALLOW_CREDENTIALS = "";
@@ -222,7 +223,7 @@ describe("Configuration", () => {
 
 		expect(config.cors).toEqual({
 			origin: expect.arrayContaining([
-				"https://test1ydh.nhs.uk",
+				"https://test1.ydh.nhs.uk",
 				"https://test2.ydh.nhs.uk",
 			]),
 			allowedHeaders: CORS_ALLOWED_HEADERS,
