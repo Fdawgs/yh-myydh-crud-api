@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v1.4.0...v2.0.0) (2021-04-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* `CORS_METHODS` env variable removed
+
+### Features
+
+* add support for cors preflight requests ([c27d9f5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c27d9f5e704e260232f6a76c0778dc07bb184fba))
+* **config:** support `access-control-allow-credentials` cors header ([860ee55](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/860ee556e30f410814450eacb51412968444fc6f))
+
+
+### Bug Fixes
+
+* **config:** comma-delimited string support for cors origin value ([883fe36](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/883fe3668bae2b174ad587723eb5bb2d8d805493))
+* **config:** remove cors_methods from schema validation ([28a2f08](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/28a2f0812e9b08cc98e7c4ad514a5992be2d0406))
+
+
+### Miscellaneous
+
+* **env.template:** add default cors settings ([a98703b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a98703bbdb13df311fdc1715b69b5cf876856407))
+* **env.template:** add note discouraging reflecting cors origin ([155fec3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/155fec3aa95d5bf117cbd0d60ab71e3587a9e011))
+* **env.template:** remove bad example ([6bb158a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6bb158a5578ec0c6214bb6e57f8d4146f64abd11))
+* **tests:** standardise test file names ([92cf197](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/92cf19760f388c1811ccc9f78564ce5b89b2f385))
+
+
+### Continuous Integration
+
+* add cleanup-run job ([d48eb7a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d48eb7a667edfb02f59b647827426585b312922f))
+
+
+### Dependencies
+
+* **deps-dev:** bump @commitlint/cli from 12.0.1 to 12.1.1 ([e35fa57](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e35fa577e17e07608232b5708e7ab4e03f72e5ac))
+* **deps-dev:** bump @commitlint/config-conventional ([4e6b57e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4e6b57efe425a9d3014e332db170d0265d8b6252))
+* **deps-dev:** bump eslint-plugin-jest from 24.3.2 to 24.3.4 ([1b09191](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1b091915bead66c753735ad14a218dd98e8e1aab))
+* **deps-dev:** bump faker from 5.5.1 to 5.5.2 ([99d3887](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/99d38873f22d8d4bd0f98f9fd442157ffc09b3a2))
+* **deps:** bump actions/github-script from v3.1.0 to v3.1.1 ([14972f0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/14972f023f4ab7fd504dec9c5ad79d50c2424f7f))
+* **deps:** bump fastify-swagger from 4.4.2 to 4.5.0 ([1b77758](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1b777581c179c2ad253e43e08a5a5f777faaafbf))
+* **deps:** bump wagoid/commitlint-github-action from v3.0.6 to v3.1.0 ([cf782ae](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/cf782aed1d55f82ecc1398e42062f60d40222449))
+
 ## [1.4.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v1.3.1...v1.4.0) (2021-03-30)
 
 
