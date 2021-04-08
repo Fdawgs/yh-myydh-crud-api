@@ -101,6 +101,7 @@ jobs:
                   cp .env.template .env
                   npm run jest:coverage
             - name: Coveralls Parallel
+              if: github.repository == 'Fdawgs/ydh-myydh-crud-api'
               uses: coverallsapp/github-action@v1.1.2
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -143,8 +144,10 @@ jobs:
 
     coverage:
         name: Aggregate Coverage Calculations
-        if: github.event.pull_request.draft == false
         needs: unit-tests
+        if: >
+            github.event.pull_request.draft == false &&
+            github.repository == 'Fdawgs/ydh-myydh-crud-api'
         runs-on: ubuntu-latest
         steps:
             - name: Coveralls Finished
