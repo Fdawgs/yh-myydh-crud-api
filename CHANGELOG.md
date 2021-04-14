@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+### [2.0.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v2.0.0...v2.0.1) (2021-04-14)
+
+
+### Continuous Integration
+
+* do not run coveralls steps/jobs on forks ([7318ad9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7318ad9b0a269a1c90b1cce669b6c775118ac2a7))
+* **link-check:** fix skip regex ([4089a2c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4089a2c4bca86b261a8a0d18c60bd9d7e448e885))
+
 ## [2.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v1.4.0...v2.0.0) (2021-04-06)
 
 
