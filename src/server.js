@@ -8,6 +8,7 @@ const accepts = require("fastify-accepts");
 const bearer = require("fastify-bearer-auth");
 const helmet = require("fastify-helmet");
 const disableCache = require("fastify-disablecache");
+const rateLimit = require("fastify-rate-limit");
 const swagger = require("fastify-swagger");
 const underPressure = require("under-pressure");
 const mssql = require("./plugins/mssql");
@@ -34,6 +35,13 @@ async function plugin(server, config) {
 			maxHeapUsedBytes: 100000000,
 			maxRssBytes: 100000000,
 			maxEventLoopUtilization: 0.98,
+		})
+
+		// Rate limiting and 429 response handling
+		.register(rateLimit, {
+			allowList: ["127.0.0.1"],
+			max: 2500,
+			timeWindow: 60000,
 		})
 
 		.register(swagger, config.swagger)
