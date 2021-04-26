@@ -52,8 +52,8 @@ async function route(server, options) {
 					preferenceTypeOptions.forEach((preferenceType) => {
 						const preferenceObj = {
 							type: {
-								display: preferenceType.preference_type_display,
-								id: preferenceType.preference_type_id,
+								display: preferenceType.preferenceTypeDisplay,
+								id: preferenceType.preferenceTypeId,
 								priority: priorityCount,
 								selected: 2,
 								options: [],
@@ -68,14 +68,14 @@ async function route(server, options) {
 							preferenceValueOptions.forEach(
 								(preferenceValue) => {
 									if (
-										preferenceValue.preference_type_id ===
-										preferenceType.preference_type_id
+										preferenceValue.preferenceTypeId ===
+										preferenceType.preferenceTypeId
 									) {
 										const optionObj = {
 											display:
-												preferenceValue.preference_option_display,
+												preferenceValue.preferenceOptionDisplay,
 											value:
-												preferenceValue.preference_option_value,
+												preferenceValue.preferenceOptionValue,
 										};
 
 										preferenceObj.type.options.push(

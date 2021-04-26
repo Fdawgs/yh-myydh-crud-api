@@ -2,14 +2,14 @@ const optionsSelect = ({
 	patientPreferencesTypeTable,
 	patientPreferencesValueTable,
 }) => `
-SELECT prefType.preferenceTypeId AS preference_type_id,
-prefType.preferenceType AS preference_type_display
+SELECT prefType.preferenceTypeId,
+prefType.preferenceType AS preferenceTypeDisplay
 FROM ${patientPreferencesTypeTable} prefType;
 
-SELECT prefType.preferenceTypeId AS preference_type_id,
-prefType.preferenceType AS preference_type_display,
-prefVal.preferenceValue AS preference_option_display,
-prefVal.preferenceValueId AS preference_option_value
+SELECT prefType.preferenceTypeId,
+prefType.preferenceType AS preferenceTypeDisplay,
+prefVal.preferenceValue AS preferenceOptionDisplay,
+prefVal.preferenceValueId AS preferenceOptionValue
 FROM ${patientPreferencesTypeTable} prefType
 CROSS JOIN ${patientPreferencesValueTable} prefVal;`;
 

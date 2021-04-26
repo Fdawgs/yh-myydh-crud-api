@@ -45,8 +45,8 @@ async function route(server, options) {
 					const patientObj = {
 						id: patientPreferences[0].id,
 						meta: {
-							created: patientPreferences[0].meta_created,
-							lastupdated: patientPreferences[0].meta_lastupdated,
+							created: patientPreferences[0].metaCreated,
+							lastupdated: patientPreferences[0].metaLastUpdated,
 						},
 						preferences: [],
 					};
@@ -56,10 +56,10 @@ async function route(server, options) {
 						const preferenceObj = {
 							type: {
 								display:
-									patientPreference.preference_type_display,
-								id: patientPreference.preference_type_id,
+									patientPreference.preferenceTypeDisplay,
+								id: patientPreference.preferenceTypeId,
 								priority:
-									patientPreference.preference_type_priority,
+									patientPreference.preferenceTypePriority,
 								selected: undefined,
 								options: [],
 							},
@@ -68,22 +68,22 @@ async function route(server, options) {
 						// Build option objects to populate options array
 						patientPreferencesValues.forEach((preferenceValue) => {
 							if (
-								preferenceValue.preference_type_id ===
-								patientPreference.preference_type_id
+								preferenceValue.preferenceTypeId ===
+								patientPreference.preferenceTypeId
 							) {
 								const optionObj = {
 									display:
-										preferenceValue.preference_option_display,
+										preferenceValue.preferenceOptionDisplay,
 									value:
-										preferenceValue.preference_option_value,
+										preferenceValue.preferenceOptionValue,
 								};
 
 								if (
 									patientPreference.preferenceValueId ===
-									preferenceValue.preference_option_value
+									preferenceValue.preferenceOptionValue
 								) {
 									preferenceObj.type.selected =
-										preferenceValue.preference_option_value;
+										preferenceValue.preferenceOptionValue;
 								}
 
 								preferenceObj.type.options.push(optionObj);

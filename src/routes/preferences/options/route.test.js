@@ -25,22 +25,22 @@ describe("Options Route", () => {
 				recordsets: [
 					[
 						{
-							preference_type_id: 1,
-							preference_type_display: "SMS",
+							preferenceTypeId: 1,
+							preferenceTypeDisplay: "SMS",
 						},
 					],
 					[
 						{
-							preference_type_id: 1,
-							preference_type_display: "SMS",
-							preference_option_display: "yes",
-							preference_option_value: 1,
+							preferenceTypeId: 1,
+							preferenceTypeDisplay: "SMS",
+							preferenceOptionDisplay: "yes",
+							preferenceOptionValue: 1,
 						},
 						{
-							preference_type_id: 1,
-							preference_type_display: "SMS",
-							preference_option_display: "no",
-							preference_option_value: 2,
+							preferenceTypeId: 1,
+							preferenceTypeDisplay: "SMS",
+							preferenceOptionDisplay: "no",
+							preferenceOptionValue: 2,
 						},
 					],
 				],
