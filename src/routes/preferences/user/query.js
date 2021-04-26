@@ -24,21 +24,21 @@ const userSelect = ({
 	patientPreferencesTypeTable,
 	patientPreferencesValueTable,
 }) => `SELECT pat.patientId AS id,
-pat.created AS meta_created,
-pat.lastUpdated AS meta_lastupdated,
+pat.created AS metaCreated,
+pat.lastUpdated AS metaLastUpdated,
 pat.preferenceValueId,
-pat.preferenceTypeId AS preference_type_id,
-prefType.preferenceType AS preference_type_display,
-pat.preferencePriority AS preference_type_priority
+pat.preferenceTypeId,
+prefType.preferenceType AS preferenceTypeDisplay,
+pat.preferencePriority AS preferenceTypePriority
 FROM ${patientPreferencesTable} pat
 LEFT JOIN ${patientPreferencesTypeTable} prefType
 ON pat.preferenceTypeId = prefType.preferenceTypeId
 WHERE patientId = '${patientId}';
 
-SELECT prefType.preferenceTypeId AS preference_type_id,
-prefType.preferenceType AS preference_type_display,
-prefVal.preferenceValue AS preference_option_display,
-prefVal.preferenceValueId AS preference_option_value
+SELECT prefType.preferenceTypeId,
+prefType.preferenceType AS preferenceTypeDisplay,
+prefVal.preferenceValue AS preferenceOptionDisplay,
+prefVal.preferenceValueId AS preferenceOptionValue
 FROM ${patientPreferencesTypeTable} prefType
 CROSS JOIN ${patientPreferencesValueTable} prefVal;
 `;
