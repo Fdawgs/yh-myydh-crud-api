@@ -139,7 +139,7 @@ async function getConfig() {
 						return { level: label };
 					},
 				},
-				level: env.LOG_LEVEL || "info",
+				level: env.LOG_LEVEL,
 				serializers: {
 					req(req) {
 						return pino.stdSerializers.req(req);
@@ -226,9 +226,9 @@ async function getConfig() {
 	if (env.LOG_ROTATION_FILENAME) {
 		// Rotation options: https://github.com/rogerc/file-stream-rotator/#options
 		config.fastifyInit.logger.stream = rotatingLogStream.getStream({
-			date_format: env.LOG_ROTATION_DATE_FORMAT || "YYYY-MM-DD",
+			date_format: env.LOG_ROTATION_DATE_FORMAT,
 			filename: env.LOG_ROTATION_FILENAME,
-			frequency: env.LOG_ROTATION_FREQUENCY || "daily",
+			frequency: env.LOG_ROTATION_FREQUENCY,
 			max_logs: env.LOG_ROTATION_MAX_LOG,
 			size: env.LOG_ROTATION_MAX_SIZE,
 			verbose: false,
