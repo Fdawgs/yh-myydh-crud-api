@@ -62,24 +62,24 @@ async function getConfig() {
 			.prop("CORS_EXPOSED_HEADERS", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"PROC_LOAD_MAX_EVENT_LOOP_DELAY",
-				S.anyOf([S.number(), S.null()]).default(1000)
+				S.anyOf([S.number(), S.null()]).default(0)
 			)
 			.prop(
 				"PROC_LOAD_MAX_HEAP_USED_BYTES",
-				S.anyOf([S.number(), S.null()]).default(100000000)
+				S.anyOf([S.number(), S.null()]).default(0)
 			)
 			.prop(
 				"PROC_LOAD_MAX_RSS_BYTES",
-				S.anyOf([S.number(), S.null()]).default(100000000)
+				S.anyOf([S.number(), S.null()]).default(0)
 			)
 			.prop(
 				"PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION",
-				S.anyOf([S.number(), S.null()]).default(0.98)
+				S.anyOf([S.number(), S.null()]).default(0)
 			)
 			.prop("RATE_LIMIT_EXCLUDED_ARRAY", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"RATE_LIMIT_MAX_CONNECTIONS_PER_MIN",
-				S.anyOf([S.number(), S.null()]).default(10)
+				S.anyOf([S.number(), S.null()]).default(1000)
 			)
 			.prop(
 				"LOG_LEVEL",
@@ -139,7 +139,7 @@ async function getConfig() {
 						return { level: label };
 					},
 				},
-				level: env.LOG_LEVEL,
+				level: env.LOG_LEVEL || "info",
 				serializers: {
 					req(req) {
 						return pino.stdSerializers.req(req);
@@ -156,13 +156,14 @@ async function getConfig() {
 			origin: parseCorsParameter(env.CORS_ORIGIN) || false,
 		},
 		processLoad: {
-			maxEventLoopDelay: env.PROC_LOAD_MAX_EVENT_LOOP_DELAY,
-			maxHeapUsedBytes: env.PROC_LOAD_MAX_HEAP_USED_BYTES,
-			maxRssBytes: env.PROC_LOAD_MAX_RSS_BYTES,
-			maxEventLoopUtilization: env.PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION,
+			maxEventLoopDelay: env.PROC_LOAD_MAX_EVENT_LOOP_DELAY || 0,
+			maxHeapUsedBytes: env.PROC_LOAD_MAX_HEAP_USED_BYTES || 0,
+			maxRssBytes: env.PROC_LOAD_MAX_RSS_BYTES || 0,
+			maxEventLoopUtilization:
+				env.PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION || 0,
 		},
 		rateLimit: {
-			max: env.RATE_LIMIT_MAX_CONNECTIONS_PER_MIN,
+			max: env.RATE_LIMIT_MAX_CONNECTIONS_PER_MIN || 1000,
 			timeWindow: 60000,
 		},
 		swagger: {
@@ -226,9 +227,9 @@ async function getConfig() {
 	if (env.LOG_ROTATION_FILENAME) {
 		// Rotation options: https://github.com/rogerc/file-stream-rotator/#options
 		config.fastifyInit.logger.stream = rotatingLogStream.getStream({
-			date_format: env.LOG_ROTATION_DATE_FORMAT,
+			date_format: env.LOG_ROTATION_DATE_FORMAT || "YYYY-MM-DD",
 			filename: env.LOG_ROTATION_FILENAME,
-			frequency: env.LOG_ROTATION_FREQUENCY,
+			frequency: env.LOG_ROTATION_FREQUENCY || "daily",
 			max_logs: env.LOG_ROTATION_MAX_LOG,
 			size: env.LOG_ROTATION_MAX_SIZE,
 			verbose: false,
