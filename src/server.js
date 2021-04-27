@@ -8,7 +8,9 @@ const accepts = require("fastify-accepts");
 const bearer = require("fastify-bearer-auth");
 const helmet = require("fastify-helmet");
 const disableCache = require("fastify-disablecache");
+const rateLimit = require("fastify-rate-limit");
 const swagger = require("fastify-swagger");
+const underPressure = require("under-pressure");
 const mssql = require("./plugins/mssql");
 
 // Import healthcheck route
@@ -26,6 +28,12 @@ async function plugin(server, config) {
 		.register(accepts)
 
 		.register(disableCache)
+
+		// Process load and 503 response handling
+		.register(underPressure, config.processLoad)
+
+		// Rate limiting and 429 response handling
+		.register(rateLimit, config.rateLimit)
 
 		.register(swagger, config.swagger)
 

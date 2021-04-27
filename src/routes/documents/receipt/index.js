@@ -14,7 +14,11 @@ const { receiptDelete, receiptInsert } = require("./query");
  */
 async function route(server, options) {
 	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-	server.register(cors, { ...options.cors, methods: ["DELETE", "PUT"] });
+	server.register(cors, {
+		...options.cors,
+		methods: ["DELETE", "PUT"],
+		hideOptionsRoute: true,
+	});
 
 	server.route({
 		method: "PUT",
