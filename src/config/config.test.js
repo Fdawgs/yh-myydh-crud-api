@@ -30,6 +30,7 @@ describe("Configuration", () => {
 		const HTTPS_SSL_KEY_PATH = "./test_resources/test_ssl_cert/server.key";
 		const CORS_ORIGIN = false;
 		const CORS_ALLOWED_HEADERS = "";
+		const CORS_ALLOW_CREDENTIALS = "";
 		const PROC_LOAD_MAX_EVENT_LOOP_DELAY = 5000;
 		const PROC_LOAD_MAX_HEAP_USED_BYTES = 5000;
 		const PROC_LOAD_MAX_RSS_BYTES = 5000;
@@ -59,6 +60,7 @@ describe("Configuration", () => {
 			HTTPS_SSL_KEY_PATH,
 			CORS_ORIGIN,
 			CORS_ALLOWED_HEADERS,
+			CORS_ALLOW_CREDENTIALS,
 			PROC_LOAD_MAX_EVENT_LOOP_DELAY,
 			PROC_LOAD_MAX_HEAP_USED_BYTES,
 			PROC_LOAD_MAX_RSS_BYTES,
