@@ -2,6 +2,71 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v2.0.0...v3.0.0) (2021-04-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove support for nodejs v10, as it is EOL as of 2021-04-30
+
+### Features
+
+* **config:** allow for rate and process limits to be user configured ([82d1ced](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/82d1ced102374baa588162022eb95f55230c92a3))
+* **server:** add process-load/503 handling ([78aa4b4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/78aa4b482ce37c1e83da1524b40b246b532dabee))
+* **server:** add rate limiter ([8d183cd](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8d183cdc3d2ad26c858570ffd287dff6381c5240))
+* **server:** disable google floc support ([8dfce45](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8dfce4545754868e8eb53080b80460cbd94a6eca))
+
+
+### Bug Fixes
+
+* **config:** plugin defaults ([50c8b9c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/50c8b9c18abae56da9700e8c8d9140160b5068e3))
+* **config:** re-add removed defaults ([13d1ff0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/13d1ff0b9538a752b2cbd97e91caf0db199f2ba7))
+* **routes:** hide options routes from swagger docs ([08a1ae7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/08a1ae7164727beca789e660017d76599fdc2af4))
+
+
+### Miscellaneous
+
+* **config:** remove redundant conditionals ([4d07d2e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4d07d2efd51d32dd420e55465cf653a6abf999d0))
+* **env:** add whitespace ([3a48c7c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3a48c7c976d662d6234ac904d9e3799877f9f0a3))
+* remove support for nodejs v10 ([53a5d81](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/53a5d81bdae3bc6a9d17baff483c30d2e1f767e0))
+* **routes:** replace snakecase with camelcase ([9c9d1d6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9c9d1d643c4414e981ee34c04c45430b45979dba))
+
+
+### Continuous Integration
+
+* add nodejs v16 to unit test matrix ([11d08c3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/11d08c340977dbd71de0acf5a45570a270c14992))
+* do not run coveralls steps/jobs on forks ([7318ad9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7318ad9b0a269a1c90b1cce669b6c775118ac2a7))
+* **link-check:** fix skip regex ([4089a2c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4089a2c4bca86b261a8a0d18c60bd9d7e448e885))
+* **typoci:** add "pino" to excluded words ([57765fb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/57765fbf137264ffb058f81fb9a3887e6cf95d3a))
+
+
+### Documentation
+
+* grammar and readability fixes ([e2b56ea](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e2b56eaf0e3037e2f3666b322526d17203f83940))
+
+
+### Dependencies
+
+* **deps-dev:** bump autocannon from 7.0.5 to 7.2.0 ([fdf4315](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fdf4315dbd2f554d1170b1276c143adc7e6b193f))
+* **deps-dev:** bump eslint from 7.23.0 to 7.25.0 ([1899a0a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1899a0a2a9d02ff8a162e5c650081ae49375fd15))
+* **deps-dev:** bump eslint-config-prettier from 8.1.0 to 8.3.0 ([f431b26](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f431b26d0789ed327bf259d4a6e749106b0ad0e9))
+* **deps-dev:** bump eslint-plugin-jest from 24.3.4 to 24.3.6 ([471f419](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/471f4195d14b0b58adb5eb9a4c4acb2d7ffa9056))
+* **deps-dev:** bump eslint-plugin-jsdoc from 32.3.0 to 33.0.0 ([80060da](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/80060da5038abbb91cabb487e13970c7eaf6b3d5))
+* **deps-dev:** bump eslint-plugin-promise from 4.3.1 to 5.1.0 ([044600d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/044600da9585c6e43981fc10aa09e76b0a7c2fee))
+* **deps-dev:** bump faker from 5.5.2 to 5.5.3 ([d13abb3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d13abb338b2081145884eb58927aa72042889756))
+* **deps:** bump actions/cache from v2.1.4 to v2.1.5 ([7c1edee](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7c1edee4e8cb5b527d5854529503692b407dcc40))
+* **deps:** bump actions/github-script from v3.1.1 to v4.0.2 ([45dd861](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/45dd861865abe83beeae7cbfa3df6737342b2220))
+* **deps:** bump actions/upload-artifact from v2.2.2 to v2.2.3 ([19dc231](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/19dc23195219fca3c26f1968bca6564f1325c620))
+* **deps:** bump brpaz/hadolint-action from v1.3.1 to v1.4.0 ([7b60048](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7b60048a2223b0834f05fa8adaf41812699d7afd))
+* **deps:** bump fastify from 3.14.1 to 3.15.0 ([49ef354](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/49ef354224e8da18d45fb422d4b5a78d5c291778))
+* **deps:** bump fastify-autoload from 3.6.0 to 3.7.1 ([584e0ce](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/584e0cec107ed97c69176e6764297c2cc197cfdd))
+* **deps:** bump fastify-cors from 5.2.0 to 6.0.0 ([7b59a98](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7b59a985cd52738622c99a152e407bba384a0223))
+* **deps:** bump fastify-disablecache from 1.0.6 to 2.0.0 ([416fef3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/416fef378c48fbd592ed7217511fdff3a988dbb4))
+* **deps:** bump fastify-swagger from 4.5.0 to 4.7.0 ([864bfb0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/864bfb0738f8f9af82ea08b3fde87e8843edec36))
+* **deps:** bump GoogleCloudPlatform/release-please-action ([0c84fc9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0c84fc9cea0743497778f0fcbac73e8632ea1e19))
+* **deps:** bump pino from 6.11.2 to 6.11.3 ([0e761ed](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0e761ed9a59b6394f388159fcc86cb56578633b6))
+* **deps:** bump typoci/spellcheck-action from v0.4.0 to v1.1.0 ([514fe6f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/514fe6f6255f2ce327f331e07d451f99268e659a))
+
 ## [2.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v1.4.0...v2.0.0) (2021-04-06)
 
 
