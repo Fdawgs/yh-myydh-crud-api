@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.0.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.0...v3.0.1) (2021-05-04)
+
+
+### Documentation
+
+* **readme:** compress duplicate setup steps into a single section ([#173](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/173)) ([1d5c50d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1d5c50df99992e6dd2972a2eeb0c8d147c0975f9))
+
+
+### Dependencies
+
+* **deps:** bump fastify from 3.15.0 to 3.15.1 ([ad964d6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ad964d6a23e6b4d8e8ee689f4e5feaa27a853158))
+* **deps:** bump GoogleCloudPlatform/release-please-action ([eba9923](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/eba99235ad3abf4f61e8dc0fc242e359da4d2b08))
+
 ## [3.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v2.0.0...v3.0.0) (2021-04-30)
 
 
