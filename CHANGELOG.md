@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.0.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.1...v3.0.2) (2021-05-07)
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-jsdoc from 33.0.0 to 33.1.0 ([0676da0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0676da04e895a134e676c3019683d2bf9a15fa7c))
+* **deps-dev:** bump glob from 7.1.6 to 7.1.7 ([4debfbc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4debfbcd43e0dbb809dba54f061644a184bd5c1d))
+* **deps:** bump dotenv from 8.2.0 to 9.0.0 ([84c74f5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/84c74f55c4da20ddf23b78a124209e33ca76eea8))
+* **deps:** bump fastify-floc-off from 1.0.0 to 1.0.1 ([f76dcb4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f76dcb4904a10be3cd5b2e72a6b83b236297a653))
+* **deps:** bump GoogleCloudPlatform/release-please-action ([7ff79b4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7ff79b4286ae856f8226ae7d999441bd2cd76ce1))
+* **deps:** bump lodash from 4.17.20 to 4.17.21 ([6f37b8d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6f37b8d7a6bf58f374b826107380c37cd67b2bd3))
+* **deps:** bump mssql from 6.3.1 to 7.0.0 ([6eaca11](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6eaca111d7ef4199a1828cec49a675d65afc2911))
+* **deps:** bump wagoid/commitlint-github-action from v3.1.0 to v3.1.1 ([8854095](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/88540958a943bfd1fe2e10014cfaf92126115167))
+
 ### [3.0.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.0...v3.0.1) (2021-05-04)
 
 
