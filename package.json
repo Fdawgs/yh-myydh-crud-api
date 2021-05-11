@@ -78,7 +78,7 @@
     "license-checker": "^25.0.1",
     "nodemon": "^2.0.7",
     "pino-pretty": "^4.8.0",
-    "prettier": "2.2.1"
+    "prettier": "2.3.0"
   },
   "dependencies": {
     "dotenv": "^9.0.2",
