@@ -47,8 +47,7 @@ describe("Register Route", () => {
 							baseUrl: "https://notreal.ydh.nhs.uk",
 							baseSite: "/sites/MedicalRecords1",
 							fullPath: "./path/path/path",
-							url:
-								"https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
+							url: "https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
 							createdDate: "2015-09-30T05:40:14.000Z",
 							modifiedDate: "2020-08-10T03:51:54.000Z",
 							specialty: "General Surgery",
@@ -102,8 +101,7 @@ describe("Register Route", () => {
 							baseUrl: "https://notreal.ydh.nhs.uk",
 							baseSite: "/sites/MedicalRecords1",
 							fullPath: "./path/path/path",
-							url:
-								"https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
+							url: "https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
 							createdDate: "2015-09-30T05:40:14.000Z",
 							modifiedDate: "2020-08-10T03:51:54.000Z",
 							specialty: "General Surgery",

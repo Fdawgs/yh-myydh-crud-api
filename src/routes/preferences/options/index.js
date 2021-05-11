@@ -78,8 +78,7 @@ async function route(server, options) {
 										const optionObj = {
 											display:
 												preferenceValue.preferenceOptionDisplay,
-											value:
-												preferenceValue.preferenceOptionValue,
+											value: preferenceValue.preferenceOptionValue,
 										};
 
 										preferenceObj.type.options.push(
