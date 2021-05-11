@@ -99,6 +99,12 @@ describe("Configuration", () => {
 				stream: expect.any(Object),
 			})
 		);
+		expect(config.fastifyInit.logger.formatters.level()).toEqual({
+			level: undefined,
+		});
+		expect(config.fastifyInit.logger.timestamp().substring(0, 7)).toEqual(
+			',"time"'
+		);
 
 		expect(config.fastifyInit.https).toEqual({
 			cert: expect.any(Buffer),
@@ -119,6 +125,124 @@ describe("Configuration", () => {
 		expect(config.rateLimit).toEqual({
 			allowList: JSON.parse(RATE_LIMIT_EXCLUDED_ARRAY),
 			max: RATE_LIMIT_MAX_CONNECTIONS_PER_MIN,
+			timeWindow: 60000,
+		});
+
+		expect(config.database).toEqual({
+			connection: DB_CONNECTION_STRING,
+			tables: {
+				documentRegister: DB_DOCUMENT_REGISTER_TABLE,
+				patientPref: DB_PATIENT_PREFERENCES_TABLE,
+				patientPrefTypeLookup: DB_PATIENT_PREFERENCES_TYPE_TABLE,
+				patientPrefValueLookup: DB_PATIENT_PREFERENCES_VALUE_TABLE,
+				readReceipt: DB_READ_RECEIPT_DOCS_TABLE,
+			},
+		});
+	});
+
+	test("Should return values according to environment variables and use defaults if values missing", async () => {
+		const SERVICE_HOST = faker.internet.ip();
+		const SERVICE_PORT = faker.datatype.number();
+		const HTTPS_SSL_CERT_PATH =
+			"./test_resources/test_ssl_cert/server.cert";
+		const HTTPS_SSL_KEY_PATH = "./test_resources/test_ssl_cert/server.key";
+		const CORS_ORIGIN = false;
+		const CORS_ALLOWED_HEADERS = "";
+		const CORS_ALLOW_CREDENTIALS = "";
+		const PROC_LOAD_MAX_EVENT_LOOP_DELAY = "";
+		const PROC_LOAD_MAX_HEAP_USED_BYTES = "";
+		const PROC_LOAD_MAX_RSS_BYTES = "";
+		const PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION = "";
+		const RATE_LIMIT_MAX_CONNECTIONS_PER_MIN = "";
+		const RATE_LIMIT_EXCLUDED_ARRAY = '["127.0.0.1"]';
+		const LOG_LEVEL = faker.random.arrayElement([
+			"debug",
+			"warn",
+			"silent",
+		]);
+		const LOG_ROTATION_FILENAME = "./test_resources/test_log";
+		const AUTH_BEARER_TOKEN_ARRAY =
+			'[{"service": "test", "value": "testtoken"}]';
+		const DB_CONNECTION_STRING =
+			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
+		const DB_DOCUMENT_REGISTER_TABLE = "YDHAPPDOC.dbo.SPINDEX";
+		const DB_PATIENT_PREFERENCES_TABLE = "patient.preferences";
+		const DB_PATIENT_PREFERENCES_TYPE_TABLE = "lookup.preferenceType";
+		const DB_PATIENT_PREFERENCES_VALUE_TABLE = "lookup.preferenceValue";
+		const DB_READ_RECEIPT_DOCS_TABLE = "receipt.documents";
+
+		Object.assign(process.env, {
+			SERVICE_HOST,
+			SERVICE_PORT,
+			HTTPS_SSL_CERT_PATH,
+			HTTPS_SSL_KEY_PATH,
+			CORS_ORIGIN,
+			CORS_ALLOWED_HEADERS,
+			CORS_ALLOW_CREDENTIALS,
+			PROC_LOAD_MAX_EVENT_LOOP_DELAY,
+			PROC_LOAD_MAX_HEAP_USED_BYTES,
+			PROC_LOAD_MAX_RSS_BYTES,
+			PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION,
+			RATE_LIMIT_MAX_CONNECTIONS_PER_MIN,
+			RATE_LIMIT_EXCLUDED_ARRAY,
+			LOG_LEVEL,
+			LOG_ROTATION_FILENAME,
+			AUTH_BEARER_TOKEN_ARRAY,
+			DB_CONNECTION_STRING,
+			DB_DOCUMENT_REGISTER_TABLE,
+			DB_PATIENT_PREFERENCES_TABLE,
+			DB_PATIENT_PREFERENCES_TYPE_TABLE,
+			DB_PATIENT_PREFERENCES_VALUE_TABLE,
+			DB_READ_RECEIPT_DOCS_TABLE,
+		});
+
+		const config = await getConfig();
+
+		expect(config.authKeys).toContain("testtoken");
+
+		expect(config.fastify).toEqual({
+			host: SERVICE_HOST,
+			port: SERVICE_PORT,
+		});
+
+		expect(config.fastifyInit.logger).toEqual(
+			expect.objectContaining({
+				formatters: { level: expect.any(Function) },
+				level: LOG_LEVEL,
+				serializers: {
+					req: expect.any(Function),
+					res: expect.any(Function),
+				},
+				timestamp: expect.any(Function),
+				stream: expect.any(Object),
+			})
+		);
+		expect(config.fastifyInit.logger.formatters.level()).toEqual({
+			level: undefined,
+		});
+		expect(config.fastifyInit.logger.timestamp().substring(0, 7)).toEqual(
+			',"time"'
+		);
+
+		expect(config.fastifyInit.https).toEqual({
+			cert: expect.any(Buffer),
+			key: expect.any(Buffer),
+		});
+
+		expect(config.cors).toEqual({
+			origin: CORS_ORIGIN,
+		});
+
+		expect(config.processLoad).toEqual({
+			maxEventLoopDelay: 0,
+			maxHeapUsedBytes: 0,
+			maxRssBytes: 0,
+			maxEventLoopUtilization: 0,
+		});
+
+		expect(config.rateLimit).toEqual({
+			allowList: JSON.parse(RATE_LIMIT_EXCLUDED_ARRAY),
+			max: 1000,
 			timeWindow: 60000,
 		});
 
