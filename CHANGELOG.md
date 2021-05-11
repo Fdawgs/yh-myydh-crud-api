@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.0.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.2...v3.0.3) (2021-05-11)
+
+
+### Bug Fixes
+
+* **config:** `LOG_LEVEL` env variable validation ([d36fd1f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d36fd1f528f4c950738e341b98ad482b4ed02fd7))
+
+
+### Continuous Integration
+
+* **link-check:** run once a week on monday ([cf86213](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/cf86213b418188b07aac375f22dbf3ab811bbed3))
+
+
+### Dependencies
+
+* **deps-dev:** bump autocannon from 7.2.0 to 7.3.0 ([77554b3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/77554b3955debc6aaffaec5681e750267f5300c7))
+* **deps-dev:** bump eslint from 7.25.0 to 7.26.0 ([34efbf4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/34efbf4aa6c9108c4e5e4ead76a11d64bbb0670d))
+* **deps-dev:** bump eslint-plugin-jsdoc from 33.1.0 to 34.0.1 ([3f67485](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3f6748596395cebacf1604bbfc69245d5e4fe8a9))
+* **deps-dev:** bump pino-pretty from 4.7.1 to 4.8.0 ([ae530f9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ae530f9a898ca5476c5b82e41b76fd1db8f39e1b))
+* **deps-dev:** bump prettier from 2.2.1 to 2.3.0 ([#194](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/194)) ([647a42b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/647a42b948be2344f4dfd11853bc47a95c025899))
+* **deps:** bump brpaz/hadolint-action from 1.4.0 to 1.5.0 ([c5541fc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c5541fccf93f0ee909966f0bdd458db829874b4e))
+* **deps:** bump dotenv from 9.0.0 to 9.0.2 ([fadebb9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fadebb95d3f97426eb8fffb10742bb868c35ad09))
+* **deps:** bump fastify-cors from 6.0.0 to 6.0.1 ([c137f1e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c137f1e3eee988afa794b61a329cb982963203bc))
+* **deps:** bump fluent-json-schema from 2.0.4 to 3.0.0 ([90feb81](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/90feb81a522601bdd6d6cdfc7090412ac8383401))
+* **deps:** bump wagoid/commitlint-github-action from 3.1.1 to 3.1.3 ([85f04df](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/85f04df0254cbebc7551c256f8a3ed0aee0b77a9))
+
 ### [3.0.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.1...v3.0.2) (2021-05-07)
 
 
