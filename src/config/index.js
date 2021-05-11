@@ -83,8 +83,8 @@ async function getConfig() {
 			)
 			.prop(
 				"LOG_LEVEL",
-				S.string()
-					.enum([
+				S.anyOf([
+					S.string().enum([
 						"fatal",
 						"error",
 						"warn",
@@ -92,8 +92,9 @@ async function getConfig() {
 						"debug",
 						"trace",
 						"silent",
-					])
-					.default("info")
+					]),
+					S.null(),
+				]).default("info")
 			)
 			.prop("LOG_ROTATION_DATE_FORMAT", S.string().default("YYYY-MM-DD"))
 			.prop("LOG_ROTATION_FILENAME", S.anyOf([S.string(), S.null()]))
