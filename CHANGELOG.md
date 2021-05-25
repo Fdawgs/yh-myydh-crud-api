@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.1.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.3...v3.1.0) (2021-05-25)
+
+
+### Features
+
+* **routes/documents/register:** support multiple `lastModified` params ([0116bf1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0116bf1b8f4432bd4841e1a95f8be263d06c4f8e))
+
+
+### Continuous Integration
+
+* fix key usage in `action/setup-node` ([b47430c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b47430ca6a4f5fd8b85b00da923843a3de5128ce))
+
+
+### Miscellaneous
+
+* **ci:** replace `node-version` key with shorter `node` ([#198](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/198)) ([1ea352d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1ea352de12c0e04357744c39f1b52ec528aa73d0))
+* **dockerfile:** consolidate consecutive `run` instructions ([#200](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/200)) ([d50ada2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d50ada20296b3028d40293170178eaf1f886d530))
+* **env:** remove pre-filled process load env values in template ([#203](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/203)) ([8ec0afc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8ec0afc604ae3a314b66e0f13ef7a90f6abd98a9))
+* **routes/documents/register:** remove redundant branches ([db40ded](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/db40ded640e06130e37d17f1d83e976ea4f777ae))
+
+
+### Dependencies
+
+* **deps-dev:** bump @commitlint/cli from 12.1.1 to 12.1.4 ([b37b72e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b37b72ee00405a9fee9fc9bcc2a66b3c2610e6b2))
+* **deps-dev:** bump @commitlint/config-conventional ([3f7c1d6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3f7c1d6a1a4ba11d516caa9eb2b3e51826c2c2bc))
+* **deps-dev:** bump eslint from 7.26.0 to 7.27.0 ([cc58fbc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/cc58fbcbb4db2cfaab87e4f9523aee81baaff4e0))
+* **deps-dev:** bump eslint-plugin-import from 2.22.1 to 2.23.3 ([caf4b0c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/caf4b0c1f78b246b097de6a17914dc95ab074073))
+* **deps-dev:** bump eslint-plugin-jsdoc from 34.0.1 to 35.0.0 ([17e3f8f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/17e3f8fa669636488127246e00f262ea27edd0db))
+* **deps-dev:** bump jest from 26.6.3 to 27.0.0 ([31d1211](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/31d121123de22f40c51f87ac33abf0d6b746a03a))
+* **deps:** bump actions/stale from 3.0.18 to 3.0.19 ([4014ec6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4014ec6d3aeeb5be1fbe6f1143c81b024eaf29b5))
+* **deps:** bump dotenv from 9.0.2 to 10.0.0 ([59fed6f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/59fed6f5fde32d9d9e53e09c60b079d8b65f3c60))
+* **deps:** bump mssql from 7.0.0 to 7.1.0 ([7216d3a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7216d3a36454a55205b1cf12c9538ec293276732))
+* **deps:** bump wagoid/commitlint-github-action from 3.1.3 to 3.1.4 ([a9db0c2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a9db0c2cb7613154928a66e7fddca2d6bb12e03c))
+
 ### [3.0.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.2...v3.0.3) (2021-05-11)
 
 
