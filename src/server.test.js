@@ -24,10 +24,6 @@ describe.skip("Server deployment", () => {
 		await server.ready();
 	});
 
-	afterAll(() => {
-		server.close();
-	});
-
 	afterAll(async () => {
 		await server.close();
 	});

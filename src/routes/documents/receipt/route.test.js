@@ -27,8 +27,8 @@ describe("Receipt Route", () => {
 			await server.ready();
 		});
 
-		afterAll(() => {
-			server.close();
+		afterAll(async () => {
+			await server.close();
 		});
 
 		test("Should delete a document read receipt", async () => {
@@ -108,8 +108,8 @@ describe("Receipt Route", () => {
 			await server.ready();
 		});
 
-		afterAll(() => {
-			server.close();
+		afterAll(async () => {
+			await server.close();
 		});
 
 		test("Should upsert document read receipt", async () => {
