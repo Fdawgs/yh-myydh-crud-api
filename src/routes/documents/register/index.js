@@ -30,8 +30,8 @@ async function route(server, options) {
 		schema: registerGetSchema,
 		async handler(req, res) {
 			try {
-				const page = parseInt(req.query.page, 10) - 1 || 0;
-				const perPage = parseInt(req.query.perPage, 10) || 1;
+				const page = parseInt(req.query.page, 10) - 1;
+				const perPage = parseInt(req.query.perPage, 10);
 
 				// Build WHERE clause using lastModified querystring params
 				const whereArray = [];
