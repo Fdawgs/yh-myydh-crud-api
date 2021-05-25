@@ -83,6 +83,66 @@ describe("Register Route", () => {
 			expect(response.statusCode).toEqual(200);
 		});
 
+		test("Should return documents from register using default pagination values", async () => {
+			const mockQueryFn = jest.fn().mockResolvedValue({
+				recordsets: [
+					[
+						{
+							total: 1,
+						},
+					],
+					[
+						{
+							guid: "EXAMPLEGUID-0123456789-99999",
+							fhirId: "99999",
+							title: "99999 DUCK 11 July 2015 11 27.pdf",
+							clinic: "CLO/BIA",
+							documentType: "Clinic Letter",
+							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
+							baseUrl: "https://notreal.ydh.nhs.uk",
+							baseSite: "/sites/MedicalRecords1",
+							fullPath: "./path/path/path",
+							url: "https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
+							createdDate: "2015-09-30T05:40:14.000Z",
+							modifiedDate: "2020-08-10T03:51:54.000Z",
+							specialty: "General Surgery",
+							patientVisible: 1,
+						},
+					],
+				],
+				recordset: [
+					{
+						total: 1,
+					},
+				],
+				output: {},
+				rowsAffected: [1, 1],
+			});
+
+			server.mssql = {
+				query: mockQueryFn,
+			};
+
+			const response = await server.inject({
+				method: "GET",
+				url: "/",
+				query: {
+					lastModified: mockLastModified1,
+				},
+			});
+
+			expect(mockQueryFn).toHaveBeenCalledTimes(1);
+			expect(JSON.parse(response.payload).meta.pagination).toEqual(
+				expect.objectContaining({
+					total: 1,
+					per_page: 1,
+					current_page: 1,
+					total_pages: 1,
+				})
+			);
+			expect(response.statusCode).toEqual(200);
+		});
+
 		test("Should return documents from register using more than one lastModified querystring param", async () => {
 			const mockQueryFn = jest.fn().mockResolvedValue({
 				recordsets: [
