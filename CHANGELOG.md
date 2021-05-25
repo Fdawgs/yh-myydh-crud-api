@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.0.4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.3...v3.0.4) (2021-05-25)
+
+
+### Continuous Integration
+
+* fix key usage in `action/setup-node` ([b47430c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b47430ca6a4f5fd8b85b00da923843a3de5128ce))
+
+
+### Miscellaneous
+
+* **ci:** replace `node-version` key with shorter `node` ([#198](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/198)) ([1ea352d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1ea352de12c0e04357744c39f1b52ec528aa73d0))
+* **dockerfile:** consolidate consecutive `run` instructions ([#200](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/200)) ([d50ada2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d50ada20296b3028d40293170178eaf1f886d530))
+
 ### [3.0.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.2...v3.0.3) (2021-05-11)
 
 
