@@ -1,13 +1,12 @@
 const registerSelect = ({
-	timestamp,
-	operator,
+	whereClausePredicates,
 	documentRegisterTable,
 	page,
 	perPage,
 }) => `
 SELECT COUNT(*) AS total
 FROM ${documentRegisterTable}
-WHERE Modified ${operator} '${timestamp}';
+WHERE ${whereClausePredicates};
 
 SELECT GUID AS guid,
 fhir_id AS fhirId,
@@ -24,7 +23,7 @@ CreatedDate AS createdDate,
 Modified AS modifiedDate,
 patient_visible AS patientVisible
 FROM ${documentRegisterTable}
-WHERE Modified ${operator} '${timestamp}'
+WHERE ${whereClausePredicates}
 ORDER BY Modified DESC
 OFFSET ${page * perPage} ROWS
 FETCH NEXT ${perPage} ROWS ONLY;`;

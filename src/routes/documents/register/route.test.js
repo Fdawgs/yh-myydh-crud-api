@@ -8,7 +8,8 @@ const mockPage = faker.datatype.number({
 	max: 10,
 });
 
-const mockLastModified = faker.date.past().toISOString().split("T")[0];
+const mockLastModified1 = faker.date.past().toISOString().split("T")[0];
+const mockLastModified2 = faker.date.past().toISOString().split("T")[0];
 
 describe("Register Route", () => {
 	describe("GET Requests", () => {
@@ -72,7 +73,61 @@ describe("Register Route", () => {
 				method: "GET",
 				url: "/",
 				query: {
-					lastModified: mockLastModified,
+					lastModified: mockLastModified1,
+					perPage: mockPage,
+					page: mockPage,
+				},
+			});
+
+			expect(mockQueryFn).toHaveBeenCalledTimes(1);
+			expect(response.statusCode).toEqual(200);
+		});
+
+		test("Should return documents from register using more than one lastModified querystring param", async () => {
+			const mockQueryFn = jest.fn().mockResolvedValue({
+				recordsets: [
+					[
+						{
+							total: 1,
+						},
+					],
+					[
+						{
+							guid: "EXAMPLEGUID-0123456789-99999",
+							fhirId: "99999",
+							title: "99999 DUCK 11 July 2015 11 27.pdf",
+							clinic: "CLO/BIA",
+							documentType: "Clinic Letter",
+							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
+							baseUrl: "https://notreal.ydh.nhs.uk",
+							baseSite: "/sites/MedicalRecords1",
+							fullPath: "./path/path/path",
+							url: "https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
+							createdDate: "2015-09-30T05:40:14.000Z",
+							modifiedDate: "2020-08-10T03:51:54.000Z",
+							specialty: "General Surgery",
+							patientVisible: 1,
+						},
+					],
+				],
+				recordset: [
+					{
+						total: 1,
+					},
+				],
+				output: {},
+				rowsAffected: [1, 1],
+			});
+
+			server.mssql = {
+				query: mockQueryFn,
+			};
+
+			const response = await server.inject({
+				method: "GET",
+				url: "/",
+				query: {
+					lastModified: [mockLastModified1, mockLastModified2],
 					perPage: mockPage,
 					page: mockPage,
 				},
@@ -126,7 +181,7 @@ describe("Register Route", () => {
 				method: "GET",
 				url: "/",
 				query: {
-					lastModified: `ge${mockLastModified}`,
+					lastModified: `ge${mockLastModified1}`,
 				},
 			});
 
@@ -147,7 +202,7 @@ describe("Register Route", () => {
 				method: "GET",
 				url: "/",
 				query: {
-					lastModified: mockLastModified,
+					lastModified: mockLastModified1,
 					perPage: mockPage,
 					page: mockPage,
 				},

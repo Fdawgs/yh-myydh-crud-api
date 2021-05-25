@@ -33,22 +33,35 @@ async function route(server, options) {
 				const page = parseInt(req.query.page, 10) - 1 || 0;
 				const perPage = parseInt(req.query.perPage, 10) || 1;
 
-				// Build WHERE clause using lastModified querystring param
-				const operator = convertDateParamOperator(
-					escape(req.query.lastModified).substring(0, 2)
-				);
-				// eslint-disable-next-line no-restricted-globals
-				if (isNaN(req.query.lastModified.substring(0, 2))) {
-					req.query.lastModified = req.query.lastModified.substring(
-						2,
-						req.query.lastModified.length
-					);
+				// Build WHERE clause using lastModified querystring params
+				const whereArray = [];
+
+				let lastModified = [];
+				if (Array.isArray(req.query.lastModified)) {
+					lastModified = req.query.lastModified;
+				} else {
+					lastModified.push(req.query.lastModified);
 				}
+
+				lastModified.forEach((modified) => {
+					const operator = convertDateParamOperator(
+						escape(modified).substring(0, 2)
+					);
+
+					// eslint-disable-next-line no-restricted-globals
+					if (isNaN(modified.substring(0, 2))) {
+						// eslint-disable-next-line no-param-reassign
+						modified = modified.substring(2, modified.length);
+					}
+
+					whereArray.push(`(Modified ${operator} '${modified}')`);
+				});
+
+				const whereClausePredicates = whereArray.join(" AND ");
 
 				const { recordsets } = await server.mssql.query(
 					registerSelect({
-						timestamp: req.query.lastModified,
-						operator,
+						whereClausePredicates,
 						documentRegisterTable:
 							options.database.tables.documentRegister,
 						page,
