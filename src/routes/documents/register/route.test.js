@@ -24,8 +24,8 @@ describe("Register Route", () => {
 			await server.ready();
 		});
 
-		afterAll(() => {
-			server.close();
+		afterAll(async () => {
+			await server.close();
 		});
 
 		test("Should return documents from register", async () => {

@@ -31,8 +31,8 @@ describe.skip("mssql plugin", () => {
 		server.mssql.connect = jest.fn();
 	});
 
-	afterAll(() => {
-		server.close();
+	afterAll(async () => {
+		await server.close();
 	});
 
 	test("Should instrument request with mssql plugin", async () => {

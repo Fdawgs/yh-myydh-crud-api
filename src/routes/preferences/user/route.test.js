@@ -22,8 +22,8 @@ describe("User Route", () => {
 			await server.ready();
 		});
 
-		afterAll(() => {
-			server.close();
+		afterAll(async () => {
+			await server.close();
 		});
 
 		test("Should return user preferences", async () => {
@@ -120,8 +120,8 @@ describe("User Route", () => {
 			await server.ready();
 		});
 
-		afterAll(() => {
-			server.close();
+		afterAll(async () => {
+			await server.close();
 		});
 
 		test("Should upsert user preferences", async () => {
