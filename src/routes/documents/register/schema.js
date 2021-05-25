@@ -17,19 +17,38 @@ const registerGetSchema = {
 	query: S.object()
 		.prop(
 			"lastModified",
-			S.string()
-				.description("Last modified datetime of document")
-				.examples([
-					"2021-01-01",
-					"ge2021-01-01T00:00:01",
-					"ge2021-01-01",
-					"2021-01-01T00:00:01",
-				])
-				.pattern(
-					"^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\\d{4}-\\d{2}-\\d{2}(?:T\\d{2}\\:\\d{2}\\:\\d{2}|)$"
-				)
-				.required()
+			S.anyOf([
+				S.string()
+					.description("Last modified datetime of document")
+					.examples([
+						"2021-01-01",
+						"ge2021-01-01T00:00:01",
+						"ge2021-01-01",
+						"2021-01-01T00:00:01",
+					])
+					.pattern(
+						"^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\\d{4}-\\d{2}-\\d{2}(?:T\\d{2}\\:\\d{2}\\:\\d{2}|)$"
+					),
+				S.array()
+					.items(
+						S.string()
+							.description("Last modified datetime of document")
+							.examples([
+								"2021-01-01",
+								"ge2021-01-01T00:00:01",
+								"ge2021-01-01",
+								"2021-01-01T00:00:01",
+							])
+							.pattern(
+								"^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\\d{4}-\\d{2}-\\d{2}(?:T\\d{2}\\:\\d{2}\\:\\d{2}|)$"
+							)
+					)
+					.minItems(2)
+					.maxItems(2)
+					.uniqueItems(true),
+			]).required()
 		)
+
 		.prop(
 			"page",
 			S.number()
