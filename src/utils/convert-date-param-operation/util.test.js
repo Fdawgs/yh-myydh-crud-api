@@ -17,7 +17,7 @@ describe("Data Param Operator Utility", () => {
 
 		Object.keys(values).forEach((key) => {
 			const result = Util(key);
-			expect(result).toBe(values[key]);
+			expect(result).toEqual(values[key]);
 		});
 	});
 });
