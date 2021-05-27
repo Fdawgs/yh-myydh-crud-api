@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.1.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.0...v3.1.1) (2021-05-27)
+
+
+### Miscellaneous
+
+* **workflows:** remove `stale.yml` ([ba47733](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ba477335d6f93076a689da57e5c3b72eb51f11b8))
+
+
+### Dependencies
+
+* **deps-dev:** bump jest from 27.0.0 to 27.0.1 ([34a9ecc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/34a9eccf56a09e877acb111f5cbad5219618fb24))
+* **deps-dev:** bump pino-pretty from 4.8.0 to 5.0.0 ([5d2d881](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/5d2d88145a6dfb3d09d31d768156eda4eba82c33))
+* **deps:** bump fastify from 3.15.1 to 3.16.2 ([c12e11f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c12e11fef30871133fdd71d9861ebbe3470bc9e3))
+
+
+### Continuous Integration
+
+* **cd:** move perf optimizations and refactoring into same section ([659c4c0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/659c4c03c2ec2dff21aaad813b51f2b84ad46f6b))
+
 ## [3.1.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.3...v3.1.0) (2021-05-25)
 
 
