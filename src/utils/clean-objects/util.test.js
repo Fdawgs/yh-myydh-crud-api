@@ -11,14 +11,14 @@ describe("Object Cleaning Utility", () => {
 	test("Should return object", () => {
 		const util = Util();
 
-		expect(typeof util).toBe("object");
+		expect(typeof util).toEqual("object");
 	});
 	test("Should remove key where value is undefined or null", () => {
 		const util = Util(obj);
 
-		expect(typeof util.test1).toBe("undefined");
-		expect(typeof util.test2).toBe("undefined");
-		expect(Object.keys(util.test3[0]).length).toBe(0);
-		expect(util.test4).toBe(2);
+		expect(typeof util.test1).toEqual("undefined");
+		expect(typeof util.test2).toEqual("undefined");
+		expect(Object.keys(util.test3[0]).length).toEqual(0);
+		expect(util.test4).toEqual(2);
 	});
 });
