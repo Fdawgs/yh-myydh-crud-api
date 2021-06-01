@@ -74,7 +74,7 @@
     "faker": "^5.5.3",
     "glob": "^7.1.7",
     "husky": "^6.0.0",
-    "jest": "^27.0.1",
+    "jest": "^27.0.3",
     "license-checker": "^25.0.1",
     "nodemon": "^2.0.7",
     "pino-pretty": "^5.0.0",
