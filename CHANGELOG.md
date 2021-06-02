@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.1.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.1...v3.1.2) (2021-06-02)
+
+
+### Continuous Integration
+
+* remove redundant docker build job ([a919aab](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a919aab356e54b775688a3a47476449027cd9312))
+
+
+### Documentation
+
+* **readme:** add note regarding using `docker compose up` ([fd09508](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fd09508754f4769d1cc28d5d0f1ddbf9dad30e17))
+* **readme:** grammar and wordiness fixes ([a5b9987](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a5b998710ce382e81ca4b9c7b11ee38bc20340f0))
+* **readme:** update contributing section ([7ab1851](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7ab1851e9641547a53000454f5643e6996bdf03f))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-import from 2.23.3 to 2.23.4 ([72ebee6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/72ebee6ea45b59b0a1e85a49d0167913ce83264a))
+* **deps-dev:** bump eslint-plugin-jsdoc from 35.0.0 to 35.1.2 ([56dd3f8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/56dd3f8fbdc1b1b362b3e4b4fb8c5f756f90866d))
+* **deps-dev:** bump jest from 27.0.1 to 27.0.3 ([20491c0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/20491c0d5f418e978109d80e0419a847df805965))
+* **deps-dev:** bump pino-pretty from 5.0.0 to 5.0.1 ([3211cf9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3211cf985565135231155f452dc79d34b70b0cec))
+* **deps-dev:** bump pino-pretty from 5.0.1 to 5.0.2 ([06e8fa2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/06e8fa2a5c5587255d6f4fea05623410e8a5ba49))
+* **deps:** bump actions/cache from 2.1.5 to 2.1.6 ([fa2f514](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fa2f514e08fe738e4ae2d9285c9fb1cd36c1bdee))
+* **deps:** bump fastify from 3.16.2 to 3.17.0 ([11e1d6d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/11e1d6d1e9cef0363f7d48f53b45c6e7c63e5d9f))
+* **docker-compose:** use oci labels ([e60f447](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e60f447632ee5ac59d2339802d9e91f533830fed))
+* **dockerignore:** add test and dev files ([9cb7808](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9cb78089f5022f85b83c8d9e1e6e95ed0f64f522))
+* **docker:** update workdir; install curl ([bfa9067](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/bfa90671c0956eb05e2050ed35e0dd33224106f9))
+* **docker:** use correct curl version ([5035e9b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/5035e9be6bac7075581da7207e905787873bc99e))
+* **docker:** use native logging, healthcheck, restart and res handling ([68128b2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/68128b2a6a3edbfcb40b8aab9ed56730f2c251ee))
+
 ### [3.1.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.0...v3.1.1) (2021-05-27)
 
 
