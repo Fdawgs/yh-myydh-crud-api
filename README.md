@@ -74,11 +74,11 @@ If you are unable to deploy this into production using Docker, it is recommended
 
 If using a Microsoft Windows OS utilise [pm2-installer](https://github.com/jessety/pm2-installer) to install PM2 as a Windows service.
 
-**Note:** PM2 has been configured to automatically restart the application if modifications are made to `.env`.
+**Note:** PM2 will automatically restart the application if `.env` is modified.
 
 ## Contributing
 
-Contributions are welcome, and any help that can be offered is greatly appreciated!
+Contributions are welcome, and any help is greatly appreciated!
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to get started.
 Please adhere to this project's [Code of Conduct](./CODE_OF_CONDUCT.md) when contributing.
