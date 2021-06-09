@@ -24,7 +24,7 @@ const healthCheck = require("./routes/healthcheck");
  * @param {object} config - Fastify configuration values
  */
 async function plugin(server, config) {
-	// Enable plugins
+	// Register plugins
 	server
 		.register(accepts)
 
@@ -41,16 +41,14 @@ async function plugin(server, config) {
 		.register(swagger, config.swagger)
 
 		// Use Helmet to set response security headers: https://helmetjs.github.io/
-		.register(helmet, (instance) => ({
+		.register(helmet, {
 			contentSecurityPolicy: {
 				directives: {
 					...helmet.contentSecurityPolicy.getDefaultDirectives(),
 					"form-action": ["'self'"],
 					"img-src": ["'self'", "data:", "validator.swagger.io"],
-					"script-src": ["'self'"].concat(instance.swaggerCSP.script),
-					"style-src": ["'self'", "https:"].concat(
-						instance.swaggerCSP.style
-					),
+					"script-src": ["'self'"],
+					"style-src": ["'self'", "https:"],
 				},
 			},
 			referrerPolicy: {
@@ -60,7 +58,7 @@ async function plugin(server, config) {
 				 */
 				policy: ["no-referrer", "strict-origin-when-cross-origin"],
 			},
-		}))
+		})
 
 		// Basic healthcheck route to ping
 		.register(healthCheck)
