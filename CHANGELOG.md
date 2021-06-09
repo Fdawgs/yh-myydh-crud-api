@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.1.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.2...v3.1.3) (2021-06-09)
+
+
+### Bug Fixes
+
+* **server:** remove swagger from csp for all routes apart from doc route ([dbdbf3b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/dbdbf3bf5fdeefb9fdee7c0d9807c5811d132106))
+* **server:** set `frame-ancestors` csp to `'none'`; add `child-src` csp ([debc025](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/debc025c0a0fb5910915bd7e36a87f06202a5dde))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint from 7.27.0 to 7.28.0 ([8dad2f3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8dad2f30fc564944d119ff4bdb907535e16511c2))
+* **deps-dev:** bump eslint-plugin-jsdoc from 35.1.2 to 35.1.3 ([c78756c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c78756c476fa73676153950e0f85ec0cc81efaf5))
+* **deps-dev:** bump jest from 27.0.3 to 27.0.4 ([1816d23](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1816d23d8515a9d57385548c7147bece96c7e8e0))
+* **deps-dev:** bump prettier from 2.3.0 to 2.3.1 ([4f1a013](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4f1a013199f6c5a869e70e62b18f98b48bf858ce))
+* **deps:** bump glob-parent from 5.1.1 to 5.1.2 ([130e5b8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/130e5b809f2e99637e36d092ed99f688b36eef83))
+* **deps:** bump normalize-url from 4.5.0 to 4.5.1 ([d65535d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d65535dbc2bf90de5ad266f3ee19f2a08927c1c9))
+* **deps:** bump trim-newlines from 3.0.0 to 3.0.1 ([b20a9a2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b20a9a2eb1e56144b789dbc07c95a8fc157c8ddd))
+
 ### [3.1.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.1...v3.1.2) (2021-06-02)
 
 
