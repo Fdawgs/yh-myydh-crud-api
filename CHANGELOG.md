@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.3...v3.2.0) (2021-06-11)
+
+
+### Features
+
+* **server:** add content-encoding support ([#239](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/239)) ([174477e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/174477ea3cd014a62262a855e3b86bb4330b1ad3))
+
+
+### Dependencies
+
+* **deps:** bump mssql from 7.1.0 to 7.1.3 ([521b08c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/521b08c5353b9e0897ddb93df34a323213bcfb8e))
+
 ### [3.1.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.2...v3.1.3) (2021-06-09)
 
 
