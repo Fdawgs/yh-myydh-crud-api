@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.2.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.0...v3.2.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* **config:** prettyprint conditional ([#242](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/242)) ([fddc5cc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fddc5ccc6c93aa3a95e3f99d461b066db0080c4b))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-jsdoc from 35.1.3 to 35.3.0 ([e46c14c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e46c14cbf51f78537d7b1d7f84790391d00c8fe3))
+* **deps:** bump fastify-compress from 3.5.0 to 3.6.0 ([cf43d57](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/cf43d578bc6847efe046a796f5e9fdf6bdeb9a32))
+* **deps:** bump fastify-disablecache from 2.0.0 to 2.0.1 ([a3375b6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a3375b67c426f34630621ff6d50370975bd6a951))
+
 ## [3.2.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.3...v3.2.0) (2021-06-11)
 
 
