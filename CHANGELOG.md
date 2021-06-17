@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.2.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.1...v3.2.2) (2021-06-17)
+
+
+### Dependencies
+
+* **deps:** bump actions/upload-artifact from 2.2.3 to 2.2.4 ([c8c2225](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c8c22251891fb140194f3fa528f3f627c1a51d86))
+* **deps:** bump fastify from 3.17.0 to 3.18.0 ([68d4858](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/68d48580aaabd2ed8a22bb207a1f56ccf8476a75))
+* **deps:** bump fastify-disablecache from 2.0.1 to 2.0.2 ([12edee1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/12edee15ee6e6b67eb26daf22d81d6749f5b4b0e))
+
 ### [3.2.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.0...v3.2.1) (2021-06-16)
 
 
