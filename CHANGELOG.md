@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.2.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.2...v3.2.3) (2021-06-22)
+
+
+### Bug Fixes
+
+* **server:** increase `Strict-Transport-Security` max age to 365 days ([052fb0f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/052fb0fc663381a007dcd782cf9da2e08b104402))
+* **server:** revert `Referrer-Policy` directives to "no-referrer" only ([c0e5017](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c0e5017dbfaced7ec65ca46f5f4807869d086279))
+* **server:** use stricter `Content-Security-Policy` values ([888ea32](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/888ea32e4bac43ce508a0c47570c00ffd7c65c99))
+
+
+### Continuous Integration
+
+* **link-check:** reduce frequency from weekly to monthly ([#251](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/251)) ([2223459](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2223459640c31b0a17bdf19b10d282bce633f6c7))
+
+
+### Miscellaneous
+
+* **server:** clarify on what each registered plugin does ([439341a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/439341a6516e23842862bf57317f7ae8da78e08f))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint from 7.28.0 to 7.29.0 ([698d4eb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/698d4eb21aec6f136a022bf31145f3daaa6961cb))
+* **deps-dev:** bump eslint-plugin-jsdoc from 35.3.0 to 35.4.0 ([6d0b65e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6d0b65eccc0e3d4f4ee1d9244b9e504556038611))
+* **deps-dev:** bump jest from 27.0.4 to 27.0.5 ([4b540f1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4b540f1314c8e88d66d56b125b32c7c6cda6b3eb))
+* **deps:** bump fastify-autoload from 3.7.1 to 3.8.0 ([0a18dab](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0a18dab0cc7fbd3492d2420b116e1f6240579a7c))
+* **deps:** bump fastify-bearer-auth from 5.1.0 to 6.0.0 ([feda524](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/feda52480af1d0ab8e95fdc828db8b9d7fdb3ae3))
+* **deps:** bump fastify-swagger from 4.7.0 to 4.8.0 ([46b3f97](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/46b3f978a497ae250f46255c61bc24595834e806))
+* **deps:** bump under-pressure from 5.6.0 to 5.7.0 ([651c05c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/651c05cf39d355539c3885d5f7b3dcfe076cf089))
+
 ### [3.2.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.1...v3.2.2) (2021-06-17)
 
 
