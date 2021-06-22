@@ -58,6 +58,9 @@ async function plugin(server, config) {
 					"block-all-mixed-content": [],
 				},
 			},
+			hsts: {
+				maxAge: 31536000,
+			},
 		})
 
 		// Basic healthcheck route to ping
