@@ -94,7 +94,7 @@
     "fastify-helmet": "^5.3.1",
     "fastify-plugin": "^3.0.0",
     "fastify-rate-limit": "^5.5.0",
-    "fastify-swagger": "^4.8.0",
+    "fastify-swagger": "^4.8.2",
     "file-stream-rotator": "^0.5.7",
     "fluent-json-schema": "^3.0.0",
     "http-errors": "^1.8.0",
