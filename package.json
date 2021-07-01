@@ -76,7 +76,7 @@
     "husky": "^6.0.0",
     "jest": "^27.0.6",
     "license-checker": "^25.0.1",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.9",
     "pino-pretty": "^5.1.0",
     "prettier": "2.3.2"
   },
