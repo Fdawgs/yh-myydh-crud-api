@@ -27,7 +27,7 @@ const healthCheck = require("./routes/healthcheck");
 async function plugin(server, config) {
 	// Register plugins
 	server
-		// Accept header handler
+		// Accept header handler, used in secured context
 		.register(accepts)
 
 		// Set response headers to disable client-side caching
@@ -77,6 +77,7 @@ async function plugin(server, config) {
 		 */
 		.register(async (securedContext) => {
 			securedContext
+				// Reject request if client has indicated it cannot accept JSON in Accept request header
 				.addHook("preHandler", async (req, res) => {
 					if (req.accepts().type(["json"]) !== "json") {
 						res.send(NotAcceptable());
