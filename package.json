@@ -73,7 +73,7 @@
     "eslint-plugin-security": "^1.4.0",
     "faker": "^5.5.3",
     "glob": "^7.1.7",
-    "husky": "^7.0.0",
+    "husky": "^7.0.1",
     "jest": "^27.0.6",
     "license-checker": "^25.0.1",
     "nodemon": "^2.0.9",
