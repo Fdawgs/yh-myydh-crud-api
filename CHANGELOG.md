@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.2.4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.3...v3.2.4) (2021-07-09)
+
+
+### Bug Fixes
+
+* **routes/healthcheck:** add `Accept` request header handling ([a9d7a48](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a9d7a487086eedbe73330f4ee4e64b94d9bac2ba))
+
+
+### Miscellaneous
+
+* **server:** clarify on accept request header handling ([3caae5c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3caae5c8c355d1506b78a860ed2e804ef511dc96))
+* **vscode:** disable redhat telemetry ([6b52968](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6b529687f6085afdb4afaa86d018bd27348e16d9))
+
+
+### Dependencies
+
+* **deps-dev:** bump autocannon from 7.3.0 to 7.4.0 ([1319036](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/131903606f9f38221f7788fc5f29a4a7621e9cca))
+* **deps-dev:** bump eslint from 7.29.0 to 7.30.0 ([b532323](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b53232351a1a5d6884da67e9359bff741fc0dff8))
+* **deps-dev:** bump eslint-plugin-jsdoc from 35.4.0 to 35.4.1 ([b3a6160](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b3a6160ecf8da262bc0a6c3302fe5b6f0e038520))
+* **deps-dev:** bump eslint-plugin-jsdoc from 35.4.1 to 35.4.2 ([61e2542](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/61e2542a2998f896fe77fbca13f1669716c0672f))
+* **deps-dev:** bump husky from 6.0.0 to 7.0.0 ([3fe468f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3fe468f49c1d064b93ad111aa81e11a0fea872bd))
+* **deps-dev:** bump husky from 7.0.0 to 7.0.1 ([8d4ee30](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8d4ee30147f0fc541aab28bce02f586fbe33d315))
+* **deps-dev:** bump jest from 27.0.5 to 27.0.6 ([b24365e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b24365e0b418e41da8610d3ae1239db7e46d694c))
+* **deps-dev:** bump nodemon from 2.0.7 to 2.0.9 ([7c3471d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7c3471d5bdc6b13a9bec23d3d7d56f4064285b82))
+* **deps-dev:** bump nodemon from 2.0.9 to 2.0.10 ([b7b589d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b7b589dd5595c192cd683b89928731e2a1d7a768))
+* **deps-dev:** bump pino-pretty from 5.0.2 to 5.1.0 ([b6e26fc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b6e26fca3b7cedc663fc1d62d1b61adffa1f16d9))
+* **deps-dev:** bump pino-pretty from 5.1.0 to 5.1.1 ([17455d4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/17455d40a8d7a47d61283dc148e6e45de707ffd6))
+* **deps-dev:** bump prettier from 2.3.1 to 2.3.2 ([b14ce27](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b14ce275f7bb6d8b4fb0fbce8e1ba930c23e953c))
+* **deps:** bump actions/setup-node from 2.1.5 to 2.2.0 ([37155d8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/37155d813240f9bc86914182eff7d4115ed2599e))
+* **deps:** bump coverallsapp/github-action from 1.1.2 to 1.1.3 ([e77554c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e77554c2145d42eed2d17b625db772a959699336))
+* **deps:** bump fastify from 3.18.0 to 3.18.1 ([074c9dd](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/074c9dd720bad855e46a03eade780440ed99b4f5))
+* **deps:** bump fastify from 3.18.1 to 3.19.0 ([247fc5c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/247fc5c8474e4f47295e228be65ef355162e4bfa))
+* **deps:** bump fastify-helmet from 5.3.1 to 5.3.2 ([3df5f6c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3df5f6c29c1467838b8ffe06d7a289a0e35c7e18))
+* **deps:** bump fastify-swagger from 4.8.0 to 4.8.2 ([add1e99](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/add1e998e7cbd0272bffcaae7262c32f8113be98))
+
 ### [3.2.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.2...v3.2.3) (2021-06-22)
 
 

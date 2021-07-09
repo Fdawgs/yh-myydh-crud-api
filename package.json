@@ -1,6 +1,6 @@
 {
   "name": "ydh-myydh-crud-api",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "Yeovil District Hospital NHSFT's RESTful CRUD API for the MyYDH app",
   "main": "src/app.js",
   "repository": "git+https://github.com/Fdawgs/ydh-myydh-crud-api.git",
@@ -18,7 +18,7 @@
     "jest": "jest --detectOpenHandles --runInBand",
     "jest:coverage": "jest --coverage --runInBand",
     "lint": "eslint . --cache --ext js,jsx,ts,tsx --ignore-path .gitignore",
-    "lint:licenses": "license-checker --direct --excludePackages=\"buffers@0.1.1\" --onlyAllow=\"0BSD;Apache-2.0;BSD;BSD-2-Clause;BSD-3-Clause;ISC;MIT;Unlicense\" --production --summary",
+    "lint:licenses": "license-checker --direct --excludePackages=\"buffers@0.1.1\" --onlyAllow=\"0BSD;Apache-2.0;BSD;BSD-2-Clause;BSD-3-Clause;ISC;MIT;Python-2.0;Unlicense\" --production --summary",
     "lint:prettier": "prettier . --write --ignore-unknown",
     "lint:prettier:ci": "prettier . --check --ignore-unknown",
     "prepare": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks",
