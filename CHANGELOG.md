@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.2.5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.4...v3.2.5) (2021-07-12)
+
+
+### Bug Fixes
+
+* **routes:** `Accept` header handling encapsulation ([#282](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/282)) ([8e780a7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8e780a7ef06a8310bc1ef7e276d5bbd3233261b5))
+
+
+### Miscellaneous
+
+* **vscode:** remove user space config setting ([63df0ad](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/63df0ad2035b74500e25b40e2f4fecdba281fd79))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-jsdoc from 35.4.2 to 35.4.3 ([fecb242](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fecb242588f0dc917809c41e131f440ec75300da))
+* **deps-dev:** bump nodemon from 2.0.10 to 2.0.12 ([9a44dd6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9a44dd6de6920b98cd7a8876a34bba0c25f4e957))
+* **deps:** bump env-schema from 3.0.1 to 3.1.0 ([8f99ce3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8f99ce392cd62eec31dba9003824a54a04c44d6d))
+* **deps:** bump fastify-swagger from 4.8.2 to 4.8.3 ([c1d7a9c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c1d7a9c5beafbf2b62f1f519f813fcfe36d6f2d3))
+* **deps:** bump fluent-json-schema from 3.0.0 to 3.0.1 ([472aa2d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/472aa2de8e27c2674f48fedc8d9303921df321d5))
+* **deps:** bump pino from 6.11.3 to 6.12.0 ([2cb11e2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2cb11e2a72a78fac4f2c9141ecd50a67b20b7278))
+
 ### [3.2.4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.3...v3.2.4) (2021-07-09)
 
 
