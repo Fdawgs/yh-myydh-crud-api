@@ -31,6 +31,10 @@ const receiptDeleteSchema = {
 	),
 	response: {
 		204: S.string().raw({ nullable: true }),
+		406: S.object()
+			.prop("statusCode", S.number().const(406))
+			.prop("error", S.string().const("Not Acceptable"))
+			.prop("message", S.string().const("Not Acceptable")),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
@@ -83,6 +87,10 @@ const receiptPutSchema = {
 					"Record does not exist and/or has already been deleted"
 				)
 			),
+		406: S.object()
+			.prop("statusCode", S.number().const(406))
+			.prop("error", S.string().const("Not Acceptable"))
+			.prop("message", S.string().const("Not Acceptable")),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))

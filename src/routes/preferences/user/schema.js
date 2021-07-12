@@ -90,6 +90,10 @@ const userGetSchema = {
 			.prop("statusCode", S.number().const(404))
 			.prop("error", S.string().const("Not Found"))
 			.prop("message", S.string().const("User not found")),
+		406: S.object()
+			.prop("statusCode", S.number().const(406))
+			.prop("error", S.string().const("Not Acceptable"))
+			.prop("message", S.string().const("Not Acceptable")),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
@@ -135,6 +139,10 @@ const userPutSchema = {
 				"message",
 				S.string().const("Malformed body or body missing")
 			),
+		406: S.object()
+			.prop("statusCode", S.number().const(406))
+			.prop("error", S.string().const("Not Acceptable"))
+			.prop("message", S.string().const("Not Acceptable")),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))

@@ -162,6 +162,10 @@ const registerGetSchema = {
 				"message",
 				S.string().const("Invalid or expired search results")
 			),
+		406: S.object()
+			.prop("statusCode", S.number().const(406))
+			.prop("error", S.string().const("Not Acceptable"))
+			.prop("message", S.string().const("Not Acceptable")),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
