@@ -77,7 +77,7 @@ async function plugin(server, config) {
 		 */
 		.register(async (securedContext) => {
 			securedContext
-				// Catch unsupported Accept header MIME types
+				// Catch unsupported Accept header media types
 				.addHook("preHandler", async (req, res) => {
 					if (req.accepts().type(["json"]) !== "json") {
 						res.send(NotAcceptable());
