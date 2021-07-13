@@ -39,4 +39,4 @@ async function plugin(server, options) {
 	server.addHook("onClose", async (instance, done) => mssql.close(done));
 }
 
-module.exports = fp(plugin);
+module.exports = fp(plugin, { fastify: "3.x", name: "mssql" });

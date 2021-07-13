@@ -72,8 +72,9 @@ async function plugin(server, config) {
 		.register(healthCheck)
 
 		/**
-		 * Encapsulate plugins and routes into secured child context, so that swagger and
-		 * healthcheck routes do not inherit `accepts` preHandler, or bearer token auth
+		 * Encapsulate plugins and routes into secured child context, so that swagger and healthcheck
+		 * routes do not inherit `accepts` preHandler or bearer token auth plugin.
+		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
 		 */
 		.register(async (securedContext) => {
 			securedContext
@@ -94,4 +95,4 @@ async function plugin(server, config) {
 		});
 }
 
-module.exports = fp(plugin);
+module.exports = fp(plugin, { fastify: "3.x", name: "server" });
