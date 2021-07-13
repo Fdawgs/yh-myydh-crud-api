@@ -37,7 +37,7 @@ describe.skip("Server deployment", () => {
 			method: "GET",
 			url: "/documents/register",
 			headers: {
-				accept: "*/*",
+				accept: "application/json",
 				authorization: "Bearer testtoken",
 			},
 			query: {

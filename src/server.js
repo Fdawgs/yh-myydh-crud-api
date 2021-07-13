@@ -80,7 +80,11 @@ async function plugin(server, config) {
 			securedContext
 				// Catch unsupported Accept header media types
 				.addHook("preHandler", async (req, res) => {
-					if (req.accepts().type(["json"]) !== "json") {
+					if (
+						!["application/json"].includes(
+							req.accepts().type(["application/json"])
+						)
+					) {
 						res.send(NotAcceptable());
 					}
 				})
