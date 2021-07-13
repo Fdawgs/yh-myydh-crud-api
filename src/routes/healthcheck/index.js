@@ -1,4 +1,3 @@
-const fp = require("fastify-plugin");
 const { NotAcceptable } = require("http-errors");
 
 const { healthcheckGetSchema } = require("./schema");
@@ -29,4 +28,4 @@ async function route(server) {
 	});
 }
 
-module.exports = fp(route);
+module.exports = route;
