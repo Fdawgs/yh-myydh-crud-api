@@ -10,19 +10,22 @@ const { healthcheckGetSchema } = require("./schema");
  * @param {Function} server - Fastify instance.
  */
 async function route(server) {
+	server.addHook("onRequest", async (req, res) => {
+		if (
+			// Catch unsupported Accept header media types
+			!healthcheckGetSchema.produces.includes(
+				req.accepts().type(healthcheckGetSchema.produces)
+			)
+		) {
+			res.send(NotAcceptable());
+		}
+	});
+
 	server.route({
 		method: "GET",
 		url: "/healthcheck",
 		schema: healthcheckGetSchema,
 		async handler(req, res) {
-			if (
-				// Catch unsupported Accept header media types
-				!healthcheckGetSchema.produces.includes(
-					req.accepts().type(healthcheckGetSchema.produces)
-				)
-			) {
-				res.send(NotAcceptable());
-			}
 			res.send("ok");
 		},
 	});
