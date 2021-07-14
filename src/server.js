@@ -72,14 +72,19 @@ async function plugin(server, config) {
 		.register(healthCheck)
 
 		/**
-		 * Encapsulate plugins and routes into secured child context, so that swagger and
-		 * healthcheck routes do not inherit `accepts` preHandler, or bearer token auth
+		 * Encapsulate plugins and routes into secured child context, so that swagger and healthcheck
+		 * routes do not inherit `accepts` preHandler or bearer token auth plugin.
+		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
 		 */
 		.register(async (securedContext) => {
 			securedContext
 				// Catch unsupported Accept header media types
 				.addHook("preHandler", async (req, res) => {
-					if (req.accepts().type(["json"]) !== "json") {
+					if (
+						!["application/json"].includes(
+							req.accepts().type(["application/json"])
+						)
+					) {
 						res.send(NotAcceptable());
 					}
 				})
@@ -94,4 +99,4 @@ async function plugin(server, config) {
 		});
 }
 
-module.exports = fp(plugin);
+module.exports = fp(plugin, { fastify: "3.x", name: "server" });
