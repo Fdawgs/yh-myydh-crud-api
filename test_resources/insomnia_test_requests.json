@@ -1,13 +1,13 @@
 {
 	"_type": "export",
 	"__export_format": 4,
-	"__export_date": "2021-07-13T13:28:31.380Z",
+	"__export_date": "2021-07-14T14:47:42.674Z",
 	"__export_source": "insomnia.desktop.app:v2021.4.1",
 	"resources": [
 		{
 			"_id": "req_03838f5fb1e544bb80eafa137e51cf6e",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626182744339,
+			"modified": 1626273948540,
 			"created": 1626182714395,
 			"url": "http://localhost:8204/docs/json",
 			"name": "docs/json",
@@ -25,7 +25,7 @@
 				{
 					"id": "pair_3691d81c6b0d43e6b11b630dcb934239",
 					"name": "Accept-Encoding",
-					"value": "br",
+					"value": "br, gzip, deflate",
 					"description": ""
 				}
 			],
@@ -65,7 +65,7 @@
 		{
 			"_id": "req_edd560a34acc47ea951710144627024a",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626182781260,
+			"modified": 1626274008539,
 			"created": 1626182757728,
 			"url": "http://localhost:8204/healthcheck",
 			"name": "healthcheck",
@@ -78,6 +78,12 @@
 					"id": "pair_2db981fa14e847b2b9644c006ca04d4e",
 					"name": "Accept",
 					"value": "text/plain",
+					"description": ""
+				},
+				{
+					"id": "pair_e09aadb9105a4a70869e61e607c737db",
+					"name": "Accept-Encoding",
+					"value": "br, gzip, deflate",
 					"description": ""
 				}
 			],
@@ -99,7 +105,7 @@
 		{
 			"_id": "req_56d7599eb87b4eb68f7fb53983cb1b2f",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626182795059,
+			"modified": 1626274006861,
 			"created": 1611841537522,
 			"url": "http://localhost:8204/documents/receipt/1?patientId=9999999999",
 			"name": "documents/receipt",
@@ -112,6 +118,12 @@
 					"id": "pair_6038d7e944d048b4bb96c8d13f9c8299",
 					"name": "Accept",
 					"value": "application/json",
+					"description": ""
+				},
+				{
+					"id": "pair_38f7c7976d814dab884a2fa5b96baacd",
+					"name": "Accept-Encoding",
+					"value": "br, gzip, deflate",
 					"description": ""
 				}
 			],
@@ -129,7 +141,7 @@
 		{
 			"_id": "req_bfb2b65433ec49fb864cae800a9fa373",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626182793519,
+			"modified": 1626274005103,
 			"created": 1611841537504,
 			"url": "http://localhost:8204/documents/register?lastModified=ge2021-01-01T00:00:01&lastModified=le2021-02-01T00:00:01&page=1",
 			"name": "documents/register",
@@ -147,7 +159,7 @@
 				{
 					"id": "pair_b6928555b3d7468d8a2cf1fb12c7f73b",
 					"name": "Accept-Encoding",
-					"value": "gzip",
+					"value": "br, gzip, deflate",
 					"description": ""
 				}
 			],
@@ -165,7 +177,7 @@
 		{
 			"_id": "req_d9ecf23f85774fafb742f3b2071a03f8",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626182784872,
+			"modified": 1626274003167,
 			"created": 1611841537517,
 			"url": "http://localhost:8204/documents/receipt/1?patientId=9999999999&timestamp=2020-01-09T20:00:00Z",
 			"name": "documents/receipt",
@@ -178,6 +190,12 @@
 					"id": "pair_a3656b6adaf146a596692de60fe58192",
 					"name": "Accept",
 					"value": "application/json",
+					"description": ""
+				},
+				{
+					"id": "pair_7da7997bf274465aa1789bfe49ec8834",
+					"name": "Accept-Encoding",
+					"value": "br, gzip, deflate",
 					"description": ""
 				}
 			],
@@ -195,7 +213,7 @@
 		{
 			"_id": "req_cd10fcafff464007858a7c37e169345b",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626182668309,
+			"modified": 1626274000726,
 			"created": 1611841537472,
 			"url": "http://localhost:8204/preferences/options",
 			"name": "preferences/options",
@@ -213,7 +231,7 @@
 				{
 					"id": "pair_a6ec1ad83fb54f0bbeca798f24a873f2",
 					"name": "Accept-Encoding",
-					"value": "gzip",
+					"value": "br, gzip, deflate",
 					"description": ""
 				}
 			],
@@ -231,7 +249,7 @@
 		{
 			"_id": "req_14336eef9fca45afb8a2704efedb4b10",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626182670595,
+			"modified": 1626273998619,
 			"created": 1611841537480,
 			"url": "http://localhost:8204/preferences/user/9999999999",
 			"name": "preferences/user/9999999999",
@@ -249,7 +267,7 @@
 				{
 					"id": "pair_808598ece41643fdaebd439e9de42d34",
 					"name": "Accept-Encoding",
-					"value": "gzip",
+					"value": "br, gzip, deflate",
 					"description": ""
 				}
 			],
@@ -267,7 +285,7 @@
 		{
 			"_id": "req_05ce4ac814774f11b98647b9c9bb46d9",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626182643296,
+			"modified": 1626273992060,
 			"created": 1611841537486,
 			"url": "http://localhost:8204/preferences/user/9999999999",
 			"name": "preferences/user/9999999999",
@@ -283,6 +301,12 @@
 					"id": "pair_a954f55aae66472bac46ade8677a9c48",
 					"name": "Accept",
 					"value": "application/json",
+					"description": ""
+				},
+				{
+					"id": "pair_a0608351fa8443a19c626532e20b9415",
+					"name": "Accept-Encoding",
+					"value": "br, gzip, deflate",
 					"description": ""
 				},
 				{
