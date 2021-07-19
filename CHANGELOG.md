@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.2.6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.5...v3.2.6) (2021-07-19)
+
+
+### Bug Fixes
+
+* **package:** move `pino-pretty` to production dependency list ([#295](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/295)) ([a474d00](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a474d00ec4e198f293eefe29f88f1f178ecaf1eb))
+
+
+### Improvements
+
+* **routes/healthcheck:** do not treat routes as plugin ([b2bdbce](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b2bdbcece6523e77ac1c713ebef87e03b9c878a9))
+* **routes/healthcheck:** move `Accept` header handling back to hook ([51d6db9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/51d6db9b518da10e002361ca134af6908e5183d3))
+* **server:** use full media type for `Accept` header filtering ([db66901](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/db669010643f68f17268643347bb0960da568a56))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint from 7.30.0 to 7.31.0 ([a50aab8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a50aab887d3255d3038b93f386a8b3d711ae58bd))
+* **deps-dev:** bump eslint-plugin-jsdoc from 35.4.3 to 35.4.5 ([e159355](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e15935517811e91a54eddedb820b966df972464a))
+* **deps:** bump fastify from 3.19.0 to 3.19.1 ([df2c4a9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/df2c4a92590e2f45a20aad3ebde3c3249a890953))
+* **deps:** bump fastify-cors from 6.0.1 to 6.0.2 ([1061cab](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1061caba21c346f79fd10b1da39cf26508c7cbaf))
+* **deps:** bump wagoid/commitlint-github-action from 3.1.4 to 4.1.1 ([1171fb7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1171fb7d29dcab5f8bd4006e12b624a04599f409))
+
+
+### Miscellaneous
+
+* change mentions of "MIME type" to "media type" ([#290](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/290)) ([f114fc8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f114fc80a5323154b58d74759780612b18166e86))
+* **env.template:** use double quotes ([e00a4c9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e00a4c96f2f356e3beeaa3e455062bccb78811da))
+* **server:** sort plugin registering alphabetically ascending ([06a7de5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/06a7de54218cb8ca51c9241fda23450d83b4c040))
+* **test_resources:** fix name of test requests file ([e53bcb4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e53bcb4522cdbeefb536b3859bb98aa9bbcd9e99))
+* **test_resources:** minor header tweaks ([add6319](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/add631908938d42a4aed86de89075f32c9e31357))
+* **test_resources:** update test calls with new headers ([3bc9915](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3bc9915f96e2641df061af7139e9884fe972fdae))
+* update jsdoc tag comments ([#301](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/301)) ([7aeb792](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7aeb79269137e1645f96b5ae72aeea7fe6d12ed1))
+* update plugin metadata for server dependency graph ([1ff74b6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1ff74b6353b5d533936f4ee52c331212ba40345a))
+
 ### [3.2.5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.4...v3.2.5) (2021-07-12)
 
 
