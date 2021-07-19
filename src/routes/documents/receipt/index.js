@@ -10,7 +10,11 @@ const { receiptDelete, receiptInsert } = require("./query");
  * @author Frazer Smith
  * @description Sets routing options for server.
  * @param {Function} server - Fastify instance.
- * @param {object} options - Object containing route config objects.
+ * @param {object} options - Route config values.
+ * @param {object} options.cors - CORS settings.
+ * @param {object} options.database - Database config values.
+ * @param {object} options.database.tables - Database tables.
+ * @param {string} options.database.tables.readReceipt - Name and schema of document read receipt table.
  */
 async function route(server, options) {
 	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
