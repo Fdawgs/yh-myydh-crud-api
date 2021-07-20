@@ -39,12 +39,6 @@ async function plugin(server, config) {
 		// Opt-out of Google's FLoC advertising-surveillance network
 		.register(flocOff)
 
-		.addHook("onRequest", async (req, res) => {
-			res.headers({
-				"Content-Language": "en",
-			});
-		})
-
 		// Use Helmet to set response security headers: https://helmetjs.github.io/
 		.register(helmet, {
 			contentSecurityPolicy: {
