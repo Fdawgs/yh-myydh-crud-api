@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+### [3.2.7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.6...v3.2.7) (2021-07-29)
+
+
+### Bug Fixes
+
+* **docker-compose:** wrap variables in quotes ([#304](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/304)) ([418d6ca](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/418d6ca907aa230c7e1be21797eddfffbb1d7323))
+* **server:** remove test response header ([#302](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/302)) ([03a790f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/03a790f74079ce7de500441d289f26880aa540c1))
+
+
+### Dependencies
+
+* **deps:** bump actions/setup-node from 2.2.0 to 2.3.0 ([4b08671](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4b08671fa311c290ee6d224d38c5c1e78946cbba))
+* **deps:** bump dependencies ([#315](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/315)) ([d65ed82](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d65ed827eeafb07795bdbacef6e9dbcb44ce3f1a))
+* **deps:** bump GoogleCloudPlatform/release-please-action ([416bde9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/416bde929fbffde08b57b195b295656e404ebfd6))
+* **docker:** bump curl from 7.67.0-r4 to 7.67.0-r5 ([#314](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/314)) ([a55f174](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a55f1749cd36298a3daf31f10f3603daf5bd2ed4))
+
+
+### Miscellaneous
+
+* grammar fixes for jsdoc tags ([#317](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/317)) ([72bc832](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/72bc8322d18e44b34e249231e3e7f1ceaf8670ed))
+
 ### [3.2.6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.5...v3.2.6) (2021-07-19)
 
 
