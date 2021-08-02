@@ -1,6 +1,6 @@
 module.exports = {
 	env: {
-		es2021: true,
+		es2020: true,
 		node: true,
 	},
 	extends: [
@@ -12,6 +12,7 @@ module.exports = {
 		"prettier",
 	],
 	parserOptions: {
+		ecmaVersion: 2020,
 		sourceType: "module",
 		ecmaFeatures: {
 			impliedStrict: true,
