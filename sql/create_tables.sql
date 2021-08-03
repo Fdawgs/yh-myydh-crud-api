@@ -16,43 +16,43 @@ GO
 CREATE SCHEMA register;
 GO
 
-CREATE TABLE lookup.preferenceType
+CREATE TABLE lookup.preference_type
 (
-    preferenceTypeId INT IDENTITY(1,1) NOT NULL,
-    preferenceType VARCHAR(MAX) NOT NULL,
-    CONSTRAINT PK_PreferenceTypeId PRIMARY KEY (preferenceTypeId)
+    preference_type_id INT IDENTITY(1,1) NOT NULL,
+    preference_type VARCHAR(MAX) NOT NULL,
+    CONSTRAINT pk_preference_type_id PRIMARY KEY (preference_type_id)
 );
 GO
 
-CREATE TABLE lookup.preferenceValue
+CREATE TABLE lookup.preference_value
 (
-    preferenceValueId INT IDENTITY(1,1) NOT NULL,
-    preferenceValue VARCHAR(255) NOT NULL,
-    CONSTRAINT PK_PreferenceValueId PRIMARY KEY (preferenceValueId)
+    preference_value_id INT IDENTITY(1,1) NOT NULL,
+    preference_value VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_preference_value_id PRIMARY KEY (preference_value_id)
 );
 GO
 
 CREATE TABLE patient.preferences
 (
-    patientId VARCHAR(255) NOT NULL,
-    preferenceTypeId INT NOT NULL,
-    preferenceValueId INT NULL,
-    preferencePriority INT NULL,
+    patient_id VARCHAR(255) NOT NULL,
+    preference_type_id INT NOT NULL,
+    preference_value_id INT NULL,
+    preference_priority INT NULL,
     created DATETIME NOT NULL,
-    lastUpdated DATETIME,
-    CONSTRAINT CK_PatientPreference PRIMARY KEY (patientId, preferenceTypeId),
-    CONSTRAINT FK_PreferenceType FOREIGN KEY (preferenceTypeId) REFERENCES lookup.preferenceType(preferenceTypeId),
-    CONSTRAINT FK_PreferenceValue FOREIGN KEY (preferenceValueId) REFERENCES lookup.preferenceValue(preferenceValueid)
+    last_updated DATETIME,
+    CONSTRAINT ck_patient_preference PRIMARY KEY (patient_id, preference_type_id),
+    CONSTRAINT fk_preference_type FOREIGN KEY (preference_type_id) REFERENCES lookup.preference_type(preference_type_id),
+    CONSTRAINT fk_preference_value FOREIGN KEY (preference_value_id) REFERENCES lookup.preference_value(preference_value_id)
 );
 GO
 
 
 CREATE TABLE receipt.documents
 (
-    patientId VARCHAR(255) NOT NULL,
+    patient_id VARCHAR(255) NOT NULL,
     guid CHAR(36) NOT NULL,
     ts DATETIME NOT NULL,
-    CONSTRAINT CK_DocumentReceipt PRIMARY KEY (patientId, guid)
+    CONSTRAINT ck_document_receipt PRIMARY KEY (patient_id, guid)
 );
 GO
 

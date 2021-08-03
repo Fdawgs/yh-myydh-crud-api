@@ -4,8 +4,8 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-INSERT INTO lookup.preferenceType
-    (preferenceType)
+INSERT INTO lookup.preference_type
+    (preference_type)
 VALUES
     ('SMS'),
     ('Email'),
@@ -13,15 +13,15 @@ VALUES
     ('Letters');
 GO
 
-INSERT INTO lookup.preferenceValue
-    (preferenceValue)
+INSERT INTO lookup.preference_value
+    (preference_value)
 VALUES
     ('yes'),
     ('no');
 GO
 
 INSERT INTO patient.preferences
-    (patientId, preferenceTypeId, preferenceValueId, preferencePriority, created)
+    (patient_id, preference_type_id, preference_value_id, preference_priority, created)
 VALUES
     (9999999999, 1, 1, 0, CURRENT_TIMESTAMP),
     (9999999999, 2, 2, 1, CURRENT_TIMESTAMP),
