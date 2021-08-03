@@ -8,7 +8,7 @@ describe.skip("db plugin", () => {
 	let options;
 	let server;
 
-	const query = "SELECT @@version";
+	const query = "SELECT CURRENT_TIMESTAMP";
 	const client = {
 		query: jest.fn().mockResolvedValue({}),
 	};

@@ -4,43 +4,43 @@ const userInsert = ({
 	preferenceValueId,
 	preferencePriority,
 	patientPreferencesTable,
-}) => `IF EXISTS(SELECT patientId 
+}) => `IF EXISTS(SELECT patient_id
 FROM ${patientPreferencesTable}
-WHERE patientId = '${patientId}'
-AND preferenceTypeId = '${preferenceTypeId}')
+WHERE patient_id = '${patientId}'
+AND preference_type_id = '${preferenceTypeId}')
 UPDATE ${patientPreferencesTable}
-SET preferencePriority = '${preferencePriority}',
-preferenceValueId = '${preferenceValueId}',
-lastUpdated = CURRENT_TIMESTAMP
-WHERE patientId = '${patientId}'
-AND preferenceTypeId = '${preferenceTypeId}'
+SET preference_priority = '${preferencePriority}',
+preference_value_id = '${preferenceValueId}',
+last_updated = CURRENT_TIMESTAMP
+WHERE patient_id = '${patientId}'
+AND preference_type_id = '${preferenceTypeId}'
 ELSE
-INSERT INTO ${patientPreferencesTable} (patientId, preferenceTypeId, preferenceValueId, preferencePriority, created)
-VALUES('${patientId}', '${preferenceTypeId}', '${preferenceValueId}', '${preferencePriority}', CURRENT_TIMESTAMP)`;
+INSERT INTO ${patientPreferencesTable} (patient_id, preference_type_id, preference_value_id, preference_priority, created)
+VALUES('${patientId}', '${preferenceTypeId}', '${preferenceValueId}', '${preferencePriority}', CURRENT_TIMESTAMP);`;
 
 const userSelect = ({
 	patientId,
 	patientPreferencesTable,
 	patientPreferencesTypeTable,
 	patientPreferencesValueTable,
-}) => `SELECT pat.patientId AS id,
-pat.created AS metaCreated,
-pat.lastUpdated AS metaLastUpdated,
-pat.preferenceValueId,
-pat.preferenceTypeId,
-prefType.preferenceType AS preferenceTypeDisplay,
-pat.preferencePriority AS preferenceTypePriority
+}) => `SELECT pat.patient_id AS "id",
+pat.created AS "metaCreated",
+pat.last_updated AS "metaLastUpdated",
+pat.preference_value_id AS "preferenceValueId",
+pat.preference_type_id AS "preferenceTypeId",
+pptype.preference_type AS "preferenceTypeDisplay",
+pat.preference_priority AS "preferenceTypePriority"
 FROM ${patientPreferencesTable} pat
-LEFT JOIN ${patientPreferencesTypeTable} prefType
-ON pat.preferenceTypeId = prefType.preferenceTypeId
-WHERE patientId = '${patientId}';
+LEFT JOIN ${patientPreferencesTypeTable} pptype
+ON pat.preference_type_id = pptype.preference_type_id
+WHERE patient_id = '${patientId}';
 
-SELECT prefType.preferenceTypeId,
-prefType.preferenceType AS preferenceTypeDisplay,
-prefVal.preferenceValue AS preferenceOptionDisplay,
-prefVal.preferenceValueId AS preferenceOptionValue
-FROM ${patientPreferencesTypeTable} prefType
-CROSS JOIN ${patientPreferencesValueTable} prefVal;
+SELECT pptype.preference_type_id AS "preferenceTypeId",
+pptype.preference_type AS "preferenceTypeDisplay",
+ppvalue.preference_value AS "preferenceOptionDisplay",
+ppvalue.preference_value_id AS "preferenceOptionValue"
+FROM ${patientPreferencesTypeTable} pptype
+CROSS JOIN ${patientPreferencesValueTable} ppvalue;
 `;
 
 module.exports = { userInsert, userSelect };

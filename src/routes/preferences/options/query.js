@@ -2,15 +2,15 @@ const optionsSelect = ({
 	patientPreferencesTypeTable,
 	patientPreferencesValueTable,
 }) => `
-SELECT prefType.preferenceTypeId,
-prefType.preferenceType AS preferenceTypeDisplay
-FROM ${patientPreferencesTypeTable} prefType;
+SELECT pptype.preference_type_id AS "preferenceTypeId",
+pptype.preference_type AS "preferenceTypeDisplay"
+FROM ${patientPreferencesTypeTable} pptype;
 
-SELECT prefType.preferenceTypeId,
-prefType.preferenceType AS preferenceTypeDisplay,
-prefVal.preferenceValue AS preferenceOptionDisplay,
-prefVal.preferenceValueId AS preferenceOptionValue
-FROM ${patientPreferencesTypeTable} prefType
-CROSS JOIN ${patientPreferencesValueTable} prefVal;`;
+SELECT pptype.preference_type_id AS "preferenceTypeId",
+pptype.preference_type AS "preferenceTypeDisplay",
+ppvalue.preference_value AS "preferenceOptionDisplay",
+ppvalue.preference_value_id AS "preferenceOptionValue"
+FROM ${patientPreferencesTypeTable} pptype
+CROSS JOIN ${patientPreferencesValueTable} ppvalue;`;
 
 module.exports = { optionsSelect };
