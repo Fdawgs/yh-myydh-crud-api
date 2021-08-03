@@ -4,7 +4,7 @@ const plugin = require(".");
 const getConfig = require("../../config");
 
 // TODO: look at standing up test SQL Server instance with Docker and disable skip for this
-describe.skip("mssql plugin", () => {
+describe.skip("db plugin", () => {
 	let options;
 	let server;
 
@@ -22,24 +22,24 @@ describe.skip("mssql plugin", () => {
 			method: "GET",
 			url: "/",
 			handler: async () => {
-				const fakeClient = await server.mssql.connect();
+				const fakeClient = await server.db.connect();
 				return fakeClient.query(query);
 			},
 		});
 
 		await server.ready();
-		server.mssql.connect = jest.fn();
+		server.db.connect = jest.fn();
 	});
 
 	afterAll(async () => {
 		await server.close();
 	});
 
-	test("Should instrument request with mssql plugin", async () => {
+	test("Should instrument request with db plugin", async () => {
 		const result = faker.lorem.word();
 
 		client.query.mockResolvedValue(result);
-		server.mssql.connect.mockResolvedValue(client);
+		server.db.connect.mockResolvedValue(client);
 
 		const response = await server.inject({
 			method: "GET",
