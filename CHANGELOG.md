@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+### [4.0.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v4.0.0...v4.0.1) (2021-08-03)
+
+
+### Improvements
+
+* **plugins/mssql:** decouple from config; increase portability ([9a0dc92](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9a0dc92b477c4484869632e14cd407035d8d7626))
+
+
+### Miscellaneous
+
+* **plugins/db:** rename `mssql` plugin to db agnostic `db` ([6a98f4d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6a98f4d8d39114c91a93451d1a8d46d40d8f6174))
+* **plugins/db:** update plugin name in metadata ([6baac9d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6baac9d60ef0e658a237652d7212485fd884d9f2))
+* **plugins/mssql:** rename `mssql` decorator to db agnostic `db` ([2cf30a8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2cf30a89c6fa7b5373dfce5d7b0e0936fafab1aa))
+
 ## [4.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.6...v4.0.0) (2021-08-02)
 
 
