@@ -16,6 +16,7 @@ const { optionsSelect } = require("./query");
  * @param {object} options - Route config values.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
+ * @param {('mssql'|'postgresql')} options.database.client - Database client.
  * @param {object} options.database.tables - Database tables.
  * @param {string} options.database.tables.patientPrefTypeLookup - Name and schema of patient preferences type table.
  * @param {string} options.database.tables.patientPrefValueLookup - Name and schema of patient preference value table.

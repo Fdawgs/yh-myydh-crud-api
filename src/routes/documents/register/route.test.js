@@ -58,24 +58,24 @@ mockPostgreSqlQueryResults[1].rows.push(mockRecord);
 
 describe("Register Route", () => {
 	describe("MSSQL Database Backend", () => {
+		let options;
+		let server;
+
+		beforeAll(async () => {
+			options = await getConfig();
+			options.database.client = "mssql";
+
+			server = Fastify();
+			server.register(plugin, options);
+
+			await server.ready();
+		});
+
+		afterAll(async () => {
+			await server.close();
+		});
+
 		describe("GET Requests", () => {
-			let options;
-			let server;
-
-			beforeAll(async () => {
-				options = await getConfig();
-				options.database.client = "mssql";
-
-				server = Fastify();
-				server.register(plugin, options);
-
-				await server.ready();
-			});
-
-			afterAll(async () => {
-				await server.close();
-			});
-
 			test("Should return documents from register", async () => {
 				const mockQueryFn = jest
 					.fn()
@@ -198,24 +198,24 @@ describe("Register Route", () => {
 	});
 
 	describe("PostgreSQL Database Backend", () => {
+		let options;
+		let server;
+
+		beforeAll(async () => {
+			options = await getConfig();
+			options.database.client = "postgresql";
+
+			server = Fastify();
+			server.register(plugin, options);
+
+			await server.ready();
+		});
+
+		afterAll(async () => {
+			await server.close();
+		});
+
 		describe("GET Requests", () => {
-			let options;
-			let server;
-
-			beforeAll(async () => {
-				options = await getConfig();
-				options.database.client = "postgresql";
-
-				server = Fastify();
-				server.register(plugin, options);
-
-				await server.ready();
-			});
-
-			afterAll(async () => {
-				await server.close();
-			});
-
 			test("Should return documents from register", async () => {
 				const mockQueryFn = jest
 					.fn()

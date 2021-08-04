@@ -17,6 +17,7 @@ const { registerSelect } = require("./query");
  * @param {object} options - Route config values.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
+ * @param {('mssql'|'postgresql')} options.database.client - Database client.
  * @param {object} options.database.tables - Database tables.
  * @param {string} options.database.tables.documentRegister - Name and schema of document register table.
  */
