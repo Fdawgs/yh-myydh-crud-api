@@ -1,3 +1,4 @@
+// Double-quoted alias required as PostgreSQL automatically converts columns to lower case if not quoted
 const optionsSelect = ({
 	patientPreferencesTypeTable,
 	patientPreferencesValueTable,

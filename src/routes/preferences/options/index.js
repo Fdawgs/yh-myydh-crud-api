@@ -34,7 +34,7 @@ async function route(server, options) {
 		schema: optionsGetSchema,
 		async handler(req, res) {
 			try {
-				const { recordsets } = await server.db.query(
+				const results = await server.db.query(
 					optionsSelect({
 						patientPreferencesTypeTable:
 							options.database.tables.patientPrefTypeLookup,
@@ -43,8 +43,23 @@ async function route(server, options) {
 					})
 				);
 
-				const preferenceTypeOptions = recordsets[0];
-				const preferenceValueOptions = recordsets[1];
+				/**
+				 * Database client packages return results in different structures,
+				 * switch needed to accommodate for this
+				 */
+				let preferenceTypeOptions;
+				let preferenceValueOptions;
+				switch (options.database.client) {
+					case "mssql":
+					default:
+						preferenceTypeOptions = results.recordsets[0];
+						preferenceValueOptions = results.recordsets[1];
+						break;
+					case "postgresql":
+						preferenceTypeOptions = results[0].rows;
+						preferenceValueOptions = results[1].rows;
+						break;
+				}
 
 				if (
 					preferenceTypeOptions &&
