@@ -72,6 +72,7 @@ CREATE TABLE register.documents
     Specialty NVARCHAR(100) NULL,
     FullPath NVARCHAR(555) NULL,
     BaseURL NVARCHAR(50) NULL,
-    BaseSite NVARCHAR(50) NULL
+    BaseSite NVARCHAR(50) NULL,
+    CONSTRAINT pk_documents_guid PRIMARY KEY (GUID)
 )
 GO 
