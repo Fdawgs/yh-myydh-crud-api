@@ -35,7 +35,7 @@ async function route(server, options) {
 		schema: userGetSchema,
 		async handler(req, res) {
 			try {
-				const { recordsets } = await server.db.query(
+				const results = await server.db.query(
 					userSelect({
 						patientId: req.params.id,
 						patientPreferencesTable:
@@ -47,8 +47,23 @@ async function route(server, options) {
 					})
 				);
 
-				const patientPreferences = recordsets[0];
-				const patientPreferencesValues = recordsets[1];
+				/**
+				 * Database client packages return results in different structures,
+				 * switch needed to accommodate for this
+				 */
+				let patientPreferences;
+				let patientPreferencesValues;
+				switch (options.database.client) {
+					case "mssql":
+					default:
+						patientPreferences = results.recordsets[0];
+						patientPreferencesValues = results.recordsets[1];
+						break;
+					case "postgresql":
+						patientPreferences = results[0].rows;
+						patientPreferencesValues = results[1].rows;
+						break;
+				}
 
 				if (patientPreferences && patientPreferences.length !== 0) {
 					// Build patient object
@@ -123,8 +138,9 @@ async function route(server, options) {
 			try {
 				const results = await Promise.all(
 					clean(req.body.preferences).map(async (preference) => {
-						const { rowsAffected } = await server.db.query(
+						const rows = await server.db.query(
 							userInsert({
+								dbClient: options.database.client,
 								patientId: req.params.id,
 								preferenceTypeId: preference.id,
 								preferenceValueId: preference.selected,
@@ -134,12 +150,21 @@ async function route(server, options) {
 							})
 						);
 
-						return rowsAffected;
+						if (options.database.client === "postgresql") {
+							return rows.rowCount;
+						}
+
+						return rows.rowsAffected;
 					})
 				);
 
 				results.forEach((preferenceType) => {
-					if (preferenceType[0] !== 1) {
+					let preferenceTypeParsed = preferenceType;
+					if (Array.isArray(preferenceType)) {
+						preferenceTypeParsed = preferenceType[0];
+					}
+
+					if (preferenceTypeParsed !== 1) {
 						throw Error;
 					}
 				});

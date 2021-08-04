@@ -1,22 +1,37 @@
+// Double-quoted alias required as PostgreSQL automatically converts columns to lower case if not quoted
 const userInsert = ({
+	dbClient,
 	patientId,
 	preferenceTypeId,
 	preferenceValueId,
 	preferencePriority,
 	patientPreferencesTable,
-}) => `IF EXISTS(SELECT patient_id
-FROM ${patientPreferencesTable}
-WHERE patient_id = '${patientId}'
-AND preference_type_id = '${preferenceTypeId}')
-UPDATE ${patientPreferencesTable}
-SET preference_priority = '${preferencePriority}',
-preference_value_id = '${preferenceValueId}',
-last_updated = CURRENT_TIMESTAMP
-WHERE patient_id = '${patientId}'
-AND preference_type_id = '${preferenceTypeId}'
-ELSE
-INSERT INTO ${patientPreferencesTable} (patient_id, preference_type_id, preference_value_id, preference_priority, created)
-VALUES('${patientId}', '${preferenceTypeId}', '${preferenceValueId}', '${preferencePriority}', CURRENT_TIMESTAMP);`;
+}) => {
+	if (dbClient === "postgresql") {
+		return `INSERT INTO ${patientPreferencesTable} (patient_id, preference_type_id, preference_value_id, preference_priority, created)
+		VALUES('${patientId}', '${preferenceTypeId}', '${preferenceValueId}', '${preferencePriority}', CURRENT_TIMESTAMP)
+		ON CONFLICT ON CONSTRAINT ck_patient_preference
+		DO
+   		UPDATE
+		SET preference_priority = '${preferencePriority}',
+		preference_value_id = '${preferenceValueId}',
+		last_updated = CURRENT_TIMESTAMP;`;
+	}
+
+	return `IF EXISTS(SELECT patient_id
+		FROM ${patientPreferencesTable}
+		WHERE patient_id = '${patientId}'
+		AND preference_type_id = '${preferenceTypeId}')
+		UPDATE ${patientPreferencesTable}
+		SET preference_priority = '${preferencePriority}',
+		preference_value_id = '${preferenceValueId}',
+		last_updated = CURRENT_TIMESTAMP
+		WHERE patient_id = '${patientId}'
+		AND preference_type_id = '${preferenceTypeId}'
+		ELSE
+		INSERT INTO ${patientPreferencesTable} (patient_id, preference_type_id, preference_value_id, preference_priority, created)
+		VALUES('${patientId}', '${preferenceTypeId}', '${preferenceValueId}', '${preferencePriority}', CURRENT_TIMESTAMP);`;
+};
 
 const userSelect = ({
 	patientId,
