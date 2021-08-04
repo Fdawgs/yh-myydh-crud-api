@@ -16,6 +16,7 @@ const { userInsert, userSelect } = require("./query");
  * @param {object} options - Route config values.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
+ * @param {('mssql'|'postgresql')} options.database.client - Database client.
  * @param {object} options.database.tables - Database tables.
  * @param {string} options.database.tables.patientPref - Name and schema of patient preferences table.
  * @param {string} options.database.tables.patientPrefTypeLookup - Name and schema of patient preferences type table.
@@ -159,12 +160,7 @@ async function route(server, options) {
 				);
 
 				results.forEach((preferenceType) => {
-					let preferenceTypeParsed = preferenceType;
-					if (Array.isArray(preferenceType)) {
-						preferenceTypeParsed = preferenceType[0];
-					}
-
-					if (preferenceTypeParsed !== 1) {
+					if (preferenceType?.[0] < 1 || preferenceType < 1) {
 						throw Error;
 					}
 				});
