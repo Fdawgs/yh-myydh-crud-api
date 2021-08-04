@@ -11,6 +11,41 @@ const mockPage = faker.datatype.number({
 const mockLastModified1 = faker.date.past().toISOString().split("T")[0];
 const mockLastModified2 = faker.date.past().toISOString().split("T")[0];
 
+const mockMsSqlQueryResults = {
+	recordsets: [
+		[
+			{
+				total: 1,
+			},
+		],
+		[
+			{
+				guid: "EXAMPLEGUID-0123456789-99999",
+				fhirId: "99999",
+				title: "99999 DUCK 11 July 2015 11 27.pdf",
+				clinic: "CLO/BIA",
+				documentType: "Clinic Letter",
+				fileName: "99999 DUCK 11 July 2015 11 27.pdf",
+				baseUrl: "https://notreal.ydh.nhs.uk",
+				baseSite: "/sites/MedicalRecords1",
+				fullPath: "./path/path/path",
+				url: "https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
+				createdDate: "2015-09-30T05:40:14.000Z",
+				modifiedDate: "2020-08-10T03:51:54.000Z",
+				specialty: "General Surgery",
+				patientVisible: 1,
+			},
+		],
+	],
+	recordset: [
+		{
+			total: 1,
+		},
+	],
+	output: {},
+	rowsAffected: [1, 1],
+};
+
 describe("Register Route", () => {
 	describe("GET Requests", () => {
 		let options;
@@ -30,40 +65,9 @@ describe("Register Route", () => {
 		});
 
 		test("Should return documents from register", async () => {
-			const mockQueryFn = jest.fn().mockResolvedValue({
-				recordsets: [
-					[
-						{
-							total: 1,
-						},
-					],
-					[
-						{
-							guid: "EXAMPLEGUID-0123456789-99999",
-							fhirId: "99999",
-							title: "99999 DUCK 11 July 2015 11 27.pdf",
-							clinic: "CLO/BIA",
-							documentType: "Clinic Letter",
-							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
-							baseUrl: "https://notreal.ydh.nhs.uk",
-							baseSite: "/sites/MedicalRecords1",
-							fullPath: "./path/path/path",
-							url: "https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
-							createdDate: "2015-09-30T05:40:14.000Z",
-							modifiedDate: "2020-08-10T03:51:54.000Z",
-							specialty: "General Surgery",
-							patientVisible: 1,
-						},
-					],
-				],
-				recordset: [
-					{
-						total: 1,
-					},
-				],
-				output: {},
-				rowsAffected: [1, 1],
-			});
+			const mockQueryFn = jest
+				.fn()
+				.mockResolvedValue(mockMsSqlQueryResults);
 
 			server.db = {
 				query: mockQueryFn,
@@ -84,40 +88,9 @@ describe("Register Route", () => {
 		});
 
 		test("Should return documents from register using default pagination values", async () => {
-			const mockQueryFn = jest.fn().mockResolvedValue({
-				recordsets: [
-					[
-						{
-							total: 1,
-						},
-					],
-					[
-						{
-							guid: "EXAMPLEGUID-0123456789-99999",
-							fhirId: "99999",
-							title: "99999 DUCK 11 July 2015 11 27.pdf",
-							clinic: "CLO/BIA",
-							documentType: "Clinic Letter",
-							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
-							baseUrl: "https://notreal.ydh.nhs.uk",
-							baseSite: "/sites/MedicalRecords1",
-							fullPath: "./path/path/path",
-							url: "https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
-							createdDate: "2015-09-30T05:40:14.000Z",
-							modifiedDate: "2020-08-10T03:51:54.000Z",
-							specialty: "General Surgery",
-							patientVisible: 1,
-						},
-					],
-				],
-				recordset: [
-					{
-						total: 1,
-					},
-				],
-				output: {},
-				rowsAffected: [1, 1],
-			});
+			const mockQueryFn = jest
+				.fn()
+				.mockResolvedValue(mockMsSqlQueryResults);
 
 			server.db = {
 				query: mockQueryFn,
@@ -144,40 +117,9 @@ describe("Register Route", () => {
 		});
 
 		test("Should return documents from register using more than one lastModified querystring param", async () => {
-			const mockQueryFn = jest.fn().mockResolvedValue({
-				recordsets: [
-					[
-						{
-							total: 1,
-						},
-					],
-					[
-						{
-							guid: "EXAMPLEGUID-0123456789-99999",
-							fhirId: "99999",
-							title: "99999 DUCK 11 July 2015 11 27.pdf",
-							clinic: "CLO/BIA",
-							documentType: "Clinic Letter",
-							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
-							baseUrl: "https://notreal.ydh.nhs.uk",
-							baseSite: "/sites/MedicalRecords1",
-							fullPath: "./path/path/path",
-							url: "https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
-							createdDate: "2015-09-30T05:40:14.000Z",
-							modifiedDate: "2020-08-10T03:51:54.000Z",
-							specialty: "General Surgery",
-							patientVisible: 1,
-						},
-					],
-				],
-				recordset: [
-					{
-						total: 1,
-					},
-				],
-				output: {},
-				rowsAffected: [1, 1],
-			});
+			const mockQueryFn = jest
+				.fn()
+				.mockResolvedValue(mockMsSqlQueryResults);
 
 			server.db = {
 				query: mockQueryFn,
@@ -198,40 +140,9 @@ describe("Register Route", () => {
 		});
 
 		test("Should return documents from register using an operator in the lastModified querystring param", async () => {
-			const mockQueryFn = jest.fn().mockResolvedValue({
-				recordsets: [
-					[
-						{
-							total: 1,
-						},
-					],
-					[
-						{
-							guid: "EXAMPLEGUID-0123456789-99999",
-							fhirId: "99999",
-							title: "99999 DUCK 11 July 2015 11 27.pdf",
-							clinic: "CLO/BIA",
-							documentType: "Clinic Letter",
-							fileName: "99999 DUCK 11 July 2015 11 27.pdf",
-							baseUrl: "https://notreal.ydh.nhs.uk",
-							baseSite: "/sites/MedicalRecords1",
-							fullPath: "./path/path/path",
-							url: "https://notreal.ydh.nhs.uk/sites/MedicalRecords1/_layouts/15/DocIdRedir.aspx?ID=EXAMPLEGUID-0123456789-99999",
-							createdDate: "2015-09-30T05:40:14.000Z",
-							modifiedDate: "2020-08-10T03:51:54.000Z",
-							specialty: "General Surgery",
-							patientVisible: 1,
-						},
-					],
-				],
-				recordset: [
-					{
-						total: 1,
-					},
-				],
-				output: {},
-				rowsAffected: [1, 1],
-			});
+			const mockQueryFn = jest
+				.fn()
+				.mockResolvedValue(mockMsSqlQueryResults);
 
 			server.db = {
 				query: mockQueryFn,
