@@ -17,11 +17,11 @@ This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s RESTfu
 ## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/)
--   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads)
+-   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) or [PostgreSQL](https://www.postgresql.org/download/)
 
-### SQL Server Setup
+### Database Setup
 
-1. Connect to your SQL Server instance and use the script found in [`./sql/mssql_create_tables.sql`](./sql/mssql_create_tables.sql) to create the tables required for this app to function
+1. Connect to your SQL Server or PostgreSQL instance and use the appropriate scripts found in [`./sql/`](./sql/) to create the tables required for this app to function
 2. Create a separate user account with read/write access to the database where you have chosen to create these tables, and the tables themselves
 
 Make a note of the credentials of the user created, the server, the database the tables reside in, and the name of the tables (if changed from the originals in the script), as these are needed for the `DB_` environment variables in the `.env` file mentioned in the following deployment sections.

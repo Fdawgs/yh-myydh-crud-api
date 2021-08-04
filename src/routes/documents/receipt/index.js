@@ -13,6 +13,7 @@ const { receiptDelete, receiptInsert } = require("./query");
  * @param {object} options - Route config values.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
+ * @param {('mssql'|'postgresql')} options.database.client - Database client.
  * @param {object} options.database.tables - Database tables.
  * @param {string} options.database.tables.readReceipt - Name and schema of document read receipt table.
  */
@@ -30,8 +31,9 @@ async function route(server, options) {
 		schema: receiptPutSchema,
 		async handler(req, res) {
 			try {
-				const { rowsAffected } = await server.db.query(
+				const rows = await server.db.query(
 					receiptInsert({
+						dbClient: options.database.client,
 						id: req.params.id,
 						patientId: req.query.patientId,
 						timestamp: req.query.timestamp,
@@ -39,7 +41,7 @@ async function route(server, options) {
 					})
 				);
 
-				if (rowsAffected[0] > 0) {
+				if (rows?.rowsAffected?.[0] > 0 || rows?.rowCount > 0) {
 					res.status(204);
 				} else {
 					throw Error;
@@ -62,7 +64,7 @@ async function route(server, options) {
 		schema: receiptDeleteSchema,
 		async handler(req, res) {
 			try {
-				const { rowsAffected } = await server.db.query(
+				const results = await server.db.query(
 					receiptDelete({
 						id: req.params.id,
 						patientId: req.query.patientId,
@@ -70,7 +72,7 @@ async function route(server, options) {
 					})
 				);
 
-				if (rowsAffected[0] > 0) {
+				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
 					res.status(204);
 				} else {
 					res.send(

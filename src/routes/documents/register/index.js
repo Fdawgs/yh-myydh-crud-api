@@ -17,6 +17,7 @@ const { registerSelect } = require("./query");
  * @param {object} options - Route config values.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
+ * @param {('mssql'|'postgresql')} options.database.client - Database client.
  * @param {object} options.database.tables - Database tables.
  * @param {string} options.database.tables.documentRegister - Name and schema of document register table.
  */
@@ -63,7 +64,7 @@ async function route(server, options) {
 
 				const whereClausePredicates = whereArray.join(" AND ");
 
-				const { recordsets } = await server.db.query(
+				const results = await server.db.query(
 					registerSelect({
 						whereClausePredicates,
 						documentRegisterTable:
@@ -73,10 +74,26 @@ async function route(server, options) {
 					})
 				);
 
-				const count = recordsets[0][0].total;
+				/**
+				 * Database client packages return results in different structures,
+				 * switch needed to accommodate for this
+				 */
+				let count;
+				let data;
+				switch (options.database.client) {
+					case "mssql":
+					default:
+						count = results.recordsets[0][0].total;
+						data = clean(results.recordsets[1]);
+						break;
+					case "postgresql":
+						count = results[0].rows[0].total;
+						data = clean(results[1].rows);
+						break;
+				}
 
 				const response = {
-					data: [],
+					data,
 					meta: {
 						pagination: {
 							total: count,
@@ -86,8 +103,6 @@ async function route(server, options) {
 						},
 					},
 				};
-
-				response.data = clean(recordsets[1]);
 				res.send(response);
 			} catch (err) {
 				server.log.error(err);
