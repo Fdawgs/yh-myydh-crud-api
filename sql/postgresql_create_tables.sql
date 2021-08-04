@@ -61,5 +61,6 @@ IF NOT EXISTS register.documents
     Specialty VARCHAR (100) NULL,
     FullPath VARCHAR (555) NULL,
     BaseURL VARCHAR (50) NULL,
-    BaseSite VARCHAR (50) NULL
+    BaseSite VARCHAR (50) NULL,
+    CONSTRAINT pk_documents_guid PRIMARY KEY (GUID)
 );
