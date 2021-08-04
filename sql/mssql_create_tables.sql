@@ -56,7 +56,7 @@ CREATE TABLE receipt.documents
 );
 GO
 
--- This table was created independent of this API, thus the mixture of snakecase and camelcase
+-- This table was created independent of this API, thus the mixture of snake case and camel case
 CREATE TABLE register.documents
 (
     GUID NVARCHAR(36) NULL,
