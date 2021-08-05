@@ -46,7 +46,6 @@ CREATE TABLE patient.preferences
 );
 GO
 
-
 CREATE TABLE receipt.documents
 (
     patient_id VARCHAR(255) NOT NULL,
@@ -59,7 +58,7 @@ GO
 -- This table was created independent of this API, thus the mixture of snake case and camel case
 CREATE TABLE register.documents
 (
-    GUID NVARCHAR(36) NULL,
+    GUID NVARCHAR(36) NOT NULL,
     fhir_id NVARCHAR(19) NULL,
     Title NVARCHAR(191) NULL,
     Clinic NVARCHAR(191) NULL,

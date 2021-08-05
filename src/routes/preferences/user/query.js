@@ -1,4 +1,15 @@
-// Double-quoted alias required as PostgreSQL automatically converts columns to lower case if not quoted
+/**
+ * @author Frazer Smith
+ * @description Build SQL query string.
+ * @param {object} options - Query string and database config values.
+ * @param {('mssql'|'postgresql')} options.dbClient - Database client.
+ * @param {string} options.patientId - Unique patient identifier.
+ * @param {number} options.preferenceTypeId - Preference Type ID.
+ * @param {number} options.preferenceValueId - Preference Value ID.
+ * @param {number} options.preferencePriority - Preference Priority.
+ * @param {string} options.patientPreferencesTable - Name and schema of patient preferences table.
+ * @returns {string} Query string.
+ */
 const userInsert = ({
 	dbClient,
 	patientId,
@@ -33,6 +44,16 @@ const userInsert = ({
 		VALUES('${patientId}', '${preferenceTypeId}', '${preferenceValueId}', '${preferencePriority}', CURRENT_TIMESTAMP);`;
 };
 
+/**
+ * @author Frazer Smith
+ * @description Build SQL query string.
+ * @param {object} options - Query string and database config values.
+ * @param {string} options.patientId - Unique patient identifier.
+ * @param {string} options.patientPreferencesTable - Name and schema of patient preferences table.
+ * @param {string} options.patientPreferencesTypeTable - Name and schema of patient preferences type table.
+ * @param {string} options.patientPreferencesValueTable - Name and schema of patient preferences value table.
+ * @returns {string} Query string.
+ */
 const userSelect = ({
 	patientId,
 	patientPreferencesTable,

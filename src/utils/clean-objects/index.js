@@ -5,7 +5,6 @@
  * Adapted from Felix's answer at https://stackoverflow.com/a/38340730
  * @param {object=} object - Object to be parsed and cleaned.
  * @returns {object} cleaned object.
- *
  */
 module.exports = function util(object = {}) {
 	const obj = object;

@@ -1,4 +1,13 @@
-// Double-quoted alias required as PostgreSQL automatically converts columns to lower case if not quoted
+/**
+ * @author Frazer Smith
+ * @description Build SQL query string.
+ * @param {object} options - Query string and database config values.
+ * @param {string} options.whereClausePredicates - WHERE clause predicates.
+ * @param {string} options.documentRegisterTable - Name and schema of document register table.
+ * @param {number} options.page - Page to retrieve.
+ * @param {number} options.perPage - Number of documents to return per page.
+ * @returns {string} Query string.
+ */
 const registerSelect = ({
 	whereClausePredicates,
 	documentRegisterTable,

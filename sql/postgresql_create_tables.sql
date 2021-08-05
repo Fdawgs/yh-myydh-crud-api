@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS receipt.documents
 CREATE TABLE
 IF NOT EXISTS register.documents
 (
-    GUID VARCHAR (36) NULL,
+    GUID VARCHAR (36) NOT NULL,
     fhir_id VARCHAR (19) NULL,
     Title VARCHAR (191) NULL,
     Clinic VARCHAR (191) NULL,
