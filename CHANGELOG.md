@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚠ BREAKING CHANGES
 
-* **plugins/db:** * feat(plugins/db)!: add support for postgresql client
+* **plugins/db:** add support for postgresql client
 * **sql:** camel case column and tables names have been replaced with lower case snake case names, to allow for the API to more easily be used with other databases like PostgreSQL and MySQL. Existing tables and columns will need to be renamed or rebuilt
 
 ### Features
