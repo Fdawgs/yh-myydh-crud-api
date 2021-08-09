@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v4.0.0...v5.0.0) (2021-08-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **plugins/db:** * feat(plugins/db)!: add support for postgresql client
+* **sql:** camel case column and tables names have been replaced with lower case snake case names, to allow for the API to more easily be used with other databases like PostgreSQL and MySQL. Existing tables and columns will need to be renamed or rebuilt
+
+### Features
+
+* **plugins/db:** add support for postgresql client ([#326](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/326)) ([b38a7f7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b38a7f7a96ab3ba5977e434577597c1b5b81fc5f))
+
+
+### Bug Fixes
+
+* **app:** logging grammar fixes ([d840953](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d8409530608ba8415d6c25012a2a3f45f40e7a38))
+* **sql:** make guid column not null ([9b4b53c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9b4b53cc239b92497b66e94cc26c7b66070374c3))
+
+
+### Miscellaneous
+
+* **env:** update example tables ([f330aab](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f330aab6d9e46815ed80a9f51e8eefd69f4bc36b))
+* **plugins/db:** rename `mssql` plugin to db agnostic `db` ([6a98f4d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6a98f4d8d39114c91a93451d1a8d46d40d8f6174))
+* **plugins/db:** update plugin name in metadata ([6baac9d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6baac9d60ef0e658a237652d7212485fd884d9f2))
+* **plugins/mssql:** rename `mssql` decorator to db agnostic `db` ([2cf30a8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2cf30a89c6fa7b5373dfce5d7b0e0936fafab1aa))
+* **routes:** add jsdoc tags for query functions ([b0e0415](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b0e0415081270357f1a15acc4db92b907bb348d3))
+* **sql:** add test record insert statement for documents register ([513eecc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/513eecc9203aa085e94982395646b290930bfa1c))
+* **sql:** rename query files to reflect t-sql syntax contained ([b3535dd](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b3535ddadae08a1b0d9ea3fcba2fff628fcd8a18))
+* **sql:** use snake case for column and table names ([74054f6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/74054f6cb368b32f3f6c9ad32107a6db1d47b2b1))
+* **utils/clean-objects:** resolve `Expected no lines between tags` ([bf8791e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/bf8791e27564c80d3dd7254d954be408ffd3ff34))
+
+
+### Improvements
+
+* **plugins/db:** log on opening/closing connections ([cb9a796](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/cb9a7963de76ce9617ebcd087b3da8b7fdfc5a99))
+* **plugins/mssql:** decouple from config; increase portability ([9a0dc92](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9a0dc92b477c4484869632e14cd407035d8d7626))
+* **sql:** add index to guid column of register.documents table ([#333](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/333)) ([7bc297d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7bc297dde0ddfdde20ce9801385c908194e10df8))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-import from 2.23.4 to 2.24.0 ([7be7b21](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7be7b2178264ab91ed1f8c2740183177badf7da3))
+* **deps:** bump actions/setup-node from 2.3.0 to 2.3.1 ([5658bf0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/5658bf0e0e6954ca9c0c5a2f337e19f0eb3b8836))
+* **deps:** bump actions/setup-node from 2.3.1 to 2.3.2 ([d85731c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d85731c254b7db3df16cda470e9853fc84d823ab))
+* **deps:** bump actions/setup-node from 2.3.2 to 2.4.0 ([b219c69](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b219c69631b44d35c94569742ee42ba5c0f1900f))
+* **deps:** bump env-schema from 3.1.0 to 3.2.0 ([a97151f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a97151f69e745c856ccde1e01106224f30c50504))
+* **deps:** bump fastify from 3.19.2 to 3.20.1 ([d2f7835](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d2f78359222ed5e24c21411082afe707cd2a8d78))
+* **deps:** bump fastify-swagger from 4.8.3 to 4.8.4 ([5e842a4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/5e842a41f493b8ac3a7574c8d59da817f197f472))
+* **deps:** bump pg from 8.6.0 to 8.7.1 ([89e23d7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/89e23d78cba9aea01a881599935d2aedccbc4c88))
+
 ## [4.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.6...v4.0.0) (2021-08-02)
 
 
