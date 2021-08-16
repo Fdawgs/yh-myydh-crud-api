@@ -21,7 +21,7 @@ async function route(server) {
 
 	server.route({
 		method: "GET",
-		url: "/healthcheck",
+		url: "/",
 		schema: healthcheckGetSchema,
 		async handler(req, res) {
 			res.send("ok");

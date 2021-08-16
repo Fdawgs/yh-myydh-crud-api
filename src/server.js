@@ -15,9 +15,6 @@ const swagger = require("fastify-swagger");
 const underPressure = require("under-pressure");
 const db = require("./plugins/db");
 
-// Import healthcheck route
-const healthCheck = require("./routes/healthcheck");
-
 /**
  * @author Frazer Smith
  * @description Build Fastify instance.
@@ -71,8 +68,12 @@ async function plugin(server, config) {
 		// Enable Swagger/OpenAPI routes
 		.register(swagger, config.swagger)
 
-		// Basic healthcheck route to ping
-		.register(healthCheck)
+		// Import and register admin routes
+		.register(autoLoad, {
+			dir: path.join(__dirname, "routes"),
+			ignorePattern: /(documents|preferences)/,
+			options: config,
+		})
 
 		/**
 		 * Encapsulate plugins and routes into secured child context, so that swagger and healthcheck
