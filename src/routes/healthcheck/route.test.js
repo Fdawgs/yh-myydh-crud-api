@@ -6,17 +6,17 @@ const getConfig = require("../../config");
 
 describe("Healthcheck Route", () => {
 	describe("GET Requests", () => {
-		let options;
+		let config;
 		let server;
 
 		beforeAll(async () => {
-			options = await getConfig();
+			config = await getConfig();
 
 			server = Fastify();
 			server
 				.register(accepts)
 				.register(sensible)
-				.register(plugin, options);
+				.register(plugin, config);
 
 			await server.ready();
 		});

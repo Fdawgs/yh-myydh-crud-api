@@ -11,15 +11,15 @@ const mockPatientId = faker.datatype.number({
 
 describe("User Route", () => {
 	describe("MSSQL Database Backend", () => {
-		let options;
+		let config;
 		let server;
 
 		beforeAll(async () => {
-			options = await getConfig();
-			options.database.client = "mssql";
+			config = await getConfig();
+			config.database.client = "mssql";
 
 			server = Fastify();
-			server.register(sensible).register(plugin, options);
+			server.register(sensible).register(plugin, config);
 
 			await server.ready();
 		});
@@ -218,15 +218,15 @@ describe("User Route", () => {
 	});
 
 	describe("PostgreSQL Database Backend", () => {
-		let options;
+		let config;
 		let server;
 
 		beforeAll(async () => {
-			options = await getConfig();
-			options.database.client = "postgresql";
+			config = await getConfig();
+			config.database.client = "postgresql";
 
 			server = Fastify();
-			server.register(sensible).register(plugin, options);
+			server.register(sensible).register(plugin, config);
 
 			await server.ready();
 		});

@@ -5,7 +5,7 @@ const getConfig = require("../../config");
 
 // TODO: look at standing up test SQL Server instance with Docker and disable skip for this
 describe.skip("db plugin", () => {
-	let options;
+	let config;
 	let server;
 
 	const query = "SELECT CURRENT_TIMESTAMP";
@@ -14,10 +14,10 @@ describe.skip("db plugin", () => {
 	};
 
 	beforeAll(async () => {
-		options = await getConfig();
+		config = await getConfig();
 
 		server = Fastify();
-		server.register(plugin, options);
+		server.register(plugin, config);
 		server.route({
 			method: "GET",
 			url: "/",
