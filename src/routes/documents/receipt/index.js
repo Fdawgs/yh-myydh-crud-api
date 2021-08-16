@@ -78,7 +78,7 @@ async function route(server, options) {
 					res.send(
 						createError(
 							404,
-							"Record does not exist and/or has already been deleted"
+							"Record does not exist or has already been deleted"
 						)
 					);
 				}
@@ -87,7 +87,7 @@ async function route(server, options) {
 				res.send(
 					createError(
 						500,
-						"Unable to update read receipt in database"
+						"Unable to delete read receipt from database"
 					)
 				);
 			}

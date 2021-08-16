@@ -31,14 +31,21 @@ const receiptDeleteSchema = {
 	),
 	response: {
 		204: S.string().raw({ nullable: true }),
+		404: S.object()
+			.prop("statusCode", S.number().const(404))
+			.prop("error", S.string().const("Not Found"))
+			.prop(
+				"message",
+				S.string().const(
+					"Record does not exist or has already been deleted"
+				)
+			),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
 			.prop(
 				"message",
-				S.string().const(
-					"Unable to update delete read receipt from database"
-				)
+				S.string().const("Unable to delete read receipt from database")
 			),
 	},
 	security,
@@ -74,15 +81,6 @@ const receiptPutSchema = {
 		),
 	response: {
 		204: S.string().raw({ nullable: true }),
-		404: S.object()
-			.prop("statusCode", S.number().const(404))
-			.prop("error", S.string().const("Not Found"))
-			.prop(
-				"message",
-				S.string().const(
-					"Record does not exist and/or has already been deleted"
-				)
-			),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
