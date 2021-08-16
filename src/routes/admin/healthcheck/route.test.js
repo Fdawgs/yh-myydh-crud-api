@@ -1,19 +1,22 @@
-const accepts = require("fastify-accepts");
 const Fastify = require("fastify");
+const accepts = require("fastify-accepts");
+const sensible = require("fastify-sensible");
 const plugin = require(".");
-const getConfig = require("../../config");
+const getConfig = require("../../../config");
 
 describe("Healthcheck Route", () => {
 	describe("GET Requests", () => {
-		let options;
+		let config;
 		let server;
 
 		beforeAll(async () => {
-			options = await getConfig();
+			config = await getConfig();
 
 			server = Fastify();
-			server.register(accepts);
-			server.register(plugin, options);
+			server
+				.register(accepts)
+				.register(sensible)
+				.register(plugin, config);
 
 			await server.ready();
 		});
@@ -25,7 +28,7 @@ describe("Healthcheck Route", () => {
 		test("Should return `ok`", async () => {
 			const response = await server.inject({
 				method: "GET",
-				url: "/healthcheck",
+				url: "/",
 				headers: {
 					accept: "text/plain",
 				},
@@ -38,7 +41,7 @@ describe("Healthcheck Route", () => {
 		test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
 			const response = await server.inject({
 				method: "GET",
-				url: "/healthcheck",
+				url: "/",
 				headers: {
 					accept: "application/javascript",
 				},

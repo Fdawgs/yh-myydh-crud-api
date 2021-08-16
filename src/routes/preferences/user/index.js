@@ -1,5 +1,3 @@
-const createError = require("http-errors");
-
 // Import plugins
 const cors = require("fastify-cors");
 
@@ -120,12 +118,12 @@ async function route(server, options) {
 
 					res.send(clean(patientObj));
 				} else {
-					res.send(createError(404, "User not found"));
+					res.notFound("User not found");
 				}
 			} catch (err) {
 				server.log.error(err);
-				res.send(
-					createError(500, "Unable to return result(s) from database")
+				res.internalServerError(
+					"Unable to return result(s) from database"
 				);
 			}
 		},
@@ -168,11 +166,8 @@ async function route(server, options) {
 				res.status(204);
 			} catch (err) {
 				server.log.error(err);
-				res.send(
-					createError(
-						500,
-						"Unable to update user preferences in database"
-					)
+				res.internalServerError(
+					"Unable to update user preferences in database"
 				);
 			}
 		},

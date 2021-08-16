@@ -1,5 +1,6 @@
 const faker = require("faker/locale/en_GB");
 const Fastify = require("fastify");
+const sensible = require("fastify-sensible");
 const plugin = require(".");
 const getConfig = require("../../../config");
 
@@ -58,15 +59,15 @@ mockPostgreSqlQueryResults[1].rows.push(mockRecord);
 
 describe("Register Route", () => {
 	describe("MSSQL Database Backend", () => {
-		let options;
+		let config;
 		let server;
 
 		beforeAll(async () => {
-			options = await getConfig();
-			options.database.client = "mssql";
+			config = await getConfig();
+			config.database.client = "mssql";
 
 			server = Fastify();
-			server.register(plugin, options);
+			server.register(sensible).register(plugin, config);
 
 			await server.ready();
 		});
@@ -198,15 +199,15 @@ describe("Register Route", () => {
 	});
 
 	describe("PostgreSQL Database Backend", () => {
-		let options;
+		let config;
 		let server;
 
 		beforeAll(async () => {
-			options = await getConfig();
-			options.database.client = "postgresql";
+			config = await getConfig();
+			config.database.client = "postgresql";
 
 			server = Fastify();
-			server.register(plugin, options);
+			server.register(sensible).register(plugin, config);
 
 			await server.ready();
 		});

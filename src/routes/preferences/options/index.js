@@ -1,5 +1,3 @@
-const createError = require("http-errors");
-
 // Import plugins
 const cors = require("fastify-cors");
 
@@ -117,14 +115,12 @@ async function route(server, options) {
 
 					res.send(clean(patientObj));
 				} else {
-					res.send(
-						createError(404, "Invalid or expired search results")
-					);
+					res.notFound("Invalid or expired search results");
 				}
 			} catch (err) {
 				server.log.error(err);
-				res.send(
-					createError(500, "Unable to return result(s) from database")
+				res.internalServerError(
+					"Unable to return result(s) from database"
 				);
 			}
 		},

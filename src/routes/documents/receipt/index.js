@@ -1,5 +1,3 @@
-const createError = require("http-errors");
-
 // Import plugins
 const cors = require("fastify-cors");
 
@@ -42,20 +40,14 @@ async function route(server, options) {
 				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
 					res.status(204);
 				} else {
-					res.send(
-						createError(
-							404,
-							"Record does not exist or has already been deleted"
-						)
+					res.notFound(
+						"Record does not exist or has already been deleted"
 					);
 				}
 			} catch (err) {
 				server.log.error(err);
-				res.send(
-					createError(
-						500,
-						"Unable to delete read receipt from database"
-					)
+				res.internalServerError(
+					"Unable to delete read receipt from database"
 				);
 			}
 		},
@@ -84,11 +76,8 @@ async function route(server, options) {
 				}
 			} catch (err) {
 				server.log.error(err);
-				res.send(
-					createError(
-						500,
-						"Unable to update read receipt in database"
-					)
+				res.internalServerError(
+					"Unable to update read receipt in database"
 				);
 			}
 		},

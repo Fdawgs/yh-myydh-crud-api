@@ -40,11 +40,11 @@ describe.skip("End-To-End", () => {
 		await server.close();
 	});
 
-	describe("/healthcheck Route", () => {
+	describe("/admin/healthcheck Route", () => {
 		test("Should return `ok`", async () => {
 			const response = await server.inject({
 				method: "GET",
-				url: "/healthcheck",
+				url: "/admin/healthcheck",
 				headers: {
 					accept: "text/plain",
 				},
@@ -57,7 +57,7 @@ describe.skip("End-To-End", () => {
 		test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
 			const response = await server.inject({
 				method: "GET",
-				url: "/healthcheck",
+				url: "/admin/healthcheck",
 				headers: {
 					accept: "application/javascript",
 				},
