@@ -1,5 +1,3 @@
-const { NotAcceptable } = require("http-errors");
-
 const { healthcheckGetSchema } = require("./schema");
 
 /**
@@ -17,7 +15,7 @@ async function route(server) {
 				req.accepts().type(healthcheckGetSchema.produces)
 			)
 		) {
-			res.send(NotAcceptable());
+			res.notAcceptable();
 		}
 	});
 

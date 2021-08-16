@@ -1,6 +1,5 @@
 const autoLoad = require("fastify-autoload");
 const fp = require("fastify-plugin");
-const { NotAcceptable } = require("http-errors");
 const path = require("path");
 
 // Import plugins
@@ -11,6 +10,7 @@ const disableCache = require("fastify-disablecache");
 const flocOff = require("fastify-floc-off");
 const helmet = require("fastify-helmet");
 const rateLimit = require("fastify-rate-limit");
+const sensible = require("fastify-sensible");
 const swagger = require("fastify-swagger");
 const underPressure = require("under-pressure");
 const db = require("./plugins/db");
@@ -62,6 +62,9 @@ async function plugin(server, config) {
 		// Rate limiting and 429 response handling
 		.register(rateLimit, config.rateLimit)
 
+		// Utility functions and error handlers
+		.register(sensible)
+
 		// Process load and 503 response handling
 		.register(underPressure, config.processLoad)
 
@@ -85,7 +88,7 @@ async function plugin(server, config) {
 							req.accepts().type(["application/json"])
 						)
 					) {
-						res.send(NotAcceptable());
+						res.notAcceptable();
 					}
 				})
 				.register(bearer, { keys: config.authKeys })

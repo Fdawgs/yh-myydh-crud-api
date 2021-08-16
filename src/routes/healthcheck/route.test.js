@@ -1,5 +1,6 @@
-const accepts = require("fastify-accepts");
 const Fastify = require("fastify");
+const accepts = require("fastify-accepts");
+const sensible = require("fastify-sensible");
 const plugin = require(".");
 const getConfig = require("../../config");
 
@@ -12,8 +13,10 @@ describe("Healthcheck Route", () => {
 			options = await getConfig();
 
 			server = Fastify();
-			server.register(accepts);
-			server.register(plugin, options);
+			server
+				.register(accepts)
+				.register(sensible)
+				.register(plugin, options);
 
 			await server.ready();
 		});
