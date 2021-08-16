@@ -128,13 +128,6 @@ const userPutSchema = {
 	),
 	response: {
 		204: S.string().raw({ nullable: true }),
-		400: S.object()
-			.prop("statusCode", S.number().const(400))
-			.prop("error", S.string().const("Bad Request"))
-			.prop(
-				"message",
-				S.string().const("Malformed body or body missing")
-			),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
