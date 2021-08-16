@@ -46,7 +46,7 @@ const registerGetSchema = {
 					.minItems(2)
 					.maxItems(2)
 					.uniqueItems(true),
-			]).required()
+			])
 		)
 
 		.prop(
@@ -65,7 +65,8 @@ const registerGetSchema = {
 				.examples([1, 10])
 				.minimum(1)
 				.maximum(100)
-		),
+		)
+		.required(["lastModified"]),
 	response: {
 		200: S.object()
 			.prop(

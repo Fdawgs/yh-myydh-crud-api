@@ -13,22 +13,24 @@ const receiptDeleteSchema = {
 	tags,
 	summary: "Delete document read receipt",
 	operationId: "deleteReceipt",
-	params: S.object().prop(
-		"id",
-		S.string()
-			.description("Logical id of the artifact")
-			.examples(["EXAMPLEGUID-0123456789-99999"])
-			.pattern("^[\\w\\-]{1,36}$")
-			.required()
-	),
-	query: S.object().prop(
-		"patientId",
-		S.string()
-			.description("Unique patient identifier")
-			.examples([9999999999])
-			.pattern("^\\d{1,10}$")
-			.required()
-	),
+	params: S.object()
+		.prop(
+			"id",
+			S.string()
+				.description("Logical id of the artifact")
+				.examples(["EXAMPLEGUID-0123456789-99999"])
+				.pattern("^[\\w\\-]{1,36}$")
+		)
+		.required(["id"]),
+	query: S.object()
+		.prop(
+			"patientId",
+			S.string()
+				.description("Unique patient identifier")
+				.examples([9999999999])
+				.pattern("^\\d{1,10}$")
+		)
+		.required(["patientId"]),
 	response: {
 		204: S.string().raw({ nullable: true }),
 		404: S.object()
@@ -55,14 +57,15 @@ const receiptPutSchema = {
 	tags,
 	summary: "Create or update read receipt",
 	operationId: "createReceipt",
-	params: S.object().prop(
-		"id",
-		S.string()
-			.description("Logical id of the artifact")
-			.examples(["EXAMPLEGUID-0123456789-99999"])
-			.pattern("^[\\w\\-]{1,36}$")
-			.required()
-	),
+	params: S.object()
+		.prop(
+			"id",
+			S.string()
+				.description("Logical id of the artifact")
+				.examples(["EXAMPLEGUID-0123456789-99999"])
+				.pattern("^[\\w\\-]{1,36}$")
+		)
+		.required(["id"]),
 	query: S.object()
 		.prop(
 			"patientId",
@@ -70,15 +73,12 @@ const receiptPutSchema = {
 				.description("Unique patient identifier")
 				.examples([9999999999])
 				.pattern("^\\d{1,10}$")
-				.required()
 		)
 		.prop(
 			"timestamp",
-			S.string()
-				.description("Read time of document")
-				.format("date-time")
-				.required()
-		),
+			S.string().description("Read time of document").format("date-time")
+		)
+		.required(["patientId", "timestamp"]),
 	response: {
 		204: S.string().raw({ nullable: true }),
 		500: S.object()

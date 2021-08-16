@@ -112,20 +112,22 @@ const userPutSchema = {
 			.examples([1])
 			.pattern("^\\d{1,10}$")
 	),
-	body: S.object().prop(
-		"preferences",
-		S.array()
-			.items(
-				S.object()
-					.prop("id", S.number().required())
-					.prop("priority", S.number().required())
-					.prop("selected", S.number().required())
-			)
-			.minItems(1)
-			.maxItems(4)
-			.uniqueItems(true)
-			.required()
-	),
+	body: S.object()
+		.prop(
+			"preferences",
+			S.array()
+				.items(
+					S.object()
+						.prop("id", S.number())
+						.prop("priority", S.number())
+						.prop("selected", S.number())
+						.required(["id", "priority", "selected"])
+				)
+				.minItems(1)
+				.maxItems(4)
+				.uniqueItems(true)
+		)
+		.required("preferences"),
 	response: {
 		204: S.string().raw({ nullable: true }),
 		500: S.object()
