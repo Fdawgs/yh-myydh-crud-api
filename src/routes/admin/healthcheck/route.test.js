@@ -1,5 +1,5 @@
-const Fastify = require("fastify");
 const accepts = require("fastify-accepts");
+const Fastify = require("fastify");
 const sensible = require("fastify-sensible");
 const plugin = require(".");
 const getConfig = require("../../../config");
