@@ -63,39 +63,41 @@ async function getConfig() {
 			.prop("CORS_EXPOSED_HEADERS", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"PROC_LOAD_MAX_EVENT_LOOP_DELAY",
-				S.anyOf([S.number(), S.null()]).default(0)
+				S.anyOf([S.number().default(0), S.null()])
 			)
 			.prop(
 				"PROC_LOAD_MAX_HEAP_USED_BYTES",
-				S.anyOf([S.number(), S.null()]).default(0)
+				S.anyOf([S.number().default(0), S.null()])
 			)
 			.prop(
 				"PROC_LOAD_MAX_RSS_BYTES",
-				S.anyOf([S.number(), S.null()]).default(0)
+				S.anyOf([S.number().default(0), S.null()])
 			)
 			.prop(
 				"PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION",
-				S.anyOf([S.number(), S.null()]).default(0)
+				S.anyOf([S.number().default(0), S.null()])
 			)
 			.prop("RATE_LIMIT_EXCLUDED_ARRAY", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"RATE_LIMIT_MAX_CONNECTIONS_PER_MIN",
-				S.anyOf([S.number(), S.null()]).default(1000)
+				S.anyOf([S.number().default(1000), S.null()])
 			)
 			.prop(
 				"LOG_LEVEL",
 				S.anyOf([
-					S.string().enum([
-						"fatal",
-						"error",
-						"warn",
-						"info",
-						"debug",
-						"trace",
-						"silent",
-					]),
+					S.string()
+						.enum([
+							"fatal",
+							"error",
+							"warn",
+							"info",
+							"debug",
+							"trace",
+							"silent",
+						])
+						.default("info"),
 					S.null(),
-				]).default("info")
+				])
 			)
 			.prop("LOG_ROTATION_DATE_FORMAT", S.string().default("YYYY-MM-DD"))
 			.prop("LOG_ROTATION_FILENAME", S.anyOf([S.string(), S.null()]))
