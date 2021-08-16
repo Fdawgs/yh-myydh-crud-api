@@ -26,39 +26,6 @@ async function route(server, options) {
 	});
 
 	server.route({
-		method: "PUT",
-		url: "/:id",
-		schema: receiptPutSchema,
-		async handler(req, res) {
-			try {
-				const rows = await server.db.query(
-					receiptInsert({
-						dbClient: options.database.client,
-						id: req.params.id,
-						patientId: req.query.patientId,
-						timestamp: req.query.timestamp,
-						readReceiptTable: options.database.tables.readReceipt,
-					})
-				);
-
-				if (rows?.rowsAffected?.[0] > 0 || rows?.rowCount > 0) {
-					res.status(204);
-				} else {
-					throw Error;
-				}
-			} catch (err) {
-				server.log.error(err);
-				res.send(
-					createError(
-						500,
-						"Unable to update read receipt in database"
-					)
-				);
-			}
-		},
-	});
-
-	server.route({
 		method: "DELETE",
 		url: "/:id",
 		schema: receiptDeleteSchema,
@@ -78,9 +45,42 @@ async function route(server, options) {
 					res.send(
 						createError(
 							404,
-							"Record does not exist and/or has already been deleted"
+							"Record does not exist or has already been deleted"
 						)
 					);
+				}
+			} catch (err) {
+				server.log.error(err);
+				res.send(
+					createError(
+						500,
+						"Unable to delete read receipt from database"
+					)
+				);
+			}
+		},
+	});
+
+	server.route({
+		method: "PUT",
+		url: "/:id",
+		schema: receiptPutSchema,
+		async handler(req, res) {
+			try {
+				const rows = await server.db.query(
+					receiptInsert({
+						dbClient: options.database.client,
+						id: req.params.id,
+						patientId: req.query.patientId,
+						timestamp: req.query.timestamp,
+						readReceiptTable: options.database.tables.readReceipt,
+					})
+				);
+
+				if (rows?.rowsAffected?.[0] > 0 || rows?.rowCount > 0) {
+					res.status(204);
+				} else {
+					throw Error;
 				}
 			} catch (err) {
 				server.log.error(err);
