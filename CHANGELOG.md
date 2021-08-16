@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+### [5.0.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v5.0.0...v5.0.1) (2021-08-16)
+
+
+### Bug Fixes
+
+* **routes/documents/receipt:** set 404 response to correct method ([59d66b0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/59d66b01f7892c935fe501f6d18c85f06665197e))
+* **routes/preferences/user/schema:** remove unused 400 response ([6c54df9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6c54df91d6da3a11abdf8821df8bde23fcd50b35))
+
+
+### Miscellaneous
+
+* **routes/documents/receipt:** sort route registers alphabetically ([25f9213](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/25f9213b5893b47cb65718974980b04bf92a091d))
+
+
+### Improvements
+
+* **routes/redirect/schema:** consolidate `required` keywords ([a4e93d4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a4e93d4cf999a480991c825a679f2a65989066d3))
+
 ## [5.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v4.0.0...v5.0.0) (2021-08-09)
 
 
