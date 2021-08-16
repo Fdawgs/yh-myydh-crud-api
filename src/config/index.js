@@ -150,9 +150,11 @@ async function getConfig() {
 				},
 				level: env.LOG_LEVEL || "info",
 				serializers: {
+					/* istanbul ignore next */
 					req(req) {
 						return pino.stdSerializers.req(req);
 					},
+					/* istanbul ignore next */
 					res(res) {
 						return pino.stdSerializers.res(res);
 					},
