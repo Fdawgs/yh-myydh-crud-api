@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v5.0.0...v6.0.0) (2021-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **routes:** `/healthcheck` moved to `/admin/healthcheck`
+
+### Features
+
+* **routes/admin/healthcheck:** add cors header support ([0faffb0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0faffb00e3dea5c374b5ad7cfb62d0a535761200))
+
+
+### Bug Fixes
+
+* **config:** allow for empty logger env variables ([af25ce9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/af25ce9e0b7cc81d5c54746c798839c524b469b6))
+* **config:** defaults for undeclared variables ([048da35](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/048da35e8def8f6e8308e3e6f43c2cf746604cd7))
+* **routes/documents/receipt:** set 404 response to correct method ([59d66b0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/59d66b01f7892c935fe501f6d18c85f06665197e))
+* **routes/preferences/user/schema:** remove unused 400 response ([6c54df9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6c54df91d6da3a11abdf8821df8bde23fcd50b35))
+* **server:** ignore admin route in secured context ([fc2188f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fc2188fe21fb1a4a1b9d7562d4c49883e2e29212))
+
+
+### Improvements
+
+* **config:** consolidate logger pretty print conditional ([9e6adc3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9e6adc3fa8455887a3941714060a9df79cb01054))
+* replace `http-errors` with `fastify-sensible` plugin ([d939694](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d939694760b3090e56c318df2c291a8afae15c18))
+* **routes/redirect/schema:** consolidate `required` keywords ([a4e93d4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a4e93d4cf999a480991c825a679f2a65989066d3))
+* **routes:** `/healthcheck` moved to `/admin/healthcheck` ([341df76](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/341df766a01e06d17b132e86aac9a99b0a4ae603))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-jsdoc from 36.0.6 to 36.0.7 ([27f82e9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/27f82e9822bfa0aa9aaba84eb7a81a30371322b4))
+* **deps:** bump env-schema from 3.2.0 to 3.3.0 ([3aa169b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3aa169b15adf4545d4d8924a7be14f46cacc2d0a))
+* **deps:** bump fastify from 3.20.1 to 3.20.2 ([ab1a704](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ab1a704b65d2f82d097440d9694b59023c8ac61a))
+* **deps:** bump pino-pretty from 5.1.2 to 5.1.3 ([04434d0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/04434d02190ffa7fbc2bde95f09e7112a2148175))
+
+
+### Miscellaneous
+
+* **config:** sort process load variables alphabetically ascending ([451c41b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/451c41b35367c0bc89f3799aec7d2efae609431e))
+* **env:** document default logger values ([f4c90c8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f4c90c82420cf1311f2807f5b1f681af06bb40bf))
+* **env:** standardise, sort, and group env variables ([f36b4bb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f36b4bb6d71ea51a3bcb7863b6bfa86d12944d07))
+* **routes/documents/receipt:** sort route registers alphabetically ([25f9213](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/25f9213b5893b47cb65718974980b04bf92a091d))
+
 ## [5.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v4.0.0...v5.0.0) (2021-08-09)
 
 
