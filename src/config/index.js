@@ -203,10 +203,10 @@ async function getConfig() {
 		},
 		processLoad: {
 			maxEventLoopDelay: env.PROC_LOAD_MAX_EVENT_LOOP_DELAY || 0,
-			maxHeapUsedBytes: env.PROC_LOAD_MAX_HEAP_USED_BYTES || 0,
-			maxRssBytes: env.PROC_LOAD_MAX_RSS_BYTES || 0,
 			maxEventLoopUtilization:
 				env.PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION || 0,
+			maxHeapUsedBytes: env.PROC_LOAD_MAX_HEAP_USED_BYTES || 0,
+			maxRssBytes: env.PROC_LOAD_MAX_RSS_BYTES || 0,
 		},
 		rateLimit: {
 			max: env.RATE_LIMIT_MAX_CONNECTIONS_PER_MIN || 1000,

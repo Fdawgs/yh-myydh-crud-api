@@ -126,9 +126,9 @@ describe("Configuration", () => {
 
 		expect(config.processLoad).toEqual({
 			maxEventLoopDelay: PROC_LOAD_MAX_EVENT_LOOP_DELAY,
+			maxEventLoopUtilization: PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION,
 			maxHeapUsedBytes: PROC_LOAD_MAX_HEAP_USED_BYTES,
 			maxRssBytes: PROC_LOAD_MAX_RSS_BYTES,
-			maxEventLoopUtilization: PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION,
 		});
 
 		expect(config.rateLimit).toEqual({
@@ -249,9 +249,9 @@ describe("Configuration", () => {
 
 		expect(config.processLoad).toEqual({
 			maxEventLoopDelay: 0,
+			maxEventLoopUtilization: 0,
 			maxHeapUsedBytes: 0,
 			maxRssBytes: 0,
-			maxEventLoopUtilization: 0,
 		});
 
 		expect(config.rateLimit).toEqual({
