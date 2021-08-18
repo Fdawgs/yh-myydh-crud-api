@@ -1,7 +1,6 @@
 const S = require("fluent-json-schema");
 
 const tags = ["Contact Preferences"];
-const security = [{ bearerToken: [] }];
 
 /**
  * Fastify uses AJV for JSON Schema Validation,
@@ -74,7 +73,6 @@ const optionsGetSchema = {
 				S.string().const("Unable to return result(s) from database")
 			),
 	},
-	security,
 };
 
 module.exports = { optionsGetSchema };

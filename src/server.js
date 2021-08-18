@@ -81,6 +81,12 @@ async function plugin(server, config) {
 		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
 		 */
 		.register(async (securedContext) => {
+			if (config.bearerTokenAuthKeys) {
+				securedContext.register(bearer, {
+					keys: config.bearerTokenAuthKeys,
+				});
+			}
+
 			securedContext
 				// Catch unsupported Accept header media types
 				.addHook("preHandler", async (req, res) => {
@@ -92,7 +98,6 @@ async function plugin(server, config) {
 						res.notAcceptable();
 					}
 				})
-				.register(bearer, { keys: config.authKeys })
 				.register(db, config.database)
 				// Import and register service routes
 				.register(autoLoad, {

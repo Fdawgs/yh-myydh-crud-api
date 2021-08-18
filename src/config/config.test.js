@@ -89,7 +89,7 @@ describe("Configuration", () => {
 
 		const config = await getConfig();
 
-		expect(config.authKeys).toContain("testtoken");
+		expect(config.bearerTokenAuthKeys).toContain("testtoken");
 
 		expect(config.fastify).toEqual({
 			host: SERVICE_HOST,
@@ -170,8 +170,7 @@ describe("Configuration", () => {
 		const PROC_LOAD_MAX_RSS_BYTES = "";
 		const RATE_LIMIT_MAX_CONNECTIONS_PER_MIN = "";
 		const RATE_LIMIT_EXCLUDED_ARRAY = '["127.0.0.1"]';
-		const AUTH_BEARER_TOKEN_ARRAY =
-			'[{"service": "test", "value": "testtoken"}]';
+		const AUTH_BEARER_TOKEN_ARRAY = "";
 		const DB_CLIENT = "";
 		const DB_CONNECTION_STRING =
 			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
@@ -212,7 +211,7 @@ describe("Configuration", () => {
 
 		const config = await getConfig();
 
-		expect(config.authKeys).toContain("testtoken");
+		expect(config.bearerTokenAuthKeys).toBeUndefined();
 
 		expect(config.fastify).toEqual({
 			host: SERVICE_HOST,
