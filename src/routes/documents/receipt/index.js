@@ -16,6 +16,13 @@ const { receiptDelete, receiptInsert } = require("./query");
  * @param {string} options.database.tables.readReceipt - Name and schema of document read receipt table.
  */
 async function route(server, options) {
+	if (options.bearerTokenAuthKeys) {
+		const security = [{ bearerToken: [] }];
+
+		receiptDeleteSchema.security = security;
+		receiptPutSchema.security = security;
+	}
+
 	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 	server.register(cors, {
 		...options.cors,

@@ -1,7 +1,6 @@
 const S = require("fluent-json-schema");
 
 const tags = ["Documents"];
-const security = [{ bearerToken: [] }];
 
 /**
  * Fastify uses AJV for JSON Schema Validation,
@@ -50,7 +49,6 @@ const receiptDeleteSchema = {
 				S.string().const("Unable to delete read receipt from database")
 			),
 	},
-	security,
 };
 
 const receiptPutSchema = {
@@ -89,7 +87,6 @@ const receiptPutSchema = {
 				S.string().const("Unable to update read receipt in database")
 			),
 	},
-	security,
 };
 
 module.exports = { receiptDeleteSchema, receiptPutSchema };

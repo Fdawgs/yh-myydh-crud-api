@@ -20,6 +20,9 @@ const { registerSelect } = require("./query");
  * @param {string} options.database.tables.documentRegister - Name and schema of document register table.
  */
 async function route(server, options) {
+	if (options.bearerTokenAuthKeys) {
+		registerGetSchema.security = [{ bearerToken: [] }];
+	}
 	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 	server.register(cors, {
 		...options.cors,

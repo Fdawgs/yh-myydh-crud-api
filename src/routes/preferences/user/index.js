@@ -21,6 +21,13 @@ const { userInsert, userSelect } = require("./query");
  * @param {string} options.database.tables.patientPrefValueLookup - Name and schema of patient preference value table.
  */
 async function route(server, options) {
+	if (options.bearerTokenAuthKeys) {
+		const security = [{ bearerToken: [] }];
+
+		userGetSchema.security = security;
+		userPutSchema.security = security;
+	}
+
 	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 	server.register(cors, {
 		...options.cors,
