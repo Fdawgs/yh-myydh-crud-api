@@ -1,189 +1,294 @@
-const faker = require("faker/locale/en_GB");
 const Fastify = require("fastify");
 const startServer = require("./server");
 const getConfig = require("./config");
 
-const mockId = faker.datatype.number({
-	min: 1,
-	max: 10,
-});
-const mockLastModified = faker.date.past().toISOString().split("T")[0];
-const mockPage = faker.datatype.number({
-	min: 1,
-	max: 10,
-});
-const mockPatientId = faker.datatype.number({
-	min: 1000000000,
-	max: 9999999999,
-});
-const mockTimeStamp = faker.date.past().toISOString();
+const expResHeaders = {
+	"content-security-policy":
+		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content",
+	"x-dns-prefetch-control": "off",
+	"expect-ct": "max-age=0",
+	"x-frame-options": "SAMEORIGIN",
+	"strict-transport-security": "max-age=31536000; includeSubDomains",
+	"x-download-options": "noopen",
+	"x-content-type-options": "nosniff",
+	"x-permitted-cross-domain-policies": "none",
+	"referrer-policy": "no-referrer",
+	"x-xss-protection": "0",
+	"surrogate-control": "no-store",
+	"cache-control": "no-store, max-age=0, must-revalidate",
+	pragma: "no-cache",
+	expires: "0",
+	"permissions-policy": "interest-cohort=()",
+	vary: "Origin, accept-encoding",
+	"x-ratelimit-limit": expect.any(Number),
+	"x-ratelimit-remaining": expect.any(Number),
+	"x-ratelimit-reset": expect.any(Number),
+	"content-type": expect.stringContaining("text/plain"),
+	"content-length": expect.any(String),
+	date: expect.any(String),
+	connection: "keep-alive",
+};
 
-// TODO: look at standing up test SQL Server instance with Docker and disable skip for this
-describe.skip("End-To-End", () => {
-	let config;
-	let server;
+const expectResHeadersClientError = {
+	"content-security-policy":
+		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content",
+	"x-dns-prefetch-control": "off",
+	"expect-ct": "max-age=0",
+	"x-frame-options": "SAMEORIGIN",
+	"strict-transport-security": "max-age=31536000; includeSubDomains",
+	"x-download-options": "noopen",
+	"x-content-type-options": "nosniff",
+	"x-permitted-cross-domain-policies": "none",
+	"referrer-policy": "no-referrer",
+	"x-xss-protection": "0",
+	"surrogate-control": "no-store",
+	"cache-control": "no-store, max-age=0, must-revalidate",
+	pragma: "no-cache",
+	expires: "0",
+	"permissions-policy": "interest-cohort=()",
+	vary: "accept-encoding",
+	"content-type": "application/json; charset=utf-8",
+	"content-length": expect.any(String),
+	date: expect.any(String),
+	connection: "keep-alive",
+};
 
-	beforeAll(async () => {
-		config = await getConfig();
-
-		server = Fastify();
-		server.register(startServer, config);
-
-		server.mssql = {
-			query: jest.fn(),
-		};
-
-		await server.ready();
-	});
-
-	afterAll(async () => {
-		await server.close();
-	});
-
-	describe("/admin/healthcheck Route", () => {
-		test("Should return `ok`", async () => {
-			const response = await server.inject({
-				method: "GET",
-				url: "/admin/healthcheck",
-				headers: {
-					accept: "text/plain",
-				},
+describe("Server Deployment", () => {
+	describe("MSSQL Connection", () => {
+		beforeAll(async () => {
+			Object.assign(process.env, {
+				DB_CLIENT: "mssql",
+				DB_CONNECTION_STRING:
+					"Server=localhost,1433;Database=master;User Id=sa;Password=Password!;Encrypt=true;TrustServerCertificate=true;",
 			});
-
-			expect(response.statusCode).toEqual(200);
-			expect(response.payload).toEqual("ok");
 		});
 
-		test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
-			const response = await server.inject({
-				method: "GET",
-				url: "/admin/healthcheck",
-				headers: {
-					accept: "application/javascript",
-				},
+		describe("End-To-End - Bearer Token Disabled", () => {
+			let config;
+			let server;
+
+			beforeAll(async () => {
+				Object.assign(process.env, {
+					AUTH_BEARER_TOKEN_ARRAY: "",
+				});
+				config = await getConfig();
+
+				server = Fastify();
+				server.register(startServer, config);
+
+				await server.ready();
 			});
 
-			expect(response.statusCode).toEqual(406);
-		});
-	});
-
-	describe("/documents/receipt Route", () => {
-		const url = "/documents/receipt";
-
-		test("Should return HTTP status code 406 if content-type in `Accept` request header unsupported", async () => {
-			const response = await server.inject({
-				method: "PUT",
-				url: `${url}/${mockId}`,
-				headers: {
-					accept: "application/javascript",
-					authorization: "Bearer testtoken",
-				},
-				query: {
-					patientId: mockPatientId,
-					timestamp: mockTimeStamp,
-				},
+			afterAll(async () => {
+				await server.close();
 			});
 
-			expect(response.statusCode).toEqual(406);
-		});
-	});
-
-	describe("/documents/register Route", () => {
-		const url = "/documents/register";
-
-		test("Should return documents from register", async () => {
-			const response = await server.inject({
-				method: "GET",
-				url,
-				headers: {
-					accept: "application/json",
-					authorization: "Bearer testtoken",
-				},
-				query: {
-					lastModified: mockLastModified,
-					perPage: mockPage,
-					page: mockPage,
-				},
-			});
-
-			expect(JSON.parse(response.payload)).toEqual({
-				data: [],
-				meta: {
-					pagination: {
-						total: 0,
-						per_page: mockPage,
-						current_page: mockPage,
-						total_pages: 0,
-					},
-				},
-			});
-			expect(response.statusCode).toEqual(200);
-		});
-
-		test("Should return HTTP status code 406 if content-type in `Accept` request header unsupported", async () => {
-			const response = await server.inject({
-				method: "GET",
-				url,
-				headers: {
-					accept: "application/javascript",
-					authorization: "Bearer testtoken",
-				},
-				query: {
-					lastModified: mockLastModified,
-					perPage: mockPage,
-					page: mockPage,
-				},
-			});
-
-			expect(response.statusCode).toEqual(406);
-		});
-	});
-
-	describe("/preferences/options Route", () => {
-		const url = "/preferences/options";
-
-		test("Should return HTTP status code 406 if content-type in `Accept` request header unsupported", async () => {
-			const response = await server.inject({
-				method: "GET",
-				url,
-				headers: {
-					accept: "application/javascript",
-					authorization: "Bearer testtoken",
-				},
-			});
-
-			expect(response.statusCode).toEqual(406);
-		});
-	});
-
-	describe("/preferences/user Route", () => {
-		const url = "/preferences/user";
-
-		test("Should return HTTP status code 406 if content-type in `Accept` request header unsupported", async () => {
-			const response = await server.inject({
-				method: "PUT",
-				url: `${url}/${mockPatientId}`,
-				headers: {
-					accept: "application/javascript",
-					authorization: "Bearer testtoken",
-				},
-				payload: {
-					preferences: [
-						{
-							id: 1,
-							priority: 0,
-							selected: 1,
+			describe("/admin/healthcheck Route", () => {
+				test("Should return `ok`", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/admin/healthcheck",
+						headers: {
+							accept: "text/plain",
 						},
-						{
-							id: 2,
-							priority: 1,
-							selected: 2,
+					});
+
+					expect(response.headers).toEqual(
+						expect.objectContaining(expResHeaders)
+					);
+					expect(response.payload).toEqual("ok");
+					expect(response.statusCode).toEqual(200);
+				});
+
+				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/admin/healthcheck",
+						headers: {
+							accept: "application/javascript",
 						},
-					],
-				},
+					});
+
+					expect(response.headers).toEqual(
+						expect.objectContaining(expectResHeadersClientError)
+					);
+					expect(response.statusCode).toEqual(406);
+				});
+			});
+		});
+
+		describe("End-To-End - Bearer Token Enabled", () => {
+			let config;
+			let server;
+
+			beforeAll(async () => {
+				Object.assign(process.env, {
+					AUTH_BEARER_TOKEN_ARRAY:
+						'[{"service": "test", "value": "testtoken"}]',
+				});
+				config = await getConfig();
+
+				server = Fastify();
+				server.register(startServer, config);
+
+				await server.ready();
 			});
 
-			expect(response.statusCode).toEqual(406);
+			afterAll(async () => {
+				await server.close();
+			});
+
+			describe("/admin/healthcheck Route", () => {
+				test("Should return `ok`", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/admin/healthcheck",
+						headers: {
+							accept: "text/plain",
+						},
+					});
+
+					expect(response.headers).toEqual(
+						expect.objectContaining(expResHeaders)
+					);
+					expect(response.payload).toEqual("ok");
+					expect(response.statusCode).toEqual(200);
+				});
+
+				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/admin/healthcheck",
+						headers: {
+							accept: "application/javascript",
+						},
+					});
+
+					expect(response.headers).toEqual(
+						expect.objectContaining(expectResHeadersClientError)
+					);
+					expect(response.statusCode).toEqual(406);
+				});
+			});
+		});
+	});
+
+	describe("PostgreSQL Connection", () => {
+		beforeAll(async () => {
+			Object.assign(process.env, {
+				DB_CLIENT: "postgresql",
+				DB_CONNECTION_STRING:
+					"postgresql://postgres:password@localhost:5432/postgres",
+			});
+		});
+
+		describe("End-To-End - Bearer Token Disabled", () => {
+			let config;
+			let server;
+
+			beforeAll(async () => {
+				Object.assign(process.env, {
+					AUTH_BEARER_TOKEN_ARRAY: "",
+				});
+				config = await getConfig();
+
+				server = Fastify();
+				server.register(startServer, config);
+
+				await server.ready();
+			});
+
+			afterAll(async () => {
+				await server.close();
+			});
+
+			describe("/admin/healthcheck Route", () => {
+				test("Should return `ok`", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/admin/healthcheck",
+						headers: {
+							accept: "text/plain",
+						},
+					});
+
+					expect(response.headers).toEqual(
+						expect.objectContaining(expResHeaders)
+					);
+					expect(response.payload).toEqual("ok");
+					expect(response.statusCode).toEqual(200);
+				});
+
+				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/admin/healthcheck",
+						headers: {
+							accept: "application/javascript",
+						},
+					});
+
+					expect(response.headers).toEqual(
+						expect.objectContaining(expectResHeadersClientError)
+					);
+					expect(response.statusCode).toEqual(406);
+				});
+			});
+		});
+
+		describe("End-To-End - Bearer Token Enabled", () => {
+			let config;
+			let server;
+
+			beforeAll(async () => {
+				Object.assign(process.env, {
+					AUTH_BEARER_TOKEN_ARRAY:
+						'[{"service": "test", "value": "testtoken"}]',
+				});
+				config = await getConfig();
+
+				server = Fastify();
+				server.register(startServer, config);
+
+				await server.ready();
+			});
+
+			afterAll(async () => {
+				await server.close();
+			});
+
+			describe("/admin/healthcheck Route", () => {
+				test("Should return `ok`", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/admin/healthcheck",
+						headers: {
+							accept: "text/plain",
+						},
+					});
+
+					expect(response.headers).toEqual(
+						expect.objectContaining(expResHeaders)
+					);
+					expect(response.payload).toEqual("ok");
+					expect(response.statusCode).toEqual(200);
+				});
+
+				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/admin/healthcheck",
+						headers: {
+							accept: "application/javascript",
+						},
+					});
+
+					expect(response.headers).toEqual(
+						expect.objectContaining(expectResHeadersClientError)
+					);
+					expect(response.statusCode).toEqual(406);
+				});
+			});
 		});
 	});
 });
