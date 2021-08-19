@@ -1,53 +1,92 @@
-const faker = require("faker");
 const Fastify = require("fastify");
 const plugin = require(".");
 const getConfig = require("../../config");
 
-// TODO: look at standing up test SQL Server instance with Docker and disable skip for this
-describe.skip("db plugin", () => {
+describe("DB Plugin", () => {
 	let config;
 	let server;
 
-	const query = "SELECT CURRENT_TIMESTAMP";
-	const client = {
-		query: jest.fn().mockResolvedValue({}),
-	};
+	const query = "SELECT 'test' AS \"example\"";
 
-	beforeAll(async () => {
-		config = await getConfig();
+	describe("MSSQL Connection", () => {
+		beforeAll(async () => {
+			const DB_CLIENT = "mssql";
+			const DB_CONNECTION_STRING =
+				"Server=localhost,1433;Database=master;User Id=sa;Password=Password!;Encrypt=true;TrustServerCertificate=true;";
+			Object.assign(process.env, {
+				DB_CLIENT,
+				DB_CONNECTION_STRING,
+			});
+			config = await getConfig();
 
-		server = Fastify();
-		server.register(plugin, config);
-		server.route({
-			method: "GET",
-			url: "/",
-			handler: async () => {
-				const fakeClient = await server.db.connect();
-				return fakeClient.query(query);
-			},
+			server = Fastify();
+			server.register(plugin, config.database);
+			server.route({
+				method: "GET",
+				url: "/",
+				handler: async () => {
+					const results = await server.db.query(query);
+					return results;
+				},
+			});
+
+			await server.ready();
 		});
 
-		await server.ready();
-		server.db.connect = jest.fn();
-	});
-
-	afterAll(async () => {
-		await server.close();
-	});
-
-	test("Should instrument request with db plugin", async () => {
-		const result = faker.lorem.word();
-
-		client.query.mockResolvedValue(result);
-		server.db.connect.mockResolvedValue(client);
-
-		const response = await server.inject({
-			method: "GET",
-			url: "/",
+		afterAll(async () => {
+			await server.close();
 		});
 
-		expect(response.statusCode).toEqual(200);
-		expect(response.payload).toEqual(result);
-		expect(client.query).toHaveBeenNthCalledWith(1, query);
+		test("Should return 'test' string", async () => {
+			const response = await server.inject({
+				method: "GET",
+				url: "/",
+			});
+
+			expect(
+				JSON.parse(response.payload).recordsets[0][0].example
+			).toEqual("test");
+			expect(response.statusCode).toEqual(200);
+		});
+	});
+
+	describe("PostgreSQL Connection", () => {
+		beforeAll(async () => {
+			const DB_CLIENT = "postgresql";
+			const DB_CONNECTION_STRING =
+				"postgresql://postgres:password@localhost:5432/postgres";
+			Object.assign(process.env, {
+				DB_CLIENT,
+				DB_CONNECTION_STRING,
+			});
+			config = await getConfig();
+
+			server = Fastify();
+			server.register(plugin, config.database);
+			server.route({
+				method: "GET",
+				url: "/",
+				handler: async () => {
+					const results = await server.db.query(query);
+					return results.rows;
+				},
+			});
+
+			await server.ready();
+		});
+
+		afterAll(async () => {
+			await server.close();
+		});
+
+		test("Should return 'test' string", async () => {
+			const response = await server.inject({
+				method: "GET",
+				url: "/",
+			});
+
+			expect(JSON.parse(response.payload)[0].example).toEqual("test");
+			expect(response.statusCode).toEqual(200);
+		});
 	});
 });

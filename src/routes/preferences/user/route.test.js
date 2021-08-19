@@ -1,7 +1,7 @@
 const faker = require("faker/locale/en_GB");
 const Fastify = require("fastify");
 const sensible = require("fastify-sensible");
-const plugin = require(".");
+const route = require(".");
 const getConfig = require("../../../config");
 
 const mockPatientId = faker.datatype.number({
@@ -19,7 +19,7 @@ describe("User Route", () => {
 			config.database.client = "mssql";
 
 			server = Fastify();
-			server.register(sensible).register(plugin, config);
+			server.register(sensible).register(route, config);
 
 			await server.ready();
 		});
@@ -226,7 +226,7 @@ describe("User Route", () => {
 			config.database.client = "postgresql";
 
 			server = Fastify();
-			server.register(sensible).register(plugin, config);
+			server.register(sensible).register(route, config);
 
 			await server.ready();
 		});

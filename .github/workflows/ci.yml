@@ -75,8 +75,28 @@ jobs:
         strategy:
             matrix:
                 node: [14, 16]
-                os: [macos-latest, ubuntu-latest, windows-latest]
+                # Only Linux containers support services currently
+                os: [ubuntu-latest]
         runs-on: ${{ matrix.os }}
+
+        services:
+            postgres:
+                image: postgres:13-alpine
+                env:
+                    POSTGRES_USER: postgres
+                    POSTGRES_DB: postgres
+                    POSTGRES_PASSWORD: password
+                ports:
+                    - 5432:5432
+            mssql:
+                image: mcr.microsoft.com/mssql/server:2019-latest
+                env:
+                    ACCEPT_EULA: Y
+                    SA_PASSWORD: Password!
+                    MSSQL_PID: Express
+                ports:
+                    - 1433:1433
+
         steps:
             - uses: actions/checkout@v2.3.4
             - name: Use Node.js ${{ matrix.node }} on ${{ matrix.os }}
