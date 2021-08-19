@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.0.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.0.0...v6.0.1) (2021-08-19)
+
+
+### Bug Fixes
+
+* **server:** allow bearer token auth to be disabled ([8f9c93f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8f9c93f7dd791ff7f7883580d9fc8fabd4a250e7))
+
+
+### Continuous Integration
+
+* add `postgres` and `mssql` services; only test on ubuntu ([af81bec](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/af81bec3d25305ebff7303cdc41c11222ee540aa))
+
+
+### Miscellaneous
+
+* declare postgres db name ([a38d0b7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a38d0b76fa14f07e53a869c02ca0362d3f5ce49e))
+* **docker-compose:** add postgresql image ([eb21290](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/eb21290663358b2d4193f2b0b8d0889dfe7b06e4))
+* **env.template:** use double quotes ([2afc0fb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2afc0fbd5a96b88f686fe3e0bbfe3ec7a74e1f25))
+* **package:** add docker test db scripts ([1e7c006](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1e7c00622a6e63c7b3a6a1eae905d6fd0b35a8e5))
+* **sql/mssql:** add database creation and use statements ([e7896bc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e7896bc35b5868c8e1574513a6271a08e7f9e8f5))
+
+
+### Documentation
+
+* **contributing:** add links to mentioned applications ([219c3ca](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/219c3caa6a16a9d1d7537bf57c99846ca0cd68a8))
+* **contributing:** add mention of docker test db scripts ([13e0566](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/13e0566495454ddc203832272d526113956fa3c6))
+* **readme:** add mention of docker container images ([fbcab9d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fbcab9dfd54ca999712ccf243b1a22159bd31662))
+
+
+### Dependencies
+
+* **deps:** bump fastify-rate-limit from 5.6.0 to 5.6.1 ([3618358](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/361835869dd8640473f57eaa4742451af5afc6b4))
+* **deps:** bump fastify-swagger from 4.8.4 to 4.9.0 ([d40b315](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d40b3155451cf81e59f12690e6ba397e9f56238b))
+
 ## [6.0.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v5.0.0...v6.0.0) (2021-08-17)
 
 
