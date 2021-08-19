@@ -15,10 +15,10 @@ Other processes and specifications that are in use in this repository are:
 
 ## Getting Started
 
-As noted in the prerequisites section of the readme file, this project requires that you have Node.js installed.
+As noted in the prerequisites section of the readme file, this project requires that you have [Node.js](https://nodejs.org/en/) installed.
 
-You will also need an instance of either SQL Server or PostgreSQL deployed and running.
-If you have Docker installed, there are commands available in [package.json](./package.json) (all beginning with `test:db`) that will help easily with building, starting, stopping, and removing test instances of SQL Server and PostgreSQL.
+You will also need an instance of either [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) or [PostgreSQL](https://www.postgresql.org/download/) deployed and running.
+If you have [Docker](https://www.docker.com/products) installed, there are commands available in [package.json](./package.json) (all beginning with `test:db`) that will help easily with building, starting, stopping, and removing test instances of SQL Server and PostgreSQL.
 
 With those in place, you can fork the repository, clone it, and then run `npm install` to install all development dependencies.
 Make a copy of `.env.template` in the root directory and rename it to `.env`, configuring the environment variables as required.
