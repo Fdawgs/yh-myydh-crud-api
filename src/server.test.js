@@ -178,7 +178,7 @@ describe("Server Deployment", () => {
 			Object.assign(process.env, {
 				DB_CLIENT: "postgresql",
 				DB_CONNECTION_STRING:
-					"postgresql://postgres:password@localhost:5432/postgres",
+					"postgresql://postgres:password@localhost:5432/myydh_crud_api",
 			});
 		});
 

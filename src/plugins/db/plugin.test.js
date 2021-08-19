@@ -54,7 +54,7 @@ describe("DB Plugin", () => {
 		beforeAll(async () => {
 			const DB_CLIENT = "postgresql";
 			const DB_CONNECTION_STRING =
-				"postgresql://postgres:password@localhost:5432/postgres";
+				"postgresql://postgres:password@localhost:5432/myydh_crud_api";
 			Object.assign(process.env, {
 				DB_CLIENT,
 				DB_CONNECTION_STRING,
