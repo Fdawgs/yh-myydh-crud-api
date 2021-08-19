@@ -1,6 +1,6 @@
 const Fastify = require("fastify");
 const sensible = require("fastify-sensible");
-const plugin = require(".");
+const route = require(".");
 const getConfig = require("../../../config");
 
 describe("Options Route", () => {
@@ -13,7 +13,7 @@ describe("Options Route", () => {
 			config.database.client = "mssql";
 
 			server = Fastify();
-			server.register(sensible).register(plugin, config);
+			server.register(sensible).register(route, config);
 
 			await server.ready();
 		});
@@ -109,7 +109,7 @@ describe("Options Route", () => {
 			config.database.client = "postgresql";
 
 			server = Fastify();
-			server.register(sensible).register(plugin, config);
+			server.register(sensible).register(route, config);
 
 			await server.ready();
 		});
