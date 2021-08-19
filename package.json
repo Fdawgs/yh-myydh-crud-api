@@ -24,7 +24,15 @@
     "prepare": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks",
     "start": "node .",
     "start:dev": "nodemon",
-    "test": "npm run lint && npm run jest"
+    "test": "npm run lint && npm run jest",
+    "test:db:mssql:build": "docker run -p 1433:1433 --name ydh-myydh-crud-api-mssql -e ACCEPT_EULA=Y -e SA_PASSWORD=Password! -e MSSQL_PID=Express -d mcr.microsoft.com/mssql/server:2019-latest",
+    "test:db:mssql:down": "docker stop ydh-myydh-crud-api-mssql",
+    "test:db:mssql:nuke": "docker stop ydh-myydh-crud-api-mssql && docker rm -v ydh-myydh-crud-api-mssql",
+    "test:db:mssql:up": "docker start ydh-myydh-crud-api-mssql",
+    "test:db:postgres:build": "docker run -p 5432:5432 --name ydh-myydh-crud-api-postgres -e POSTGRES_DB=myydh_crud_api -e POSTGRES_PASSWORD=password -d postgres:13-alpine",
+    "test:db:postgres:down": "docker stop ydh-myydh-crud-api-postgres",
+    "test:db:postgres:nuke": "docker stop ydh-myydh-crud-api-postgres && docker rm -v ydh-myydh-crud-api-postgres",
+    "test:db:postgres:up": "docker start ydh-myydh-crud-api-postgres"
   },
   "commitlint": {
     "extends": [

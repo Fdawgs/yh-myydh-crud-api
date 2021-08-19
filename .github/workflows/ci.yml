@@ -83,8 +83,8 @@ jobs:
             postgres:
                 image: postgres:13-alpine
                 env:
+                    POSTGRES_DB: myydh_crud_api
                     POSTGRES_USER: postgres
-                    POSTGRES_DB: postgres
                     POSTGRES_PASSWORD: password
                 ports:
                     - 5432:5432

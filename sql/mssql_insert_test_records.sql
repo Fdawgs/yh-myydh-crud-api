@@ -4,6 +4,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+USE myydh_crud_api;
+GO
+
 INSERT INTO lookup.preference_type
     (preference_type)
 VALUES

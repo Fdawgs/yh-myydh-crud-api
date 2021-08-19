@@ -17,7 +17,7 @@ This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s RESTfu
 ## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/)
--   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) or [PostgreSQL](https://www.postgresql.org/download/)
+-   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) or [PostgreSQL](https://www.postgresql.org/download/) (either as services/instances or Docker containers)
 
 ### Database Setup
 

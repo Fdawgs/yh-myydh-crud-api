@@ -1,4 +1,16 @@
 services:
+    db:
+        container_name: ydh-myydh-crud-api-db
+        image: postgres:13-alpine
+        environment:
+            POSTGRES_DB: myydh_crud_api
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+        ports:
+            - 5432:5432
+        volumes:
+            - ydh-myydh-crud-api-db-data:/var/lib/postgresql/data
+
     app:
         container_name: ydh-myydh-crud-api
         build:
@@ -33,3 +45,7 @@ services:
         ports:
             - "127.0.0.1:${SERVICE_PORT:-8204}:${SERVICE_PORT:-8204}"
         restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
+
+volumes:
+    ydh-myydh-crud-api-db-data:
+        external: false
