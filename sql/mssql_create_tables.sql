@@ -4,6 +4,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+CREATE DATABASE myydh_crud_api;
+GO
+
+USE myydh_crud_api;
+GO
+
 CREATE SCHEMA lookup;
 GO
 
