@@ -154,27 +154,20 @@ const registerGetSchema = {
 						)
 						.prop("total_pages", S.number().examples([1, 10]))
 				)
-			),
-		404: S.object()
-			.prop("statusCode", S.number().const(404))
-			.prop("error", S.string().const("Not Found"))
-			.prop(
-				"message",
-				S.string().const("Invalid or expired search results")
-			),
+			)
+			.description("OK"),
+		404: S.ref("responses#/definitions/notFoundDbResults").description(
+			"Not Found"
+		),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
 		),
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.object()
-			.prop("statusCode", S.number().const(500))
-			.prop("error", S.string().const("Internal Server Error"))
-			.prop(
-				"message",
-				S.string().const("Unable to return result(s) from database")
-			),
+		500: S.ref(
+			"responses#/definitions/internalServerErrorDbResults"
+		).description("Internal Server Error"),
 	},
 };
 

@@ -15,69 +15,66 @@ const optionsGetSchema = {
 	operationId: "getOptions",
 	produces: ["application/json"],
 	response: {
-		200: S.object().prop(
-			"preferences",
-			S.array()
-				.items(
-					S.object().prop(
-						"type",
-						S.object()
-							.prop(
-								"display",
-								S.string().enum([
-									"SMS",
-									"Email",
-									"Phone",
-									"Letters",
-								])
-							)
-							.prop("id", S.number().enum([1, 2, 3, 4]))
-							.prop("priority", S.number().enum([0, 1, 2, 3]))
-							.prop("selected", S.number().enum([1, 2]))
-							.prop(
-								"options",
-								S.array()
-									.items(
-										S.object()
-											.prop(
-												"display",
-												S.string().enum(["yes", "no"])
-											)
-											.prop(
-												"value",
-												S.number().enum([1, 2])
-											)
-									)
-									.minItems(2)
-									.maxItems(2)
-									.uniqueItems(true)
-							)
-					)
-				)
-				.minItems(1)
-				.maxItems(4)
-				.uniqueItems(true)
-		),
-		404: S.object()
-			.prop("statusCode", S.number().const(404))
-			.prop("error", S.string().const("Not Found"))
+		200: S.object()
 			.prop(
-				"message",
-				S.string().const("Invalid or expired search results")
-			),
+				"preferences",
+				S.array()
+					.items(
+						S.object().prop(
+							"type",
+							S.object()
+								.prop(
+									"display",
+									S.string().enum([
+										"SMS",
+										"Email",
+										"Phone",
+										"Letters",
+									])
+								)
+								.prop("id", S.number().enum([1, 2, 3, 4]))
+								.prop("priority", S.number().enum([0, 1, 2, 3]))
+								.prop("selected", S.number().enum([1, 2]))
+								.prop(
+									"options",
+									S.array()
+										.items(
+											S.object()
+												.prop(
+													"display",
+													S.string().enum([
+														"yes",
+														"no",
+													])
+												)
+												.prop(
+													"value",
+													S.number().enum([1, 2])
+												)
+										)
+										.minItems(2)
+										.maxItems(2)
+										.uniqueItems(true)
+								)
+						)
+					)
+					.minItems(1)
+					.maxItems(4)
+					.uniqueItems(true)
+			)
+			.description("OK"),
+		404: S.ref("responses#/definitions/notFoundDbResults").description(
+			"Not Found"
+		),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
 		),
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.object()
-			.prop("statusCode", S.number().const(500))
-			.prop("error", S.string().const("Internal Server Error"))
-			.prop(
-				"message",
-				S.string().const("Unable to return result(s) from database")
-			),
+		500: S.ref(
+			"responses#/definitions/internalServerErrorDbResults"
+		).description("Internal Server Error"),
 	},
 };
 

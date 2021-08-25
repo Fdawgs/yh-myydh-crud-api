@@ -31,29 +31,19 @@ const receiptDeleteSchema = {
 		)
 		.required(["patientId"]),
 	response: {
-		204: S.string().raw({ nullable: true }),
-		404: S.object()
-			.prop("statusCode", S.number().const(404))
-			.prop("error", S.string().const("Not Found"))
-			.prop(
-				"message",
-				S.string().const(
-					"Record does not exist or has already been deleted"
-				)
-			),
+		204: S.string().raw({ nullable: true }).description("No Content"),
+		404: S.ref("responses#/definitions/notFoundDbResults").description(
+			"Not Found"
+		),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
 		),
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.object()
-			.prop("statusCode", S.number().const(500))
-			.prop("error", S.string().const("Internal Server Error"))
-			.prop(
-				"message",
-				S.string().const("Unable to delete read receipt from database")
-			),
+		500: S.ref(
+			"responses#/definitions/internalServerErrorDbResults"
+		).description("Internal Server Error"),
 	},
 };
 
@@ -84,20 +74,16 @@ const receiptPutSchema = {
 		)
 		.required(["patientId", "timestamp"]),
 	response: {
-		204: S.string().raw({ nullable: true }),
+		204: S.string().raw({ nullable: true }).description("No Content"),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
 		),
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.object()
-			.prop("statusCode", S.number().const(500))
-			.prop("error", S.string().const("Internal Server Error"))
-			.prop(
-				"message",
-				S.string().const("Unable to update read receipt in database")
-			),
+		500: S.ref(
+			"responses#/definitions/internalServerErrorDbResults"
+		).description("Internal Server Error"),
 	},
 };
 

@@ -84,24 +84,20 @@ const userGetSchema = {
 					.minItems(1)
 					.maxItems(4)
 					.uniqueItems(true)
-			),
-		404: S.object()
-			.prop("statusCode", S.number().const(404))
-			.prop("error", S.string().const("Not Found"))
-			.prop("message", S.string().const("User not found")),
+			)
+			.description("OK"),
+		404: S.ref("responses#/definitions/notFoundDbResults").description(
+			"Not Found"
+		),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
 		),
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.object()
-			.prop("statusCode", S.number().const(500))
-			.prop("error", S.string().const("Internal Server Error"))
-			.prop(
-				"message",
-				S.string().const("Unable to return result(s) from database")
-			),
+		500: S.ref(
+			"responses#/definitions/internalServerErrorDbResults"
+		).description("Internal Server Error"),
 	},
 };
 
@@ -133,22 +129,16 @@ const userPutSchema = {
 		)
 		.required("preferences"),
 	response: {
-		204: S.string().raw({ nullable: true }),
+		204: S.string().raw({ nullable: true }).description("No Content"),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
 		),
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.object()
-			.prop("statusCode", S.number().const(500))
-			.prop("error", S.string().const("Internal Server Error"))
-			.prop(
-				"message",
-				S.string().const(
-					"Unable to update patient preference in database"
-				)
-			),
+		500: S.ref(
+			"responses#/definitions/internalServerErrorDbResults"
+		).description("Internal Server Error"),
 	},
 };
 

@@ -38,6 +38,42 @@ async function plugin(server) {
 					)
 					.description("Too Many Requests")
 			)
+			.definition(
+				"internalServerErrorDbResults",
+				S.object()
+					.id("#internalServerErrorDbResults")
+					.title("500 Internal Server Error Response")
+					.prop("statusCode", S.number().const(500))
+					.prop("error", S.string().const("Internal Server Error"))
+					.prop(
+						"message",
+						S.string().enum([
+							"Unable to delete read receipt from database",
+							"Unable to return result(s) from database",
+							"Unable to update patient preference in database",
+							"Unable to update read receipt in database",
+						])
+					)
+					.description("Internal Server Error")
+			)
+
+			.definition(
+				"notFoundDbResults",
+				S.object()
+					.id("#notFoundDbResults")
+					.title("404 Not Found Response")
+					.prop("statusCode", S.number().const(404))
+					.prop("error", S.string().const("Not Found"))
+					.prop(
+						"message",
+						S.string().enum([
+							"Invalid or expired search results",
+							"Record does not exist or has already been deleted",
+							"User not found",
+						])
+					)
+					.description("Internal Server Error")
+			)
 	);
 }
 
