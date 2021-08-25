@@ -16,7 +16,7 @@ const healthcheckGetSchema = {
 	operationId: "getHealthcheck",
 	produces: ["text/plain"],
 	response: {
-		200: S.string().const("ok").description("OK"),
+		200: S.string().const("ok"),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
 		),

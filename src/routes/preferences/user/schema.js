@@ -85,8 +85,7 @@ const userGetSchema = {
 					.minItems(1)
 					.maxItems(4)
 					.uniqueItems(true)
-			)
-			.description("OK"),
+			),
 		404: S.ref("responses#/definitions/notFoundDbResults").description(
 			"Not Found"
 		),

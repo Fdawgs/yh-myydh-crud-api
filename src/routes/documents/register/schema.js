@@ -155,8 +155,7 @@ const registerGetSchema = {
 						)
 						.prop("total_pages", S.number().examples([1, 10]))
 				)
-			)
-			.description("OK"),
+			),
 		404: S.ref("responses#/definitions/notFoundDbResults").description(
 			"Not Found"
 		),
