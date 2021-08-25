@@ -213,9 +213,6 @@ async function getConfig() {
 			timeWindow: 60000,
 		},
 		swagger: {
-			routePrefix: "/docs",
-			exposeRoute: true,
-			staticCSP: true,
 			openapi: {
 				info: {
 					title: name,
