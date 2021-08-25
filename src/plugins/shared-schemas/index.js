@@ -21,7 +21,6 @@ async function plugin(server) {
 					.prop("statusCode", S.number().const(406))
 					.prop("error", S.string().const("Not Acceptable"))
 					.prop("message", S.string().const("Not Acceptable"))
-					.description("Not Acceptable")
 			)
 			.definition(
 				"tooManyRequests",
@@ -36,7 +35,6 @@ async function plugin(server) {
 							"Rate limit exceeded, retry in 1 minute",
 						])
 					)
-					.description("Too Many Requests")
 			)
 			.definition(
 				"internalServerErrorDbResults",
@@ -54,7 +52,6 @@ async function plugin(server) {
 							"Unable to update read receipt in database",
 						])
 					)
-					.description("Internal Server Error")
 			)
 
 			.definition(
@@ -72,7 +69,6 @@ async function plugin(server) {
 							"User not found",
 						])
 					)
-					.description("Internal Server Error")
 			)
 	);
 }

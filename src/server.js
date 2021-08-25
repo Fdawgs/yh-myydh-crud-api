@@ -11,10 +11,31 @@ const flocOff = require("fastify-floc-off");
 const helmet = require("fastify-helmet");
 const rateLimit = require("fastify-rate-limit");
 const sensible = require("fastify-sensible");
+const staticPlugin = require("fastify-static");
 const swagger = require("fastify-swagger");
 const underPressure = require("under-pressure");
 const db = require("./plugins/db");
 const sharedSchemas = require("./plugins/shared-schemas");
+
+// Helmet config
+const helmetConfig = {
+	contentSecurityPolicy: {
+		directives: {
+			"default-src": ["'self'"],
+			"base-uri": ["'self'"],
+			"img-src": ["'self'", "data:"],
+			"object-src": ["'none'"],
+			"child-src": ["'self'"],
+			"frame-ancestors": ["'none'"],
+			"form-action": ["'self'"],
+			"upgrade-insecure-requests": [],
+			"block-all-mixed-content": [],
+		},
+	},
+	hsts: {
+		maxAge: 31536000,
+	},
+};
 
 /**
  * @author Frazer Smith
@@ -38,24 +59,7 @@ async function plugin(server, config) {
 		.register(flocOff)
 
 		// Use Helmet to set response security headers: https://helmetjs.github.io/
-		.register(helmet, {
-			contentSecurityPolicy: {
-				directives: {
-					"default-src": ["'self'"],
-					"base-uri": ["'self'"],
-					"img-src": ["'self'", "data:"],
-					"object-src": ["'none'"],
-					"child-src": ["'self'"],
-					"frame-ancestors": ["'none'"],
-					"form-action": ["'self'"],
-					"upgrade-insecure-requests": [],
-					"block-all-mixed-content": [],
-				},
-			},
-			hsts: {
-				maxAge: 31536000,
-			},
-		})
+		.register(helmet, helmetConfig)
 
 		// Rate limiting and 429 response handling
 		.register(rateLimit, config.rateLimit)
@@ -69,18 +73,36 @@ async function plugin(server, config) {
 		// Process load and 503 response handling
 		.register(underPressure, config.processLoad)
 
-		// Enable Swagger/OpenAPI routes
+		// Register static files in ./src/public
+		.register(staticPlugin, {
+			root: path.join(__dirname, "public"),
+		})
+
+		// Register redoc module to allow for js to be used in ./src/public/docs.html
+		.register(staticPlugin, {
+			root: path.join(
+				__dirname,
+				"..",
+				"node_modules",
+				"redoc",
+				"bundles"
+			),
+			prefix: "/redoc/",
+			decorateReply: false,
+		})
+
+		// Generate OpenAPI/Swagger schemas
 		.register(swagger, config.swagger)
 
 		// Import and register admin routes
 		.register(autoLoad, {
 			dir: path.join(__dirname, "routes"),
-			ignorePattern: /(documents|preferences)/,
+			ignorePattern: /(docs|documents|preferences)/,
 			options: config,
 		})
 
 		/**
-		 * Encapsulate plugins and routes into secured child context, so that swagger and healthcheck
+		 * Encapsulate plugins and routes into secured child context, so that admin and docs
 		 * routes do not inherit `accepts` preHandler or bearer token auth plugin.
 		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
 		 */
@@ -106,7 +128,33 @@ async function plugin(server, config) {
 				// Import and register service routes
 				.register(autoLoad, {
 					dir: path.join(__dirname, "routes"),
-					ignorePattern: /admin/,
+					ignorePattern: /(admin|docs)/,
+					options: config,
+				});
+		})
+
+		/**
+		 * Encapsulate the doc routes into a secured child context, so that
+		 * the CSP can be relaxed without impacting security of other routes
+		 */
+		.register(async (publicContext) => {
+			const relaxedHelmetConfig = JSON.parse(
+				JSON.stringify(helmetConfig)
+			);
+			Object.assign(
+				relaxedHelmetConfig.contentSecurityPolicy.directives,
+				{
+					"script-src": ["'self'", "'unsafe-inline'"],
+					"style-src": ["'self'", "'unsafe-inline'"],
+					"child-src": ["'self'", "blob:"],
+				}
+			);
+
+			publicContext
+				.register(helmet, relaxedHelmetConfig)
+				.register(autoLoad, {
+					dir: path.join(__dirname, "routes"),
+					ignorePattern: /(admin|documents|preferences)/,
 					options: config,
 				});
 		});

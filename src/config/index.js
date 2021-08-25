@@ -7,7 +7,7 @@ const fsp = require("fs").promises;
 const pino = require("pino");
 const rotatingLogStream = require("file-stream-rotator");
 
-const { name, description, license, version } = require("../../package.json");
+const { license, version } = require("../../package.json");
 
 /**
  * @author Frazer Smith
@@ -213,13 +213,11 @@ async function getConfig() {
 			timeWindow: 60000,
 		},
 		swagger: {
-			routePrefix: "/docs",
-			exposeRoute: true,
-			staticCSP: true,
 			openapi: {
 				info: {
-					title: name,
-					description,
+					title: "YDH MyYDH CRUD API",
+					description:
+						'This is <a href="https://yeovilhospital.co.uk/">Yeovil District Hospital NHSFT</a>\'s RESTful API, a Node.js application using the <a href="https://www.fastify.io/">Fastify web framework</a>, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the MyYDH patient and clinician app at https://my.ydh.nhs.uk.',
 					contact: {
 						name: "Solutions Development Team",
 						email: "servicedesk@ydh.nhs.uk",
@@ -229,6 +227,13 @@ async function getConfig() {
 						url: "https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/master/LICENSE",
 					},
 					version,
+					// Redoc specific extension to support loading image in docs
+					"x-logo": {
+						url: "/images/ydh-y-logo-transparent-background-wide-canvas.png",
+						backgroundColor: "#6D3176",
+						altText:
+							"Yeovil District Hospital NHS Foundation Trust Logo",
+					},
 				},
 				components: {},
 				tags: [
