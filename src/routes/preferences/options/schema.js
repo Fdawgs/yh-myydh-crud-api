@@ -71,6 +71,9 @@ const optionsGetSchema = {
 		500: S.ref(
 			"responses#/definitions/internalServerErrorDbResults"
 		).description("Internal Server Error"),
+		503: S.ref("responses#/definitions/serviceUnavailable").description(
+			"Service Unavailable"
+		),
 	},
 };
 
