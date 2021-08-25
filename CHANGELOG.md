@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.1.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.0.1...v6.1.0) (2021-08-25)
+
+
+### Features
+
+* **routes/docs:** replace swagger ui with redoc ui ([#357](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/357)) ([4288f13](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4288f13b0a5167f09acd2d537ea0c008ca818d37))
+
+
+### Bug Fixes
+
+* add 503 response schema ([67f9a16](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/67f9a167e673aab29e821abf22e939d4f477c10d))
+
+
+### Documentation
+
+* **readme:** add note regarding log retention for nhs digital ([fe194d0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fe194d0697955d5fc5aa76b9d175294d4a9e3cfa))
+
+
+### Improvements
+
+* add clearer summaries and descriptions for route schemas ([bf908cb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/bf908cbfe5d6bc00cd72908f379a35e9cd1110b2))
+* add shared 406 and 429 response schemas ([dcbe29f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/dcbe29f6a85b102c248d5c2dda9e8235ab980122))
+* move 404 and 500 responses to `shared-schema` plugin ([d7b7825](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d7b7825bf0452a4649eaaf0d21be5739e445589a))
+
+
+### Miscellaneous
+
+* **config:** remove excess word in inline comment ([35d7fd7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/35d7fd70fe64b8ad6afd6918c2b95be59f985119))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-import from 2.24.0 to 2.24.2 ([f19ad66](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f19ad66851317bdb7bdd97165f4bf3f43f051c91))
+* **deps-dev:** bump eslint-plugin-jsdoc from 36.0.7 to 36.0.8 ([b9d312a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b9d312a7d8060386fbe3563b51681557c0123d87))
+* **deps-dev:** bump husky from 7.0.1 to 7.0.2 ([efb4c0b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/efb4c0b66beaa44b387d7d3426115058604d1b2f))
+* **deps:** bump actions/github-script from 4.0.2 to 4.1 ([7c357cb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7c357cb53b76a6fb5e3d5f86ee677a4ff8d9dcdc))
+* **deps:** bump fastify-autoload from 3.8.0 to 3.8.1 ([2f3c5d7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2f3c5d752481ceac8e4e31097d481dc86e67f4bc))
+* **deps:** bump mssql from 7.2.0 to 7.2.1 ([222f423](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/222f42365e06984ee3a0238a8fbc3bb687762e00))
+* **deps:** bump pino from 6.13.0 to 6.13.1 ([e624a0c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e624a0c049d03c846ea3228dc997aee1e7aacad7))
+* **deps:** bump pino-pretty from 5.1.3 to 6.0.0 ([ae6909d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ae6909dd52466762a28b0f2fe37bd2290d28ecb7))
+* **deps:** bump sub dependencies ([1bfe809](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1bfe8096888e1c38eac7183c58ab86cb55e24daa))
+
 ### [6.0.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.0.0...v6.0.1) (2021-08-19)
 
 
