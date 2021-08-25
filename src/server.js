@@ -14,6 +14,7 @@ const sensible = require("fastify-sensible");
 const swagger = require("fastify-swagger");
 const underPressure = require("under-pressure");
 const db = require("./plugins/db");
+const sharedSchemas = require("./plugins/shared-schemas");
 
 /**
  * @author Frazer Smith
@@ -61,6 +62,9 @@ async function plugin(server, config) {
 
 		// Utility functions and error handlers
 		.register(sensible)
+
+		// Re-usable schemas
+		.register(sharedSchemas)
 
 		// Process load and 503 response handling
 		.register(underPressure, config.processLoad)

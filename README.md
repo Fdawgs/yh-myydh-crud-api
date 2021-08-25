@@ -36,6 +36,12 @@ Perform the following steps before deployment:
 4. Make a copy of `.env.template` in the root directory and rename it to `.env`
 5. Configure the application using the environment variables in `.env`
 
+**Note:** Set the following environment variables in `.env` to meet NHS Digital's recommendation to retain 6 months' worth of logs:
+
+-   `LOG_ROTATION_DATE_FORMAT="YYYY-MM-DD"`
+-   `LOG_ROTATION_FREQUENCY="daily"`
+-   `LOG_ROTATION_MAX_LOGS="180"`
+
 ## Deployment
 
 ### Standard Deployment

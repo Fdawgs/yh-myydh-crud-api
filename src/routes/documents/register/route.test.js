@@ -3,6 +3,7 @@ const Fastify = require("fastify");
 const sensible = require("fastify-sensible");
 const route = require(".");
 const getConfig = require("../../../config");
+const sharedSchemas = require("../../../plugins/shared-schemas");
 
 const mockPage = faker.datatype.number({
 	min: 1,
@@ -67,7 +68,10 @@ describe("Register Route", () => {
 			config.database.client = "mssql";
 
 			server = Fastify();
-			server.register(sensible).register(route, config);
+			server
+				.register(sensible)
+				.register(sharedSchemas)
+				.register(route, config);
 
 			await server.ready();
 		});
@@ -207,7 +211,10 @@ describe("Register Route", () => {
 			config.database.client = "postgresql";
 
 			server = Fastify();
-			server.register(sensible).register(route, config);
+			server
+				.register(sensible)
+				.register(sharedSchemas)
+				.register(route, config);
 
 			await server.ready();
 		});
