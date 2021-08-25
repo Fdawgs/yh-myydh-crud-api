@@ -10,7 +10,8 @@ const tags = ["Contact Preferences"];
  */
 const userGetSchema = {
 	tags,
-	summary: "Retrieve list of patient contact preferences",
+	summary: "Inspect user contact preferences",
+	description: "Returns an individual user's contact preferences by ID.",
 	operationId: "getUserOptions",
 	produces: ["application/json"],
 	params: S.object().prop(
@@ -103,7 +104,9 @@ const userGetSchema = {
 
 const userPutSchema = {
 	tags,
-	summary: "Create or update list of patient contact preferences",
+	summary: "Create or update a user's contact preferences",
+	description:
+		"Performs an upsert to create or update a user's contact preferences.",
 	operationId: "createUserOptions",
 	params: S.object().prop(
 		"id",

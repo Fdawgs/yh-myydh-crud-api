@@ -10,8 +10,9 @@ const tags = ["Contact Preferences"];
  */
 const optionsGetSchema = {
 	tags,
-	summary:
-		"Retrieve default available list of patient contact preferences that can be set",
+	summary: "List preference options",
+	description:
+		"Returns the default list of patient contact preferences that can be set.",
 	operationId: "getOptions",
 	produces: ["application/json"],
 	response: {

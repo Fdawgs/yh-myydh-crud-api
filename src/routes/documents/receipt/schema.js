@@ -10,7 +10,8 @@ const tags = ["Documents"];
  */
 const receiptDeleteSchema = {
 	tags,
-	summary: "Delete document read receipt",
+	summary: "Delete receipt",
+	description: "Delete a document read receipt.",
 	operationId: "deleteReceipt",
 	params: S.object()
 		.prop(
@@ -49,7 +50,8 @@ const receiptDeleteSchema = {
 
 const receiptPutSchema = {
 	tags,
-	summary: "Create or update read receipt",
+	summary: "Create or update a read receipt",
+	description: "Performs an upsert to create or update a read receipt.",
 	operationId: "createReceipt",
 	params: S.object()
 		.prop(

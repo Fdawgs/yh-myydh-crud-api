@@ -10,7 +10,8 @@ const tags = ["Documents"];
  */
 const registerGetSchema = {
 	tags,
-	summary: "Retrieve document metadata from register",
+	summary: "List document metadata",
+	description: "Returns document metadata from register.",
 	operationId: "getRegister",
 	produces: ["application/json"],
 	query: S.object()
