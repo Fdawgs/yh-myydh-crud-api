@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.0.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.0.1...v6.0.2) (2021-08-25)
+
+
+### Documentation
+
+* **readme:** add note regarding log retention for nhs digital ([fe194d0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fe194d0697955d5fc5aa76b9d175294d4a9e3cfa))
+
+
+### Improvements
+
+* add clearer summaries and descriptions for route schemas ([bf908cb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/bf908cbfe5d6bc00cd72908f379a35e9cd1110b2))
+* add shared 406 and 429 response schemas ([dcbe29f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/dcbe29f6a85b102c248d5c2dda9e8235ab980122))
+* move 404 and 500 responses to `shared-schema` plugin ([d7b7825](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d7b7825bf0452a4649eaaf0d21be5739e445589a))
+
 ### [6.0.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.0.0...v6.0.1) (2021-08-19)
 
 
