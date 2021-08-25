@@ -89,6 +89,12 @@ const userGetSchema = {
 			.prop("statusCode", S.number().const(404))
 			.prop("error", S.string().const("Not Found"))
 			.prop("message", S.string().const("User not found")),
+		406: S.ref("responses#/definitions/notAcceptable").description(
+			"Not Acceptable"
+		),
+		429: S.ref("responses#/definitions/tooManyRequests").description(
+			"Too Many Requests"
+		),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
@@ -128,6 +134,12 @@ const userPutSchema = {
 		.required("preferences"),
 	response: {
 		204: S.string().raw({ nullable: true }),
+		406: S.ref("responses#/definitions/notAcceptable").description(
+			"Not Acceptable"
+		),
+		429: S.ref("responses#/definitions/tooManyRequests").description(
+			"Too Many Requests"
+		),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))

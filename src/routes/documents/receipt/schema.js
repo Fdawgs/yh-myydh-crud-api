@@ -41,6 +41,12 @@ const receiptDeleteSchema = {
 					"Record does not exist or has already been deleted"
 				)
 			),
+		406: S.ref("responses#/definitions/notAcceptable").description(
+			"Not Acceptable"
+		),
+		429: S.ref("responses#/definitions/tooManyRequests").description(
+			"Too Many Requests"
+		),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
@@ -79,6 +85,12 @@ const receiptPutSchema = {
 		.required(["patientId", "timestamp"]),
 	response: {
 		204: S.string().raw({ nullable: true }),
+		406: S.ref("responses#/definitions/notAcceptable").description(
+			"Not Acceptable"
+		),
+		429: S.ref("responses#/definitions/tooManyRequests").description(
+			"Too Many Requests"
+		),
 		500: S.object()
 			.prop("statusCode", S.number().const(500))
 			.prop("error", S.string().const("Internal Server Error"))
