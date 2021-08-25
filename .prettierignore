@@ -125,3 +125,6 @@ yarn.lock
 
 # Test files
 test_resources/test_log*
+
+# Public files
+src/public/**/*.html
