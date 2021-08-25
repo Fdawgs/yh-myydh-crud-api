@@ -14,6 +14,22 @@ async function plugin(server) {
 			.title("Responses")
 			.description("Common response schemas")
 			.definition(
+				"notFoundDbResults",
+				S.object()
+					.id("#notFoundDbResults")
+					.title("404 Not Found Response")
+					.prop("statusCode", S.number().const(404))
+					.prop("error", S.string().const("Not Found"))
+					.prop(
+						"message",
+						S.string().enum([
+							"Invalid or expired search results",
+							"Record does not exist or has already been deleted",
+							"User not found",
+						])
+					)
+			)
+			.definition(
 				"notAcceptable",
 				S.object()
 					.id("#notAcceptable")
@@ -53,22 +69,15 @@ async function plugin(server) {
 						])
 					)
 			)
-
 			.definition(
-				"notFoundDbResults",
+				"serviceUnavailable",
 				S.object()
-					.id("#notFoundDbResults")
-					.title("404 Not Found Response")
-					.prop("statusCode", S.number().const(404))
-					.prop("error", S.string().const("Not Found"))
-					.prop(
-						"message",
-						S.string().enum([
-							"Invalid or expired search results",
-							"Record does not exist or has already been deleted",
-							"User not found",
-						])
-					)
+					.id("#serviceUnavailable")
+					.title("503 Service Unavailable")
+					.prop("statusCode", S.number().const(503))
+					.prop("code", S.string().const("FST_UNDER_PRESSURE"))
+					.prop("error", S.string().const("Service Unavailable"))
+					.prop("message", S.string().const("Service Unavailable"))
 			)
 	);
 }

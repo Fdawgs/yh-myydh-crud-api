@@ -98,6 +98,9 @@ const userGetSchema = {
 		500: S.ref(
 			"responses#/definitions/internalServerErrorDbResults"
 		).description("Internal Server Error"),
+		503: S.ref("responses#/definitions/serviceUnavailable").description(
+			"Service Unavailable"
+		),
 	},
 };
 
@@ -141,6 +144,9 @@ const userPutSchema = {
 		500: S.ref(
 			"responses#/definitions/internalServerErrorDbResults"
 		).description("Internal Server Error"),
+		503: S.ref("responses#/definitions/serviceUnavailable").description(
+			"Service Unavailable"
+		),
 	},
 };
 

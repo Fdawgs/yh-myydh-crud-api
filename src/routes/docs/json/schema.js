@@ -19,6 +19,9 @@ const docsJsonGetSchema = {
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
+		503: S.ref("responses#/definitions/serviceUnavailable").description(
+			"Service Unavailable"
+		),
 	},
 };
 
