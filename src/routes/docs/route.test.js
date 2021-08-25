@@ -22,7 +22,6 @@ describe("Docs Route", () => {
 				.register(sensible)
 				.register(staticPlugin, {
 					root: path.join(__dirname, "../..", "public"),
-					prefix: "/public/",
 				})
 				.register(staticPlugin, {
 					root: path.join(

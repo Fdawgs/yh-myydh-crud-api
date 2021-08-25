@@ -76,7 +76,6 @@ async function plugin(server, config) {
 		// Register static files in ./src/public
 		.register(staticPlugin, {
 			root: path.join(__dirname, "public"),
-			prefix: "/public/",
 		})
 
 		// Register redoc module to allow for js to be used in ./src/public/docs.html

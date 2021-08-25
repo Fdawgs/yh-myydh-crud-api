@@ -229,8 +229,8 @@ async function getConfig() {
 					version,
 					// Redoc specific extension to support loading image in docs
 					"x-logo": {
-						url: "public/images/ydh-y-logo-transparent-background-wide-canvas.png",
-						backgroundColor: "#FFFFFF",
+						url: "/images/ydh-y-logo-transparent-background-wide-canvas.png",
+						backgroundColor: "#6D3176",
 						altText:
 							"Yeovil District Hospital NHS Foundation Trust Logo",
 					},
