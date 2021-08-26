@@ -292,6 +292,34 @@ describe("Server Deployment", () => {
 					expect(response.statusCode).toEqual(406);
 				});
 			});
+
+			describe("/preferences/options Route", () => {
+				test("Should return HTTP status code 401 if bearer token invalid", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/preferences/options",
+						headers: {
+							accept: "application/json",
+							authorization: "Bearer invalid",
+						},
+					});
+
+					expect(response.statusCode).toEqual(401);
+				});
+
+				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/preferences/options",
+						headers: {
+							accept: "application/javascript",
+							authorization: "Bearer testtoken",
+						},
+					});
+
+					expect(response.statusCode).toEqual(406);
+				});
+			});
 		});
 	});
 });
