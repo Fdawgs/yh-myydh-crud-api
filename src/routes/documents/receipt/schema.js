@@ -33,6 +33,9 @@ const receiptDeleteSchema = {
 		.required(["patientId"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
+		401: S.ref("responses#/definitions/unauthorized").description(
+			"Unauthorized"
+		),
 		404: S.ref("responses#/definitions/notFoundDbResults").description(
 			"Not Found"
 		),
@@ -42,9 +45,9 @@ const receiptDeleteSchema = {
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.ref(
-			"responses#/definitions/internalServerErrorDbResults"
-		).description("Internal Server Error"),
+		500: S.ref("responses#/definitions/internalServerError").description(
+			"Internal Server Error"
+		),
 		503: S.ref("responses#/definitions/serviceUnavailable").description(
 			"Service Unavailable"
 		),
@@ -80,15 +83,18 @@ const receiptPutSchema = {
 		.required(["patientId", "timestamp"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
+		401: S.ref("responses#/definitions/unauthorized").description(
+			"Unauthorized"
+		),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
 		),
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.ref(
-			"responses#/definitions/internalServerErrorDbResults"
-		).description("Internal Server Error"),
+		500: S.ref("responses#/definitions/internalServerError").description(
+			"Internal Server Error"
+		),
 		503: S.ref("responses#/definitions/serviceUnavailable").description(
 			"Service Unavailable"
 		),

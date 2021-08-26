@@ -110,12 +110,17 @@ async function plugin(server, config) {
 			if (config.bearerTokenAuthKeys) {
 				securedContext.register(bearer, {
 					keys: config.bearerTokenAuthKeys,
+					errorResponse: (err) => ({
+						statusCode: 401,
+						error: "Unauthorized",
+						message: err.message,
+					}),
 				});
 			}
 
 			securedContext
 				// Catch unsupported Accept header media types
-				.addHook("preHandler", async (req, res) => {
+				.addHook("preValidation", async (req, res) => {
 					if (
 						!["application/json"].includes(
 							req.accepts().type(["application/json"])

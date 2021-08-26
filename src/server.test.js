@@ -46,7 +46,10 @@ const expectResHeadersClientError = {
 	pragma: "no-cache",
 	expires: "0",
 	"permissions-policy": "interest-cohort=()",
-	vary: "accept-encoding",
+	vary: "Origin, accept-encoding",
+	"x-ratelimit-limit": expect.any(Number),
+	"x-ratelimit-remaining": expect.any(Number),
+	"x-ratelimit-reset": expect.any(Number),
 	"content-type": "application/json; charset=utf-8",
 	"content-length": expect.any(String),
 	date: expect.any(String),
@@ -286,6 +289,34 @@ describe("Server Deployment", () => {
 					expect(response.headers).toEqual(
 						expect.objectContaining(expectResHeadersClientError)
 					);
+					expect(response.statusCode).toEqual(406);
+				});
+			});
+
+			describe("/preferences/options Route", () => {
+				test("Should return HTTP status code 401 if bearer token invalid", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/preferences/options",
+						headers: {
+							accept: "application/json",
+							authorization: "Bearer invalid",
+						},
+					});
+
+					expect(response.statusCode).toEqual(401);
+				});
+
+				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/preferences/options",
+						headers: {
+							accept: "application/javascript",
+							authorization: "Bearer testtoken",
+						},
+					});
+
 					expect(response.statusCode).toEqual(406);
 				});
 			});
