@@ -86,6 +86,9 @@ const userGetSchema = {
 					.maxItems(4)
 					.uniqueItems(true)
 			),
+		401: S.ref("responses#/definitions/unauthorized").description(
+			"Unauthorized"
+		),
 		404: S.ref("responses#/definitions/notFoundDbResults").description(
 			"Not Found"
 		),
@@ -135,6 +138,9 @@ const userPutSchema = {
 		.required("preferences"),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
+		401: S.ref("responses#/definitions/unauthorized").description(
+			"Unauthorized"
+		),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
 		),

@@ -59,6 +59,9 @@ const optionsGetSchema = {
 				.maxItems(4)
 				.uniqueItems(true)
 		),
+		401: S.ref("responses#/definitions/unauthorized").description(
+			"Unauthorized"
+		),
 		404: S.ref("responses#/definitions/notFoundDbResults").description(
 			"Not Found"
 		),

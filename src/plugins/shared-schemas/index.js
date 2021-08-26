@@ -14,6 +14,18 @@ async function plugin(server) {
 			.title("Responses")
 			.description("Common response schemas")
 			.definition(
+				"unauthorized",
+				S.object()
+					.id("#unauthorized")
+					.title("401 Unauthorized")
+					.prop("statusCode", S.number().const(401))
+					.prop("error", S.string().const("Unauthorized"))
+					.prop(
+						"message",
+						S.string().examples(["missing authorization header"])
+					)
+			)
+			.definition(
 				"notFoundDbResults",
 				S.object()
 					.id("#notFoundDbResults")
