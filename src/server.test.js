@@ -295,6 +295,9 @@ describe("Server Deployment", () => {
 						},
 					});
 
+					expect(response.headers).toEqual(
+						expect.objectContaining(expResHeadersJson)
+					);
 					expect(response.statusCode).toEqual(406);
 				});
 			});
