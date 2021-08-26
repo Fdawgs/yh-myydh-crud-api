@@ -42,9 +42,9 @@ const receiptDeleteSchema = {
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.ref(
-			"responses#/definitions/internalServerErrorDbResults"
-		).description("Internal Server Error"),
+		500: S.ref("responses#/definitions/internalServerError").description(
+			"Internal Server Error"
+		),
 		503: S.ref("responses#/definitions/serviceUnavailable").description(
 			"Service Unavailable"
 		),
@@ -86,9 +86,9 @@ const receiptPutSchema = {
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"
 		),
-		500: S.ref(
-			"responses#/definitions/internalServerErrorDbResults"
-		).description("Internal Server Error"),
+		500: S.ref("responses#/definitions/internalServerError").description(
+			"Internal Server Error"
+		),
 		503: S.ref("responses#/definitions/serviceUnavailable").description(
 			"Service Unavailable"
 		),

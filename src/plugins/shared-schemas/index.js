@@ -53,15 +53,15 @@ async function plugin(server) {
 					)
 			)
 			.definition(
-				"internalServerErrorDbResults",
+				"internalServerError",
 				S.object()
-					.id("#internalServerErrorDbResults")
+					.id("#internalServerError")
 					.title("500 Internal Server Error Response")
 					.prop("statusCode", S.number().const(500))
 					.prop("error", S.string().const("Internal Server Error"))
 					.prop(
 						"message",
-						S.string().enum([
+						S.string().examples([
 							"Unable to delete read receipt from database",
 							"Unable to return result(s) from database",
 							"Unable to update patient preference in database",
