@@ -11,7 +11,7 @@ const { docsJsonGetSchema } = require("./schema");
  * @param {object} options.cors - CORS settings.
  */
 async function route(server, options) {
-	server.addHook("onRequest", async (req, res) => {
+	server.addHook("preValidation", async (req, res) => {
 		if (
 			// Catch unsupported Accept header media types
 			!docsJsonGetSchema.produces.includes(
