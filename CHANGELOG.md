@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.1.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.0...v6.1.1) (2021-08-26)
+
+
+### Bug Fixes
+
+* add 401 shared response schema ([90b4a18](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/90b4a18e8a0490f6f0e6085e89f6b82a48e7ce4e))
+* **plugin/shared-schemas:** remove enum for 500 error messages ([fe402ce](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fe402ce60dfb5183a8460856ec18906f276fa905))
+* **server:** rate-limiting not affecting 406 responses ([3c7e6d6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3c7e6d6b038752bacbba7f1875b7b4a41fc2c204))
+* **server:** standardise 401 response schema ([92aa2a9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/92aa2a9d387eafd840d8f0a0d5e1b953b2330ee2))
+
 ## [6.1.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.0.1...v6.1.0) (2021-08-25)
 
 
