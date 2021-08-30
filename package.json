@@ -104,7 +104,7 @@
     "fastify-rate-limit": "^5.6.1",
     "fastify-sensible": "^3.1.1",
     "fastify-static": "^4.2.3",
-    "fastify-swagger": "^4.9.0",
+    "fastify-swagger": "^4.9.1",
     "file-stream-rotator": "^0.5.7",
     "fluent-json-schema": "^3.0.1",
     "mssql": "^7.2.1",
