@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.1.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.1...v6.1.2) (2021-09-01)
+
+
+### Bug Fixes
+
+* **config:** bearer token security scheme format ([#371](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/371)) ([a61e6d3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a61e6d306d90ebc53e89c922396dedd71ac4a039))
+
+
+### Dependencies
+
+* **deps-dev:** bump jest from 27.0.6 to 27.1.0 ([c07aa62](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c07aa62621f943d50bf8decf5b86fc45ac9d4a62))
+* **deps:** bump fastify-rate-limit from 5.6.1 to 5.6.2 ([ab907c0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ab907c0c5eedbc19bbf6a03bc187fc4b630033a6))
+* **deps:** bump fastify-swagger from 4.9.0 to 4.9.1 ([ec0c869](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ec0c869dfe9ad5977e84d5aea42ac35e76146409))
+
 ### [6.1.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.0...v6.1.1) (2021-08-26)
 
 
