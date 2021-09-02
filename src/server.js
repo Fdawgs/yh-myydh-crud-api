@@ -45,7 +45,7 @@ const helmetConfig = {
  */
 async function plugin(server, config) {
 	// Register plugins
-	server
+	await server
 		// Accept header handler
 		.register(accepts)
 
@@ -92,7 +92,11 @@ async function plugin(server, config) {
 		})
 
 		// Generate OpenAPI/Swagger schemas
-		.register(swagger, config.swagger)
+		.register(swagger, config.swagger);
+
+	server
+		// Ensure rate limit also applies to 4xx and 5xx responses
+		.addHook("onSend", server.rateLimit())
 
 		// Import and register admin routes
 		.register(autoLoad, {
