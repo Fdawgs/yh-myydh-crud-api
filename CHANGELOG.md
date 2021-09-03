@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.1.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.2...v6.1.3) (2021-09-03)
+
+
+### Bug Fixes
+
+* **server:** rate limit all 4xx and 5xx responses ([9e7e99e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9e7e99ec01391779325dc21dc14ab36feabe9ec5))
+
+
+### Miscellaneous
+
+* **.env.template:** clarify on required variables ([debdbb2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/debdbb2e98b7dace882e9c256eba419106db34e5))
+* **.env.template:** remove api key array value ([#381](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/381)) ([e61f962](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e61f962c7a28754e193ee500bc6437f1047a0857))
+* **.env.template:** remove rate limit value ([0b33e58](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0b33e5835febb109ab0d8e9ff0a7449f2710300c))
+
 ### [6.1.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.1...v6.1.2) (2021-09-01)
 
 
