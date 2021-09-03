@@ -64,8 +64,10 @@ describe("Register Route", () => {
 		let server;
 
 		beforeAll(async () => {
+			Object.assign(process.env, {
+				DB_CLIENT: "mssql",
+			});
 			config = await getConfig();
-			config.database.client = "mssql";
 
 			server = Fastify();
 			server
@@ -207,8 +209,10 @@ describe("Register Route", () => {
 		let server;
 
 		beforeAll(async () => {
+			Object.assign(process.env, {
+				DB_CLIENT: "postgresql",
+			});
 			config = await getConfig();
-			config.database.client = "postgresql";
 
 			server = Fastify();
 			server
