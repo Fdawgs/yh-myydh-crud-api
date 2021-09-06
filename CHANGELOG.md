@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+## [6.2.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.2...v6.2.0) (2021-09-06)
+
+
+### Features
+
+* **config:** add option to set `Access-Control-Max-Age` CORS header ([#382](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/382)) ([8350e20](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8350e20be567b54c35faf3b0a384ea1c5ad0a746))
+
+
+### Bug Fixes
+
+* **server:** rate limit all 4xx and 5xx responses ([9e7e99e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9e7e99ec01391779325dc21dc14ab36feabe9ec5))
+
+
+### Miscellaneous
+
+* **.env.template:** clarify on required variables ([debdbb2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/debdbb2e98b7dace882e9c256eba419106db34e5))
+* **.env.template:** remove api key array value ([#381](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/381)) ([e61f962](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e61f962c7a28754e193ee500bc6437f1047a0857))
+* **.env.template:** remove rate limit value ([0b33e58](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0b33e5835febb109ab0d8e9ff0a7449f2710300c))
+* **.github:** use new YAML configured GitHub issue forms ([#384](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/384)) ([60853ba](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/60853ba0966fdbc5751eb85b894ad2312f07befd))
+
+
+### Continuous Integration
+
+* **ci:** replace workflow-run-cleanup-action with github concurrency ([#385](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/385)) ([6419f9a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6419f9a9defd3107e79b46926d1d8b0df4b83db3))
+
+
+### Improvements
+
+* **public:** compress images ([#386](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/386)) ([2b428e0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2b428e0e420b782f063e860c1bc8c5eac4e9b328))
+
+
+### Dependencies
+
+* **deps:** bump fastify-disablecache from 2.0.2 to 2.0.3 ([6107ff6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6107ff67e6eb0705d999e7a710e61a60c4c2f5bc))
+* **deps:** bump fastify-floc-off from 1.0.1 to 1.0.2 ([f5cb009](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f5cb009d27c1f6fa4f0109e6dda4994cfa87ec50))
+
 ### [6.1.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.1...v6.1.2) (2021-09-01)
 
 
