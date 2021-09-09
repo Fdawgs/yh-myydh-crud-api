@@ -4,6 +4,29 @@ const route = require(".");
 const getConfig = require("../../../config");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
+const expResPayload = {
+	preferences: [
+		{
+			type: {
+				display: "SMS",
+				id: 1,
+				priority: 0,
+				selected: 2,
+				options: [
+					{
+						display: "yes",
+						value: 1,
+					},
+					{
+						display: "no",
+						value: 2,
+					},
+				],
+			},
+		},
+	],
+};
+
 describe("Options Route", () => {
 	describe("MSSQL Database Backend", () => {
 		let config;
@@ -65,6 +88,7 @@ describe("Options Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
@@ -168,6 +192,7 @@ describe("Options Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
