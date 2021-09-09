@@ -4,7 +4,7 @@ const plugin = require(".");
 describe("Clean-Object Plugin", () => {
 	let server;
 
-	beforeEach(async () => {
+	beforeAll(async () => {
 		server = Fastify();
 
 		server.register(plugin);
@@ -12,7 +12,7 @@ describe("Clean-Object Plugin", () => {
 			method: "PUT",
 			url: "/",
 			handler(req, res) {
-				res.send(server.cleanObject(req?.body));
+				res.send(server.cleanObject(req.body));
 			},
 		});
 
@@ -27,7 +27,7 @@ describe("Clean-Object Plugin", () => {
 		await server.ready();
 	});
 
-	afterEach(async () => {
+	afterAll(async () => {
 		await server.close();
 	});
 

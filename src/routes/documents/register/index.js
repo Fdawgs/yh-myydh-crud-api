@@ -1,9 +1,6 @@
 // Import plugins
 const cors = require("fastify-cors");
 
-// Import utils
-const convertDateParamOperator = require("../../../utils/convert-date-param-operation");
-
 const { registerGetSchema } = require("./schema");
 const { registerSelect } = require("./query");
 
@@ -48,7 +45,7 @@ async function route(server, options) {
 				}
 
 				lastModified.forEach((modified) => {
-					const operator = convertDateParamOperator(
+					const operator = server.convertDateParamOperator(
 						escape(modified).substring(0, 2)
 					);
 
