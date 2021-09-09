@@ -55,21 +55,12 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * switch needed to accommodate for this
+				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining
 				 */
-				let patientPreferences;
-				let patientPreferencesValues;
-				switch (options.database.client) {
-					case "mssql":
-					default:
-						patientPreferences = results.recordsets[0];
-						patientPreferencesValues = results.recordsets[1];
-						break;
-					case "postgresql":
-						patientPreferences = results[0].rows;
-						patientPreferencesValues = results[1].rows;
-						break;
-				}
+				const patientPreferences =
+					results?.recordsets?.[0] ?? results?.[0]?.rows;
+				const patientPreferencesValues =
+					results?.recordsets?.[1] ?? results?.[1]?.rows;
 
 				if (patientPreferences && patientPreferences.length !== 0) {
 					// Build patient object
