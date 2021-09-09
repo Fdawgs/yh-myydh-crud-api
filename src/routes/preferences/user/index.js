@@ -1,9 +1,6 @@
 // Import plugins
 const cors = require("fastify-cors");
 
-// Import utils
-const clean = require("../../../utils/clean-objects");
-
 const { userGetSchema, userPutSchema } = require("./schema");
 const { userInsert, userSelect } = require("./query");
 
@@ -114,7 +111,7 @@ async function route(server, options) {
 						patientObj.preferences.push(preferenceObj);
 					});
 
-					res.send(clean(patientObj));
+					res.send(server.cleanObject(patientObj));
 				} else {
 					res.notFound("User not found");
 				}
@@ -134,25 +131,27 @@ async function route(server, options) {
 		async handler(req, res) {
 			try {
 				const results = await Promise.all(
-					clean(req.body.preferences).map(async (preference) => {
-						const rows = await server.db.query(
-							userInsert({
-								dbClient: options.database.client,
-								patientId: req.params.id,
-								preferenceTypeId: preference.id,
-								preferenceValueId: preference.selected,
-								preferencePriority: preference.priority,
-								patientPreferencesTable:
-									options.database.tables.patientPref,
-							})
-						);
+					server
+						.cleanObject(req.body.preferences)
+						.map(async (preference) => {
+							const rows = await server.db.query(
+								userInsert({
+									dbClient: options.database.client,
+									patientId: req.params.id,
+									preferenceTypeId: preference.id,
+									preferenceValueId: preference.selected,
+									preferencePriority: preference.priority,
+									patientPreferencesTable:
+										options.database.tables.patientPref,
+								})
+							);
 
-						if (options.database.client === "postgresql") {
-							return rows.rowCount;
-						}
+							if (options.database.client === "postgresql") {
+								return rows.rowCount;
+							}
 
-						return rows.rowsAffected;
-					})
+							return rows.rowsAffected;
+						})
 				);
 
 				results.forEach((preferenceType) => {

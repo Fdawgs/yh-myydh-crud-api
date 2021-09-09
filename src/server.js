@@ -14,6 +14,7 @@ const sensible = require("fastify-sensible");
 const staticPlugin = require("fastify-static");
 const swagger = require("fastify-swagger");
 const underPressure = require("under-pressure");
+const clean = require("./plugins/clean-object");
 const db = require("./plugins/db");
 const sharedSchemas = require("./plugins/shared-schemas");
 
@@ -133,6 +134,7 @@ async function plugin(server, config) {
 						res.notAcceptable();
 					}
 				})
+				.register(clean)
 				.register(db, config.database)
 				// Import and register service routes
 				.register(autoLoad, {

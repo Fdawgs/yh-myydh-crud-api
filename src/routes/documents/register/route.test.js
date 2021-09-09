@@ -3,6 +3,7 @@ const Fastify = require("fastify");
 const sensible = require("fastify-sensible");
 const route = require(".");
 const getConfig = require("../../../config");
+const cleanObject = require("../../../plugins/clean-object");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
 const mockPage = faker.datatype.number({
@@ -84,6 +85,7 @@ describe("Register Route", () => {
 
 			server = Fastify();
 			server
+				.register(cleanObject)
 				.register(sensible)
 				.register(sharedSchemas)
 				.register(route, config);
@@ -225,6 +227,7 @@ describe("Register Route", () => {
 
 			server = Fastify();
 			server
+				.register(cleanObject)
 				.register(sensible)
 				.register(sharedSchemas)
 				.register(route, config);

@@ -2,7 +2,6 @@
 const cors = require("fastify-cors");
 
 // Import utils
-const clean = require("../../../utils/clean-objects");
 const convertDateParamOperator = require("../../../utils/convert-date-param-operation");
 
 const { registerGetSchema } = require("./schema");
@@ -82,7 +81,7 @@ async function route(server, options) {
 					results?.recordsets?.[0]?.[0]?.total ??
 					results?.[0]?.rows?.[0]?.total ??
 					0;
-				const data = clean(
+				const data = server.cleanObject(
 					results?.recordsets?.[1] ?? results?.[1]?.rows
 				);
 
