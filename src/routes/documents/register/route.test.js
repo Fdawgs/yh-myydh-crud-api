@@ -30,6 +30,19 @@ const mockRecord = {
 	patientVisible: 1,
 };
 
+const expResPayload = {
+	data: [],
+	meta: {
+		pagination: {
+			total: 1,
+			per_page: expect.any(Number),
+			current_page: expect.any(Number),
+			total_pages: 1,
+		},
+	},
+};
+expResPayload.data.push(mockRecord);
+
 const mockMsSqlQueryResults = {
 	recordsets: [
 		[
@@ -103,6 +116,7 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
@@ -124,14 +138,7 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload).meta.pagination).toEqual(
-					expect.objectContaining({
-						total: 1,
-						per_page: 1,
-						current_page: 1,
-						total_pages: 1,
-					})
-				);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
@@ -155,6 +162,7 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
@@ -176,6 +184,7 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
@@ -248,6 +257,7 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
@@ -269,14 +279,7 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload).meta.pagination).toEqual(
-					expect.objectContaining({
-						total: 1,
-						per_page: 1,
-						current_page: 1,
-						total_pages: 1,
-					})
-				);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
@@ -300,6 +303,7 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
@@ -321,6 +325,7 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
