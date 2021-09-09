@@ -86,7 +86,7 @@
     "jest": "^27.1.1",
     "license-checker": "^25.0.1",
     "nodemon": "^2.0.12",
-    "prettier": "2.3.2"
+    "prettier": "2.4.0"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
