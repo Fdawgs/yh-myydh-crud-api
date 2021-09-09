@@ -109,7 +109,7 @@
     "fluent-json-schema": "^3.0.1",
     "mssql": "^7.2.1",
     "pg": "^8.7.1",
-    "pino": "^6.13.1",
+    "pino": "^6.13.2",
     "pino-pretty": "^6.0.0",
     "redoc": "^2.0.0-rc.56",
     "under-pressure": "^5.7.0"
