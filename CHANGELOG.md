@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.2.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.2.0...v6.2.1) (2021-09-09)
+
+
+### Continuous Integration
+
+* **ci:** revert to workflow-run-clean-action from github concurrency ([e02950f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e02950fa8106e67a62a45c75fba81479116d07b5))
+* **link-check:** ignore link to `./sql/` directory ([#391](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/391)) ([4e08b3f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4e08b3fedda4337f0b90709db484289b2314e6a8))
+
+
+### Miscellaneous
+
+* **.prettierrc:** override defaults for html, css, and scss files ([#392](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/392)) ([0ced595](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0ced595384f635f354e458292877470105c4e49c))
+* **.vscode:** add `mhutchie.git-graph` extension ([cf549a4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/cf549a4a302912ac9ffdeedbb3ff2291172fef83))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-jsdoc from 36.0.8 to 36.1.0 ([2daa7b0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2daa7b0378b9449b4a4baa0616e55a4e1af13ae8))
+* **deps-dev:** bump jest from 27.1.0 to 27.1.1 ([f5933c6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f5933c62baac16cdc5d902d6fda0b634cb6cf33c))
+* **deps-dev:** bump prettier from 2.3.2 to 2.4.0 ([0308e38](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0308e385b1faa70c383449c7356f492ab75809be))
+* **deps:** bump axios from 0.21.1 to 0.21.4 ([d86ab71](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d86ab713e05196a4d9db5cfd7e1b7f3d011d7a53))
+* **deps:** bump fastify from 3.20.2 to 3.21.0 ([c3535bf](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c3535bfdfa7dd1a55679accadae15bfd049b1a49))
+* **deps:** bump fastify-swagger from 4.9.1 to 4.11.0 ([4930d26](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4930d2662141132a348d1bbdcdcaded52f69465d))
+* **deps:** bump GoogleCloudPlatform/release-please-action ([8980729](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/89807290d40d8a6114eb0bce6fef6f08c7fe13b8))
+* **deps:** bump pino from 6.13.1 to 6.13.2 ([99e7e45](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/99e7e4503af99f55dc48c653777204001458c91c))
+* **deps:** bump pino-pretty from 6.0.0 to 7.0.0 ([95cc6d7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/95cc6d77119dc6064777c49fe01232a4571bbbbf))
+
+
+### Improvements
+
+* **plugins:** convert `clean-objects` util to server plugin ([0a57d54](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0a57d54749d21e937f38315a16fde927f8a881eb))
+* **plugins:** convert date param util to server plugin ([1db0c40](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1db0c40967315a67a8530f533ca00230d18859b0))
+* **routes:** use opt chaining over switches ([#393](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/393)) ([2e34cda](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2e34cda522ecb5fe0256b31afe8d7b14f70e7a31))
+
 ## [6.2.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.2...v6.2.0) (2021-09-06)
 
 
