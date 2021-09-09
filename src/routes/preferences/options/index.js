@@ -14,7 +14,6 @@ const { optionsSelect } = require("./query");
  * @param {object} options - Route config values.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
- * @param {('mssql'|'postgresql')} options.database.client - Database client.
  * @param {object} options.database.tables - Database tables.
  * @param {string} options.database.tables.patientPrefTypeLookup - Name and schema of patient preferences type table.
  * @param {string} options.database.tables.patientPrefValueLookup - Name and schema of patient preference value table.
@@ -48,21 +47,12 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * switch needed to accommodate for this
+				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining
 				 */
-				let preferenceTypeOptions;
-				let preferenceValueOptions;
-				switch (options.database.client) {
-					case "mssql":
-					default:
-						preferenceTypeOptions = results.recordsets[0];
-						preferenceValueOptions = results.recordsets[1];
-						break;
-					case "postgresql":
-						preferenceTypeOptions = results[0].rows;
-						preferenceValueOptions = results[1].rows;
-						break;
-				}
+				const preferenceTypeOptions =
+					results?.recordsets?.[0] ?? results?.[0]?.rows;
+				const preferenceValueOptions =
+					results?.recordsets?.[1] ?? results?.[1]?.rows;
 
 				if (
 					preferenceTypeOptions &&
