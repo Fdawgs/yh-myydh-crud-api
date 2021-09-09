@@ -1,9 +1,6 @@
 // Import plugins
 const cors = require("fastify-cors");
 
-// Import utils
-const clean = require("../../../utils/clean-objects");
-
 const { optionsGetSchema } = require("./schema");
 const { optionsSelect } = require("./query");
 
@@ -107,7 +104,7 @@ async function route(server, options) {
 						priorityCount += 1;
 					});
 
-					res.send(clean(patientObj));
+					res.send(server.cleanObject(patientObj));
 				} else {
 					res.notFound("Invalid or expired search results");
 				}

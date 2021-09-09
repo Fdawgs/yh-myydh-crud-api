@@ -1,3 +1,5 @@
+const fp = require("fastify-plugin");
+
 /**
  * @author Frazer Smith
  * @author NextGen Healthcare
@@ -5,7 +7,7 @@
  * @description Convert date param operator to corresponding value.
  * @returns {string} converted date param operator.
  */
-module.exports = function util(operator) {
+function convDateParamOperator(operator) {
 	switch (operator.toLowerCase()) {
 		case "ap":
 			return "=";
@@ -28,4 +30,19 @@ module.exports = function util(operator) {
 		default:
 			return "=";
 	}
-};
+}
+
+/**
+ * @author Frazer Smith
+ * @description Plugin that decorates Fastify instance with `convertDateParamOperator` function,
+ * which convert date param operators to corresponding values.
+ * @param {Function} server - Fastify instance.
+ */
+async function plugin(server) {
+	server.decorate("convertDateParamOperator", convDateParamOperator);
+}
+
+module.exports = fp(plugin, {
+	fastify: "3.x",
+	name: "convert-date-param-operator",
+});
