@@ -15,7 +15,6 @@ const { registerSelect } = require("./query");
  * @param {object} options - Route config values.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
- * @param {('mssql'|'postgresql')} options.database.client - Database client.
  * @param {object} options.database.tables - Database tables.
  * @param {string} options.database.tables.documentRegister - Name and schema of document register table.
  */
@@ -77,21 +76,15 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * switch needed to accommodate for this
+				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining
 				 */
-				let count;
-				let data;
-				switch (options.database.client) {
-					case "mssql":
-					default:
-						count = results.recordsets[0][0].total;
-						data = clean(results.recordsets[1]);
-						break;
-					case "postgresql":
-						count = results[0].rows[0].total;
-						data = clean(results[1].rows);
-						break;
-				}
+				const count =
+					results?.recordsets?.[0]?.[0]?.total ??
+					results?.[0]?.rows?.[0]?.total ??
+					0;
+				const data = clean(
+					results?.recordsets?.[1] ?? results?.[1]?.rows
+				);
 
 				const response = {
 					data,

@@ -10,6 +10,34 @@ const mockPatientId = faker.datatype.number({
 	max: 9999999999,
 });
 
+const expResPayload = {
+	id: "9999999999",
+	meta: {
+		created: "2021-01-07T10:49:03.503Z",
+		lastupdated: "2021-01-08T10:03:50.130Z",
+	},
+	preferences: [
+		{
+			type: {
+				display: "SMS",
+				id: 1,
+				priority: 0,
+				selected: 1,
+				options: [
+					{
+						display: "yes",
+						value: 1,
+					},
+					{
+						display: "no",
+						value: 2,
+					},
+				],
+			},
+		},
+	],
+};
+
 describe("User Route", () => {
 	describe("MSSQL Database Backend", () => {
 		let config;
@@ -76,6 +104,7 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
@@ -290,6 +319,7 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expResPayload);
 				expect(response.statusCode).toEqual(200);
 			});
 
