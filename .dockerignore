@@ -127,3 +127,6 @@ docs/
 .pm2.config.js
 .prettierignore
 .prettierrc
+CHANGELOG.md
+CODE_OF_CONDUCTING.md
+CONTRIBUTING.md
