@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.2.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.2.1...v6.2.2) (2021-09-10)
+
+
+### Miscellaneous
+
+* **.dockerignore:** ignore development documentation ([fa7fc2a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fa7fc2ae394779e2d86b88215a149bc1c9549369))
+* **.husky/.gitignore:** remove now redundant file ([245bffe](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/245bffeea9c164eccd0caf539e5aaca6e981f219))
+
 ### [6.2.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.2.0...v6.2.1) (2021-09-09)
 
 
