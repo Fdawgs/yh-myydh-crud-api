@@ -68,6 +68,10 @@ async function getConfig() {
 			.prop("HTTPS_PFX_FILE_PATH", S.anyOf([S.string(), S.null()]))
 			.prop("HTTPS_SSL_CERT_PATH", S.anyOf([S.string(), S.null()]))
 			.prop("HTTPS_SSL_KEY_PATH", S.anyOf([S.string(), S.null()]))
+			.prop(
+				"HTTPS_HTTP2_ENABLED",
+				S.anyOf([S.string().enum(["true"]), S.null()])
+			)
 
 			// Logger
 			.prop(
@@ -340,6 +344,14 @@ async function getConfig() {
 				`No such file or directory ${err.path} for PFX file, falling back to HTTP`
 			);
 		}
+	}
+
+	if (
+		config.fastifyInit.https &&
+		String(env.HTTPS_HTTP2_ENABLED).toLowerCase().trim() === "true"
+	) {
+		config.fastifyInit.https.allowHTTP1 = true;
+		config.fastifyInit.http2 = true;
 	}
 
 	return config;
