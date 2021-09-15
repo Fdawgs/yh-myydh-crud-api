@@ -14,7 +14,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "benchmark": "autocannon -H \"Authorization:Bearer testtoken\" \"http://0.0.0.0:8204/preferences/options\"",
+    "benchmark": "autocannon -a 1000 -H \"Authorization:Bearer testtoken\" \"http://0.0.0.0:8204/preferences/options\"",
     "jest": "jest --detectOpenHandles --runInBand",
     "jest:coverage": "jest --coverage --runInBand",
     "lint": "eslint . --cache --ext js,jsx,ts,tsx --ignore-path .gitignore",
