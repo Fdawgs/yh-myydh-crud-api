@@ -49,8 +49,7 @@ async function route(server, options) {
 						escape(modified).substring(0, 2)
 					);
 
-					// eslint-disable-next-line no-restricted-globals
-					if (isNaN(modified.substring(0, 2))) {
+					if (Number.isNaN(Number(modified.substring(0, 2)))) {
 						// eslint-disable-next-line no-param-reassign
 						modified = modified.substring(2, modified.length);
 					}
