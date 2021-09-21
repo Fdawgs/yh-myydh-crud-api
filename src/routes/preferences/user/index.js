@@ -59,7 +59,7 @@ async function route(server, options) {
 				const patientPreferencesValues =
 					results?.recordsets?.[1] ?? results?.[1]?.rows;
 
-				if (patientPreferences && patientPreferences.length !== 0) {
+				if (patientPreferences?.length > 0) {
 					// Build patient object
 					const patientObj = {
 						id: patientPreferences[0].id,

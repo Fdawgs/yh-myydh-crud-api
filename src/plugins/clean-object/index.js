@@ -14,7 +14,6 @@ function cleanObject(object = {}) {
 		if (obj[key] && typeof obj[key] === "object") {
 			cleanObject(obj[key]); // recursive
 		} else if (obj[key] === null || obj[key] === undefined) {
-			// eslint-disable-next-line no-param-reassign
 			delete obj[key];
 		}
 	});
