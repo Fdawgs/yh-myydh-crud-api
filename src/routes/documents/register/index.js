@@ -45,16 +45,16 @@ async function route(server, options) {
 				}
 
 				lastModified.forEach((modified) => {
+					let date = modified;
 					const operator = server.convertDateParamOperator(
-						escape(modified).substring(0, 2)
+						escape(date).substring(0, 2)
 					);
 
-					if (Number.isNaN(Number(modified.substring(0, 2)))) {
-						// eslint-disable-next-line no-param-reassign
-						modified = modified.substring(2, modified.length);
+					if (Number.isNaN(Number(date.substring(0, 2)))) {
+						date = date.substring(2, date.length);
 					}
 
-					whereArray.push(`(Modified ${operator} '${modified}')`);
+					whereArray.push(`(Modified ${operator} '${date}')`);
 				});
 
 				const whereClausePredicates = whereArray.join(" AND ");
