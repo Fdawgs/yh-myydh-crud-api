@@ -1,4 +1,6 @@
-<img alttext="Yeovil District Hospital Logo" src="https://github.com/Fdawgs/ydh-logos/raw/HEAD/images/ydh-full-logo-transparent-background.svg" width="480" />
+<a href="https://yeovilhospital.co.uk/">
+	<img alttext="Yeovil District Hospital Logo" src="https://github.com/Fdawgs/ydh-logos/raw/HEAD/images/ydh-full-logo-transparent-background.svg" width="480" />
+</a>
 
 # Yeovil District Hospital NHS Foundation Trust - MyYDH RESTful CRUD API
 
