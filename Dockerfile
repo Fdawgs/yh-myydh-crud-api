@@ -6,7 +6,7 @@ WORKDIR /usr/app
 # Copy and install packages
 COPY . .
 # Curl needed for healthcheck command
-RUN apk add --no-cache curl=7.79.0-r0 && \
+RUN apk add --no-cache curl=7.79.1-r0 && \
     npm ci --ignore-scripts && npm cache clean --force
 
 # Node images provide 'node' unprivileged user to run apps and prevent
