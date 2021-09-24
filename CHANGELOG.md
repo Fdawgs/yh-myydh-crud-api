@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.0...v6.3.1) (2021-09-24)
+
+
+### Bug Fixes
+
+* **public/site.webmanifest:** set name values ([a5495df](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a5495dfc4b7ca6917f776142a2bcfa6795987df1))
+* **routes/docs:** add missing content-type response header ([d415cac](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d415cac0f436f6b5989d365c283190ac80e738b3))
+
+
+### Documentation
+
+* **readme:** add link to hospital logo ([#426](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/426)) ([6a3eb97](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6a3eb97fe2904c84db56da5a9e3f93408de13f07))
+
+
+### Dependencies
+
+* **deps-dev:** add eslint-plugin-security-node ([#427](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/427)) ([795561b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/795561b08a68d226f061c853aca401772ab0a327))
+* **deps-dev:** bump eslint-plugin-jest from 24.4.0 to 24.4.2 ([e4bfb96](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e4bfb96ae1d9e0f3b3f0e3514f1cba95e123b7c9))
+* **deps-dev:** bump glob from 7.1.7 to 7.2.0 ([a5fc0e9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a5fc0e955c19296b6baa0b54a253d19fa701e9f2))
+* **deps-dev:** bump jest from 27.2.0 to 27.2.1 ([cfb93c1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/cfb93c1598e5ec0cd6709f05565b4c5de006c5b4))
+* **deps-dev:** bump nodemon from 2.0.12 to 2.0.13 ([182dd0d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/182dd0de150b842eb01223a68ef74e77a8b0ee57))
+* **deps-dev:** bump prettier from 2.4.0 to 2.4.1 ([5092647](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/509264781d547105ad08486cdd0e6b7c060e59bb))
+* **deps:** bump fastify from 3.21.1 to 3.21.3 ([bb21557](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/bb2155775d2d4e40ee80b3feaadf724f1d98b930))
+* **deps:** bump fastify from 3.21.3 to 3.21.6 ([782f4a2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/782f4a2e995cf9d1a0334d0b863c8b7d3a408867))
+* **deps:** bump fastify-accepts from 2.0.1 to 2.1.0 ([40b849f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/40b849f6a3deb8ff15ac854091665e96129c4a20))
+* **deps:** bump GoogleCloudPlatform/release-please-action ([6bf035e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6bf035e3ef618c20bc1c5c6a8c4a7d8c007d805f))
+* **deps:** bump pino from 6.13.2 to 6.13.3 ([dbda534](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/dbda53455dde0222b4fdb081782cd3622ec18e7c))
+* **deps:** bump pino-pretty from 7.0.0 to 7.0.1 ([72c0681](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/72c0681815471df43e94f9edf1ec8f0eab5c4ee2))
+* **deps:** bump prismjs from 1.24.1 to 1.25.0 ([e5e58c6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e5e58c699e2ecaecdde0b49f3bed5b6416e85e47))
+* **docker:** bump curl from 7.79.0-r0 to 7.79.1-r0 ([#428](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/428)) ([93ddc31](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/93ddc31a4e3b4f88e8c9e8c94da3ded063adf27e))
+
+
+### Miscellaneous
+
+* **.env.template:** document `SERVICE_HOST` default ([#416](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/416)) ([94f96e8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/94f96e87b53617136b8f1755fd25c86b84c30e64))
+* **config:** tidy openapi description ([#420](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/420)) ([7520a55](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7520a5541673a9a33a7f7ab4d488f99df8c62814))
+* **plugins/clean-object:** remove outdated eslint comment ([97e90f0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/97e90f0e4cce122b98fef7c6a23b753e0b50549b))
+* **plugins/db:** correct jsdoc tag ([b094020](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b0940208e51f974214780b2bb57f7bc6cd8227e9))
+* **public/docs:** add `-moz-tab-size` css property ([2c908fb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2c908fb6541f582569edbb493fee51e2e3c22912))
+* **public:** move icons from public/ to public/images/icons ([2ed8917](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2ed89176b695400ff9b78a51f734e3d56b5ace0a))
+* **server:** update inline comments re child contexts ([8db14db](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8db14db16d3b7dd8bb374e48bb07b7448820266b))
+
+
+### Improvements
+
+* **public/docs:** defer redoc script loading ([d08bf30](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d08bf30a7ea8b9ab95cd18b5c7887d8db6eaa38e))
+* **routes/docs:** enable caching of static files ([01d4cf6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/01d4cf62e7fc3dbf9f69f96ddf5b2bd010fc25b7))
+* **routes/documents/register:** remove param reassign ([bdfb4d5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/bdfb4d5064fb30f15b2ff858a7bd30a86c6b1755))
+* **routes/documents/register:** Replace use of of global `isNaN` ([907a77e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/907a77e2ceda715be77fafc0d16b1f7d03bddc5f))
+* **routes/prefers/user:** use optional chaining ([75a20f1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/75a20f1839c7f54bc0bc09f7ff0b5008b0f59e80))
+* **server:** move loading of static files into public context ([8befc51](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8befc514778c11ff4c4a0170d705e6e5eece720b))
+
 ## [6.3.0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.2.1...v6.3.0) (2021-09-15)
 
 
