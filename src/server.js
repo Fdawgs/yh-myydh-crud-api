@@ -54,9 +54,6 @@ async function plugin(server, config) {
 		// Support Content-Encoding
 		.register(compress, { inflateIfDeflated: true })
 
-		// Set response headers to disable client-side caching
-		.register(disableCache)
-
 		// Opt-out of Google's FLoC advertising-surveillance network
 		.register(flocOff)
 
@@ -76,24 +73,6 @@ async function plugin(server, config) {
 
 		// Process load and 503 response handling
 		.register(underPressure, config.processLoad)
-
-		// Register static files in ./src/public
-		.register(staticPlugin, {
-			root: path.join(__dirname, "public"),
-		})
-
-		// Register redoc module to allow for js to be used in ./src/public/docs.html
-		.register(staticPlugin, {
-			root: path.join(
-				__dirname,
-				"..",
-				"node_modules",
-				"redoc",
-				"bundles"
-			),
-			prefix: "/redoc/",
-			decorateReply: false,
-		})
 
 		// Generate OpenAPI/Swagger schemas
 		.register(swagger, config.swagger);
@@ -115,6 +94,10 @@ async function plugin(server, config) {
 		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
 		 */
 		.register(async (securedContext) => {
+			securedContext
+				// Set response headers to disable client-side caching
+				.register(disableCache);
+
 			if (config.bearerTokenAuthKeys) {
 				securedContext.register(bearer, {
 					keys: config.bearerTokenAuthKeys,
@@ -149,8 +132,8 @@ async function plugin(server, config) {
 		})
 
 		/**
-		 * Encapsulate the doc routes into a secured child context, so that
-		 * the CSP can be relaxed without impacting security of other routes
+		 * Encapsulate the docs routes into a child context, so that the
+		 * CSP can be relaxed without impacting security of other routes
 		 */
 		.register(async (publicContext) => {
 			const relaxedHelmetConfig = JSON.parse(
@@ -167,6 +150,24 @@ async function plugin(server, config) {
 
 			publicContext
 				.register(helmet, relaxedHelmetConfig)
+
+				// Register static files in ./src/public
+				.register(staticPlugin, {
+					root: path.join(__dirname, "public"),
+				})
+
+				// Register redoc module to allow for js to be used in ./src/public/docs.html
+				.register(staticPlugin, {
+					root: path.join(
+						__dirname,
+						"..",
+						"node_modules",
+						"redoc",
+						"bundles"
+					),
+					prefix: "/redoc/",
+					decorateReply: false,
+				})
 				.register(autoLoad, {
 					dir: path.join(__dirname, "routes"),
 					ignorePattern: /(admin|documents|preferences)/,
