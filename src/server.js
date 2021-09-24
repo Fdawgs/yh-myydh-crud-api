@@ -149,8 +149,8 @@ async function plugin(server, config) {
 		})
 
 		/**
-		 * Encapsulate the doc routes into a secured child context, so that
-		 * the CSP can be relaxed without impacting security of other routes
+		 * Encapsulate the doc routes into a child context, so that the
+		 * CSP can be relaxed without impacting security of other routes
 		 */
 		.register(async (publicContext) => {
 			const relaxedHelmetConfig = JSON.parse(
