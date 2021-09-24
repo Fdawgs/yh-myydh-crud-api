@@ -74,24 +74,6 @@ async function plugin(server, config) {
 		// Process load and 503 response handling
 		.register(underPressure, config.processLoad)
 
-		// Register static files in ./src/public
-		.register(staticPlugin, {
-			root: path.join(__dirname, "public"),
-		})
-
-		// Register redoc module to allow for js to be used in ./src/public/docs.html
-		.register(staticPlugin, {
-			root: path.join(
-				__dirname,
-				"..",
-				"node_modules",
-				"redoc",
-				"bundles"
-			),
-			prefix: "/redoc/",
-			decorateReply: false,
-		})
-
 		// Generate OpenAPI/Swagger schemas
 		.register(swagger, config.swagger);
 
@@ -168,6 +150,24 @@ async function plugin(server, config) {
 
 			publicContext
 				.register(helmet, relaxedHelmetConfig)
+
+				// Register static files in ./src/public
+				.register(staticPlugin, {
+					root: path.join(__dirname, "public"),
+				})
+
+				// Register redoc module to allow for js to be used in ./src/public/docs.html
+				.register(staticPlugin, {
+					root: path.join(
+						__dirname,
+						"..",
+						"node_modules",
+						"redoc",
+						"bundles"
+					),
+					prefix: "/redoc/",
+					decorateReply: false,
+				})
 				.register(autoLoad, {
 					dir: path.join(__dirname, "routes"),
 					ignorePattern: /(admin|documents|preferences)/,
