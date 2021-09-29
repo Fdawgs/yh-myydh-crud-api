@@ -206,6 +206,24 @@ async function getConfig() {
 		cors: {
 			origin: parseCorsParameter(env.CORS_ORIGIN) || false,
 		},
+		helmet: {
+			contentSecurityPolicy: {
+				directives: {
+					"default-src": ["'self'"],
+					"base-uri": ["'self'"],
+					"img-src": ["'self'", "data:"],
+					"object-src": ["'none'"],
+					"child-src": ["'self'"],
+					"frame-ancestors": ["'none'"],
+					"form-action": ["'self'"],
+					"upgrade-insecure-requests": [],
+					"block-all-mixed-content": [],
+				},
+			},
+			hsts: {
+				maxAge: 31536000,
+			},
+		},
 		processLoad: {
 			maxEventLoopDelay: env.PROC_LOAD_MAX_EVENT_LOOP_DELAY || 0,
 			maxEventLoopUtilization:

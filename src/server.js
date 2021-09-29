@@ -19,26 +19,6 @@ const convertDateParamOperator = require("./plugins/convert-date-param-operator"
 const db = require("./plugins/db");
 const sharedSchemas = require("./plugins/shared-schemas");
 
-// Helmet config
-const helmetConfig = {
-	contentSecurityPolicy: {
-		directives: {
-			"default-src": ["'self'"],
-			"base-uri": ["'self'"],
-			"img-src": ["'self'", "data:"],
-			"object-src": ["'none'"],
-			"child-src": ["'self'"],
-			"frame-ancestors": ["'none'"],
-			"form-action": ["'self'"],
-			"upgrade-insecure-requests": [],
-			"block-all-mixed-content": [],
-		},
-	},
-	hsts: {
-		maxAge: 31536000,
-	},
-};
-
 /**
  * @author Frazer Smith
  * @description Build Fastify instance.
@@ -58,7 +38,7 @@ async function plugin(server, config) {
 		.register(flocOff)
 
 		// Use Helmet to set response security headers: https://helmetjs.github.io/
-		.register(helmet, helmetConfig);
+		.register(helmet, config.helmet);
 
 	await server
 		// Rate limiting and 429 response handling
@@ -137,7 +117,7 @@ async function plugin(server, config) {
 		 */
 		.register(async (publicContext) => {
 			const relaxedHelmetConfig = JSON.parse(
-				JSON.stringify(helmetConfig)
+				JSON.stringify(config.helmet)
 			);
 			Object.assign(
 				relaxedHelmetConfig.contentSecurityPolicy.directives,
