@@ -83,9 +83,8 @@ async function plugin(server, config) {
 
 		// Import and register admin routes
 		.register(autoLoad, {
-			dir: path.join(__dirname, "routes"),
-			ignorePattern: /(docs|documents|preferences)/,
-			options: config,
+			dir: path.join(__dirname, "routes", "admin"),
+			options: { ...config, prefix: "admin" },
 		})
 
 		/**
@@ -170,9 +169,8 @@ async function plugin(server, config) {
 					decorateReply: false,
 				})
 				.register(autoLoad, {
-					dir: path.join(__dirname, "routes"),
-					ignorePattern: /(admin|documents|preferences)/,
-					options: config,
+					dir: path.join(__dirname, "routes", "docs"),
+					options: { ...config, prefix: "docs" },
 				});
 		});
 }
