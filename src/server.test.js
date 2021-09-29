@@ -3,8 +3,7 @@ const startServer = require("./server");
 const getConfig = require("./config");
 
 const expResHeaders = {
-	"content-security-policy":
-		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content",
+	"content-security-policy": "default-src 'self';frame-ancestors 'none'",
 	"x-dns-prefetch-control": "off",
 	"expect-ct": "max-age=0",
 	"x-frame-options": "SAMEORIGIN",
@@ -13,7 +12,6 @@ const expResHeaders = {
 	"x-content-type-options": "nosniff",
 	"x-permitted-cross-domain-policies": "none",
 	"referrer-policy": "no-referrer",
-	"x-xss-protection": "0",
 	"surrogate-control": "no-store",
 	"cache-control": "no-store, max-age=0, must-revalidate",
 	pragma: "no-cache",
