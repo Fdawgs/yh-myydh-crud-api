@@ -29,7 +29,6 @@ async function route(server, options) {
 		.register(cors, {
 			...options.cors,
 			methods: ["DELETE", "PUT"],
-			hideOptionsRoute: true,
 		});
 
 	server.route({

@@ -205,6 +205,7 @@ async function getConfig() {
 		},
 		cors: {
 			origin: parseCorsParameter(env.CORS_ORIGIN) || false,
+			hideOptionsRoute: true,
 		},
 		helmet: {
 			contentSecurityPolicy: {
