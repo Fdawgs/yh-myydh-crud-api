@@ -25,12 +25,14 @@ async function route(server, options) {
 		userPutSchema.security = security;
 	}
 
-	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-	server.register(cors, {
-		...options.cors,
-		methods: ["GET", "PUT"],
-		hideOptionsRoute: true,
-	});
+	// Register plugins
+	server
+		// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+		.register(cors, {
+			...options.cors,
+			methods: ["GET", "PUT"],
+			hideOptionsRoute: true,
+		});
 
 	server.route({
 		method: "GET",

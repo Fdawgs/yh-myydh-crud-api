@@ -149,6 +149,7 @@ async function plugin(server, config) {
 			);
 
 			publicContext
+				// Set relaxed response headers
 				.register(helmet, relaxedHelmetConfig)
 
 				// Register static files in ./src/public
