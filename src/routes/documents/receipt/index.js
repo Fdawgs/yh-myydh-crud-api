@@ -23,12 +23,13 @@ async function route(server, options) {
 		receiptPutSchema.security = security;
 	}
 
-	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-	server.register(cors, {
-		...options.cors,
-		methods: ["DELETE", "PUT"],
-		hideOptionsRoute: true,
-	});
+	// Register plugins
+	server
+		// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+		.register(cors, {
+			...options.cors,
+			methods: ["DELETE", "PUT"],
+		});
 
 	server.route({
 		method: "DELETE",

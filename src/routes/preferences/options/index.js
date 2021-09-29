@@ -20,12 +20,13 @@ async function route(server, options) {
 		optionsGetSchema.security = [{ bearerToken: [] }];
 	}
 
-	// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-	server.register(cors, {
-		...options.cors,
-		methods: ["GET"],
-		hideOptionsRoute: true,
-	});
+	// Register plugins
+	server
+		// Use CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+		.register(cors, {
+			...options.cors,
+			methods: ["GET"],
+		});
 
 	server.route({
 		method: "GET",

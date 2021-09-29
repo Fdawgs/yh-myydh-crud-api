@@ -19,26 +19,6 @@ const convertDateParamOperator = require("./plugins/convert-date-param-operator"
 const db = require("./plugins/db");
 const sharedSchemas = require("./plugins/shared-schemas");
 
-// Helmet config
-const helmetConfig = {
-	contentSecurityPolicy: {
-		directives: {
-			"default-src": ["'self'"],
-			"base-uri": ["'self'"],
-			"img-src": ["'self'", "data:"],
-			"object-src": ["'none'"],
-			"child-src": ["'self'"],
-			"frame-ancestors": ["'none'"],
-			"form-action": ["'self'"],
-			"upgrade-insecure-requests": [],
-			"block-all-mixed-content": [],
-		},
-	},
-	hsts: {
-		maxAge: 31536000,
-	},
-};
-
 /**
  * @author Frazer Smith
  * @description Build Fastify instance.
@@ -58,7 +38,7 @@ async function plugin(server, config) {
 		.register(flocOff)
 
 		// Use Helmet to set response security headers: https://helmetjs.github.io/
-		.register(helmet, helmetConfig);
+		.register(helmet, config.helmet);
 
 	await server
 		// Rate limiting and 429 response handling
@@ -80,6 +60,26 @@ async function plugin(server, config) {
 	server
 		// Ensure rate limit also applies to 4xx and 5xx responses
 		.addHook("onSend", server.rateLimit())
+
+		/*
+		 * `x-xss-protection` and `content-security-policy` is set by default.
+		 * These are only useful for HTML/XML content; the only CSP directive that
+		 * is of use to other content is "frame-ancestors 'none'" to stop responses
+		 * from being wrapped in iframes.
+		 */
+		.addHook("onSend", async (req, res) => {
+			if (
+				!res.getHeader("content-type").startsWith("text/html") &&
+				!res.getHeader("content-type").startsWith("image/svg")
+			) {
+				res.raw.setHeader(
+					"content-security-policy",
+					"default-src 'self';frame-ancestors 'none'"
+				);
+				res.raw.removeHeader("x-xss-protection");
+			}
+			return res;
+		})
 
 		// Import and register admin routes
 		.register(autoLoad, {
@@ -137,7 +137,7 @@ async function plugin(server, config) {
 		 */
 		.register(async (publicContext) => {
 			const relaxedHelmetConfig = JSON.parse(
-				JSON.stringify(helmetConfig)
+				JSON.stringify(config.helmet)
 			);
 			Object.assign(
 				relaxedHelmetConfig.contentSecurityPolicy.directives,
@@ -149,6 +149,7 @@ async function plugin(server, config) {
 			);
 
 			publicContext
+				// Set relaxed response headers
 				.register(helmet, relaxedHelmetConfig)
 
 				// Register static files in ./src/public
