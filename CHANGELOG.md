@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.1...v6.3.2) (2021-10-01)
+
+
+### Improvements
+
+* **routes:** move cors options route config to config file ([b878dd7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b878dd7a20a7d0359d1d7a5f284419f55ba48d02))
+* **server:** exclude all html and xml responses from transform ([#440](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/440)) ([c690d7c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c690d7ca2d4f2decdc2499a89b2f53319370a50b))
+* **server:** move helmet config to config file ([fe8ff21](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fe8ff217943ece9a43db32c0f6c61b1c7f44e1d7))
+* **server:** reduce globbing use when registering routes ([#439](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/439)) ([cad0505](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/cad0505d137ef5af6c613c53458c74dde0d14ea6))
+* **server:** reduce response header size ([66928cc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/66928cc7eaeff532dd34b271830ca6290ce0d81b))
+
+
+### Continuous Integration
+
+* **automerge:** update location of octokit rest methods ([d22545e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d22545e3de0a886a719fa4d9144bb55302400a37))
+* ignore hadolint rule DL3018 ([6347770](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/63477706cb11bfb8967ea42434786c56cb8f6084))
+* update hadolint-action namespace ([74418c9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/74418c97bb1149b4bb75b4382e99eaabca74b2d6))
+
+
+### Dependencies
+
+* **deps-dev:** bump @commitlint/cli from 13.1.0 to 13.2.0 ([24fe35c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/24fe35c7b34a3171f1576b028703d1cf7c991d6b))
+* **deps-dev:** bump @commitlint/config-conventional ([1ae4b5c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1ae4b5c97520a292947394fc6de62eeeca8b0dfd))
+* **deps-dev:** bump eslint-plugin-jest from 24.4.2 to 24.5.0 ([08fbf93](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/08fbf934c5ffbac9b2d2ea2fc0cd345af2f46a3a))
+* **deps-dev:** bump jest from 27.2.1 to 27.2.4 ([ee3bd1b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ee3bd1b16416500b8aec8a6b74cd16999d068996))
+* **deps:** bump actions/github-script from 4.1 to 5 ([0c3852c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0c3852c808d2f55dec36d0e7b8f88d685705f656))
+* **deps:** bump actions/setup-node from 2.4.0 to 2.4.1 ([ee604fb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ee604fb72fb4527840c332ba83e8a868dab5c90a))
+* **deps:** bump fastify from 3.21.6 to 3.22.0 ([d967b63](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d967b631f92a4552f70a0ed90a10e3d2069bfaa9))
+* **deps:** bump fastify-swagger from 4.12.0 to 4.12.3 ([712eb24](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/712eb24b6a345ff2fcf65eb56cbf24fe16a397bc))
+* **docker:** remove package versioning ([a4c2e01](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a4c2e015f865384403e346583dff643471a801d9))
+
+
+### Miscellaneous
+
+* **.prettierrc:** enable `bracketsameline` option ([#450](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/450)) ([5153c8e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/5153c8e32abb3e489d3681177de1b8be45bbad0f))
+* tidy inline comments re plugins ([e90727b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e90727b06467239e11e3cd0f6d2a30ff2d89d43c))
+
 ### [6.3.1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.0...v6.3.1) (2021-09-24)
 
 
