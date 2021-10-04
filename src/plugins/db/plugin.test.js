@@ -43,10 +43,10 @@ describe("DB Plugin", () => {
 				url: "/",
 			});
 
-			expect(
-				JSON.parse(response.payload).recordsets[0][0].example
-			).toEqual("test");
-			expect(response.statusCode).toEqual(200);
+			expect(JSON.parse(response.payload).recordsets[0][0].example).toBe(
+				"test"
+			);
+			expect(response.statusCode).toBe(200);
 		});
 	});
 
@@ -85,8 +85,8 @@ describe("DB Plugin", () => {
 				url: "/",
 			});
 
-			expect(JSON.parse(response.payload)[0].example).toEqual("test");
-			expect(response.statusCode).toEqual(200);
+			expect(JSON.parse(response.payload)[0].example).toBe("test");
+			expect(response.statusCode).toBe(200);
 		});
 	});
 });

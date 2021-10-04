@@ -58,7 +58,8 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(204);
+				expect(response.payload).toBe("");
+				expect(response.statusCode).toBe(204);
 			});
 
 			test("Should return HTTP status code 404 if document missing or already deleted", async () => {
@@ -79,7 +80,13 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(404);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Not Found",
+					message:
+						"Record does not exist or has already been deleted",
+					statusCode: 404,
+				});
+				expect(response.statusCode).toBe(404);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -100,7 +107,12 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to delete read receipt from database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 
@@ -124,7 +136,8 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(204);
+				expect(response.payload).toBe("");
+				expect(response.statusCode).toBe(204);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -146,7 +159,12 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to update read receipt in database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 	});
@@ -193,7 +211,8 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(204);
+				expect(response.payload).toBe("");
+				expect(response.statusCode).toBe(204);
 			});
 
 			test("Should return HTTP status code 404 if document missing or already deleted", async () => {
@@ -214,7 +233,13 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(404);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Not Found",
+					message:
+						"Record does not exist or has already been deleted",
+					statusCode: 404,
+				});
+				expect(response.statusCode).toBe(404);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -235,7 +260,12 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to delete read receipt from database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 
@@ -259,7 +289,8 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(204);
+				expect(response.payload).toBe("");
+				expect(response.statusCode).toBe(204);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -281,7 +312,12 @@ describe("Receipt Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to update read receipt in database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 	});

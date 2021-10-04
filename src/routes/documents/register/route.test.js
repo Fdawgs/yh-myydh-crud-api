@@ -121,7 +121,7 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return documents from register using default pagination values", async () => {
@@ -143,7 +143,7 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return documents from register using more than one lastModified querystring param", async () => {
@@ -167,7 +167,7 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return documents from register using an operator in the lastModified querystring param", async () => {
@@ -189,7 +189,7 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -212,7 +212,12 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to return result(s) from database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 	});
@@ -264,7 +269,7 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return documents from register using default pagination values", async () => {
@@ -286,7 +291,7 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return documents from register using more than one lastModified querystring param", async () => {
@@ -310,7 +315,7 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return documents from register using an operator in the lastModified querystring param", async () => {
@@ -332,7 +337,7 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -355,7 +360,12 @@ describe("Register Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to return result(s) from database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 	});

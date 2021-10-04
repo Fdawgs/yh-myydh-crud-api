@@ -107,7 +107,7 @@ describe("User Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return HTTP status code 404 if no values returned from database", async () => {
@@ -125,7 +125,12 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(404);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Not Found",
+					message: "User not found",
+					statusCode: 404,
+				});
+				expect(response.statusCode).toBe(404);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -143,7 +148,12 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to return result(s) from database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 
@@ -180,7 +190,8 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(2);
-				expect(response.statusCode).toEqual(204);
+				expect(response.payload).toBe("");
+				expect(response.statusCode).toBe(204);
 			});
 
 			test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
@@ -214,7 +225,14 @@ describe("User Route", () => {
 					},
 				});
 
-				expect(response.statusCode).toEqual(415);
+				expect(mockQueryFn).toHaveBeenCalledTimes(0);
+				expect(JSON.parse(response.payload)).toEqual({
+					code: "FST_ERR_CTP_INVALID_MEDIA_TYPE",
+					error: "Unsupported Media Type",
+					message: "Unsupported Media Type: application/javascript",
+					statusCode: 415,
+				});
+				expect(response.statusCode).toBe(415);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -249,7 +267,12 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(2);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to update user preferences in database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 	});
@@ -323,7 +346,7 @@ describe("User Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 			});
 
 			test("Should return HTTP status code 404 if no values returned from database", async () => {
@@ -339,7 +362,12 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(404);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Not Found",
+					message: "User not found",
+					statusCode: 404,
+				});
+				expect(response.statusCode).toBe(404);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -357,7 +385,12 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to return result(s) from database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 
@@ -394,7 +427,8 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(2);
-				expect(response.statusCode).toEqual(204);
+				expect(response.payload).toBe("");
+				expect(response.statusCode).toBe(204);
 			});
 
 			test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
@@ -428,7 +462,14 @@ describe("User Route", () => {
 					},
 				});
 
-				expect(response.statusCode).toEqual(415);
+				expect(mockQueryFn).toHaveBeenCalledTimes(0);
+				expect(JSON.parse(response.payload)).toEqual({
+					code: "FST_ERR_CTP_INVALID_MEDIA_TYPE",
+					error: "Unsupported Media Type",
+					message: "Unsupported Media Type: application/javascript",
+					statusCode: 415,
+				});
+				expect(response.statusCode).toBe(415);
 			});
 
 			test("Should return HTTP status code 500 if connection issue encountered", async () => {
@@ -463,7 +504,12 @@ describe("User Route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(2);
-				expect(response.statusCode).toEqual(500);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Unable to update user preferences in database",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 	});

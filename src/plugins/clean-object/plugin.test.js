@@ -47,7 +47,7 @@ describe("Clean-Object Plugin", () => {
 		});
 
 		expect(JSON.parse(response.payload)).toEqual({ test3: [{}], test4: 2 });
-		expect(response.statusCode).toEqual(200);
+		expect(response.statusCode).toBe(200);
 	});
 
 	test("Should return empty object if request payload not passed to plugin function", async () => {
@@ -57,6 +57,6 @@ describe("Clean-Object Plugin", () => {
 		});
 
 		expect(JSON.parse(response.payload)).toEqual({});
-		expect(response.statusCode).toEqual(200);
+		expect(response.statusCode).toBe(200);
 	});
 });

@@ -32,11 +32,6 @@ const expResHeadersJson = {
 	...{ "content-type": expect.stringContaining("application/json") },
 };
 
-const expResHeaders4xxErrors = {
-	...expResHeadersJson,
-};
-delete expResHeaders4xxErrors.vary;
-
 describe("Server Deployment", () => {
 	describe("MSSQL Connection", () => {
 		beforeAll(async () => {
@@ -77,11 +72,9 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeaders)
-					);
-					expect(response.payload).toEqual("ok");
-					expect(response.statusCode).toEqual(200);
+					expect(response.payload).toBe("ok");
+					expect(response.headers).toEqual(expResHeaders);
+					expect(response.statusCode).toBe(200);
 				});
 
 				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
@@ -93,10 +86,13 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeadersJson)
-					);
-					expect(response.statusCode).toEqual(406);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Acceptable",
+						message: "Not Acceptable",
+						statusCode: 406,
+					});
+					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.statusCode).toBe(406);
 				});
 			});
 		});
@@ -132,11 +128,9 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeaders)
-					);
-					expect(response.payload).toEqual("ok");
-					expect(response.statusCode).toEqual(200);
+					expect(response.payload).toBe("ok");
+					expect(response.headers).toEqual(expResHeaders);
+					expect(response.statusCode).toBe(200);
 				});
 
 				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
@@ -148,10 +142,13 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeadersJson)
-					);
-					expect(response.statusCode).toEqual(406);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Acceptable",
+						message: "Not Acceptable",
+						statusCode: 406,
+					});
+					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.statusCode).toBe(406);
 				});
 			});
 		});
@@ -196,11 +193,9 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeaders)
-					);
-					expect(response.payload).toEqual("ok");
-					expect(response.statusCode).toEqual(200);
+					expect(response.payload).toBe("ok");
+					expect(response.headers).toEqual(expResHeaders);
+					expect(response.statusCode).toBe(200);
 				});
 
 				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
@@ -212,10 +207,13 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeadersJson)
-					);
-					expect(response.statusCode).toEqual(406);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Acceptable",
+						message: "Not Acceptable",
+						statusCode: 406,
+					});
+					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.statusCode).toBe(406);
 				});
 			});
 		});
@@ -251,11 +249,9 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeaders)
-					);
-					expect(response.payload).toEqual("ok");
-					expect(response.statusCode).toEqual(200);
+					expect(response.payload).toBe("ok");
+					expect(response.headers).toEqual(expResHeaders);
+					expect(response.statusCode).toBe(200);
 				});
 
 				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
@@ -267,10 +263,13 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeadersJson)
-					);
-					expect(response.statusCode).toEqual(406);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Acceptable",
+						message: "Not Acceptable",
+						statusCode: 406,
+					});
+					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.statusCode).toBe(406);
 				});
 			});
 
@@ -285,10 +284,11 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeaders4xxErrors)
-					);
-					expect(response.statusCode).toEqual(401);
+					expect(response.headers).toEqual({
+						...expResHeadersJson,
+						vary: "accept-encoding",
+					});
+					expect(response.statusCode).toBe(401);
 				});
 
 				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
@@ -301,10 +301,13 @@ describe("Server Deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(
-						expect.objectContaining(expResHeadersJson)
-					);
-					expect(response.statusCode).toEqual(406);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Acceptable",
+						message: "Not Acceptable",
+						statusCode: 406,
+					});
+					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.statusCode).toBe(406);
 				});
 			});
 		});
