@@ -49,7 +49,7 @@ describe("Convert-Date-Param-Operator Plugin", () => {
 				});
 
 				expect(response.payload).toEqual(values[key]);
-				expect(response.statusCode).toEqual(200);
+				expect(response.statusCode).toBe(200);
 
 				return response.statusCode;
 			})
