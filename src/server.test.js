@@ -29,7 +29,7 @@ const expResHeaders = {
 
 const expResHeadersJson = {
 	...expResHeaders,
-	...{ "content-type": expect.stringContaining("application/json") },
+	"content-type": expect.stringContaining("application/json"),
 };
 
 describe("Server Deployment", () => {
