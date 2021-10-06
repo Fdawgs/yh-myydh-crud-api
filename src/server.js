@@ -155,6 +155,8 @@ async function plugin(server, config) {
 				// Register static files in ./src/public
 				.register(staticPlugin, {
 					root: path.join(__dirname, "public"),
+					immutable: true,
+					maxAge: "365 days",
 				})
 
 				// Register redoc module to allow for js to be used in ./src/public/docs.html
@@ -168,6 +170,7 @@ async function plugin(server, config) {
 					),
 					prefix: "/redoc/",
 					decorateReply: false,
+					maxAge: "1 day",
 				})
 				.register(autoLoad, {
 					dir: path.join(__dirname, "routes", "docs"),
