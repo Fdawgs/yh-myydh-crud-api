@@ -113,6 +113,6 @@
     "pino": "^6.13.3",
     "pino-pretty": "^7.0.1",
     "redoc": "^2.0.0-rc.56",
-    "under-pressure": "^5.7.0"
+    "under-pressure": "^5.8.0"
   }
 }
