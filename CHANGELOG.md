@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.2...v6.3.3) (2021-10-06)
+
+
+### Bug Fixes
+
+* **routes/docs/json:** add missing cache-control header ([a05d22b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a05d22b622ca67f4a556e1d8bf78d6634a325933))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-jest from 24.5.0 to 24.5.2 ([7f6b749](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7f6b749432c0b688566bd5a0fbf1f05770008bd5))
+* **deps:** bump fastify-static from 4.2.3 to 4.2.4 ([59d8d70](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/59d8d70e0f2e4d100eb6558cfe6c2bbb6ca2c4a4))
+* **deps:** bump fastify-swagger from 4.12.3 to 4.12.4 ([8fadab5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8fadab54002f126d1acf8a3fd8e1637992ceb2c1))
+* **deps:** bump GoogleCloudPlatform/release-please-action ([5b3e8e4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/5b3e8e4bf674e9864a25158ca6ba2a4f0f339cc3))
+* **deps:** bump hadolint/hadolint-action from 1.5.0 to 1.6.0 ([c3c4458](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c3c4458ed646bfcc160807c16f5f0f5e0a470179))
+* **deps:** bump under-pressure from 5.7.0 to 5.8.0 ([340dbd3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/340dbd39bb984ba7c37d76a2eb32315e185173dd))
+* **deps:** bump wagoid/commitlint-github-action from 4.1.4 to 4.1.5 ([ccaa392](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ccaa39262c7b4ca277efbe5b1a33b19fb217e2ba))
+
+
+### Improvements
+
+* **public/docs:** move css from inline to own file ([#462](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/462)) ([173860a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/173860ad09e1c8f0e2de7d59f59f47b1ad3997a0))
+* **routes/docs:** allow for html to be cached for 3 minutes ([5c6ddd9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/5c6ddd9c696e49e3997aed42c2fdf5fc3b255ce0))
+* **server:** allow for redoc js to be cached for 1 day ([23ffcf2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/23ffcf20632e18b4ecbf7ca3abdc5afd010b90b8))
+* **server:** use aggressive caching for static files ([4200ecc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4200ecc307c7917883ad726f62729f33d66bc923))
+
 ### [6.3.2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.1...v6.3.2) (2021-10-01)
 
 
