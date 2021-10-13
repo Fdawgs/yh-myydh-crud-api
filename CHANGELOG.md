@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.3...v6.3.4) (2021-10-13)
+
+
+### Bug Fixes
+
+* **routes/docs:** remove cors support ([45b7352](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/45b7352dd1aeac718bb412d56177c194b3a821f0))
+
+
+### Documentation
+
+* **readme:** move url into link ([#466](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/466)) ([77eaf17](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/77eaf1705f7d3ee0c54d2c8794a2aed805ef0e37))
+
+
+### Miscellaneous
+
+* **.eslintrc:** remove inaccurate sourcetype ([#463](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/463)) ([b7765ab](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b7765abe4afb4173aa111c7db396dc7e1927534e))
+* **.vscode:** remove deprecated settings ([#465](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/465)) ([4f78b55](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4f78b5573f003f8d54c4210a18ed4a54e7a5cc7b))
+* apply eslint rules per line, not file-wide ([bd94d52](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/bd94d528b5734df3c161d2c57b922e9d7410cd11))
+* **routes:** add missing jsdoc tag for `options.bearertokenauthkeys` ([3153173](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3153173d77c31d25b733ca6fd42cda401c6e5291))
+* **server:** update inline comment re clickjacking ([8dcc748](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/8dcc748df8990ac502d324fd41f221a793b94b0e))
+
+
+### Dependencies
+
+* **deps-dev:** bump @commitlint/cli from 13.2.0 to 13.2.1 ([28c12ce](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/28c12ceb7fa131c6d4d33835130cfaca47dbabdc))
+* **deps-dev:** bump eslint-plugin-import from 2.24.2 to 2.25.2 ([2e124a5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/2e124a5de9da02847ca3ac04cc2b8782e87b87d2))
+* **deps-dev:** bump eslint-plugin-jest from 24.5.2 to 25.0.5 ([3551ac5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3551ac5c66dd99396f2abc30fe5d4526247cd73a))
+* **deps-dev:** bump eslint-plugin-jsdoc from 36.1.0 to 36.1.1 ([38c9bb4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/38c9bb4a65a7f58db0244a37c9e3e4ca376843b9))
+* **deps-dev:** bump jest from 27.2.4 to 27.2.5 ([f86a5a2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f86a5a24b27251bbb7fe50de8433100d66a00210))
+* **deps:** bump fastify-static from 4.2.4 to 4.4.1 ([9cde05e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9cde05e83cd0058478812c3331330067d9b9a71c))
+* **deps:** bump fastify-static from 4.4.1 to 4.4.2 ([684f8da](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/684f8da8fa5947cbd8f5333294f4d575db27f156))
+* **deps:** bump redoc from 2.0.0-rc.56 to 2.0.0-rc.57 ([6d14f72](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6d14f72d6a96fe5b5bd112ceb580cdea764dad16))
+* **deps:** bump wagoid/commitlint-github-action from 4.1.5 to 4.1.9 ([a876377](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a8763772c887c6f4356aeada563fb15ffc3b6caa))
+
 ### [6.3.3](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.2...v6.3.3) (2021-10-06)
 
 
