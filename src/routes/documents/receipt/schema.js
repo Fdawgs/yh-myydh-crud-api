@@ -19,7 +19,7 @@ const receiptDeleteSchema = {
 			S.string()
 				.description("Logical id of the artifact")
 				.examples(["EXAMPLEGUID-0123456789-99999"])
-				.pattern("^[\\w\\-]{1,36}$")
+				.pattern(/^[\w-]{1,36}$/m)
 		)
 		.required(["id"]),
 	query: S.object()
@@ -28,7 +28,7 @@ const receiptDeleteSchema = {
 			S.string()
 				.description("Unique patient identifier")
 				.examples([9999999999])
-				.pattern("^\\d{1,10}$")
+				.pattern(/^\d{1,10}$/m)
 		)
 		.required(["patientId"]),
 	response: {
@@ -65,7 +65,7 @@ const receiptPutSchema = {
 			S.string()
 				.description("Logical id of the artifact")
 				.examples(["EXAMPLEGUID-0123456789-99999"])
-				.pattern("^[\\w\\-]{1,36}$")
+				.pattern(/^[\w-]{1,36}$/m)
 		)
 		.required(["id"]),
 	query: S.object()
@@ -74,7 +74,7 @@ const receiptPutSchema = {
 			S.string()
 				.description("Unique patient identifier")
 				.examples([9999999999])
-				.pattern("^\\d{1,10}$")
+				.pattern(/^\d{1,10}$/m)
 		)
 		.prop(
 			"timestamp",
