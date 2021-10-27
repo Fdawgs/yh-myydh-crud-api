@@ -23,6 +23,7 @@ const receiptDeleteSchema = {
 		)
 		.required(["id"]),
 	query: S.object()
+		.additionalProperties(false)
 		.prop(
 			"patientId",
 			S.string()
@@ -69,6 +70,7 @@ const receiptPutSchema = {
 		)
 		.required(["id"]),
 	query: S.object()
+		.additionalProperties(false)
 		.prop(
 			"patientId",
 			S.string()
