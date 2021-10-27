@@ -121,11 +121,13 @@ const userPutSchema = {
 			.pattern(/^\d{1,10}$/m)
 	),
 	body: S.object()
+		.additionalProperties(false)
 		.prop(
 			"preferences",
 			S.array()
 				.items(
 					S.object()
+						.additionalProperties(false)
 						.prop("id", S.number())
 						.prop("priority", S.number())
 						.prop("selected", S.number())

@@ -15,6 +15,7 @@ const registerGetSchema = {
 	operationId: "getRegister",
 	produces: ["application/json"],
 	query: S.object()
+		.additionalProperties(false)
 		.prop(
 			"lastModified",
 			S.anyOf([
@@ -48,7 +49,6 @@ const registerGetSchema = {
 					.uniqueItems(true),
 			])
 		)
-
 		.prop(
 			"page",
 			S.number()
