@@ -27,7 +27,7 @@ const registerGetSchema = {
 						"2021-01-01T00:00:01",
 					])
 					.pattern(
-						"^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\\d{4}-\\d{2}-\\d{2}(?:T\\d{2}\\:\\d{2}\\:\\d{2}|)$"
+						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
 					),
 				S.array()
 					.items(
@@ -40,7 +40,7 @@ const registerGetSchema = {
 								"2021-01-01T00:00:01",
 							])
 							.pattern(
-								"^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\\d{4}-\\d{2}-\\d{2}(?:T\\d{2}\\:\\d{2}\\:\\d{2}|)$"
+								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
 							)
 					)
 					.minItems(2)
@@ -78,13 +78,13 @@ const registerGetSchema = {
 								"guid",
 								S.string()
 									.examples(["EXAMPLEGUID-0123456789-99999"])
-									.pattern("^[\\w\\-]{1,36}$")
+									.pattern(/^[\w-]{1,36}$/m)
 							)
 							.prop(
 								"fhirId",
 								S.string()
 									.examples(["9999999999"])
-									.pattern("^\\d{1,10}$")
+									.pattern(/^\d{1,10}$/m)
 							)
 
 							.prop(

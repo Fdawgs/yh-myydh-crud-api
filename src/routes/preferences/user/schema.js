@@ -19,11 +19,11 @@ const userGetSchema = {
 		S.string()
 			.description("Unique patient identifier")
 			.examples([9999999999])
-			.pattern("^\\d{1,10}$")
+			.pattern(/^\d{1,10}$/m)
 	),
 	response: {
 		200: S.object()
-			.prop("id", S.string().pattern("^\\d{1,10}$"))
+			.prop("id", S.string().pattern(/^\d{1,10}$/m))
 			.prop(
 				"meta",
 				S.object()
@@ -118,7 +118,7 @@ const userPutSchema = {
 		S.string()
 			.description("Unique patient identifier")
 			.examples([1])
-			.pattern("^\\d{1,10}$")
+			.pattern(/^\d{1,10}$/m)
 	),
 	body: S.object()
 		.prop(
