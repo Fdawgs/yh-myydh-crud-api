@@ -81,7 +81,7 @@ jobs:
 
         services:
             postgres:
-                image: postgres:13-alpine
+                image: postgres:14-alpine
                 env:
                     POSTGRES_DB: myydh_crud_api
                     POSTGRES_USER: postgres
