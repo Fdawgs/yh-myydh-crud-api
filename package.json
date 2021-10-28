@@ -111,7 +111,7 @@
     "mssql": "^7.2.1",
     "pg": "^8.7.1",
     "pino": "^7.0.5",
-    "pino-pretty": "^7.0.1",
+    "pino-pretty": "^7.1.0",
     "redoc": "^2.0.0-rc.57",
     "secure-json-parse": "^2.4.0",
     "under-pressure": "^5.8.0"
