@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.4...v6.3.5) (2021-10-29)
+
+
+### Bug Fixes
+
+* **config:** remove additional env variables ([#483](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/483)) ([5961977](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/59619774532baa203f8203444cf5fffdc8e0b829))
+* **routes:** remove additional properties from req body and query ([#482](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/482)) ([3cebeaa](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3cebeaad48ba255f717db5f4616b5c309717968d))
+
+
+### Documentation
+
+* bump coc from v2.0.0 to v2.1.0 ([#479](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/479)) ([b5d53bb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b5d53bbc16264ab4d6c2370d9776d1e37b890b21))
+
+
+### Improvements
+
+* use secure-json-parse for json parsing ([0f37252](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0f37252f7a9c4d8bef178f09369fc394069ee386))
+
+
+### Miscellaneous
+
+* **.eslintrc:** remove redundant `impliedStrict` option ([#477](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/477)) ([a81f1c0](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a81f1c0a98670d16158181a65d937b3c641f2e7d))
+* **routes/redirect:** use raw regex over string for pattern ([#481](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/481)) ([0fceac1](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0fceac1eeeed6f2cf8ec26e86b2612b6c2bbf22c))
+* **routes:** update inline comment re injection attacks ([e6b5848](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e6b584872bac6f6a99825e4d8e79af015c37e807))
+
+
+### Dependencies
+
+* **deps-dev:** bump autocannon from 7.4.0 to 7.5.0 ([665deb5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/665deb536e1215086d8aba68080a53dbb8a6f11f))
+* **deps-dev:** bump eslint-plugin-jest from 25.0.5 to 25.2.2 ([9a9f0a8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9a9f0a8ac17ffd184514f5dc7e72ee08618d02c4))
+* **deps-dev:** bump eslint-plugin-jsdoc from 36.1.1 to 37.0.3 ([d03646e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d03646e5b21c2dac3fc5ddee6adc208cfb1d825c))
+* **deps-dev:** bump eslint-plugin-promise from 5.1.0 to 5.1.1 ([0cacd47](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0cacd47faaa50525ad76f73405112ac6c0eebd95))
+* **deps-dev:** bump husky from 7.0.2 to 7.0.4 ([fede292](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/fede292887914cc6e72fc1deeef3e209cb166d34))
+* **deps-dev:** bump jest from 27.2.5 to 27.3.1 ([214ff6e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/214ff6e0fc8cc56a9b28ac0ca975a2a1eff2eb66))
+* **deps-dev:** bump nodemon from 2.0.13 to 2.0.14 ([57a1e18](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/57a1e1869bd15765db7f5bf5eb42139d4d0990c3))
+* **deps:** add secure-json-parse ([a3e2c5a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a3e2c5ae03ee23bb67c725c933b36f132e2690cb))
+* **deps:** bump actions/checkout from 2.3.4 to 2.3.5 ([d24c79e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d24c79e93d4ee48d0af198658554dad34a27386b))
+* **deps:** bump fastify from 3.22.0 to 3.22.1 ([966a329](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/966a32906ec8f8c5c14e030f1677f6e9e7d69e11))
+* **deps:** bump fastify-compress from 3.6.0 to 3.6.1 ([7f7f182](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/7f7f1827b1dd1327b7a0e253bbec34273bb69990))
+* **deps:** bump fastify-disablecache from 2.0.3 to 2.0.4 ([c6ded7f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/c6ded7f194cda92e9273a69282ca0f9e9b099d48))
+* **deps:** bump fastify-floc-off from 1.0.2 to 1.0.3 ([12e02eb](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/12e02eb9c0152b579295dfa890567073d207fc74))
+* **deps:** bump fastify-swagger from 4.12.4 to 4.12.6 ([56b687b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/56b687bbdc2f686dc7fc9af6abc1b4fade3676e4))
+* **deps:** bump pino from 6.13.3 to 7.0.5 ([95ade14](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/95ade1418c6a3fbe61b0cbee535cb380a5e84312))
+* **deps:** bump pino-pretty from 7.0.1 to 7.1.0 ([be246c6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/be246c61c1a196391d3b53f0c931018b758c7722))
+* update lockfile from v1 to v2; bump sub-dependencies ([#500](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/500)) ([8718884](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/87188844e505513cb39abc578b6b974d566ae39b))
+
 ### [6.3.4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.3...v6.3.4) (2021-10-13)
 
 
