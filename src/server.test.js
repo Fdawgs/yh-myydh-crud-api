@@ -151,6 +151,58 @@ describe("Server Deployment", () => {
 					expect(response.statusCode).toBe(406);
 				});
 			});
+
+			describe("/preferences/options Route", () => {
+				test("Should return HTTP status code 401 if bearer token invalid", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/preferences/options",
+						headers: {
+							accept: "application/json",
+							authorization: "Bearer invalid",
+						},
+					});
+
+					expect(response.headers).toEqual({
+						...expResHeadersJson,
+						vary: "accept-encoding",
+					});
+					expect(response.statusCode).toBe(401);
+				});
+
+				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/preferences/options",
+						headers: {
+							accept: "application/javascript",
+							authorization: "Bearer testtoken",
+						},
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Acceptable",
+						message: "Not Acceptable",
+						statusCode: 406,
+					});
+					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.statusCode).toBe(406);
+				});
+
+				test("Should return response if media type in `Accept` request header is supported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/preferences/options",
+						headers: {
+							accept: "application/json",
+							authorization: "Bearer testtoken",
+						},
+					});
+
+					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.statusCode).not.toBe(406);
+				});
+			});
 		});
 	});
 
@@ -308,6 +360,20 @@ describe("Server Deployment", () => {
 					});
 					expect(response.headers).toEqual(expResHeadersJson);
 					expect(response.statusCode).toBe(406);
+				});
+
+				test("Should return response if media type in `Accept` request header is supported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/preferences/options",
+						headers: {
+							accept: "application/json",
+							authorization: "Bearer testtoken",
+						},
+					});
+
+					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.statusCode).not.toBe(406);
 				});
 			});
 		});
