@@ -309,6 +309,20 @@ describe("Server Deployment", () => {
 					expect(response.headers).toEqual(expResHeadersJson);
 					expect(response.statusCode).toBe(406);
 				});
+
+				test("Should return response if media type in `Accept` request header is supported", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: "/preferences/options",
+						headers: {
+							accept: "application/json",
+							authorization: "Bearer testtoken",
+						},
+					});
+
+					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.statusCode).not.toBe(406);
+				});
 			});
 		});
 	});
