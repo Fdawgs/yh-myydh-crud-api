@@ -83,6 +83,7 @@ async function route(server, options) {
 						) {
 							preferenceValueOptions.forEach(
 								(preferenceValue) => {
+									/* istanbul ignore else */
 									if (
 										preferenceValue.preferenceTypeId ===
 										preferenceType.preferenceTypeId

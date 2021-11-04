@@ -88,6 +88,7 @@ async function route(server, options) {
 
 						// Build option objects to populate options array
 						patientPreferencesValues.forEach((preferenceValue) => {
+							/* istanbul ignore else */
 							if (
 								preferenceValue.preferenceTypeId ===
 								patientPreference.preferenceTypeId
