@@ -3,6 +3,7 @@ require("dotenv").config();
 const envSchema = require("env-schema");
 const S = require("fluent-json-schema");
 const fs = require("fs").promises;
+const path = require("upath");
 const pino = require("pino");
 const rotatingLogStream = require("file-stream-rotator");
 const secJSON = require("secure-json-parse");
@@ -346,9 +347,13 @@ async function getConfig() {
 		try {
 			config.fastifyInit.https = {
 				// eslint-disable-next-line security/detect-non-literal-fs-filename
-				cert: await fs.readFile(env.HTTPS_SSL_CERT_PATH),
+				cert: await fs.readFile(
+					path.normalizeTrim(env.HTTPS_SSL_CERT_PATH)
+				),
 				// eslint-disable-next-line security/detect-non-literal-fs-filename
-				key: await fs.readFile(env.HTTPS_SSL_KEY_PATH),
+				key: await fs.readFile(
+					path.normalizeTrim(env.HTTPS_SSL_KEY_PATH)
+				),
 			};
 		} catch (err) {
 			throw Error(
@@ -362,7 +367,9 @@ async function getConfig() {
 			config.fastifyInit.https = {
 				passphrase: env.HTTPS_PFX_PASSPHRASE,
 				// eslint-disable-next-line security/detect-non-literal-fs-filename
-				pfx: await fs.readFile(env.HTTPS_PFX_FILE_PATH),
+				pfx: await fs.readFile(
+					path.normalizeTrim(env.HTTPS_PFX_FILE_PATH)
+				),
 			};
 		} catch (err) {
 			throw Error(
