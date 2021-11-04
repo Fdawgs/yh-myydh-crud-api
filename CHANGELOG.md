@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.5...v6.3.6) (2021-11-04)
+
+
+### Bug Fixes
+
+* **routes/documents/register:** empty results handling ([#509](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/509)) ([3022b32](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/3022b329862db955c1479f7f07deafb94d95d0fe))
+
+
+### Miscellaneous
+
+* **.prettierrc:** only enable `bracketSameLine` for html ([#506](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/506)) ([5b4bdfe](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/5b4bdfee2f66ffb6fcde26094250e7612d444f38))
+
+
+### Dependencies
+
+* **deps-dev:** bump @commitlint/cli from 13.2.1 to 14.1.0 ([37c845d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/37c845d8501b4013a260a7b4243101ba8df23b16))
+* **deps-dev:** bump @commitlint/config-conventional ([4823ac9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4823ac994ecfcf7b88ec37621beb09082343bcc4))
+* **deps-dev:** bump eslint from 7.32.0 to 8.1.0 ([a561f82](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a561f820f9498db8eead80458a50e58f7bfea455))
+* **deps:** bump actions/checkout from 2.3.5 to 2.4.0 ([6329d55](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6329d5579877f15d0398951e1c85721522069d65))
+* **deps:** bump fastify-sensible from 3.1.1 to 3.1.2 ([98c1ae4](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/98c1ae48ee06186d278d9aa8f54e9dfd9b9a3402))
+* **deps:** bump fastify-static from 4.4.2 to 4.5.0 ([4607117](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4607117c221d0fd53cf3136064c4d77a71cd4482))
+* **deps:** bump pino from 7.0.5 to 7.1.0 ([dc6635e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/dc6635eefcaa6d02dba967e6fe83918088189b6a))
+* **deps:** bump pino-pretty from 7.1.0 to 7.2.0 ([13beb8e](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/13beb8ecaa7f90683e43ef05fe0279ce65dee3d2))
+* **docker:** update postgres image from 13-alpine to 14-alpine ([#484](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/484)) ([d68a696](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/d68a696992ccc5643452f12f8a9465b4a73b26d1))
+
 ### [6.3.5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.4...v6.3.5) (2021-10-29)
 
 
