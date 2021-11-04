@@ -45,6 +45,18 @@ const expResPayload = {
 };
 expResPayload.data.push(mockRecord);
 
+const expResPayloadEmpty = {
+	data: [],
+	meta: {
+		pagination: {
+			total: 0,
+			per_page: expect.any(Number),
+			current_page: expect.any(Number),
+			total_pages: 0,
+		},
+	},
+};
+
 const mockMsSqlQueryResults = {
 	recordsets: [
 		[
@@ -121,6 +133,30 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
+				expect(response.statusCode).toBe(200);
+			});
+
+			test("Should return no documents from register if table empty", async () => {
+				const mockQueryFn = jest.fn().mockResolvedValue({});
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "GET",
+					url: "/",
+					query: {
+						lastModified: mockLastModified1,
+						perPage: mockPage,
+						page: mockPage,
+					},
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(
+					expResPayloadEmpty
+				);
 				expect(response.statusCode).toBe(200);
 			});
 
@@ -269,6 +305,30 @@ describe("Register Route", () => {
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.payload)).toEqual(expResPayload);
+				expect(response.statusCode).toBe(200);
+			});
+
+			test("Should return no documents from register if table empty", async () => {
+				const mockQueryFn = jest.fn().mockResolvedValue({});
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "GET",
+					url: "/",
+					query: {
+						lastModified: mockLastModified1,
+						perPage: mockPage,
+						page: mockPage,
+					},
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(
+					expResPayloadEmpty
+				);
 				expect(response.statusCode).toBe(200);
 			});
 

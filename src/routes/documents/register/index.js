@@ -81,7 +81,7 @@ async function route(server, options) {
 					results?.[0]?.rows?.[0]?.total ??
 					0;
 				const data = server.cleanObject(
-					results?.recordsets?.[1] ?? results?.[1]?.rows
+					results?.recordsets?.[1] ?? results?.[1]?.rows ?? []
 				);
 
 				const response = {
