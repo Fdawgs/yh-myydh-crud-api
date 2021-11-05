@@ -114,6 +114,7 @@
     "pino-pretty": "^7.2.0",
     "redoc": "^2.0.0-rc.57",
     "secure-json-parse": "^2.4.0",
-    "under-pressure": "^5.8.0"
+    "under-pressure": "^5.8.0",
+    "upath": "^2.0.1"
   }
 }
