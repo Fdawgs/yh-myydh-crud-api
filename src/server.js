@@ -1,6 +1,6 @@
 const autoLoad = require("fastify-autoload");
 const fp = require("fastify-plugin");
-const path = require("path");
+const path = require("upath");
 const secJSON = require("secure-json-parse");
 
 // Import plugins
@@ -86,7 +86,7 @@ async function plugin(server, config) {
 
 		// Import and register admin routes
 		.register(autoLoad, {
-			dir: path.join(__dirname, "routes", "admin"),
+			dir: path.joinSafe(__dirname, "routes", "admin"),
 			options: { ...config, prefix: "admin" },
 		})
 
@@ -127,7 +127,7 @@ async function plugin(server, config) {
 				.register(db, config.database)
 				// Import and register service routes
 				.register(autoLoad, {
-					dir: path.join(__dirname, "routes"),
+					dir: path.joinSafe(__dirname, "routes"),
 					ignorePattern: /(admin|docs)/,
 					options: config,
 				});
@@ -156,14 +156,14 @@ async function plugin(server, config) {
 
 				// Register static files in ./src/public
 				.register(staticPlugin, {
-					root: path.join(__dirname, "public"),
+					root: path.joinSafe(__dirname, "public"),
 					immutable: true,
 					maxAge: "365 days",
 				})
 
 				// Register redoc module to allow for js to be used in ./src/public/docs.html
 				.register(staticPlugin, {
-					root: path.join(
+					root: path.joinSafe(
 						__dirname,
 						"..",
 						"node_modules",
@@ -175,7 +175,7 @@ async function plugin(server, config) {
 					maxAge: "1 day",
 				})
 				.register(autoLoad, {
-					dir: path.join(__dirname, "routes", "docs"),
+					dir: path.joinSafe(__dirname, "routes", "docs"),
 					options: { ...config, prefix: "docs" },
 				});
 		});
