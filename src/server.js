@@ -119,7 +119,7 @@ async function plugin(server, config) {
 							req.accepts().type(["application/json"])
 						)
 					) {
-						res.notAcceptable();
+						throw res.notAcceptable();
 					}
 				})
 				.register(clean)
