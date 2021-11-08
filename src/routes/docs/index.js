@@ -18,7 +18,7 @@ async function route(server, options) {
 				req.accepts().type(docsGetSchema.produces)
 			)
 		) {
-			res.notAcceptable();
+			throw res.notAcceptable();
 		}
 	});
 
