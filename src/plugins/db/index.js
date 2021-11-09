@@ -14,19 +14,6 @@ const mssql = require("mssql");
  */
 async function plugin(server, options) {
 	switch (options.client.toLowerCase()) {
-		case "mssql":
-		default:
-			server.log.info("Connecting to MSSQL DB");
-			await mssql.connect(options.connection);
-			server.log.info("MSSQL DB connection opened");
-
-			server.decorate("db", mssql);
-			server.addHook("onClose", async () => {
-				server.log.info("Closing MSSQL DB connection");
-				await mssql.close();
-				server.log.info("MSSQL DB connection closed");
-			});
-			break;
 		case "postgresql":
 			server.log.info("Connecting to PostgreSQL DB");
 			// eslint-disable-next-line no-case-declarations
@@ -42,6 +29,19 @@ async function plugin(server, options) {
 				server.log.info("PostgreSQL DB connection closed");
 			});
 
+			break;
+		case "mssql":
+		default:
+			server.log.info("Connecting to MSSQL DB");
+			await mssql.connect(options.connection);
+			server.log.info("MSSQL DB connection opened");
+
+			server.decorate("db", mssql);
+			server.addHook("onClose", async () => {
+				server.log.info("Closing MSSQL DB connection");
+				await mssql.close();
+				server.log.info("MSSQL DB connection closed");
+			});
 			break;
 	}
 }
