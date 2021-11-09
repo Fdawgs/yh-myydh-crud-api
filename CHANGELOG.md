@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.6...v6.3.7) (2021-11-09)
+
+
+### Miscellaneous
+
+* **.env.template:** add note regarding required logging variables ([686979d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/686979d0a7352690d20014753c501777403ad251))
+* **config:** rename `fsp` variable to `fs` ([478e293](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/478e293795b0af10454eb28d579338132fc919cc))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint from 8.1.0 to 8.2.0 ([4bb6c5a](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/4bb6c5af974c55ceaeae1d1151b8bfe05c0e1f76))
+* **deps-dev:** bump eslint-config-airbnb-base from 14.2.1 to 15.0.0 ([b658259](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/b658259bc1bf1768696efc0ca83234c966bb8a05))
+* **deps-dev:** bump eslint-plugin-jest from 25.2.2 to 25.2.4 ([9c3d337](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9c3d337bffcd4d698dd8c6964637887334e609cf))
+* **deps:** bump env-schema from 3.4.0 to 3.5.0 ([1e05469](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1e054693d5fbfd8beda638396eee6c150936ff69))
+* **deps:** bump fastify from 3.22.1 to 3.23.1 ([eb0e67c](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/eb0e67c6937d061e86046951334392eba4819d06))
+
+
+### Improvements
+
+* **config:** normalize https cert file paths ([01bd2ec](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/01bd2ec866b4837b199eaad50b8e132eba18e0a3))
+* **config:** normalize logging filepath ([e1637ca](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e1637cae86be5b2d08c9053beb6e9b0fd3b5a4ae))
+* **plugins/db:** `default` clause as last clause ([#526](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/526)) ([22f0789](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/22f0789c340fff1eedebd03e954fbac0e7edf51a))
+* **routes:** throw `notAcceptable` errors not return ([#520](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/520)) ([edcc1f2](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/edcc1f29402f71c07935dfe361b21d3778d5b99e))
+* **server:** use `path.joinSafe()` over `path.join()` ([#519](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/519)) ([a0d9bc5](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/a0d9bc5fe2678797d98e8014c0672c319da78ff7))
+
+
+### Continuous Integration
+
+* **ci:** do not run clean-up on draft prs ([e3c3821](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e3c38215f9ea874429f29dbac44b7e0ab44868dd))
+* **spell-check:** do not run on draft prs ([e796ae9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/e796ae9f85d649f5fc1397aaf001b17cee1a3485))
+* use actions/setup-node's cache option ([#517](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/517)) ([1bb48cc](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/1bb48cc9337dad1f4c5a1cdddd413695964c8782))
+
 ### [6.3.6](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.5...v6.3.6) (2021-11-04)
 
 
