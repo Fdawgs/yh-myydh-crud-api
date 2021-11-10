@@ -120,7 +120,7 @@ async function route(server, options) {
 				}
 			} catch (err) {
 				server.log.error(err);
-				res.internalServerError(
+				throw res.internalServerError(
 					"Unable to return result(s) from database"
 				);
 			}
@@ -166,7 +166,7 @@ async function route(server, options) {
 				res.status(204);
 			} catch (err) {
 				server.log.error(err);
-				res.internalServerError(
+				throw res.internalServerError(
 					"Unable to update user preferences in database"
 				);
 			}
