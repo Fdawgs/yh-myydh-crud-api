@@ -55,7 +55,7 @@ async function route(server, options) {
 				}
 			} catch (err) {
 				server.log.error(err);
-				res.internalServerError(
+				throw res.internalServerError(
 					"Unable to delete read receipt from database"
 				);
 			}
@@ -85,7 +85,7 @@ async function route(server, options) {
 				}
 			} catch (err) {
 				server.log.error(err);
-				res.internalServerError(
+				throw res.internalServerError(
 					"Unable to update read receipt in database"
 				);
 			}

@@ -98,7 +98,7 @@ async function route(server, options) {
 				res.send(response);
 			} catch (err) {
 				server.log.error(err);
-				res.internalServerError(
+				throw res.internalServerError(
 					"Unable to return result(s) from database"
 				);
 			}
