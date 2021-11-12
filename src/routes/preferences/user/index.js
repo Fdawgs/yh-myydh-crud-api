@@ -119,7 +119,7 @@ async function route(server, options) {
 					res.notFound("User not found");
 				}
 			} catch (err) {
-				server.log.error(err);
+				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to return result(s) from database"
 				);
@@ -165,7 +165,7 @@ async function route(server, options) {
 
 				res.status(204);
 			} catch (err) {
-				server.log.error(err);
+				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to update user preferences in database"
 				);
