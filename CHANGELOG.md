@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.8](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.7...v6.3.8) (2021-11-16)
+
+
+### Continuous Integration
+
+* trigger workflows when drafts marked as "ready to review" ([#530](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/530)) ([82291ad](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/82291adf26f4e71a0099d27a8af21aa335ddb064))
+
+
+### Improvements
+
+* **routes:** link errors to requests in logs ([#531](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/531)) ([6c19071](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/6c190712451ed135f8b8be1c360892cf747be3d3))
+* **routes:** throw errors not return ([#528](https://www.github.com/Fdawgs/ydh-myydh-crud-api/issues/528)) ([457f10d](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/457f10da8cd5d6269d31bb9c1f85b3b50ed086fe))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-import from 2.25.2 to 2.25.3 ([9a7d007](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/9a7d00760d324419ec872ecd4738cd319780786b))
+* **deps-dev:** bump nodemon from 2.0.14 to 2.0.15 ([ba6a67f](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/ba6a67fde666f33e7bc080848874ff12b094002f))
+* **deps:** bump fastify from 3.23.1 to 3.24.0 ([324a312](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/324a3128491f36a5b45d989f3b319924d445527b))
+* **deps:** bump pino from 7.1.0 to 7.2.0 ([f721296](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/f721296cad1b7cae9c51fdd300c4bd5d99b1d1c8))
+
 ### [6.3.7](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.6...v6.3.7) (2021-11-09)
 
 
