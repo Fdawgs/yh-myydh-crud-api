@@ -108,7 +108,7 @@
     "fastify-swagger": "^4.12.6",
     "file-stream-rotator": "^0.5.7",
     "fluent-json-schema": "^3.0.1",
-    "mssql": "^7.2.1",
+    "mssql": "^7.3.0",
     "pg": "^8.7.1",
     "pino": "^7.5.1",
     "pino-pretty": "^7.2.0",
