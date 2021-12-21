@@ -33,347 +33,190 @@ const expResHeadersJson = {
 };
 
 describe("Server Deployment", () => {
-	describe("MSSQL Connection", () => {
-		beforeAll(async () => {
-			Object.assign(process.env, {
+	const connectionTests = [
+		{
+			testName: "MSSQL Connection",
+			envVariables: {
 				DB_CLIENT: "mssql",
 				DB_CONNECTION_STRING:
 					"Server=localhost,1433;Database=master;User Id=sa;Password=Password!;Encrypt=true;TrustServerCertificate=true;",
-			});
-		});
-
-		describe("End-To-End - Bearer Token Disabled", () => {
-			let config;
-			let server;
-
-			beforeAll(async () => {
-				Object.assign(process.env, {
-					AUTH_BEARER_TOKEN_ARRAY: "",
-				});
-				config = await getConfig();
-
-				server = Fastify();
-				server.register(startServer, config);
-
-				await server.ready();
-			});
-
-			afterAll(async () => {
-				await server.close();
-			});
-
-			describe("/admin/healthcheck Route", () => {
-				test("Should return `ok`", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/admin/healthcheck",
-						headers: {
-							accept: "text/plain",
-						},
-					});
-
-					expect(response.payload).toBe("ok");
-					expect(response.headers).toEqual(expResHeaders);
-					expect(response.statusCode).toBe(200);
-				});
-
-				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/admin/healthcheck",
-						headers: {
-							accept: "application/javascript",
-						},
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Not Acceptable",
-						message: "Not Acceptable",
-						statusCode: 406,
-					});
-					expect(response.headers).toEqual(expResHeadersJson);
-					expect(response.statusCode).toBe(406);
-				});
-			});
-		});
-
-		describe("End-To-End - Bearer Token Enabled", () => {
-			let config;
-			let server;
-
-			beforeAll(async () => {
-				Object.assign(process.env, {
-					AUTH_BEARER_TOKEN_ARRAY:
-						'[{"service": "test", "value": "testtoken"}]',
-				});
-				config = await getConfig();
-
-				server = Fastify();
-				server.register(startServer, config);
-
-				await server.ready();
-			});
-
-			afterAll(async () => {
-				await server.close();
-			});
-
-			describe("/admin/healthcheck Route", () => {
-				test("Should return `ok`", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/admin/healthcheck",
-						headers: {
-							accept: "text/plain",
-						},
-					});
-
-					expect(response.payload).toBe("ok");
-					expect(response.headers).toEqual(expResHeaders);
-					expect(response.statusCode).toBe(200);
-				});
-
-				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/admin/healthcheck",
-						headers: {
-							accept: "application/javascript",
-						},
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Not Acceptable",
-						message: "Not Acceptable",
-						statusCode: 406,
-					});
-					expect(response.headers).toEqual(expResHeadersJson);
-					expect(response.statusCode).toBe(406);
-				});
-			});
-
-			describe("/preferences/options Route", () => {
-				test("Should return HTTP status code 401 if bearer token invalid", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/preferences/options",
-						headers: {
-							accept: "application/json",
-							authorization: "Bearer invalid",
-						},
-					});
-
-					expect(response.headers).toEqual({
-						...expResHeadersJson,
-						vary: "accept-encoding",
-					});
-					expect(response.statusCode).toBe(401);
-				});
-
-				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/preferences/options",
-						headers: {
-							accept: "application/javascript",
-							authorization: "Bearer testtoken",
-						},
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Not Acceptable",
-						message: "Not Acceptable",
-						statusCode: 406,
-					});
-					expect(response.headers).toEqual(expResHeadersJson);
-					expect(response.statusCode).toBe(406);
-				});
-
-				test("Should return response if media type in `Accept` request header is supported", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/preferences/options",
-						headers: {
-							accept: "application/json",
-							authorization: "Bearer testtoken",
-						},
-					});
-
-					expect(response.headers).toEqual(expResHeadersJson);
-					expect(response.statusCode).not.toBe(406);
-				});
-			});
-		});
-	});
-
-	describe("PostgreSQL Connection", () => {
-		beforeAll(async () => {
-			Object.assign(process.env, {
+			},
+		},
+		{
+			testName: "PostgreSQL Connection",
+			envVariables: {
 				DB_CLIENT: "postgresql",
 				DB_CONNECTION_STRING:
 					"postgresql://postgres:password@localhost:5432/myydh_crud_api",
-			});
-		});
-
-		describe("End-To-End - Bearer Token Disabled", () => {
-			let config;
-			let server;
-
+			},
+		},
+	];
+	connectionTests.forEach((testObject) => {
+		describe(`${testObject.testName}`, () => {
 			beforeAll(async () => {
-				Object.assign(process.env, {
-					AUTH_BEARER_TOKEN_ARRAY: "",
-				});
-				config = await getConfig();
-
-				server = Fastify();
-				server.register(startServer, config);
-
-				await server.ready();
+				Object.assign(process.env, testObject.envVariables);
 			});
 
-			afterAll(async () => {
-				await server.close();
-			});
+			describe("End-To-End - Bearer Token Disabled", () => {
+				let config;
+				let server;
 
-			describe("/admin/healthcheck Route", () => {
-				test("Should return `ok`", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/admin/healthcheck",
-						headers: {
-							accept: "text/plain",
-						},
+				beforeAll(async () => {
+					Object.assign(process.env, {
+						AUTH_BEARER_TOKEN_ARRAY: "",
 					});
+					config = await getConfig();
 
-					expect(response.payload).toBe("ok");
-					expect(response.headers).toEqual(expResHeaders);
-					expect(response.statusCode).toBe(200);
+					server = Fastify();
+					server.register(startServer, config);
+
+					await server.ready();
 				});
 
-				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/admin/healthcheck",
-						headers: {
-							accept: "application/javascript",
-						},
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Not Acceptable",
-						message: "Not Acceptable",
-						statusCode: 406,
-					});
-					expect(response.headers).toEqual(expResHeadersJson);
-					expect(response.statusCode).toBe(406);
-				});
-			});
-		});
-
-		describe("End-To-End - Bearer Token Enabled", () => {
-			let config;
-			let server;
-
-			beforeAll(async () => {
-				Object.assign(process.env, {
-					AUTH_BEARER_TOKEN_ARRAY:
-						'[{"service": "test", "value": "testtoken"}]',
-				});
-				config = await getConfig();
-
-				server = Fastify();
-				server.register(startServer, config);
-
-				await server.ready();
-			});
-
-			afterAll(async () => {
-				await server.close();
-			});
-
-			describe("/admin/healthcheck Route", () => {
-				test("Should return `ok`", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/admin/healthcheck",
-						headers: {
-							accept: "text/plain",
-						},
-					});
-
-					expect(response.payload).toBe("ok");
-					expect(response.headers).toEqual(expResHeaders);
-					expect(response.statusCode).toBe(200);
+				afterAll(async () => {
+					await server.close();
 				});
 
-				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/admin/healthcheck",
-						headers: {
-							accept: "application/javascript",
-						},
+				describe("/admin/healthcheck Route", () => {
+					test("Should return `ok`", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/admin/healthcheck",
+							headers: {
+								accept: "text/plain",
+							},
+						});
+
+						expect(response.payload).toBe("ok");
+						expect(response.headers).toEqual(expResHeaders);
+						expect(response.statusCode).toBe(200);
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Not Acceptable",
-						message: "Not Acceptable",
-						statusCode: 406,
+					test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/admin/healthcheck",
+							headers: {
+								accept: "application/javascript",
+							},
+						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Not Acceptable",
+							message: "Not Acceptable",
+							statusCode: 406,
+						});
+						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.statusCode).toBe(406);
 					});
-					expect(response.headers).toEqual(expResHeadersJson);
-					expect(response.statusCode).toBe(406);
 				});
 			});
 
-			describe("/preferences/options Route", () => {
-				test("Should return HTTP status code 401 if bearer token invalid", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/preferences/options",
-						headers: {
-							accept: "application/json",
-							authorization: "Bearer invalid",
-						},
-					});
+			describe("End-To-End - Bearer Token Enabled", () => {
+				let config;
+				let server;
 
-					expect(response.headers).toEqual({
-						...expResHeadersJson,
-						vary: "accept-encoding",
+				beforeAll(async () => {
+					Object.assign(process.env, {
+						AUTH_BEARER_TOKEN_ARRAY:
+							'[{"service": "test", "value": "testtoken"}]',
 					});
-					expect(response.statusCode).toBe(401);
+					config = await getConfig();
+
+					server = Fastify();
+					server.register(startServer, config);
+
+					await server.ready();
 				});
 
-				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/preferences/options",
-						headers: {
-							accept: "application/javascript",
-							authorization: "Bearer testtoken",
-						},
-					});
-
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Not Acceptable",
-						message: "Not Acceptable",
-						statusCode: 406,
-					});
-					expect(response.headers).toEqual(expResHeadersJson);
-					expect(response.statusCode).toBe(406);
+				afterAll(async () => {
+					await server.close();
 				});
 
-				test("Should return response if media type in `Accept` request header is supported", async () => {
-					const response = await server.inject({
-						method: "GET",
-						url: "/preferences/options",
-						headers: {
-							accept: "application/json",
-							authorization: "Bearer testtoken",
-						},
+				describe("/admin/healthcheck Route", () => {
+					test("Should return `ok`", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/admin/healthcheck",
+							headers: {
+								accept: "text/plain",
+							},
+						});
+
+						expect(response.payload).toBe("ok");
+						expect(response.headers).toEqual(expResHeaders);
+						expect(response.statusCode).toBe(200);
 					});
 
-					expect(response.headers).toEqual(expResHeadersJson);
-					expect(response.statusCode).not.toBe(406);
+					test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/admin/healthcheck",
+							headers: {
+								accept: "application/javascript",
+							},
+						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Not Acceptable",
+							message: "Not Acceptable",
+							statusCode: 406,
+						});
+						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.statusCode).toBe(406);
+					});
+				});
+
+				describe("/preferences/options Route", () => {
+					test("Should return HTTP status code 401 if bearer token invalid", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/preferences/options",
+							headers: {
+								accept: "application/json",
+								authorization: "Bearer invalid",
+							},
+						});
+
+						expect(response.headers).toEqual({
+							...expResHeadersJson,
+							vary: "accept-encoding",
+						});
+						expect(response.statusCode).toBe(401);
+					});
+
+					test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/preferences/options",
+							headers: {
+								accept: "application/javascript",
+								authorization: "Bearer testtoken",
+							},
+						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Not Acceptable",
+							message: "Not Acceptable",
+							statusCode: 406,
+						});
+						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.statusCode).toBe(406);
+					});
+
+					test("Should return response if media type in `Accept` request header is supported", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/preferences/options",
+							headers: {
+								accept: "application/json",
+								authorization: "Bearer testtoken",
+							},
+						});
+
+						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.statusCode).not.toBe(406);
+					});
 				});
 			});
 		});
