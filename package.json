@@ -91,7 +91,7 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "env-schema": "^3.5.0",
+    "env-schema": "^3.5.1",
     "fastify": "^3.25.1",
     "fastify-accepts": "^2.1.0",
     "fastify-autoload": "^3.9.0",
