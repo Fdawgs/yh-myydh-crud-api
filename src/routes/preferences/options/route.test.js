@@ -29,228 +29,170 @@ const expResPayload = {
 };
 
 describe("Options Route", () => {
-	describe("MSSQL Database Backend", () => {
-		let config;
-		let server;
-
-		beforeAll(async () => {
-			Object.assign(process.env, {
+	const connectionTests = [
+		{
+			testName: "MSSQL Connection",
+			envVariables: {
 				DB_CLIENT: "mssql",
-			});
-			config = await getConfig();
-
-			server = Fastify();
-			server
-				.register(cleanObject)
-				.register(sensible)
-				.register(sharedSchemas)
-				.register(route, config);
-
-			await server.ready();
-		});
-
-		afterAll(async () => {
-			await server.close();
-		});
-
-		describe("GET Requests", () => {
-			test("Should return preference options", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					recordsets: [
-						[
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-							},
+			},
+			mocks: {
+				queryResults: {
+					error: {
+						recordsets: [[], []],
+					},
+					ok: {
+						recordsets: [
+							[
+								{
+									preferenceTypeId: 1,
+									preferenceTypeDisplay: "SMS",
+								},
+							],
+							[
+								{
+									preferenceTypeId: 1,
+									preferenceTypeDisplay: "SMS",
+									preferenceOptionDisplay: "yes",
+									preferenceOptionValue: 1,
+								},
+								{
+									preferenceTypeId: 1,
+									preferenceTypeDisplay: "SMS",
+									preferenceOptionDisplay: "no",
+									preferenceOptionValue: 2,
+								},
+							],
 						],
-						[
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceOptionDisplay: "yes",
-								preferenceOptionValue: 1,
-							},
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceOptionDisplay: "no",
-								preferenceOptionValue: 2,
-							},
-						],
-					],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
-			});
-
-			test("Should return HTTP status code 404 if no values returned from database", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					recordsets: [[], []],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Not Found",
-					message: "Invalid or expired search results",
-					statusCode: 404,
-				});
-				expect(response.statusCode).toBe(404);
-			});
-
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockRejectedValue(Error("Failed to connect to DB"));
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to return result(s) from database",
-					statusCode: 500,
-				});
-				expect(response.statusCode).toBe(500);
-			});
-		});
-	});
-
-	describe("PostgreSQL Database Backend", () => {
-		let config;
-		let server;
-
-		beforeAll(async () => {
-			Object.assign(process.env, {
+					},
+				},
+			},
+		},
+		{
+			testName: "PostgreSQL Connection",
+			envVariables: {
 				DB_CLIENT: "postgresql",
-			});
-			config = await getConfig();
+			},
+			mocks: {
+				queryResults: {
+					error: [{}, {}],
+					ok: [
+						{
+							rows: [
+								{
+									preferenceTypeId: 1,
+									preferenceTypeDisplay: "SMS",
+								},
+							],
+						},
+						{
+							rows: [
+								{
+									preferenceTypeId: 1,
+									preferenceTypeDisplay: "SMS",
+									preferenceOptionDisplay: "yes",
+									preferenceOptionValue: 1,
+								},
+								{
+									preferenceTypeId: 1,
+									preferenceTypeDisplay: "SMS",
+									preferenceOptionDisplay: "no",
+									preferenceOptionValue: 2,
+								},
+							],
+						},
+					],
+				},
+			},
+		},
+	];
+	connectionTests.forEach((testObject) => {
+		describe(`${testObject.testName}`, () => {
+			let config;
+			let server;
 
-			server = Fastify();
-			server
-				.register(cleanObject)
-				.register(sensible)
-				.register(sharedSchemas)
-				.register(route, config);
+			beforeAll(async () => {
+				Object.assign(process.env, testObject.envVariables);
+				config = await getConfig();
 
-			await server.ready();
-		});
+				server = Fastify();
+				server
+					.register(cleanObject)
+					.register(sensible)
+					.register(sharedSchemas)
+					.register(route, config);
 
-		afterAll(async () => {
-			await server.close();
-		});
-
-		describe("GET Requests", () => {
-			test("Should return preference options", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue([
-					{
-						rows: [
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-							},
-						],
-					},
-					{
-						rows: [
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceOptionDisplay: "yes",
-								preferenceOptionValue: 1,
-							},
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceOptionDisplay: "no",
-								preferenceOptionValue: 2,
-							},
-						],
-					},
-				]);
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
+				await server.ready();
 			});
 
-			test("Should return HTTP status code 404 if no values returned from database", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue([{}, {}]);
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Not Found",
-					message: "Invalid or expired search results",
-					statusCode: 404,
-				});
-				expect(response.statusCode).toBe(404);
+			afterAll(async () => {
+				await server.close();
 			});
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockRejectedValue(Error("Failed to connect to DB"));
+			describe("GET Requests", () => {
+				test("Should return preference options", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults.ok);
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(response.statusCode).toBe(200);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to return result(s) from database",
-					statusCode: 500,
+				test("Should return HTTP status code 404 if no values returned from database", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults.error);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Found",
+						message: "Invalid or expired search results",
+						statusCode: 404,
+					});
+					expect(response.statusCode).toBe(404);
 				});
-				expect(response.statusCode).toBe(500);
+
+				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockRejectedValue(Error("Failed to connect to DB"));
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Internal Server Error",
+						message: "Unable to return result(s) from database",
+						statusCode: 500,
+					});
+					expect(response.statusCode).toBe(500);
+				});
 			});
 		});
 	});
