@@ -40,476 +40,326 @@ const expResPayload = {
 };
 
 describe("User Route", () => {
-	describe("MSSQL Database Backend", () => {
-		let config;
-		let server;
-
-		beforeAll(async () => {
-			Object.assign(process.env, {
+	const connectionTests = [
+		{
+			testName: "MSSQL Connection",
+			envVariables: {
 				DB_CLIENT: "mssql",
-			});
-			config = await getConfig();
-
-			server = Fastify();
-			server
-				.register(cleanObject)
-				.register(sensible)
-				.register(sharedSchemas)
-				.register(route, config);
-
-			await server.ready();
-		});
-
-		afterAll(async () => {
-			await server.close();
-		});
-
-		describe("GET Requests", () => {
-			test("Should return user preferences", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					recordsets: [
-						[
-							{
-								id: "9999999999",
-								metaCreated: "2021-01-07T10:49:03.503Z",
-								metaLastUpdated: "2021-01-08T10:03:50.130Z",
-								preferenceValueId: 1,
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceTypePriority: 0,
-							},
-						],
-						[
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceOptionDisplay: "yes",
-								preferenceOptionValue: 1,
-							},
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceOptionDisplay: "no",
-								preferenceOptionValue: 2,
-							},
-						],
-					],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: `/${mockPatientId}`,
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
-			});
-
-			test("Should return HTTP status code 404 if no values returned from database", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					recordsets: [[], []],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: `/${mockPatientId}`,
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Not Found",
-					message: "User not found",
-					statusCode: 404,
-				});
-				expect(response.statusCode).toBe(404);
-			});
-
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockRejectedValue(Error("Failed to connect to DB"));
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: `/${mockPatientId}`,
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to return result(s) from database",
-					statusCode: 500,
-				});
-				expect(response.statusCode).toBe(500);
-			});
-		});
-
-		describe("PUT Requests", () => {
-			test("Should upsert user preferences", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					rowsAffected: [1, 1],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockPatientId}`,
-					headers: {
-						"content-type": "application/json",
+			},
+			mocks: {
+				queryResults: {
+					get: {
+						error: {
+							recordsets: [[], []],
+						},
+						ok: {
+							recordsets: [
+								[
+									{
+										id: "9999999999",
+										metaCreated: "2021-01-07T10:49:03.503Z",
+										metaLastUpdated:
+											"2021-01-08T10:03:50.130Z",
+										preferenceValueId: 1,
+										preferenceTypeId: 1,
+										preferenceTypeDisplay: "SMS",
+										preferenceTypePriority: 0,
+									},
+								],
+								[
+									{
+										preferenceTypeId: 1,
+										preferenceTypeDisplay: "SMS",
+										preferenceOptionDisplay: "yes",
+										preferenceOptionValue: 1,
+									},
+									{
+										preferenceTypeId: 1,
+										preferenceTypeDisplay: "SMS",
+										preferenceOptionDisplay: "no",
+										preferenceOptionValue: 2,
+									},
+								],
+							],
+						},
 					},
-					payload: {
-						preferences: [
-							{
-								id: 1,
-								priority: 0,
-								selected: 1,
-							},
-							{
-								id: 2,
-								priority: 1,
-								selected: 2,
-							},
-						],
+					put: {
+						error: {
+							rowsAffected: [0, 0],
+						},
+						ok: {
+							rowsAffected: [1, 1],
+						},
 					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(2);
-				expect(response.payload).toBe("");
-				expect(response.statusCode).toBe(204);
-			});
-
-			test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					rowsAffected: [1, 1],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockPatientId}`,
-					headers: {
-						"content-type": "application/javascript",
-					},
-					payload: {
-						preferences: [
-							{
-								id: 1,
-								priority: 0,
-								selected: 1,
-							},
-							{
-								id: 2,
-								priority: 1,
-								selected: 2,
-							},
-						],
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(0);
-				expect(JSON.parse(response.payload)).toEqual({
-					code: "FST_ERR_CTP_INVALID_MEDIA_TYPE",
-					error: "Unsupported Media Type",
-					message: "Unsupported Media Type: application/javascript",
-					statusCode: 415,
-				});
-				expect(response.statusCode).toBe(415);
-			});
-
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					rowsAffected: [0, 0],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockPatientId}`,
-					headers: {
-						"content-type": "application/json",
-					},
-					payload: {
-						preferences: [
-							{
-								id: 1,
-								priority: 0,
-								selected: 1,
-							},
-							{
-								id: 2,
-								priority: 1,
-								selected: 2,
-							},
-						],
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(2);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to update user preferences in database",
-					statusCode: 500,
-				});
-				expect(response.statusCode).toBe(500);
-			});
-		});
-	});
-
-	describe("PostgreSQL Database Backend", () => {
-		let config;
-		let server;
-
-		beforeAll(async () => {
-			Object.assign(process.env, {
+				},
+			},
+		},
+		{
+			testName: "PostgreSQL Connection",
+			envVariables: {
 				DB_CLIENT: "postgresql",
-			});
-			config = await getConfig();
-
-			server = Fastify();
-			server
-				.register(cleanObject)
-				.register(sensible)
-				.register(sharedSchemas)
-				.register(route, config);
-
-			await server.ready();
-		});
-
-		afterAll(async () => {
-			await server.close();
-		});
-
-		describe("GET Requests", () => {
-			test("Should return user preferences", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue([
-					{
-						rows: [
+			},
+			mocks: {
+				queryResults: {
+					get: {
+						error: [{}, {}],
+						ok: [
 							{
-								id: "9999999999",
-								metaCreated: "2021-01-07T10:49:03.503Z",
-								metaLastUpdated: "2021-01-08T10:03:50.130Z",
-								preferenceValueId: 1,
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceTypePriority: 0,
+								rows: [
+									{
+										id: "9999999999",
+										metaCreated: "2021-01-07T10:49:03.503Z",
+										metaLastUpdated:
+											"2021-01-08T10:03:50.130Z",
+										preferenceValueId: 1,
+										preferenceTypeId: 1,
+										preferenceTypeDisplay: "SMS",
+										preferenceTypePriority: 0,
+									},
+								],
+							},
+							{
+								rows: [
+									{
+										preferenceTypeId: 1,
+										preferenceTypeDisplay: "SMS",
+										preferenceOptionDisplay: "yes",
+										preferenceOptionValue: 1,
+									},
+									{
+										preferenceTypeId: 1,
+										preferenceTypeDisplay: "SMS",
+										preferenceOptionDisplay: "no",
+										preferenceOptionValue: 2,
+									},
+								],
 							},
 						],
 					},
-					{
-						rows: [
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceOptionDisplay: "yes",
-								preferenceOptionValue: 1,
-							},
-							{
-								preferenceTypeId: 1,
-								preferenceTypeDisplay: "SMS",
-								preferenceOptionDisplay: "no",
-								preferenceOptionValue: 2,
-							},
-						],
-					},
-				]);
+					put: { error: { rowCount: 0 }, ok: { rowCount: 1 } },
+				},
+			},
+		},
+	];
+	connectionTests.forEach((testObject) => {
+		describe(`${testObject.testName}`, () => {
+			let config;
+			let server;
 
-				server.db = {
-					query: mockQueryFn,
-				};
+			beforeAll(async () => {
+				Object.assign(process.env, testObject.envVariables);
+				config = await getConfig();
 
-				const response = await server.inject({
-					method: "GET",
-					url: `/${mockPatientId}`,
-				});
+				server = Fastify();
+				server
+					.register(cleanObject)
+					.register(sensible)
+					.register(sharedSchemas)
+					.register(route, config);
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
+				await server.ready();
 			});
 
-			test("Should return HTTP status code 404 if no values returned from database", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue([{}, {}]);
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: `/${mockPatientId}`,
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Not Found",
-					message: "User not found",
-					statusCode: 404,
-				});
-				expect(response.statusCode).toBe(404);
+			afterAll(async () => {
+				await server.close();
 			});
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockRejectedValue(Error("Failed to connect to DB"));
+			describe("GET Requests", () => {
+				test("Should return user preferences", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.get.ok
+						);
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				const response = await server.inject({
-					method: "GET",
-					url: `/${mockPatientId}`,
+					const response = await server.inject({
+						method: "GET",
+						url: `/${mockPatientId}`,
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(response.statusCode).toBe(200);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to return result(s) from database",
-					statusCode: 500,
-				});
-				expect(response.statusCode).toBe(500);
-			});
-		});
+				test("Should return HTTP status code 404 if no values returned from database", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.get.error
+						);
 
-		describe("PUT Requests", () => {
-			test("Should upsert user preferences", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue({ rowCount: 1 });
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					const response = await server.inject({
+						method: "GET",
+						url: `/${mockPatientId}`,
+					});
 
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockPatientId}`,
-					headers: {
-						"content-type": "application/json",
-					},
-					payload: {
-						preferences: [
-							{
-								id: 1,
-								priority: 0,
-								selected: 1,
-							},
-							{
-								id: 2,
-								priority: 1,
-								selected: 2,
-							},
-						],
-					},
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Found",
+						message: "User not found",
+						statusCode: 404,
+					});
+					expect(response.statusCode).toBe(404);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(2);
-				expect(response.payload).toBe("");
-				expect(response.statusCode).toBe(204);
-			});
+				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockRejectedValue(Error("Failed to connect to DB"));
 
-			test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue({ rowCount: 1 });
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					const response = await server.inject({
+						method: "GET",
+						url: `/${mockPatientId}`,
+					});
 
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockPatientId}`,
-					headers: {
-						"content-type": "application/javascript",
-					},
-					payload: {
-						preferences: [
-							{
-								id: 1,
-								priority: 0,
-								selected: 1,
-							},
-							{
-								id: 2,
-								priority: 1,
-								selected: 2,
-							},
-						],
-					},
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Internal Server Error",
+						message: "Unable to return result(s) from database",
+						statusCode: 500,
+					});
+					expect(response.statusCode).toBe(500);
 				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(0);
-				expect(JSON.parse(response.payload)).toEqual({
-					code: "FST_ERR_CTP_INVALID_MEDIA_TYPE",
-					error: "Unsupported Media Type",
-					message: "Unsupported Media Type: application/javascript",
-					statusCode: 415,
-				});
-				expect(response.statusCode).toBe(415);
 			});
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue({ rowCount: 0 });
+			describe("PUT Requests", () => {
+				test("Should upsert user preferences", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.put.ok
+						);
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockPatientId}`,
-					headers: {
-						"content-type": "application/json",
-					},
-					payload: {
-						preferences: [
-							{
-								id: 1,
-								priority: 0,
-								selected: 1,
-							},
-							{
-								id: 2,
-								priority: 1,
-								selected: 2,
-							},
-						],
-					},
+					const response = await server.inject({
+						method: "PUT",
+						url: `/${mockPatientId}`,
+						headers: {
+							"content-type": "application/json",
+						},
+						payload: {
+							preferences: [
+								{
+									id: 1,
+									priority: 0,
+									selected: 1,
+								},
+								{
+									id: 2,
+									priority: 1,
+									selected: 2,
+								},
+							],
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(2);
+					expect(response.payload).toBe("");
+					expect(response.statusCode).toBe(204);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(2);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to update user preferences in database",
-					statusCode: 500,
+				test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.put.ok
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "PUT",
+						url: `/${mockPatientId}`,
+						headers: {
+							"content-type": "application/javascript",
+						},
+						payload: {
+							preferences: [
+								{
+									id: 1,
+									priority: 0,
+									selected: 1,
+								},
+								{
+									id: 2,
+									priority: 1,
+									selected: 2,
+								},
+							],
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(0);
+					expect(JSON.parse(response.payload)).toEqual({
+						code: "FST_ERR_CTP_INVALID_MEDIA_TYPE",
+						error: "Unsupported Media Type",
+						message:
+							"Unsupported Media Type: application/javascript",
+						statusCode: 415,
+					});
+					expect(response.statusCode).toBe(415);
 				});
-				expect(response.statusCode).toBe(500);
+
+				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(
+							testObject.mocks.queryResults.put.error
+						);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "PUT",
+						url: `/${mockPatientId}`,
+						headers: {
+							"content-type": "application/json",
+						},
+						payload: {
+							preferences: [
+								{
+									id: 1,
+									priority: 0,
+									selected: 1,
+								},
+								{
+									id: 2,
+									priority: 1,
+									selected: 2,
+								},
+							],
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(2);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Internal Server Error",
+						message:
+							"Unable to update user preferences in database",
+						statusCode: 500,
+					});
+					expect(response.statusCode).toBe(500);
+				});
 			});
 		});
 	});

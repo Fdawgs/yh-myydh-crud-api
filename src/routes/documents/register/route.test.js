@@ -86,346 +86,197 @@ const mockPostgreSqlQueryResults = [
 mockPostgreSqlQueryResults[1].rows.push(mockRecord);
 
 describe("Register Route", () => {
-	describe("MSSQL Database Backend", () => {
-		let config;
-		let server;
-
-		beforeAll(async () => {
-			Object.assign(process.env, {
+	const connectionTests = [
+		{
+			testName: "MSSQL Connection",
+			envVariables: {
 				DB_CLIENT: "mssql",
-			});
-			config = await getConfig();
-
-			server = Fastify();
-			server
-				.register(cleanObject)
-				.register(convertDateParamOperator)
-				.register(sensible)
-				.register(sharedSchemas)
-				.register(route, config);
-
-			await server.ready();
-		});
-
-		afterAll(async () => {
-			await server.close();
-		});
-
-		describe("GET Requests", () => {
-			test("Should return documents from register", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue(mockMsSqlQueryResults);
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: mockLastModified1,
-						perPage: mockPage,
-						page: mockPage,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
-			});
-
-			test("Should return no documents from register if table empty", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: mockLastModified1,
-						perPage: mockPage,
-						page: mockPage,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(
-					expResPayloadEmpty
-				);
-				expect(response.statusCode).toBe(200);
-			});
-
-			test("Should return documents from register using default pagination values", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue(mockMsSqlQueryResults);
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: mockLastModified1,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
-			});
-
-			test("Should return documents from register using more than one lastModified querystring param", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue(mockMsSqlQueryResults);
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: [mockLastModified1, mockLastModified2],
-						perPage: mockPage,
-						page: mockPage,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
-			});
-
-			test("Should return documents from register using an operator in the lastModified querystring param", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue(mockMsSqlQueryResults);
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: `ge${mockLastModified1}`,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
-			});
-
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockRejectedValue(Error("Failed to connect to DB"));
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: mockLastModified1,
-						perPage: mockPage,
-						page: mockPage,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to return result(s) from database",
-					statusCode: 500,
-				});
-				expect(response.statusCode).toBe(500);
-			});
-		});
-	});
-
-	describe("PostgreSQL Database Backend", () => {
-		let config;
-		let server;
-
-		beforeAll(async () => {
-			Object.assign(process.env, {
+			},
+			mocks: {
+				queryResults: mockMsSqlQueryResults,
+			},
+		},
+		{
+			testName: "PostgreSQL Connection",
+			envVariables: {
 				DB_CLIENT: "postgresql",
-			});
-			config = await getConfig();
+			},
+			mocks: {
+				queryResults: mockPostgreSqlQueryResults,
+			},
+		},
+	];
+	connectionTests.forEach((testObject) => {
+		describe(`${testObject.testName}`, () => {
+			let config;
+			let server;
 
-			server = Fastify();
-			server
-				.register(cleanObject)
-				.register(convertDateParamOperator)
-				.register(sensible)
-				.register(sharedSchemas)
-				.register(route, config);
+			beforeAll(async () => {
+				Object.assign(process.env, testObject.envVariables);
+				config = await getConfig();
 
-			await server.ready();
-		});
+				server = Fastify();
+				server
+					.register(cleanObject)
+					.register(convertDateParamOperator)
+					.register(sensible)
+					.register(sharedSchemas)
+					.register(route, config);
 
-		afterAll(async () => {
-			await server.close();
-		});
-
-		describe("GET Requests", () => {
-			test("Should return documents from register", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue(mockPostgreSqlQueryResults);
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: mockLastModified1,
-						perPage: mockPage,
-						page: mockPage,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
+				await server.ready();
 			});
 
-			test("Should return no documents from register if table empty", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: mockLastModified1,
-						perPage: mockPage,
-						page: mockPage,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(
-					expResPayloadEmpty
-				);
-				expect(response.statusCode).toBe(200);
+			afterAll(async () => {
+				await server.close();
 			});
 
-			test("Should return documents from register using default pagination values", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue(mockPostgreSqlQueryResults);
+			describe("GET Requests", () => {
+				test("Should return documents from register", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults);
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: mockLastModified1,
-					},
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							lastModified: mockLastModified1,
+							perPage: mockPage,
+							page: mockPage,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(response.statusCode).toBe(200);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
-			});
+				test("Should return no documents from register if table empty", async () => {
+					const mockQueryFn = jest.fn().mockResolvedValue({});
 
-			test("Should return documents from register using more than one lastModified querystring param", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue(mockPostgreSqlQueryResults);
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							lastModified: mockLastModified1,
+							perPage: mockPage,
+							page: mockPage,
+						},
+					});
 
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: [mockLastModified1, mockLastModified2],
-						perPage: mockPage,
-						page: mockPage,
-					},
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(
+						expResPayloadEmpty
+					);
+					expect(response.statusCode).toBe(200);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
-			});
+				test("Should return documents from register using default pagination values", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults);
 
-			test("Should return documents from register using an operator in the lastModified querystring param", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue(mockPostgreSqlQueryResults);
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							lastModified: mockLastModified1,
+						},
+					});
 
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: `ge${mockLastModified1}`,
-					},
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(response.statusCode).toBe(200);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual(expResPayload);
-				expect(response.statusCode).toBe(200);
-			});
+				test("Should return documents from register using more than one lastModified querystring param", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults);
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockRejectedValue(Error("Failed to connect to DB"));
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							lastModified: [
+								mockLastModified1,
+								mockLastModified2,
+							],
+							perPage: mockPage,
+							page: mockPage,
+						},
+					});
 
-				const response = await server.inject({
-					method: "GET",
-					url: "/",
-					query: {
-						lastModified: mockLastModified1,
-						perPage: mockPage,
-						page: mockPage,
-					},
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(response.statusCode).toBe(200);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to return result(s) from database",
-					statusCode: 500,
+				test("Should return documents from register using an operator in the lastModified querystring param", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							lastModified: `ge${mockLastModified1}`,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(response.statusCode).toBe(200);
 				});
-				expect(response.statusCode).toBe(500);
+
+				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockRejectedValue(Error("Failed to connect to DB"));
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "GET",
+						url: "/",
+						query: {
+							lastModified: mockLastModified1,
+							perPage: mockPage,
+							page: mockPage,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Internal Server Error",
+						message: "Unable to return result(s) from database",
+						statusCode: 500,
+					});
+					expect(response.statusCode).toBe(500);
+				});
 			});
 		});
 	});

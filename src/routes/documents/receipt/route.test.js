@@ -16,308 +16,181 @@ const mockPatientId = faker.datatype.number({
 const mockTimeStamp = faker.date.past().toISOString();
 
 describe("Receipt Route", () => {
-	describe("MSSQL Database Backend", () => {
-		let config;
-		let server;
-
-		beforeAll(async () => {
-			Object.assign(process.env, {
+	const connectionTests = [
+		{
+			testName: "MSSQL Connection",
+			envVariables: {
 				DB_CLIENT: "mssql",
-			});
-			config = await getConfig();
-
-			server = Fastify();
-			server
-				.register(sensible)
-				.register(sharedSchemas)
-				.register(route, config);
-
-			await server.ready();
-		});
-
-		afterAll(async () => {
-			await server.close();
-		});
-
-		describe("DELETE Requests", () => {
-			test("Should delete a document read receipt", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					rowsAffected: [1],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "DELETE",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.payload).toBe("");
-				expect(response.statusCode).toBe(204);
-			});
-
-			test("Should return HTTP status code 404 if document missing or already deleted", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					rowsAffected: [0],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "DELETE",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Not Found",
-					message:
-						"Record does not exist or has already been deleted",
-					statusCode: 404,
-				});
-				expect(response.statusCode).toBe(404);
-			});
-
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockRejectedValue(Error("Failed to connect to DB"));
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "DELETE",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to delete read receipt from database",
-					statusCode: 500,
-				});
-				expect(response.statusCode).toBe(500);
-			});
-		});
-
-		describe("PUT Requests", () => {
-			test("Should upsert document read receipt", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					rowsAffected: [1],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-						timestamp: mockTimeStamp,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.payload).toBe("");
-				expect(response.statusCode).toBe(204);
-			});
-
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest.fn().mockResolvedValue({
-					rowsAffected: [0],
-				});
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-						timestamp: mockTimeStamp,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to update read receipt in database",
-					statusCode: 500,
-				});
-				expect(response.statusCode).toBe(500);
-			});
-		});
-	});
-
-	describe("PostgreSQL Database Backend", () => {
-		let config;
-		let server;
-
-		beforeAll(async () => {
-			Object.assign(process.env, {
+			},
+			mocks: {
+				queryResults: {
+					error: { rowsAffected: [0] },
+					ok: { rowsAffected: [1] },
+				},
+			},
+		},
+		{
+			testName: "PostgreSQL Connection",
+			envVariables: {
 				DB_CLIENT: "postgresql",
-			});
-			config = await getConfig();
+			},
+			mocks: {
+				queryResults: {
+					error: { rowCount: 0 },
+					ok: { rowCount: 1 },
+				},
+			},
+		},
+	];
+	connectionTests.forEach((testObject) => {
+		describe(`${testObject.testName}`, () => {
+			let config;
+			let server;
 
-			server = Fastify();
-			server
-				.register(sensible)
-				.register(sharedSchemas)
-				.register(route, config);
+			beforeAll(async () => {
+				Object.assign(process.env, testObject.envVariables);
+				config = await getConfig();
 
-			await server.ready();
-		});
+				server = Fastify();
+				server
+					.register(sensible)
+					.register(sharedSchemas)
+					.register(route, config);
 
-		afterAll(async () => {
-			await server.close();
-		});
-
-		describe("DELETE Requests", () => {
-			test("Should delete a document read receipt", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue({ rowCount: 1 });
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "DELETE",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.payload).toBe("");
-				expect(response.statusCode).toBe(204);
+				await server.ready();
 			});
 
-			test("Should return HTTP status code 404 if document missing or already deleted", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue({ rowCount: 0 });
-
-				server.db = {
-					query: mockQueryFn,
-				};
-
-				const response = await server.inject({
-					method: "DELETE",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-					},
-				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Not Found",
-					message:
-						"Record does not exist or has already been deleted",
-					statusCode: 404,
-				});
-				expect(response.statusCode).toBe(404);
+			afterAll(async () => {
+				await server.close();
 			});
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockRejectedValue(Error("Failed to connect to DB"));
+			describe("DELETE Requests", () => {
+				test("Should delete a document read receipt", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults.ok);
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				const response = await server.inject({
-					method: "DELETE",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-					},
+					const response = await server.inject({
+						method: "DELETE",
+						url: `/${mockId}`,
+						query: {
+							patientId: mockPatientId,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(response.payload).toBe("");
+					expect(response.statusCode).toBe(204);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to delete read receipt from database",
-					statusCode: 500,
+				test("Should return HTTP status code 404 if document missing or already deleted", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults.error);
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "DELETE",
+						url: `/${mockId}`,
+						query: {
+							patientId: mockPatientId,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Not Found",
+						message:
+							"Record does not exist or has already been deleted",
+						statusCode: 404,
+					});
+					expect(response.statusCode).toBe(404);
 				});
-				expect(response.statusCode).toBe(500);
+
+				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockRejectedValue(Error("Failed to connect to DB"));
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "DELETE",
+						url: `/${mockId}`,
+						query: {
+							patientId: mockPatientId,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Internal Server Error",
+						message: "Unable to delete read receipt from database",
+						statusCode: 500,
+					});
+					expect(response.statusCode).toBe(500);
+				});
 			});
-		});
 
-		describe("PUT Requests", () => {
-			test("Should upsert document read receipt", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue({ rowCount: 1 });
+			describe("PUT Requests", () => {
+				test("Should upsert document read receipt", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults.ok);
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-						timestamp: mockTimeStamp,
-					},
+					const response = await server.inject({
+						method: "PUT",
+						url: `/${mockId}`,
+						query: {
+							patientId: mockPatientId,
+							timestamp: mockTimeStamp,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(response.payload).toBe("");
+					expect(response.statusCode).toBe(204);
 				});
 
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(response.payload).toBe("");
-				expect(response.statusCode).toBe(204);
-			});
+				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockResolvedValue(testObject.mocks.queryResults.error);
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
-				const mockQueryFn = jest
-					.fn()
-					.mockResolvedValue({ rowCount: 0 });
+					server.db = {
+						query: mockQueryFn,
+					};
 
-				server.db = {
-					query: mockQueryFn,
-				};
+					const response = await server.inject({
+						method: "PUT",
+						url: `/${mockId}`,
+						query: {
+							patientId: mockPatientId,
+							timestamp: mockTimeStamp,
+						},
+					});
 
-				const response = await server.inject({
-					method: "PUT",
-					url: `/${mockId}`,
-					query: {
-						patientId: mockPatientId,
-						timestamp: mockTimeStamp,
-					},
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Internal Server Error",
+						message: "Unable to update read receipt in database",
+						statusCode: 500,
+					});
+					expect(response.statusCode).toBe(500);
 				});
-
-				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.payload)).toEqual({
-					error: "Internal Server Error",
-					message: "Unable to update read receipt in database",
-					statusCode: 500,
-				});
-				expect(response.statusCode).toBe(500);
 			});
 		});
 	});

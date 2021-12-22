@@ -148,7 +148,7 @@ describe("Configuration", () => {
 		});
 	});
 
-	test("Should return values according to environment variables - HTTPS (SSL cert) enabled", async () => {
+	test("Should return values according to environment variables - HTTPS (SSL cert) enabled and HTTP2 enabled", async () => {
 		const NODE_ENV = "development";
 		const SERVICE_HOST = faker.internet.ip();
 		const SERVICE_PORT = faker.datatype.number();
@@ -420,7 +420,6 @@ describe("Configuration", () => {
 		const HTTPS_SSL_CERT_PATH = envVariables?.HTTPS_SSL_CERT_PATH || "";
 		const HTTPS_PFX_FILE_PATH = envVariables?.HTTPS_PFX_FILE_PATH || "";
 		const HTTPS_PFX_PASSPHRASE = envVariables?.HTTPS_PFX_PASSPHRASE || "";
-
 		const LOG_LEVEL = faker.random.arrayElement([
 			"debug",
 			"warn",
