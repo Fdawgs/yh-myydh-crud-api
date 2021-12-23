@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.10](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.9...v6.3.10) (2021-12-23)
+
+
+### Documentation
+
+* **contributing:** add mention of husky pre-commit hook ([0175f8b](https://www.github.com/Fdawgs/ydh-myydh-crud-api/commit/0175f8b17cbab94f32312b27d0f0fc3339b7532b))
+
 ### [6.3.9](https://www.github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.8...v6.3.9) (2021-12-21)
 
 
