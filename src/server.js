@@ -23,7 +23,7 @@ const sharedSchemas = require("./plugins/shared-schemas");
 /**
  * @author Frazer Smith
  * @description Build Fastify instance.
- * @param {Function} server - Fastify instance.
+ * @param {object} server - Fastify instance.
  * @param {object} config - Fastify configuration values.
  */
 async function plugin(server, config) {
