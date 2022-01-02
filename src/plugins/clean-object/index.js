@@ -24,7 +24,7 @@ function cleanObject(object = {}) {
  * @author Frazer Smith
  * @description Plugin that decorates Fastify instance with `cleanObject` function,
  * which removes key value pairs from an object where the value is null or undefined.
- * @param {Function} server - Fastify instance.
+ * @param {object} server - Fastify instance.
  */
 async function plugin(server) {
 	server.decorate("cleanObject", cleanObject);
