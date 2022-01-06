@@ -88,7 +88,7 @@ async function route(server, options) {
 
 						// Build option objects to populate options array
 						patientPreferencesValues.forEach((preferenceValue) => {
-							/* istanbul ignore else */
+							/* istanbul ignore else: will not add preference type options if no match */
 							if (
 								preferenceValue.preferenceTypeId ===
 								patientPreference.preferenceTypeId
