@@ -69,7 +69,6 @@ async function plugin(server, config) {
 		 * from being wrapped in iframes and used for clickjacking attacks.
 		 */
 		.addHook("onSend", async (req, res) => {
-			/* istanbul ignore else */
 			if (
 				res.getHeader("content-type") !== undefined &&
 				!res.getHeader("content-type")?.includes("html") &&

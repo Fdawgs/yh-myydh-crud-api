@@ -83,7 +83,7 @@ async function route(server, options) {
 						) {
 							preferenceValueOptions.forEach(
 								(preferenceValue) => {
-									/* istanbul ignore else */
+									/* istanbul ignore else: will not add preference type options if no match */
 									if (
 										preferenceValue.preferenceTypeId ===
 										preferenceType.preferenceTypeId
