@@ -5,7 +5,7 @@ const getConfig = require("./config");
 const expResHeaders = {
 	"cache-control": "no-store, max-age=0, must-revalidate",
 	connection: "keep-alive",
-	"content-length": expect.any(String),
+	"content-length": expect.anything(),
 	"content-security-policy": "default-src 'self';frame-ancestors 'none'",
 	"content-type": expect.stringContaining("text/plain"),
 	date: expect.any(String),
