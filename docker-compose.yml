@@ -22,6 +22,7 @@ services:
                     memory: "${DOCKER_APP_MEMORY:-0}"
         env_file: .env
         environment:
+            DB_CONNECTION_STRING: "postgresql://postgres:password@ydh-myydh-crud-api-db:5432/myydh_crud_api"
             LOG_ROTATION_DATE_FORMAT:
             LOG_ROTATION_FILENAME:
             NODE_ENV: production
