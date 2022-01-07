@@ -112,6 +112,7 @@
     "pg": "^8.7.1",
     "pino": "^7.6.2",
     "pino-pretty": "^7.3.0",
+    "postgrator": "^5.0.0",
     "redoc": "^2.0.0-rc.59",
     "secure-json-parse": "^2.4.0",
     "under-pressure": "^5.8.0",
