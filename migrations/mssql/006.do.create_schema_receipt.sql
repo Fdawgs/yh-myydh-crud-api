@@ -1,0 +1,1 @@
+IF NOT EXISTS ( SELECT name FROM sys.schemas WHERE name = N'receipt' ) EXEC('CREATE SCHEMA receipt');

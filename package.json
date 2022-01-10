@@ -15,6 +15,7 @@
   },
   "scripts": {
     "benchmark": "autocannon -a 1000 -H \"Authorization:Bearer testtoken\" \"http://0.0.0.0:8204/preferences/options\"",
+    "db:migrate": "node ./src/migrate.js",
     "jest": "jest --detectOpenHandles --runInBand",
     "jest:coverage": "jest --coverage --runInBand",
     "lint": "eslint . --cache --ext js,jsx,ts,tsx --ignore-path .gitignore",
@@ -23,6 +24,7 @@
     "lint:prettier:ci": "prettier . --check --ignore-unknown",
     "prepare": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks",
     "start": "node .",
+    "start:migrate": "node ./src/migrate.js && node .",
     "start:dev": "nodemon",
     "test": "npm run lint && npm run jest",
     "test:db:mssql:build": "docker run -p 1433:1433 --name ydh-myydh-crud-api-mssql -e ACCEPT_EULA=Y -e SA_PASSWORD=Password! -e MSSQL_PID=Express -d mcr.microsoft.com/mssql/server:2019-latest",
@@ -43,7 +45,8 @@
     "clearMocks": true,
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!src/app.js"
+      "!src/app.js",
+      "!src/migrate.js"
     ],
     "coverageReporters": [
       "text",

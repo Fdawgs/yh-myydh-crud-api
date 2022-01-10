@@ -1,29 +1,4 @@
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-USE myydh_crud_api;
-GO
-
-INSERT INTO lookup.preference_type
-    (preference_type)
-VALUES
-    ('SMS'),
-    ('Email'),
-    ('Phone'),
-    ('Letters');
-GO
-
-INSERT INTO lookup.preference_value
-    (preference_value)
-VALUES
-    ('yes'),
-    ('no');
-GO
-
-INSERT INTO patient.preferences
+INSERT INTO myydh_crud_api.patient.preferences
     (patient_id, preference_type_id, preference_value_id, preference_priority, created)
 VALUES
     (9999999999, 1, 1, 0, CURRENT_TIMESTAMP),
@@ -32,9 +7,8 @@ VALUES
     (9999999999, 4, 2, 3, CURRENT_TIMESTAMP),
     (9999999998, 1, 1, 0, CURRENT_TIMESTAMP),
     (9999999998, 2, 2, 1, CURRENT_TIMESTAMP);
-GO
 
-INSERT INTO register.documents
+INSERT INTO myydh_crud_api.register.documents
     (GUID, fhir_id, Title, Clinic, Document_Type, Filesname, URL, Patient_Visible,
     CreatedDate, Modified, Specialty, FullPath, BaseURL, BaseSite)
 VALUES
@@ -47,6 +21,4 @@ VALUES
     ('YDHNHSFT-1130812521-64356', '5484125', 'App Dark Arts 25 December 2020 5484125 249', 'APPOINTMENT', 'Patient Letter', 'App Dark Arts 25 December 2020 5484125 249_c8602c8e-fabe-44e4-8ea7-6a9b4fb9012e.pdf', 'https://notrealdomain.ydh.nhs.uk/sites/MedRec/DocIdRedir.aspx?ID=YDHNHSFT-1130812521-64356', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Dark Arts', '/sites/MedRec/Records/5484125/Medical Records/App Dark Arts 25 December 2020 5484125 249_c8602c8e-fabe-44e4-8ea7-6a9b4fb9012e.pdf', 'https://notrealdomain.ydh.nhs.uk', '/sites/MedRec'),
     ('YDHNHSFT-1130812521-64361', '5484125', 'App Colorectal Surgery 20 October 2020 5484125 254', 'APPOINTMENT', 'Patient Letter', 'App Colorectal Surgery 20 October 2020 5484125 254_e9d863f9-19db-465d-8942-165f9c45dc58.pdf', 'https://notrealdomain.ydh.nhs.uk/sites/MedRec/DocIdRedir.aspx?ID=YDHNHSFT-1130812521-64361', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Colorectal Surgery', '/sites/MedRec/Records/5484125/Medical Records/App Colorectal Surgery 20 October 2020 5484125 254_e9d863f9-19db-465d-8942-165f9c45dc58.pdf', 'https://notrealdomain.ydh.nhs.uk', '/sites/MedRec'),
     ('YDHNHSFT-1553412538-5846', '5484125', 'bacon ipsum - not visiable', 'APPOINTMENT', 'Patient Letter', 'bacon ipsum.pdf', 'https://notrealdomain.ydh.nhs.uk/sites/MedRec/DocIdRedir.aspx?ID=YDHNHSFT-1553412538-5846', 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL, '/sites/MedRec/Record Library 1/5484125/Medical Records/bacon ipsum.pdf', 'https://notrealdomain.ydh.nhs.uk', '/sites/MedRec'),
-    ('YDHNHSFT-1130812521-64362', '5484125', 'App Gastroenterology 23 October 2020 5484125 255', 'APPOINTMENT', 'Patient Letter', 'App Gastroenterology 23 October 2020 5484125 255_3bab528e-1b31-49f0-937b-a18c67f0388e.pdf', 'https://notrealdomain.ydh.nhs.uk/sites/MedRec/DocIdRedir.aspx?ID=YDHNHSFT-1130812521-64362', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Gastroenterology', '/sites/MedRec/Records/5484125/Medical Records/App Gastroenterology 23 October 2020 5484125 255_3bab528e-1b31-49f0-937b-a18c67f0388e.pdf', 'https://notrealdomain.ydh.nhs.uk', '/sites/MedRec')
-
-GO
+    ('YDHNHSFT-1130812521-64362', '5484125', 'App Gastroenterology 23 October 2020 5484125 255', 'APPOINTMENT', 'Patient Letter', 'App Gastroenterology 23 October 2020 5484125 255_3bab528e-1b31-49f0-937b-a18c67f0388e.pdf', 'https://notrealdomain.ydh.nhs.uk/sites/MedRec/DocIdRedir.aspx?ID=YDHNHSFT-1130812521-64362', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Gastroenterology', '/sites/MedRec/Records/5484125/Medical Records/App Gastroenterology 23 October 2020 5484125 255_3bab528e-1b31-49f0-937b-a18c67f0388e.pdf', 'https://notrealdomain.ydh.nhs.uk', '/sites/MedRec');
