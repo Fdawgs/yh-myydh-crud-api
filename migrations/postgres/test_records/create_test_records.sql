@@ -1,18 +1,3 @@
-
-INSERT INTO lookup.preference_type
-    (preference_type)
-VALUES
-    ('SMS'),
-    ('Email'),
-    ('Phone'),
-    ('Letters');
-
-INSERT INTO lookup.preference_value
-    (preference_value)
-VALUES
-    ('yes'),
-    ('no');
-
 INSERT INTO patient.preferences
     (patient_id, preference_type_id, preference_value_id, preference_priority, created)
 VALUES

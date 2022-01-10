@@ -22,12 +22,13 @@ services:
                     memory: "${DOCKER_APP_MEMORY:-0}"
         env_file: .env
         environment:
+            DB_CONNECTION_STRING: "postgresql://postgres:password@ydh-myydh-crud-api-db:5432/myydh_crud_api"
             LOG_ROTATION_DATE_FORMAT:
             LOG_ROTATION_FILENAME:
             NODE_ENV: production
             SERVICE_HOST: 0.0.0.0
         healthcheck:
-            test: curl "localhost:${SERVICE_PORT:-8204}/healthcheck"
+            test: curl "localhost:${SERVICE_PORT:-8204}/admin/healthcheck"
             interval: 60s
             timeout: 3s
             start_period: 5s
@@ -45,6 +46,7 @@ services:
         ports:
             - "127.0.0.1:${SERVICE_PORT:-8204}:${SERVICE_PORT:-8204}"
         restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
+        command: ["npm", "run", "start:migrate"]
 
 volumes:
     ydh-myydh-crud-api-db-data:
