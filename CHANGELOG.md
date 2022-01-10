@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.3.11](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.10...v6.3.11) (2022-01-10)
+
+
+### Documentation
+
+* **readme:** update intro ([ab9c15e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ab9c15e159ad72d03f81c4bd3594851d6a598df9))
+
+
+### Dependencies
+
+* add postgrator to deployment process ([f5b0766](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f5b07666d6d34faf95e457425ed860a132b98735))
+* **deps-dev:** bump @commitlint/cli from 16.0.1 to 16.0.2 ([b185a6d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b185a6df9148efa0f54b46cae2fd3c21380c0968))
+* **deps-dev:** bump eslint-plugin-jsdoc from 37.5.1 to 37.6.1 ([92cb71e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/92cb71ee89bf8fec8286ed155c2cc98d9c7a3dd4))
+* **deps:** add pg-connection-string ([d6bcb7b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d6bcb7b11496eed3641dfd2956d2fad1639b5d30))
+* **deps:** add postgrator ([8e0ed6c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8e0ed6c0efd52556a013addf3a69b3ffee9fb58f))
+* **deps:** bump fastify-autoload from 3.9.0 to 3.10.0 ([518a42e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/518a42ebccf7636411fc991f935381401c0d241f))
+* **deps:** bump fastify-disablecache from 2.0.4 to 2.0.5 ([66609e7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/66609e7be27b743451e73a79a5d55d76195d77d9))
+* **deps:** bump fastify-floc-off from 1.0.3 to 1.0.4 ([cb339f6](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/cb339f6494a4304b67f1fa9ed3d3154c882349ca))
+* **deps:** bump fastify-swagger from 4.13.0 to 4.13.1 ([6f164e2](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6f164e20f8c7de6d214890c3747fb837f0dad9cf))
+* **docker-compose:** connect to postgresql image ([ed9a0b5](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ed9a0b57b6cbe67dacba4d4ea72e86ee0d68fd76))
+* **docker-compose:** fix healthcheck test script ([8360a6c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8360a6c59f80e0e04950441cde6f15d23037d62b))
+
 ### [6.3.10](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.9...v6.3.10) (2022-01-06)
 
 
