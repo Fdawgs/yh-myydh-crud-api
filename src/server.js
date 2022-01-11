@@ -39,25 +39,25 @@ async function plugin(server, config) {
 		.register(flocOff)
 
 		// Use Helmet to set response security headers: https://helmetjs.github.io/
-		.register(helmet, config.helmet);
+		.register(helmet, config.helmet)
 
-	await server
-		// Rate limiting and 429 response handling
-		.register(rateLimit, config.rateLimit);
-
-	server
 		// Utility functions and error handlers
 		.register(sensible)
 
 		// Re-usable schemas
 		.register(sharedSchemas)
 
-		// Process load and 503 response handling
-		.register(underPressure, config.processLoad)
-
 		// Generate OpenAPI/Swagger schemas
-		.register(swagger, config.swagger);
+		.register(swagger, config.swagger)
 
+		// Process load and 503 response handling
+		.register(underPressure, config.processLoad);
+
+	await server
+		// Rate limiting and 429 response handling
+		.register(rateLimit, config.rateLimit);
+
+	// Register routes
 	server
 		// Ensure rate limit also applies to 4xx and 5xx responses
 		.addHook("onSend", server.rateLimit())
