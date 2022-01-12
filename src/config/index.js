@@ -243,7 +243,7 @@ async function getConfig() {
 				info: {
 					title: "YDH MyYDH CRUD API",
 					description:
-						'<a href="https://yeovilhospital.co.uk/">Yeovil District Hospital NHSFT</a>\'s RESTful API, a Node.js application using the <a href="https://www.fastify.io/">Fastify web framework</a>, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the MyYDH patient and clinician app at https://my.ydh.nhs.uk.',
+						'<a href="https://yeovilhospital.co.uk/">Yeovil District Hospital NHSFT</a>\'s MyYDH RESTful API, a Node.js application using the <a href="https://www.fastify.io/">Fastify web framework</a>, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the MyYDH patient and clinician app at https://my.ydh.nhs.uk.',
 					contact: {
 						name: "Solutions Development Team",
 						email: "servicedesk@ydh.nhs.uk",
