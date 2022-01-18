@@ -30,6 +30,8 @@ Perform the following steps before deployment:
 3. Make a copy of `.env.template` in the root directory and rename it to `.env`
 4. Configure the application using the environment variables in `.env`
 
+**Note:** You will need to create a database prior to using it in the `DB_CONNECTION_STRING` environment variable (this does not apply if using the included Docker Compose file to deploy)
+
 **Note:** Set the following environment variables in `.env` to meet NHS Digital's recommendation to retain 6 months' worth of logs:
 
 -   `LOG_ROTATION_DATE_FORMAT="YYYY-MM-DD"`

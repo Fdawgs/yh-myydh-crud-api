@@ -35,7 +35,7 @@ async function migrate() {
 			postgrator = new Postgrator({
 				migrationPattern: path.join(__dirname, "../migrations/mssql/*"),
 				driver: "mssql",
-				database: client.database,
+				database: client.config.database,
 				execQuery: (query) =>
 					new Promise((resolve, reject) => {
 						const request = new mssql.Request(client);

@@ -1,8 +1,5 @@
 module.exports.generateSql = function () {
-	return `INSERT INTO ${
-		process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE ||
-		"myydh_crud_api.lookup.preference_type"
-	}
+	return `INSERT INTO ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}
         (preference_type)
     VALUES
         ('SMS'),
@@ -10,10 +7,7 @@ module.exports.generateSql = function () {
         ('Phone'),
         ('Letters');
     
-    INSERT INTO ${
-		process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE ||
-		"myydh_crud_api.lookup.preference_value"
-	}
+    INSERT INTO ${process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE}
         (preference_value)
     VALUES
         ('yes'),

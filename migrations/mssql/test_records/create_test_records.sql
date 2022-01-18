@@ -1,4 +1,4 @@
-INSERT INTO myydh_crud_api.patient.preferences
+INSERT INTO patient.preferences
     (patient_id, preference_type_id, preference_value_id, preference_priority, created)
 VALUES
     (9999999999, 1, 1, 0, CURRENT_TIMESTAMP),
@@ -8,7 +8,7 @@ VALUES
     (9999999998, 1, 1, 0, CURRENT_TIMESTAMP),
     (9999999998, 2, 2, 1, CURRENT_TIMESTAMP);
 
-INSERT INTO myydh_crud_api.register.documents
+INSERT INTO register.documents
     (GUID, fhir_id, Title, Clinic, Document_Type, Filesname, URL, Patient_Visible,
     CreatedDate, Modified, Specialty, FullPath, BaseURL, BaseSite)
 VALUES
