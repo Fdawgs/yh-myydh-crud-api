@@ -1,37 +1,19 @@
 module.exports.generateSql = function () {
-	return `IF OBJECT_ID('${
-		process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE ||
-		"myydh_crud_api.lookup.preference_type"
-	}', 'U') IS NULL CREATE TABLE ${
-		process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE ||
-		"myydh_crud_api.lookup.preference_type"
-	}
+	return `IF OBJECT_ID('${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}', 'U') IS NULL CREATE TABLE ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}
     (
         preference_type_id INT IDENTITY(1,1) NOT NULL,
         preference_type VARCHAR(MAX) NOT NULL,
         CONSTRAINT pk_preference_type_id PRIMARY KEY (preference_type_id)
     );
     
-    IF OBJECT_ID('${
-		process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE ||
-		"myydh_crud_api.lookup.preference_value"
-	}', 'U') IS NULL CREATE TABLE ${
-		process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE ||
-		"myydh_crud_api.lookup.preference_value"
-	}
+    IF OBJECT_ID('${process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE}', 'U') IS NULL CREATE TABLE ${process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE}
     (
         preference_value_id INT IDENTITY(1,1) NOT NULL,
         preference_value VARCHAR(255) NOT NULL,
         CONSTRAINT pk_preference_value_id PRIMARY KEY (preference_value_id)
     );
     
-    IF OBJECT_ID('${
-		process.env.DB_PATIENT_PREFERENCES_TABLE ||
-		"myydh_crud_api.patient.preferences"
-	}', 'U') IS NULL CREATE TABLE ${
-		process.env.DB_PATIENT_PREFERENCES_TABLE ||
-		"myydh_crud_api.patient.preferences"
-	}
+    IF OBJECT_ID('${process.env.DB_PATIENT_PREFERENCES_TABLE}', 'U') IS NULL CREATE TABLE ${process.env.DB_PATIENT_PREFERENCES_TABLE}
     (
         patient_id VARCHAR(255) NOT NULL,
         preference_type_id INT NOT NULL,
@@ -40,23 +22,11 @@ module.exports.generateSql = function () {
         created DATETIME NOT NULL,
         last_updated DATETIME,
         CONSTRAINT ck_patient_preference PRIMARY KEY (patient_id, preference_type_id),
-        CONSTRAINT fk_preference_type FOREIGN KEY (preference_type_id) REFERENCES ${
-			process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE ||
-			"myydh_crud_api.lookup.preference_type"
-		}(preference_type_id),
-        CONSTRAINT fk_preference_value FOREIGN KEY (preference_value_id) REFERENCES ${
-			process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE ||
-			"myydh_crud_api.lookup.preference_value"
-		}(preference_value_id)
+        CONSTRAINT fk_preference_type FOREIGN KEY (preference_type_id) REFERENCES ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}(preference_type_id),
+        CONSTRAINT fk_preference_value FOREIGN KEY (preference_value_id) REFERENCES ${process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE}(preference_value_id)
     );
     
-    IF OBJECT_ID('${
-		process.env.DB_READ_RECEIPT_DOCS_TABLE ||
-		"myydh_crud_api.receipt.documents"
-	}', 'U') IS NULL CREATE TABLE ${
-		process.env.DB_READ_RECEIPT_DOCS_TABLE ||
-		"myydh_crud_api.receipt.documents"
-	}
+    IF OBJECT_ID('${process.env.DB_READ_RECEIPT_DOCS_TABLE}', 'U') IS NULL CREATE TABLE ${process.env.DB_READ_RECEIPT_DOCS_TABLE}
     (
         patient_id VARCHAR(255) NOT NULL,
         guid CHAR(36) NOT NULL,
@@ -65,13 +35,7 @@ module.exports.generateSql = function () {
     );
     
     -- This table was created independent of this API, thus the mixture of snake case and camel case
-    IF OBJECT_ID('${
-		process.env.DB_DOCUMENT_REGISTER_TABLE ||
-		"myydh_crud_api.register.documents"
-	}', 'U') IS NULL CREATE TABLE ${
-		process.env.DB_DOCUMENT_REGISTER_TABLE ||
-		"myydh_crud_api.register.documents"
-	}
+    IF OBJECT_ID('${process.env.DB_DOCUMENT_REGISTER_TABLE}', 'U') IS NULL CREATE TABLE ${process.env.DB_DOCUMENT_REGISTER_TABLE}
     (
         GUID NVARCHAR(36) NOT NULL,
         fhir_id NVARCHAR(19) NULL,

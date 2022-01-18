@@ -1,1 +1,0 @@
-IF NOT EXISTS ( SELECT name FROM sys.databases WHERE name = N'myydh_crud_api' ) EXEC('CREATE DATABASE myydh_crud_api');

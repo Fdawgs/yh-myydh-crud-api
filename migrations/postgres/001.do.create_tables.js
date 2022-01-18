@@ -7,29 +7,21 @@ module.exports.generateSql = function () {
         
         CREATE SCHEMA IF NOT EXISTS register;
         
-        CREATE TABLE IF NOT EXISTS ${
-			process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE ||
-			"lookup.preference_type"
-		}
+        CREATE TABLE IF NOT EXISTS ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}
         (
             preference_type_id INT GENERATED ALWAYS AS IDENTITY,
             preference_type VARCHAR NOT NULL,
             CONSTRAINT pk_preference_type_id PRIMARY KEY (preference_type_id)
         );
         
-        CREATE TABLE IF NOT EXISTS ${
-			process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE ||
-			"lookup.preference_value"
-		}
+        CREATE TABLE IF NOT EXISTS ${process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE}
         (
             preference_value_id INT GENERATED ALWAYS AS IDENTITY,
             preference_value VARCHAR NOT NULL,
             CONSTRAINT pk_preference_value_id PRIMARY KEY (preference_value_id)
         );
         
-        CREATE TABLE IF NOT EXISTS ${
-			process.env.DB_PATIENT_PREFERENCES_TABLE || "patient.preferences"
-		}
+        CREATE TABLE IF NOT EXISTS ${process.env.DB_PATIENT_PREFERENCES_TABLE}
         (
             patient_id VARCHAR (255) NOT NULL,
             preference_type_id INT NOT NULL,
@@ -43,9 +35,7 @@ module.exports.generateSql = function () {
         );
         
         
-        CREATE TABLE IF NOT EXISTS ${
-			process.env.DB_READ_RECEIPT_DOCS_TABLE || "receipt.documents"
-		}
+        CREATE TABLE IF NOT EXISTS ${process.env.DB_READ_RECEIPT_DOCS_TABLE}
         (
             patient_id VARCHAR (255) NOT NULL,
             guid CHAR (36) NOT NULL,
@@ -56,9 +46,7 @@ module.exports.generateSql = function () {
         -- This table was created independent of this API, thus the mixture of snake case and camel case
         -- PostgreSQL will force these all to lower case columns
         CREATE TABLE
-        IF NOT EXISTS ${
-			process.env.DB_DOCUMENT_REGISTER_TABLE || "register.documents"
-		}
+        IF NOT EXISTS ${process.env.DB_DOCUMENT_REGISTER_TABLE}
         (
             GUID VARCHAR (36) NOT NULL,
             fhir_id VARCHAR (19) NULL,
