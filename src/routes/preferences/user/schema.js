@@ -113,6 +113,7 @@ const userPutSchema = {
 	description:
 		"Performs an upsert to create or update a user's contact preferences.",
 	operationId: "createUserOptions",
+	consumes: ["application/json"],
 	params: S.object().prop(
 		"id",
 		S.string()
@@ -145,6 +146,9 @@ const userPutSchema = {
 		),
 		406: S.ref("responses#/definitions/notAcceptable").description(
 			"Not Acceptable"
+		),
+		415: S.ref("responses#/definitions/unsupportedMediaType").description(
+			"Unsupported Media Type"
 		),
 		429: S.ref("responses#/definitions/tooManyRequests").description(
 			"Too Many Requests"

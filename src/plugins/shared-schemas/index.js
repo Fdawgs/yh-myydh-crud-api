@@ -51,6 +51,20 @@ async function plugin(server) {
 					.prop("message", S.string().const("Not Acceptable"))
 			)
 			.definition(
+				"unsupportedMediaType",
+				S.object()
+					.id("#unsupportedMediaType")
+					.title("415 Unsupported Media Type")
+					.prop("statusCode", S.number().const(415))
+					.prop("error", S.string().const("Unsupported Media Type"))
+					.prop(
+						"message",
+						S.string().examples([
+							"Unsupported Media Type: application/xml",
+						])
+					)
+			)
+			.definition(
 				"tooManyRequests",
 				S.object()
 					.id("#tooManyRequests")

@@ -1,3 +1,4 @@
+// eslint-disable-next-line func-names
 module.exports.generateSql = function () {
 	return `IF OBJECT_ID('${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}', 'U') IS NULL CREATE TABLE ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}
     (
