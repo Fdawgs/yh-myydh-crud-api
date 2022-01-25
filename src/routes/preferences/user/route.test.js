@@ -309,7 +309,6 @@ describe("User Route", () => {
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
 					expect(JSON.parse(response.payload)).toEqual({
-						code: "FST_ERR_CTP_INVALID_MEDIA_TYPE",
 						error: "Unsupported Media Type",
 						message:
 							"Unsupported Media Type: application/javascript",
