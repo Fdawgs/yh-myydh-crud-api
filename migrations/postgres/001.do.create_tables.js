@@ -1,3 +1,4 @@
+// eslint-disable-next-line func-names
 module.exports.generateSql = function () {
 	return `CREATE SCHEMA IF NOT EXISTS lookup;
 
