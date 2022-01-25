@@ -3,7 +3,7 @@ const fp = require("fastify-plugin");
 /**
  * @author Frazer Smith
  * @author NextGen Healthcare
- * @param {string} operator - Date param operator.
+ * @param {string} operator - Date param operator, in any letter case.
  * @description Convert date param operator to corresponding value.
  * @returns {string} converted date param operator.
  */
