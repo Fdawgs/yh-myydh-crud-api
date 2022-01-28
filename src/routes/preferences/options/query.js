@@ -1,3 +1,5 @@
+const escSq = require("../../../utils/escape-single-quotes");
+
 /**
  * @author Frazer Smith
  * @description Build SQL query string.
@@ -9,7 +11,7 @@
 const optionsSelect = ({
 	patientPreferencesTypeTable,
 	patientPreferencesValueTable,
-}) => `
+}) => escSq`
 SELECT pptype.preference_type_id AS "preferenceTypeId",
 pptype.preference_type AS "preferenceTypeDisplay"
 FROM ${patientPreferencesTypeTable} pptype;

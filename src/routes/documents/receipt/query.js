@@ -1,3 +1,5 @@
+const escSq = require("../../../utils/escape-single-quotes");
+
 /**
  * @author Frazer Smith
  * @description Build SQL query string.
@@ -7,7 +9,7 @@
  * @param {string} options.readReceiptTable - Name and schema of document read receipt table.
  * @returns {string} Query string.
  */
-const receiptDelete = ({ id, patientId, readReceiptTable }) => `DELETE
+const receiptDelete = ({ id, patientId, readReceiptTable }) => escSq`DELETE
 FROM ${readReceiptTable}
 WHERE guid = '${id}'
    AND patient_id = '${patientId}';`;
@@ -31,7 +33,7 @@ const receiptInsert = ({
 	readReceiptTable,
 }) => {
 	if (dbClient === "postgresql") {
-		return `INSERT INTO ${readReceiptTable} (guid, patient_id, ts)
+		return escSq`INSERT INTO ${readReceiptTable} (guid, patient_id, ts)
       VALUES('${id}', '${patientId}', '${timestamp}')
 		ON CONFLICT ON CONSTRAINT ck_document_receipt
 		DO
@@ -39,7 +41,7 @@ const receiptInsert = ({
 		SET ts = '${timestamp}';`;
 	}
 
-	return `IF EXISTS(SELECT guid
+	return escSq`IF EXISTS(SELECT guid
         FROM ${readReceiptTable}
           WHERE guid = '${id}'
           AND patient_id = '${patientId}')
