@@ -1,6 +1,9 @@
 // Import plugins
 const cors = require("fastify-cors");
 
+// Import utils
+const escSq = require("../../../utils/escape-single-quotes");
+
 const { registerGetSchema } = require("./schema");
 const { registerSelect } = require("./query");
 
@@ -57,7 +60,7 @@ async function route(server, options) {
 						date = date.substring(2, date.length);
 					}
 
-					whereArray.push(`(Modified ${operator} '${date}')`);
+					whereArray.push(escSq`(Modified ${operator} '${date}')`);
 				});
 
 				const whereClausePredicates = whereArray.join(" AND ");

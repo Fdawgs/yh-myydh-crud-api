@@ -1,3 +1,5 @@
+const escSq = require("../../../utils/escape-single-quotes");
+
 /**
  * @author Frazer Smith
  * @description Build SQL query string.
@@ -19,7 +21,7 @@ const userInsert = ({
 	patientPreferencesTable,
 }) => {
 	if (dbClient === "postgresql") {
-		return `INSERT INTO ${patientPreferencesTable} (patient_id, preference_type_id, preference_value_id, preference_priority, created)
+		return escSq`INSERT INTO ${patientPreferencesTable} (patient_id, preference_type_id, preference_value_id, preference_priority, created)
 		VALUES('${patientId}', '${preferenceTypeId}', '${preferenceValueId}', '${preferencePriority}', CURRENT_TIMESTAMP)
 		ON CONFLICT ON CONSTRAINT ck_patient_preference
 		DO
@@ -29,7 +31,7 @@ const userInsert = ({
 		last_updated = CURRENT_TIMESTAMP;`;
 	}
 
-	return `IF EXISTS(SELECT patient_id
+	return escSq`IF EXISTS(SELECT patient_id
 		FROM ${patientPreferencesTable}
 		WHERE patient_id = '${patientId}'
 		AND preference_type_id = '${preferenceTypeId}')
@@ -59,7 +61,7 @@ const userSelect = ({
 	patientPreferencesTable,
 	patientPreferencesTypeTable,
 	patientPreferencesValueTable,
-}) => `SELECT pat.patient_id AS "id",
+}) => escSq`SELECT pat.patient_id AS "id",
 pat.created AS "metaCreated",
 pat.last_updated AS "metaLastUpdated",
 pat.preference_value_id AS "preferenceValueId",
