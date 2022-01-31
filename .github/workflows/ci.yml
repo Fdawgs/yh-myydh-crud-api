@@ -100,6 +100,8 @@ jobs:
                   node-version: ${{ matrix.node }}
             - name: Install
               run: npm ci --ignore-scripts
+            - name: Install Playwright
+              run: npx playwright install --with-deps
             - name: Run Tests
               run: |
                   cp .env.template .env
