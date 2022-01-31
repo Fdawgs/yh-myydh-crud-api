@@ -116,7 +116,7 @@
     "pg": "^8.7.1",
     "pg-connection-string": "^2.5.0",
     "pino": "^7.6.4",
-    "pino-pretty": "^7.5.0",
+    "pino-pretty": "^7.5.1",
     "postgrator": "^5.0.0",
     "redoc": "^2.0.0-rc.61",
     "secure-json-parse": "^2.4.0",
