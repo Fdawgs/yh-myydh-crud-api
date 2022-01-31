@@ -54,7 +54,7 @@
     ],
     "resetMocks": true,
     "testEnvironment": "node",
-    "testTimeout": 10000
+    "testTimeout": 60000
   },
   "nodemonConfig": {
     "env": {
