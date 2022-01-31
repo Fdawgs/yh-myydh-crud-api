@@ -54,7 +54,7 @@
     ],
     "resetMocks": true,
     "testEnvironment": "node",
-    "testTimeout": 10000
+    "testTimeout": 60000
   },
   "nodemonConfig": {
     "env": {
@@ -90,6 +90,7 @@
     "jest": "^27.4.7",
     "license-checker": "^25.0.1",
     "nodemon": "^2.0.15",
+    "playwright": "^1.18.1",
     "prettier": "2.5.1"
   },
   "dependencies": {
