@@ -6,7 +6,7 @@ const getConfig = require("../../../config");
 const cleanObject = require("../../../plugins/clean-object");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
-const mockPatientId = faker.datatype.number({
+const testPatientId = faker.datatype.number({
 	min: 1000000000,
 	max: 9999999999,
 });
@@ -178,7 +178,7 @@ describe("User Route", () => {
 
 					const response = await server.inject({
 						method: "GET",
-						url: `/${mockPatientId}`,
+						url: `/${testPatientId}`,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -199,7 +199,7 @@ describe("User Route", () => {
 
 					const response = await server.inject({
 						method: "GET",
-						url: `/${mockPatientId}`,
+						url: `/${testPatientId}`,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -222,7 +222,7 @@ describe("User Route", () => {
 
 					const response = await server.inject({
 						method: "GET",
-						url: `/${mockPatientId}`,
+						url: `/${testPatientId}`,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -249,7 +249,7 @@ describe("User Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockPatientId}`,
+						url: `/${testPatientId}`,
 						headers: {
 							"content-type": "application/json",
 						},
@@ -287,7 +287,7 @@ describe("User Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockPatientId}`,
+						url: `/${testPatientId}`,
 						headers: {
 							"content-type": "application/javascript",
 						},
@@ -330,7 +330,7 @@ describe("User Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockPatientId}`,
+						url: `/${testPatientId}`,
 						headers: {
 							"content-type": "application/json",
 						},
