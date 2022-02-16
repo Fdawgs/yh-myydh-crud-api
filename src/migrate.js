@@ -11,73 +11,94 @@ const getConfig = require("./config");
  * @description Run Postgrator to execute SQL queries in ../migrations/** directories.
  */
 async function migrate() {
-	const { database } = await getConfig();
 	let client;
+	let db;
 	let postgrator;
 
-	switch (database.client.toLowerCase()) {
-		case "postgresql":
-			client = new pg.Client(database.connection);
-			postgrator = new Postgrator({
-				migrationPattern: path.join(
-					__dirname,
-					"../migrations/postgres/*"
-				),
-				driver: "pg",
-				database: pgParse(database.connection).database,
-				execQuery: (query) => client.query(query),
-			});
-			break;
+	try {
+		const { database } = await getConfig();
 
-		case "mssql":
-		default:
-			client = new mssql.ConnectionPool(database.connection);
-			postgrator = new Postgrator({
-				migrationPattern: path.join(__dirname, "../migrations/mssql/*"),
-				driver: "mssql",
-				database: client.config.database,
-				execQuery: (query) =>
-					new Promise((resolve, reject) => {
-						const request = new mssql.Request(client);
-						// batch will handle multiple queries
-						// eslint-disable-next-line promise/prefer-await-to-callbacks
-						request.batch(query, (err, result) => {
-							if (err) {
-								return reject(err);
-							}
-							return resolve({
-								rows:
-									result && result.recordset
-										? result.recordset
-										: result,
+		db = database.client.toLowerCase();
+
+		switch (database.client.toLowerCase()) {
+			case "postgresql":
+				client = new pg.Client(database.connection);
+				postgrator = new Postgrator({
+					migrationPattern: path.join(
+						__dirname,
+						"../migrations/postgres/*"
+					),
+					driver: "pg",
+					database: pgParse(database.connection).database,
+					execQuery: /* istanbul ignore next */ (query) =>
+						client.query(query),
+				});
+				break;
+
+			case "mssql":
+			default:
+				client = new mssql.ConnectionPool(database.connection);
+				postgrator = new Postgrator({
+					migrationPattern: path.join(
+						__dirname,
+						"../migrations/mssql/*"
+					),
+					driver: "mssql",
+					database: client.config.database,
+					execQuery: /* istanbul ignore next */ (query) =>
+						new Promise((resolve, reject) => {
+							const request = new mssql.Request(client);
+							// batch will handle multiple queries
+							// eslint-disable-next-line promise/prefer-await-to-callbacks
+							request.batch(query, (err, result) => {
+								if (err) {
+									return reject(err);
+								}
+								return resolve({
+									rows:
+										result && result.recordset
+											? result.recordset
+											: result,
+								});
 							});
-						});
-					}),
-			});
-			break;
+						}),
+				});
+				break;
+		}
+
+		await client.connect();
+
+		// Migrate to latest version
+		const migrationResult = await postgrator.migrate();
+
+		/* istanbul ignore else */
+		if (migrationResult.length === 0) {
+			console.log("No migrations run, already on latest schema version");
+		}
+
+		console.log("Migration complete");
+	} catch (err) {
+		console.error(err);
+		process.exitCode = 1;
+	} finally {
+		// Close the DB connection
+		switch (db) {
+			case "postgresql":
+				await client.end();
+				break;
+
+			case "mssql":
+			default:
+				await client.close();
+				break;
+		}
 	}
-
-	await client.connect();
-
-	// Migrate to latest version
-	const migrationResult = await postgrator.migrate();
-
-	if (migrationResult.length === 0) {
-		console.log("No migrations run, already on latest schema version");
-	}
-
-	// Close the DB connection
-	switch (database.client.toLowerCase()) {
-		case "postgresql":
-			await client.end();
-			break;
-
-		case "mssql":
-		default:
-			await client.close();
-			break;
-	}
-
-	console.log("Migration complete");
 }
-migrate();
+
+// If file called directly, then run function
+/* istanbul ignore if */
+if (require.main === module) {
+	migrate();
+}
+
+module.exports = migrate;
