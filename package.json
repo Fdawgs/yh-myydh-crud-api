@@ -45,8 +45,7 @@
     "clearMocks": true,
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!src/app.js",
-      "!src/migrate.js"
+      "!src/app.js"
     ],
     "coverageReporters": [
       "text",
