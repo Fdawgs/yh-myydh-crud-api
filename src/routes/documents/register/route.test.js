@@ -7,13 +7,13 @@ const cleanObject = require("../../../plugins/clean-object");
 const convertDateParamOperator = require("../../../plugins/convert-date-param-operator");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
-const mockPage = faker.datatype.number({
+const testPage = faker.datatype.number({
 	min: 1,
 	max: 10,
 });
 
-const mockLastModified1 = faker.date.past().toISOString().split("T")[0];
-const mockLastModified2 = faker.date.past().toISOString().split("T")[0];
+const testLastModified1 = faker.date.past().toISOString().split("T")[0];
+const testLastModified2 = faker.date.past().toISOString().split("T")[0];
 
 const mockRecord = {
 	guid: "EXAMPLEGUID-0123456789-99999",
@@ -144,9 +144,9 @@ describe("Register Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							lastModified: mockLastModified1,
-							perPage: mockPage,
-							page: mockPage,
+							lastModified: testLastModified1,
+							perPage: testPage,
+							page: testPage,
 						},
 					});
 
@@ -166,9 +166,9 @@ describe("Register Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							lastModified: mockLastModified1,
-							perPage: mockPage,
-							page: mockPage,
+							lastModified: testLastModified1,
+							perPage: testPage,
+							page: testPage,
 						},
 					});
 
@@ -192,7 +192,7 @@ describe("Register Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							lastModified: mockLastModified1,
+							lastModified: testLastModified1,
 						},
 					});
 
@@ -215,11 +215,11 @@ describe("Register Route", () => {
 						url: "/",
 						query: {
 							lastModified: [
-								mockLastModified1,
-								mockLastModified2,
+								testLastModified1,
+								testLastModified2,
 							],
-							perPage: mockPage,
-							page: mockPage,
+							perPage: testPage,
+							page: testPage,
 						},
 					});
 
@@ -241,7 +241,7 @@ describe("Register Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							lastModified: `ge${mockLastModified1}`,
+							lastModified: `ge${testLastModified1}`,
 						},
 					});
 
@@ -263,9 +263,9 @@ describe("Register Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							lastModified: mockLastModified1,
-							perPage: mockPage,
-							page: mockPage,
+							lastModified: testLastModified1,
+							perPage: testPage,
+							page: testPage,
 						},
 					});
 

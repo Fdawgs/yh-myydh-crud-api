@@ -5,15 +5,15 @@ const route = require(".");
 const getConfig = require("../../../config");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
-const mockId = faker.datatype.number({
+const testId = faker.datatype.number({
 	min: 1,
 	max: 10,
 });
-const mockPatientId = faker.datatype.number({
+const testPatientId = faker.datatype.number({
 	min: 1000000000,
 	max: 9999999999,
 });
-const mockTimeStamp = faker.date.past().toISOString();
+const testTimeStamp = faker.date.past().toISOString();
 
 describe("Receipt Route", () => {
 	const connectionTests = [
@@ -76,9 +76,9 @@ describe("Receipt Route", () => {
 
 					const response = await server.inject({
 						method: "DELETE",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						query: {
-							patientId: mockPatientId,
+							patientId: testPatientId,
 						},
 					});
 
@@ -98,9 +98,9 @@ describe("Receipt Route", () => {
 
 					const response = await server.inject({
 						method: "DELETE",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						query: {
-							patientId: mockPatientId,
+							patientId: testPatientId,
 						},
 					});
 
@@ -125,9 +125,9 @@ describe("Receipt Route", () => {
 
 					const response = await server.inject({
 						method: "DELETE",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						query: {
-							patientId: mockPatientId,
+							patientId: testPatientId,
 						},
 					});
 
@@ -153,10 +153,10 @@ describe("Receipt Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						query: {
-							patientId: mockPatientId,
-							timestamp: mockTimeStamp,
+							patientId: testPatientId,
+							timestamp: testTimeStamp,
 						},
 					});
 
@@ -176,10 +176,10 @@ describe("Receipt Route", () => {
 
 					const response = await server.inject({
 						method: "PUT",
-						url: `/${mockId}`,
+						url: `/${testId}`,
 						query: {
-							patientId: mockPatientId,
-							timestamp: mockTimeStamp,
+							patientId: testPatientId,
+							timestamp: testTimeStamp,
 						},
 					});
 
