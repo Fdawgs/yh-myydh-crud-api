@@ -80,4 +80,10 @@ async function migrate() {
 
 	console.log("Migration complete");
 }
-migrate();
+
+// If file called directly, then run function
+if (require.main === module) {
+	migrate();
+}
+
+module.exports = migrate;
