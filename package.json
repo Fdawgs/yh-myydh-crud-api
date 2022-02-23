@@ -86,7 +86,7 @@
     "glob": "^7.2.0",
     "husky": "^7.0.4",
     "is-html": "^2.0.0",
-    "jest": "^27.4.7",
+    "jest": "^27.5.1",
     "license-checker": "^25.0.1",
     "nodemon": "^2.0.15",
     "playwright": "^1.18.1",
