@@ -13,7 +13,7 @@ const userGetSchema = {
 	summary: "Inspect user contact preferences",
 	description: "Returns an individual user's contact preferences by ID.",
 	operationId: "getUserOptions",
-	produces: ["application/json"],
+	produces: ["application/json", "application/xml"],
 	params: S.object().prop(
 		"id",
 		S.string()

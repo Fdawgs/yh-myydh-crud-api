@@ -13,7 +13,7 @@ const registerGetSchema = {
 	summary: "List document metadata",
 	description: "Returns document metadata from register.",
 	operationId: "getRegister",
-	produces: ["application/json"],
+	produces: ["application/json", "application/xml"],
 	query: S.object()
 		.prop(
 			"lastModified",

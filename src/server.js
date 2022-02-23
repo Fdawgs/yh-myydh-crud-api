@@ -14,6 +14,7 @@ const rateLimit = require("fastify-rate-limit");
 const sensible = require("fastify-sensible");
 const staticPlugin = require("fastify-static");
 const swagger = require("fastify-swagger");
+const { toXML } = require("jstoxml");
 const underPressure = require("under-pressure");
 const clean = require("./plugins/clean-object");
 const convertDateParamOperator = require("./plugins/convert-date-param-operator");
@@ -114,12 +115,42 @@ async function plugin(server, config) {
 				// Catch unsupported Accept header media types
 				.addHook("preValidation", async (req, res) => {
 					if (
-						!["application/json"].includes(
-							req.accepts().type(["application/json"])
+						!["application/json", "application/xml"].includes(
+							req
+								.accepts()
+								.type(["application/json", "application/xml"])
 						)
 					) {
 						throw res.notAcceptable();
 					}
+				})
+
+				// Serialize response
+				.addHook("onSend", async (req, res, payload) => {
+					let newPayload;
+
+					switch (
+						req
+							.accepts()
+							.type(["application/json", "application/xml"])
+					) {
+						case "application/xml":
+							res.header(
+								"content-type",
+								"application/xml; charset=utf-8"
+							);
+							newPayload = toXML(JSON.parse(payload), {
+								header: '<?xml version="1.0" encoding="UTF-8"?>',
+							});
+							break;
+
+						case "application/json":
+						default:
+							newPayload = payload;
+							break;
+					}
+
+					return newPayload;
 				})
 				.register(clean)
 				.register(convertDateParamOperator)

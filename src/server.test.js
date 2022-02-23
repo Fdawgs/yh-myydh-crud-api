@@ -58,6 +58,11 @@ const expResHeadersJson = {
 	"content-type": expect.stringContaining("application/json"),
 };
 
+const expResHeadersXml = {
+	...expResHeaders,
+	"content-type": expect.stringContaining("application/xml"),
+};
+
 describe("Server Deployment", () => {
 	const connectionTests = [
 		{
@@ -248,7 +253,7 @@ describe("Server Deployment", () => {
 						expect(response.statusCode).toBe(406);
 					});
 
-					test("Should return response if media type in `Accept` request header is supported", async () => {
+					test("Should return response if media type in `Accept` request header is `application/json`", async () => {
 						const response = await server.inject({
 							method: "GET",
 							url: "/preferences/options",
@@ -259,6 +264,25 @@ describe("Server Deployment", () => {
 						});
 
 						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.statusCode).not.toBe(406);
+					});
+
+					test("Should return response if media type in `Accept` request header is `application/xml`", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/preferences/options",
+							headers: {
+								accept: "application/xml",
+								authorization: "Bearer testtoken",
+							},
+						});
+
+						expect(response.payload).toEqual(
+							expect.stringContaining(
+								'<?xml version="1.0" encoding="UTF-8"?>'
+							)
+						);
+						expect(response.headers).toEqual(expResHeadersXml);
 						expect(response.statusCode).not.toBe(406);
 					});
 				});

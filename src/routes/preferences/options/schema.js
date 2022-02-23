@@ -14,7 +14,7 @@ const optionsGetSchema = {
 	description:
 		"Returns the default list of patient contact preferences that can be set.",
 	operationId: "getOptions",
-	produces: ["application/json"],
+	produces: ["application/json", "application/xml"],
 	response: {
 		200: S.object()
 			.additionalProperties(false)
