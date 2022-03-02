@@ -38,7 +38,7 @@ async function route(server, options) {
 		method: "GET",
 		url: "/:id",
 		schema: userGetSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
 					userSelect({
@@ -131,7 +131,7 @@ async function route(server, options) {
 		method: "PUT",
 		url: "/:id",
 		schema: userPutSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await Promise.all(
 					server

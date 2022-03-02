@@ -33,7 +33,7 @@ async function route(server, options) {
 		method: "GET",
 		url: "/",
 		schema: optionsGetSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
 					optionsSelect({
