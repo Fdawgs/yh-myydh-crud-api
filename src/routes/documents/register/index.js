@@ -35,7 +35,7 @@ async function route(server, options) {
 		method: "GET",
 		url: "/",
 		schema: registerGetSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const page = parseInt(req.query.page, 10) - 1;
 				const perPage = parseInt(req.query.perPage, 10);

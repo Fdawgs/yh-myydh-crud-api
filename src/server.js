@@ -36,6 +36,9 @@ async function plugin(server, config) {
 		// Support Content-Encoding
 		.register(compress, { inflateIfDeflated: true })
 
+		// Database connection
+		.register(db, config.database)
+
 		// Opt-out of Google's FLoC advertising-surveillance network
 		.register(flocOff)
 
@@ -52,7 +55,11 @@ async function plugin(server, config) {
 		.register(swagger, config.swagger)
 
 		// Process load and 503 response handling
-		.register(underPressure, config.processLoad);
+		.register(underPressure, config.processLoad)
+
+		// Additional utility functions
+		.register(clean)
+		.register(convertDateParamOperator);
 
 	await server
 		// Rate limiting and 429 response handling
@@ -152,9 +159,6 @@ async function plugin(server, config) {
 
 					return newPayload;
 				})
-				.register(clean)
-				.register(convertDateParamOperator)
-				.register(db, config.database)
 				// Import and register service routes
 				.register(autoLoad, {
 					dir: path.joinSafe(__dirname, "routes"),
@@ -189,20 +193,6 @@ async function plugin(server, config) {
 					root: path.joinSafe(__dirname, "public"),
 					immutable: true,
 					maxAge: "365 days",
-				})
-
-				// Register redoc module to allow for js to be used in ./src/public/docs.html
-				.register(staticPlugin, {
-					root: path.joinSafe(
-						__dirname,
-						"..",
-						"node_modules",
-						"redoc",
-						"bundles"
-					),
-					prefix: "/redoc/",
-					decorateReply: false,
-					maxAge: "1 day",
 				})
 				.register(autoLoad, {
 					dir: path.joinSafe(__dirname, "routes", "docs"),

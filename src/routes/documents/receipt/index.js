@@ -36,7 +36,7 @@ async function route(server, options) {
 		method: "DELETE",
 		url: "/:id",
 		schema: receiptDeleteSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
 					receiptDelete({
@@ -66,7 +66,7 @@ async function route(server, options) {
 		method: "PUT",
 		url: "/:id",
 		schema: receiptPutSchema,
-		async handler(req, res) {
+		handler: async (req, res) => {
 			try {
 				const rows = await server.db.query(
 					receiptInsert({
