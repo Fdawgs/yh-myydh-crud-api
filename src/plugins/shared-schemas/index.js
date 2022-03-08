@@ -34,7 +34,7 @@ async function plugin(server) {
 					.prop("error", S.string().const("Not Found"))
 					.prop(
 						"message",
-						S.string().enum([
+						S.string().examples([
 							"Invalid or expired search results",
 							"Record does not exist or has already been deleted",
 							"User not found",
