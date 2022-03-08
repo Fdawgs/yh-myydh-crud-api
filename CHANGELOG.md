@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file.
 
+### [6.4.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.4.0...v6.4.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* **config:** redact request auth header from logs ([72249fd](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/72249fda1378bf7a1105eeaca56ba94d5921fcca))
+* **docker-compose:** declare `DB_CLIENT` env variable ([e262791](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e2627912986d78af63289b6988490b0a7539cf90))
+* **document/register/schema:** expand datetime search pattern ([65f8274](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/65f82740eaaba1b5f95d27f27e158b8cfb184d7a))
+* **plugins/shared-schemas:** use `examples` not `enum` for 404 responses ([3e20854](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3e20854976b7abf18343bc674d93ccfa825aab00))
+
+
+### Improvements
+
+* **public/images/icons:** compress apple-touch-icons ([#685](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/685)) ([980d619](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/980d61904d28eb34dbb460c947380bd4ceebdda0))
+* **routes/docs:** move html and redoc out of root context ([8e18bf7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8e18bf7fbf714dfa7512489fd1b6f6e48019f4b5))
+* **routes:** add `preValidation` hooks directly into routes ([adf3f85](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/adf3f85d6a6089135d682429ad91cea657f6f37a))
+* **server:** move db and db util functions to root context ([6333aa8](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6333aa8a1d8ec5550591f2a13de6800d15fa237c))
+
+
+### Documentation
+
+* **readme:** move api docs access to usage section ([ae050a7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ae050a70b58851721be89eeaa3c4d9a01df7f297))
+
+
+### Continuous Integration
+
+* add image optimisation workflow ([#688](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/688)) ([cf99a27](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/cf99a27596cc6aef6a148955c21d53b74f261ac6))
+* only install chromium and firefox with playwright ([3a9123f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3a9123f47ca93be1be256af64c0c48996a280ea7))
+
+
+### Miscellaneous
+
+* **.env.template:** double-quote example strings ([#686](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/686)) ([e77433f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e77433fad41f60e2517c31994d1f7b761535f4f0))
+* auto-compress images ([#689](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/689)) ([e6a555a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e6a555ade1a5f02e96b2b7620fdde8ed828d27f4))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-config-prettier from 8.4.0 to 8.5.0 ([7db0c86](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/7db0c86876ce8a34ee1f4054ec68b316e27cf0fb))
+* **deps-dev:** bump eslint-plugin-jsdoc from 37.9.4 to 37.9.5 ([27977c9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/27977c9c505523fae292353feb6c82e415116df8))
+* **deps-dev:** bump eslint-plugin-jsdoc from 37.9.5 to 37.9.7 ([f99dad1](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f99dad17b997e10f895772df7850bbebd2c0b1c7))
+* **deps:** bump actions/checkout from 2 to 3 ([0092287](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0092287c0b3f926b84479a67cf3440f303363f77))
+* **deps:** bump fastify from 3.27.2 to 3.27.3 ([89a31ec](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/89a31ece879f37cca9c4339e2e695290dcad60cc))
+* **deps:** bump fluent-json-schema from 3.0.1 to 3.1.0 ([b4d6469](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b4d64692439e4fadd90f34300951291b47f11411))
+* **deps:** bump jstoxml from 2.2.9 to 3.1.0 ([7d8faa2](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/7d8faa2ac54551d6f68e1441efc9ae684e67bb17))
+* **deps:** bump pino-pretty from 7.5.1 to 7.5.3 ([b7d39a4](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b7d39a48c40c6b60f53dd7990d14cc24136109fb))
+
 ## [6.4.0](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.12...v6.4.0) (2022-02-28)
 
 
