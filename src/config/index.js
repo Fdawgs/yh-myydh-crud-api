@@ -185,6 +185,7 @@ async function getConfig() {
 					env.NODE_ENV.toLowerCase() !== "production" &&
 					(!env.LOG_ROTATION_FILENAME ||
 						env.LOG_ROTATION_FILENAME === ""),
+				redact: ["req.headers.authorization"],
 				serializers: {
 					/* istanbul ignore next: pino functions not explicitly tested */
 					req(req) {
