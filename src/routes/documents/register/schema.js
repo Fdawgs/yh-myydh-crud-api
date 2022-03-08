@@ -2,6 +2,19 @@ const S = require("fluent-json-schema");
 
 const tags = ["Documents"];
 
+const dateTimeSearchPattern =
+	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)(?:.\d{3}|)(?:Z|)$/im;
+
+const dateTimeSearchPatternExamples = [
+	"2022-01-13",
+	"2022-01-13T00:00:01",
+	"2022-01-13T00:00:01.001",
+	"2022-01-13T00:00:01Z",
+	"2022-01-13T00:00:01.001Z",
+	"ge2022-01-13T00:00:01",
+	"ge2022-01-13",
+];
+
 /**
  * Fastify uses AJV for JSON Schema Validation,
  * see https://www.fastify.io/docs/latest/Validation-and-Serialization/
@@ -20,28 +33,14 @@ const registerGetSchema = {
 			S.anyOf([
 				S.string()
 					.description("Last modified datetime of document")
-					.examples([
-						"2021-01-01",
-						"ge2021-01-01T00:00:01",
-						"ge2021-01-01",
-						"2021-01-01T00:00:01",
-					])
-					.pattern(
-						/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
-					),
+					.examples(dateTimeSearchPatternExamples)
+					.pattern(dateTimeSearchPattern),
 				S.array()
 					.items(
 						S.string()
 							.description("Last modified datetime of document")
-							.examples([
-								"2021-01-01",
-								"ge2021-01-01T00:00:01",
-								"ge2021-01-01",
-								"2021-01-01T00:00:01",
-							])
-							.pattern(
-								/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)$/m
-							)
+							.examples(dateTimeSearchPatternExamples)
+							.pattern(dateTimeSearchPattern)
 					)
 					.minItems(2)
 					.maxItems(2)
