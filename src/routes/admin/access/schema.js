@@ -364,6 +364,7 @@ const accessPostSchema = {
 	summary: "Create a bearer token",
 	description: "Generate a new bearer token that grants access to the API.",
 	operationId: "postAccess",
+	consumes: ["application/json"],
 	produces: ["application/json", "application/xml"],
 	body: S.object()
 		.additionalProperties(false)

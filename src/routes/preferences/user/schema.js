@@ -122,6 +122,7 @@ const userPutSchema = {
 		"Performs an upsert to create or update a user's contact preferences.",
 	operationId: "createUserOptions",
 	consumes: ["application/json"],
+	produces: ["application/json", "application/xml"],
 	params: S.object().prop(
 		"id",
 		S.string()

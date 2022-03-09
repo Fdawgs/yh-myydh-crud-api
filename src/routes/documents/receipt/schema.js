@@ -13,6 +13,7 @@ const receiptDeleteSchema = {
 	summary: "Delete receipt",
 	description: "Delete a document read receipt.",
 	operationId: "deleteReceipt",
+	produces: ["application/json", "application/xml"],
 	params: S.object()
 		.prop(
 			"id",
@@ -59,6 +60,8 @@ const receiptPutSchema = {
 	summary: "Create or update a read receipt",
 	description: "Performs an upsert to create or update a read receipt.",
 	operationId: "createReceipt",
+	consumes: ["application/json"],
+	produces: ["application/json", "application/xml"],
 	params: S.object()
 		.prop(
 			"id",
