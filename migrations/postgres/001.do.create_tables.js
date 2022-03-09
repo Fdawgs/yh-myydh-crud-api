@@ -1,12 +1,27 @@
 // eslint-disable-next-line func-names
 module.exports.generateSql = function () {
-	return `CREATE SCHEMA IF NOT EXISTS lookup;
+	return `CREATE SCHEMA IF NOT EXISTS access;
+    
+        CREATE SCHEMA IF NOT EXISTS lookup;
 
         CREATE SCHEMA IF NOT EXISTS patient;
         
         CREATE SCHEMA IF NOT EXISTS receipt;
         
         CREATE SCHEMA IF NOT EXISTS register;
+
+        CREATE TABLE IF NOT EXISTS access.tokens
+        (
+            id UUID PRIMARY KEY NOT NULL DEFAULT GEN_RANDOM_UUID(),
+            name VARCHAR NOT NULL,
+            email VARCHAR NOT NULL,
+            hash VARCHAR NOT NULL,
+            salt VARCHAR NOT NULL,
+            scopes JSONB NOT NULL,
+            expires TIMESTAMP NOT NULL,
+            created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
         
         CREATE TABLE IF NOT EXISTS ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}
         (

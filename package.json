@@ -11,7 +11,7 @@
   "license": "MIT",
   "author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
   "engines": {
-    "node": ">=14.0.0"
+    "node": "^14.17.0 || ^15.6.0 || >=16.0.0"
   },
   "scripts": {
     "benchmark": "autocannon -a 1000 -H \"Authorization:Bearer testtoken\" \"http://0.0.0.0:8204/preferences/options\"",
@@ -98,6 +98,7 @@
     "fastify": "^3.27.3",
     "fastify-accepts": "^2.1.0",
     "fastify-autoload": "^3.11.0",
+    "fastify-basic-auth": "^2.2.0",
     "fastify-bearer-auth": "^6.2.0",
     "fastify-compress": "^4.0.1",
     "fastify-cors": "^6.0.3",

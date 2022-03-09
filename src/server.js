@@ -5,7 +5,7 @@ const secJSON = require("secure-json-parse");
 
 // Import plugins
 const accepts = require("fastify-accepts");
-const bearer = require("fastify-bearer-auth");
+const basic = require("fastify-basic-auth");
 const compress = require("fastify-compress");
 const disableCache = require("fastify-disablecache");
 const flocOff = require("fastify-floc-off");
@@ -19,6 +19,7 @@ const underPressure = require("under-pressure");
 const clean = require("./plugins/clean-object");
 const convertDateParamOperator = require("./plugins/convert-date-param-operator");
 const db = require("./plugins/db");
+const hashedBearerAuth = require("./plugins/hashed-bearer-auth");
 const sharedSchemas = require("./plugins/shared-schemas");
 
 /**
@@ -91,34 +92,23 @@ async function plugin(server, config) {
 			return res;
 		})
 
-		// Import and register admin routes
+		// Import and register healthcheck route
 		.register(autoLoad, {
-			dir: path.joinSafe(__dirname, "routes", "admin"),
-			options: { ...config, prefix: "admin" },
+			dir: path.joinSafe(__dirname, "routes", "admin", "healthcheck"),
+			options: { ...config, prefix: "admin/healthcheck" },
 		})
 
 		/**
-		 * Encapsulate plugins and routes into secured child context, so that admin and docs
-		 * routes do not inherit `accepts` preHandler or bearer token auth plugin.
+		 * Encapsulate plugins and routes into child context, so that other
+		 * routes do not inherit `accepts` preHandler or response serialization.
 		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
 		 */
-		.register(async (securedContext) => {
-			securedContext
+		.register(async (serializedContext) => {
+			serializedContext
+
 				// Set response headers to disable client-side caching
-				.register(disableCache);
+				.register(disableCache)
 
-			if (config.bearerTokenAuthKeys) {
-				securedContext.register(bearer, {
-					keys: config.bearerTokenAuthKeys,
-					errorResponse: (err) => ({
-						statusCode: 401,
-						error: "Unauthorized",
-						message: err.message,
-					}),
-				});
-			}
-
-			securedContext
 				// Catch unsupported Accept header media types
 				.addHook("preValidation", async (req, res) => {
 					if (
@@ -158,12 +148,54 @@ async function plugin(server, config) {
 					}
 
 					return newPayload;
+				});
+
+			serializedContext
+				/**
+				 * Encapsulate plugins and routes into secured child context, so that other
+				 * routes do not inherit bearer token auth plugin (if enabled).
+				 */
+				.register(async (securedContext) => {
+					// Protect routes with Bearer token auth if enabled
+					if (config.bearerTokenAuthEnabled) {
+						securedContext.register(hashedBearerAuth);
+					}
+					securedContext
+						// Import and register service routes
+						.register(autoLoad, {
+							dir: path.joinSafe(__dirname, "routes"),
+							ignorePattern: /(admin|docs)/,
+							options: config,
+						});
 				})
-				// Import and register service routes
-				.register(autoLoad, {
-					dir: path.joinSafe(__dirname, "routes"),
-					ignorePattern: /(admin|docs)/,
-					options: config,
+
+				/**
+				 * Encapsulate the admin/access routes into a child context, so that the other
+				 * routes do not inherit basic auth plugin.
+				 */
+				.register(async (adminContext) => {
+					await adminContext
+						// Protect routes with Basic auth
+						.register(basic, {
+							validate: async (username, password, req, res) => {
+								if (
+									username !== config.admin.username ||
+									password !== config.admin.password
+								) {
+									throw res.unauthorized();
+								}
+							},
+							authenticate: false,
+						});
+
+					adminContext
+						.addHook("onRequest", adminContext.basicAuth)
+						// Import and register service routes
+						.register(autoLoad, {
+							dir: path.joinSafe(__dirname, "routes", "admin"),
+							ignorePattern: /(healthcheck)/,
+							options: { ...config, prefix: "admin" },
+						});
 				});
 		})
 

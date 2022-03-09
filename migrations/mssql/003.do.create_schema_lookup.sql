@@ -1,1 +1,0 @@
-IF NOT EXISTS ( SELECT name FROM sys.schemas WHERE name = N'lookup' ) EXEC('CREATE SCHEMA lookup');

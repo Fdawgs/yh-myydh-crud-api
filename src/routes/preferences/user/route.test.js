@@ -142,17 +142,26 @@ describe("User Route", () => {
 		},
 	];
 	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName}`, () => {
+		describe(`${testObject.testName}  - With Request Scopes`, () => {
 			let config;
 			let server;
 
 			beforeAll(async () => {
-				Object.assign(process.env, testObject.envVariables);
+				Object.assign(process.env, {
+					BEARER_TOKEN_AUTH_ENABLED: true,
+					...testObject.envVariables,
+				});
 				config = await getConfig();
 
 				server = Fastify();
 				server
 					.register(cleanObject)
+					.addHook("preValidation", async (req) => {
+						req.scopes = [
+							"preferences/user.put",
+							"preferences/user.read",
+						];
+					})
 					.register(sensible)
 					.register(sharedSchemas)
 					.register(route, config);
@@ -358,6 +367,83 @@ describe("User Route", () => {
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
+				});
+			});
+		});
+
+		describe(`${testObject.testName}  - Without Request Scopes`, () => {
+			let config;
+			let server;
+
+			beforeAll(async () => {
+				Object.assign(process.env, {
+					BEARER_TOKEN_AUTH_ENABLED: true,
+					...testObject.envVariables,
+				});
+				config = await getConfig();
+
+				server = Fastify();
+				server
+					.register(cleanObject)
+					.register(sensible)
+					.register(sharedSchemas)
+					.register(route, config);
+
+				await server.ready();
+			});
+
+			afterAll(async () => {
+				await server.close();
+			});
+
+			describe("GET Requests", () => {
+				test("Should return HTTP status code 401 if not in permitted access", async () => {
+					const response = await server.inject({
+						method: "GET",
+						url: `/${testPatientId}`,
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Unauthorized",
+						message:
+							"You do not have permission to perform an HTTP GET request on this route",
+						statusCode: 401,
+					});
+					expect(response.statusCode).toBe(401);
+				});
+			});
+
+			describe("PUT Requests", () => {
+				test("Should return HTTP status code 401 if not in permitted access", async () => {
+					const response = await server.inject({
+						method: "PUT",
+						url: `/${testPatientId}`,
+						headers: {
+							"content-type": "application/json",
+						},
+						payload: {
+							preferences: [
+								{
+									id: 1,
+									priority: 0,
+									selected: 1,
+								},
+								{
+									id: 2,
+									priority: 1,
+									selected: 2,
+								},
+							],
+						},
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Unauthorized",
+						message:
+							"You do not have permission to perform an HTTP PUT request on this route",
+						statusCode: 401,
+					});
+					expect(response.statusCode).toBe(401);
 				});
 			});
 		});

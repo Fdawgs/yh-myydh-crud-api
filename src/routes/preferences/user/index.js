@@ -9,7 +9,7 @@ const { userInsert, userSelect } = require("./query");
  * @description Sets routing options for server.
  * @param {object} server - Fastify instance.
  * @param {object} options - Route config values.
- * @param {*=} options.bearerTokenAuthKeys - Apply `bearerToken` security scheme to route if defined.
+ * @param {boolean=} options.bearerTokenAuthEnabled - Apply `bearerToken` security scheme to route if defined.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
  * @param {('mssql'|'postgresql')} options.database.client - Database client.
@@ -19,7 +19,7 @@ const { userInsert, userSelect } = require("./query");
  * @param {string} options.database.tables.patientPrefValueLookup - Name and schema of patient preference value table.
  */
 async function route(server, options) {
-	if (options.bearerTokenAuthKeys) {
+	if (options.bearerTokenAuthEnabled) {
 		const security = [{ bearerToken: [] }];
 
 		userGetSchema.security = security;
@@ -38,6 +38,16 @@ async function route(server, options) {
 		method: "GET",
 		url: "/:id",
 		schema: userGetSchema,
+		preValidation: async (req, res) => {
+			if (
+				options.bearerTokenAuthEnabled &&
+				!req?.scopes?.includes("preferences/user.read")
+			) {
+				throw res.unauthorized(
+					"You do not have permission to perform an HTTP GET request on this route"
+				);
+			}
+		},
 		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
@@ -131,6 +141,16 @@ async function route(server, options) {
 		method: "PUT",
 		url: "/:id",
 		schema: userPutSchema,
+		preValidation: async (req, res) => {
+			if (
+				options.bearerTokenAuthEnabled &&
+				!req?.scopes?.includes("preferences/user.put")
+			) {
+				throw res.unauthorized(
+					"You do not have permission to perform an HTTP PUT request on this route"
+				);
+			}
+		},
 		handler: async (req, res) => {
 			try {
 				const results = await Promise.all(

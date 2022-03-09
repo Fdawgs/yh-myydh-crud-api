@@ -9,7 +9,7 @@ const { optionsSelect } = require("./query");
  * @description Sets routing options for server.
  * @param {object} server - Fastify instance.
  * @param {object} options - Route config values.
- * @param {*=} options.bearerTokenAuthKeys - Apply `bearerToken` security scheme to route if defined.
+ * @param {boolean=} options.bearerTokenAuthEnabled - Apply `bearerToken` security scheme to route if defined.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
  * @param {object} options.database.tables - Database tables.
@@ -17,7 +17,7 @@ const { optionsSelect } = require("./query");
  * @param {string} options.database.tables.patientPrefValueLookup - Name and schema of patient preference value table.
  */
 async function route(server, options) {
-	if (options.bearerTokenAuthKeys) {
+	if (options.bearerTokenAuthEnabled) {
 		optionsGetSchema.security = [{ bearerToken: [] }];
 	}
 
@@ -33,6 +33,16 @@ async function route(server, options) {
 		method: "GET",
 		url: "/",
 		schema: optionsGetSchema,
+		preValidation: async (req, res) => {
+			if (
+				options.bearerTokenAuthEnabled &&
+				!req?.scopes?.includes("preferences/options.search")
+			) {
+				throw res.unauthorized(
+					"You do not have permission to perform an HTTP GET request on this route"
+				);
+			}
+		},
 		handler: async (req, res) => {
 			try {
 				const results = await server.db.query(
