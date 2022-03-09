@@ -37,8 +37,8 @@ async function plugin(server, options) {
 					await pool.end();
 					server.log.info("PostgreSQL DB connection closed");
 				});
-
 				break;
+
 			case "mssql":
 			default:
 				server.log.info("Connecting to MSSQL DB");
