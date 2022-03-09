@@ -43,16 +43,25 @@ describe("Receipt Route", () => {
 		},
 	];
 	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName}`, () => {
+		describe(`${testObject.testName}  - With Request Scopes`, () => {
 			let config;
 			let server;
 
 			beforeAll(async () => {
-				Object.assign(process.env, testObject.envVariables);
+				Object.assign(process.env, {
+					BEARER_TOKEN_AUTH_ENABLED: true,
+					...testObject.envVariables,
+				});
 				config = await getConfig();
 
 				server = Fastify();
 				server
+					.addHook("preValidation", async (req) => {
+						req.scopes = [
+							"documents/receipt.delete",
+							"documents/receipt.put",
+						];
+					})
 					.register(sensible)
 					.register(sharedSchemas)
 					.register(route, config);
@@ -190,6 +199,72 @@ describe("Receipt Route", () => {
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
+				});
+			});
+		});
+
+		describe(`${testObject.testName}  - Without Request Scopes`, () => {
+			let config;
+			let server;
+
+			beforeAll(async () => {
+				Object.assign(process.env, {
+					BEARER_TOKEN_AUTH_ENABLED: true,
+					...testObject.envVariables,
+				});
+				config = await getConfig();
+
+				server = Fastify();
+				server
+					.register(sensible)
+					.register(sharedSchemas)
+					.register(route, config);
+
+				await server.ready();
+			});
+
+			afterAll(async () => {
+				await server.close();
+			});
+
+			describe("DELETE Requests", () => {
+				test("Should return HTTP status code 401 if not in permitted access", async () => {
+					const response = await server.inject({
+						method: "DELETE",
+						url: `/${testId}`,
+						query: {
+							patientId: testPatientId,
+						},
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Unauthorized",
+						message:
+							"You do not have permission to perform an HTTP DELETE request on this route",
+						statusCode: 401,
+					});
+					expect(response.statusCode).toBe(401);
+				});
+			});
+
+			describe("PUT Requests", () => {
+				test("Should return HTTP status code 401 if not in permitted access", async () => {
+					const response = await server.inject({
+						method: "PUT",
+						url: `/${testId}`,
+						query: {
+							patientId: testPatientId,
+							timestamp: testTimeStamp,
+						},
+					});
+
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Unauthorized",
+						message:
+							"You do not have permission to perform an HTTP PUT request on this route",
+						statusCode: 401,
+					});
+					expect(response.statusCode).toBe(401);
 				});
 			});
 		});

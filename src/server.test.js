@@ -1,10 +1,27 @@
 /* eslint-disable no-console */
 /* eslint-disable security-node/detect-crlf */
 const { chromium, firefox } = require("playwright");
+const crypto = require("crypto");
 const Fastify = require("fastify");
 const isHtml = require("is-html");
 const startServer = require("./server");
 const getConfig = require("./config");
+
+const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
+
+const testKey = `ydhmyydh_${crypto.randomUUID().replace(/-/g, "_")}`;
+
+const testSalt = crypto.randomBytes(16).toString("hex");
+const testHash = crypto
+	.pbkdf2Sync(testKey, testSalt, 1000, 64, "sha512")
+	.toString("hex");
+
+const testScopes = ["documents/register.search", "documents/receipt.delete"];
+
+const testResult = {
+	salt: testSalt,
+	hash: testHash,
+};
 
 const expResHeaders = {
 	"cache-control": "no-store, max-age=0, must-revalidate",
@@ -72,6 +89,25 @@ describe("Server Deployment", () => {
 				DB_CONNECTION_STRING:
 					"Server=localhost,1433;Database=master;User Id=sa;Password=Password!;Encrypt=true;TrustServerCertificate=true;",
 			},
+			mocks: {
+				queryResults: {
+					bearerAuth: {
+						error: {
+							recordsets: [[]],
+						},
+						ok: {
+							recordsets: [
+								[
+									{
+										...testResult,
+										scopes: JSON.stringify(testScopes),
+									},
+								],
+							],
+						},
+					},
+				},
+			},
 		},
 		{
 			testName: "PostgreSQL Connection",
@@ -79,6 +115,23 @@ describe("Server Deployment", () => {
 				DB_CLIENT: "postgresql",
 				DB_CONNECTION_STRING:
 					"postgresql://postgres:password@localhost:5432/myydh_crud_api",
+			},
+			mocks: {
+				queryResults: {
+					bearerAuth: {
+						error: {
+							rows: [],
+						},
+						ok: {
+							rows: [
+								{
+									...testResult,
+									scopes: testScopes,
+								},
+							],
+						},
+					},
+				},
 			},
 		},
 	];
@@ -94,7 +147,7 @@ describe("Server Deployment", () => {
 
 				beforeAll(async () => {
 					Object.assign(process.env, {
-						AUTH_BEARER_TOKEN_ARRAY: "",
+						BEARER_TOKEN_AUTH_ENABLED: false,
 					});
 					config = await getConfig();
 
@@ -167,8 +220,7 @@ describe("Server Deployment", () => {
 
 				beforeAll(async () => {
 					Object.assign(process.env, {
-						AUTH_BEARER_TOKEN_ARRAY:
-							'[{"service": "test", "value": "testtoken"}]',
+						BEARER_TOKEN_AUTH_ENABLED: true,
 					});
 					config = await getConfig();
 
@@ -218,6 +270,16 @@ describe("Server Deployment", () => {
 
 				describe("/preferences/options Route", () => {
 					test("Should return HTTP status code 401 if bearer token invalid", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockResolvedValue(
+								testObject.mocks.queryResults.bearerAuth.error
+							);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
 						const response = await server.inject({
 							method: "GET",
 							url: "/preferences/options",
@@ -227,6 +289,11 @@ describe("Server Deployment", () => {
 							},
 						});
 
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Unauthorized",
+							message: expect.any(String),
+							statusCode: 401,
+						});
 						expect(response.headers).toEqual({
 							...expResHeadersJson,
 							vary: "accept-encoding",
@@ -235,12 +302,22 @@ describe("Server Deployment", () => {
 					});
 
 					test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockResolvedValue(
+								testObject.mocks.queryResults.bearerAuth.ok
+							);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
 						const response = await server.inject({
 							method: "GET",
 							url: "/preferences/options",
 							headers: {
 								accept: "application/javascript",
-								authorization: "Bearer testtoken",
+								authorization: `Bearer ${testKey}`,
 							},
 						});
 
@@ -254,12 +331,22 @@ describe("Server Deployment", () => {
 					});
 
 					test("Should return response if media type in `Accept` request header is `application/json`", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockResolvedValue(
+								testObject.mocks.queryResults.bearerAuth.ok
+							);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
 						const response = await server.inject({
 							method: "GET",
 							url: "/preferences/options",
 							headers: {
 								accept: "application/json",
-								authorization: "Bearer testtoken",
+								authorization: `Bearer ${testKey}`,
 							},
 						});
 
@@ -268,12 +355,22 @@ describe("Server Deployment", () => {
 					});
 
 					test("Should return response if media type in `Accept` request header is `application/xml`", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockResolvedValue(
+								testObject.mocks.queryResults.bearerAuth.ok
+							);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
 						const response = await server.inject({
 							method: "GET",
 							url: "/preferences/options",
 							headers: {
 								accept: "application/xml",
-								authorization: "Bearer testtoken",
+								authorization: `Bearer ${testKey}`,
 							},
 						});
 
@@ -284,6 +381,93 @@ describe("Server Deployment", () => {
 						);
 						expect(response.headers).toEqual(expResHeadersXml);
 						expect(response.statusCode).not.toBe(406);
+					});
+				});
+			});
+
+			describe("End-To-End - Basic Auth", () => {
+				let config;
+				let server;
+
+				beforeAll(async () => {
+					Object.assign(process.env, {
+						ADMIN_USERNAME: "admin",
+						ADMIN_PASSWORD: "password",
+					});
+					config = await getConfig();
+
+					server = Fastify();
+					server.register(startServer, config);
+
+					await server.ready();
+				});
+
+				describe("/admin/access/:id Route", () => {
+					test("Should return HTTP status code 401 if basic auth username invalid", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: `/admin/access/${testId}`,
+							headers: {
+								authorization: `Basic ${Buffer.from(
+									"invalidadmin:password"
+								).toString("base64")}`,
+							},
+						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Unauthorized",
+							message: expect.any(String),
+							statusCode: 401,
+						});
+						expect(response.headers).toEqual({
+							...expResHeadersJson,
+							vary: "accept-encoding",
+						});
+						expect(response.statusCode).toBe(401);
+					});
+
+					test("Should return HTTP status code 401 if basic auth password invalid", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: `/admin/access/${testId}`,
+							headers: {
+								authorization: `Basic ${Buffer.from(
+									"admin:invalidpassword"
+								).toString("base64")}`,
+							},
+						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Unauthorized",
+							message: expect.any(String),
+							statusCode: 401,
+						});
+						expect(response.headers).toEqual({
+							...expResHeadersJson,
+							vary: "accept-encoding",
+						});
+						expect(response.statusCode).toBe(401);
+					});
+
+					test("Should return HTTP status code 406 if basic auth username and password valid, and media type in `Accept` request header is unsupported", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/admin/access",
+							headers: {
+								accept: "application/javascript",
+								authorization: `Basic ${Buffer.from(
+									"admin:password"
+								).toString("base64")}`,
+							},
+						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Not Acceptable",
+							message: "Not Acceptable",
+							statusCode: 406,
+						});
+						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.statusCode).toBe(406);
 					});
 				});
 			});

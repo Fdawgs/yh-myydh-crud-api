@@ -45,7 +45,9 @@ describe("Configuration", () => {
 		const PROC_LOAD_MAX_RSS_BYTES = "";
 		const RATE_LIMIT_MAX_CONNECTIONS_PER_MIN = "";
 		const RATE_LIMIT_EXCLUDED_ARRAY = '["127.0.0.1"]';
-		const AUTH_BEARER_TOKEN_ARRAY = "";
+		const ADMIN_USERNAME = "admin";
+		const ADMIN_PASSWORD = "password";
+		const BEARER_TOKEN_AUTH_ENABLED = "";
 		const DB_CLIENT = "";
 		const DB_CONNECTION_STRING =
 			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
@@ -77,7 +79,9 @@ describe("Configuration", () => {
 			PROC_LOAD_MAX_RSS_BYTES,
 			RATE_LIMIT_MAX_CONNECTIONS_PER_MIN,
 			RATE_LIMIT_EXCLUDED_ARRAY,
-			AUTH_BEARER_TOKEN_ARRAY,
+			ADMIN_USERNAME,
+			ADMIN_PASSWORD,
+			BEARER_TOKEN_AUTH_ENABLED,
 			DB_CLIENT,
 			DB_CONNECTION_STRING,
 			DB_DOCUMENT_REGISTER_TABLE,
@@ -88,8 +92,6 @@ describe("Configuration", () => {
 		});
 
 		const config = await getConfig();
-
-		expect(config.bearerTokenAuthKeys).toBeUndefined();
 
 		expect(config.fastify).toEqual({
 			host: SERVICE_HOST,
@@ -137,6 +139,13 @@ describe("Configuration", () => {
 			timeWindow: 60000,
 		});
 
+		expect(config.admin).toEqual({
+			username: ADMIN_USERNAME,
+			password: ADMIN_PASSWORD,
+		});
+
+		expect(config.bearerTokenAuthEnabled).toBe(false);
+
 		expect(config.database).toEqual({
 			client: "mssql",
 			connection: DB_CONNECTION_STRING,
@@ -172,8 +181,9 @@ describe("Configuration", () => {
 		const PROC_LOAD_MAX_RSS_BYTES = 100000000;
 		const RATE_LIMIT_MAX_CONNECTIONS_PER_MIN = 2000;
 		const RATE_LIMIT_EXCLUDED_ARRAY = '["127.0.0.1"]';
-		const AUTH_BEARER_TOKEN_ARRAY =
-			'[{"service": "test", "value": "testtoken"}]';
+		const ADMIN_USERNAME = "admin";
+		const ADMIN_PASSWORD = "password";
+		const BEARER_TOKEN_AUTH_ENABLED = true;
 		const DB_CLIENT = "mssql";
 		const DB_CONNECTION_STRING =
 			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
@@ -200,7 +210,9 @@ describe("Configuration", () => {
 			PROC_LOAD_MAX_RSS_BYTES,
 			RATE_LIMIT_MAX_CONNECTIONS_PER_MIN,
 			RATE_LIMIT_EXCLUDED_ARRAY,
-			AUTH_BEARER_TOKEN_ARRAY,
+			ADMIN_USERNAME,
+			ADMIN_PASSWORD,
+			BEARER_TOKEN_AUTH_ENABLED,
 			DB_CLIENT,
 			DB_CONNECTION_STRING,
 			DB_DOCUMENT_REGISTER_TABLE,
@@ -211,8 +223,6 @@ describe("Configuration", () => {
 		});
 
 		const config = await getConfig();
-
-		expect(config.bearerTokenAuthKeys).toContain("testtoken");
 
 		expect(config.fastify).toEqual({
 			host: SERVICE_HOST,
@@ -259,6 +269,13 @@ describe("Configuration", () => {
 			timeWindow: 60000,
 		});
 
+		expect(config.admin).toEqual({
+			username: ADMIN_USERNAME,
+			password: ADMIN_PASSWORD,
+		});
+
+		expect(config.bearerTokenAuthEnabled).toBe(true);
+
 		expect(config.database).toEqual({
 			client: DB_CLIENT,
 			connection: DB_CONNECTION_STRING,
@@ -284,6 +301,8 @@ describe("Configuration", () => {
 			"warn",
 			"silent",
 		]);
+		const ADMIN_USERNAME = "admin";
+		const ADMIN_PASSWORD = "password";
 
 		Object.assign(process.env, {
 			SERVICE_HOST,
@@ -292,6 +311,8 @@ describe("Configuration", () => {
 			HTTPS_PFX_PASSPHRASE,
 			HTTPS_HTTP2_ENABLED,
 			LOG_LEVEL,
+			ADMIN_USERNAME,
+			ADMIN_PASSWORD,
 		});
 
 		const config = await getConfig();
@@ -307,6 +328,11 @@ describe("Configuration", () => {
 			pfx: expect.any(Buffer),
 		});
 		expect(config.fastifyInit.http2).toBe(true);
+
+		expect(config.admin).toEqual({
+			username: ADMIN_USERNAME,
+			password: ADMIN_PASSWORD,
+		});
 	});
 
 	// CORS env variables
@@ -370,6 +396,8 @@ describe("Configuration", () => {
 				"warn",
 				"silent",
 			]);
+			const ADMIN_USERNAME = "admin";
+			const ADMIN_PASSWORD = "password";
 
 			Object.assign(process.env, {
 				SERVICE_HOST,
@@ -380,6 +408,8 @@ describe("Configuration", () => {
 				CORS_EXPOSED_HEADERS,
 				CORS_MAX_AGE,
 				LOG_LEVEL,
+				ADMIN_USERNAME,
+				ADMIN_PASSWORD,
 			});
 
 			const config = await getConfig();
@@ -429,6 +459,8 @@ describe("Configuration", () => {
 			"warn",
 			"silent",
 		]);
+		const ADMIN_USERNAME = "admin";
+		const ADMIN_PASSWORD = "password";
 
 		Object.assign(process.env, {
 			SERVICE_HOST,
@@ -438,6 +470,8 @@ describe("Configuration", () => {
 			HTTPS_PFX_FILE_PATH,
 			HTTPS_PFX_PASSPHRASE,
 			LOG_LEVEL,
+			ADMIN_USERNAME,
+			ADMIN_PASSWORD,
 		});
 
 		await expect(getConfig()).rejects.toThrow();

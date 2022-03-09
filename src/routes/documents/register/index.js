@@ -12,14 +12,14 @@ const { registerSelect } = require("./query");
  * @description Sets routing options for server.
  * @param {object} server - Fastify instance.
  * @param {object} options - Route config values.
- * @param {*=} options.bearerTokenAuthKeys - Apply `bearerToken` security scheme to route if defined.
+ * @param {boolean=} options.bearerTokenAuthEnabled - Apply `bearerToken` security scheme to route if defined.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
  * @param {object} options.database.tables - Database tables.
  * @param {string} options.database.tables.documentRegister - Name and schema of document register table.
  */
 async function route(server, options) {
-	if (options.bearerTokenAuthKeys) {
+	if (options.bearerTokenAuthEnabled) {
 		registerGetSchema.security = [{ bearerToken: [] }];
 	}
 
@@ -35,6 +35,16 @@ async function route(server, options) {
 		method: "GET",
 		url: "/",
 		schema: registerGetSchema,
+		preValidation: async (req, res) => {
+			if (
+				options.bearerTokenAuthEnabled &&
+				!req?.scopes?.includes("documents/register.search")
+			) {
+				throw res.unauthorized(
+					"You do not have permission to perform an HTTP GET request on this route"
+				);
+			}
+		},
 		handler: async (req, res) => {
 			try {
 				const page = parseInt(req.query.page, 10) - 1;

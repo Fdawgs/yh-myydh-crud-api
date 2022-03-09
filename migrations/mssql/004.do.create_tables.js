@@ -1,6 +1,20 @@
 // eslint-disable-next-line func-names
 module.exports.generateSql = function () {
-	return `IF OBJECT_ID('${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}', 'U') IS NULL CREATE TABLE ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}
+	return `IF OBJECT_ID('access.tokens', 'U') IS NULL CREATE TABLE access.tokens
+    (
+        id uniqueidentifier PRIMARY KEY NOT NULL DEFAULT newid(),
+        [name] VARCHAR(MAX) NOT NULL,
+        email VARCHAR(MAX) NOT NULL,
+        [hash] VARCHAR(MAX) NOT NULL,
+        salt VARCHAR(MAX) NOT NULL,
+        scopes NVARCHAR(MAX) NOT NULL,
+        expires DATETIME2 NOT NULL,
+        created DATETIME2 NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        last_updated DATETIME2 DEFAULT CURRENT_TIMESTAMP,
+    );  
+    
+    
+    IF OBJECT_ID('${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}', 'U') IS NULL CREATE TABLE ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}
     (
         preference_type_id INT IDENTITY(1,1) NOT NULL,
         preference_type VARCHAR(MAX) NOT NULL,

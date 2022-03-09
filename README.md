@@ -108,6 +108,39 @@ API documentation can be found at `/docs`:
 
 <img alttext="Screenshot of YDH MyYDH CRUD API documentation page" src="https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/master/docs/images/api_documentation_screenshot.png" width="720">
 
+### Generating Bearer Tokens for Access
+
+If `BEARER_TOKEN_AUTH_ENABLED` is set to `true` in the `.env` file, you will need to generate bearer tokens for a client/service to access the `/preferences` and `/user` routes of the API.
+To do this make a POST request to the `/admin/access` route, which is protected with Basic auth (provide the admin username and password from the `.env` file):
+
+Example body of POST request:
+
+```json
+{
+	"name": "Example Mirth Connect instance",
+	"email": "frazer.smith@ydh.nhs.uk",
+	"expires": "2022-03-09",
+	"scopes": ["documents/register.search", "documents/receipt.delete"]
+}
+```
+
+If successful, something similar to the following will be returned:
+
+```json
+{
+	"id": "39E9A19D-CA7B-4401-AF1E-F346223AB1AB",
+	"access": {
+		"token": "ydhmyydh_69150f68_5066_4923_a042_653343af84cf",
+		"scopes": ["documents/register.search", "documents/receipt.delete"]
+	}
+}
+```
+
+Provide the client/service with the value in `access.token`, for them to use as bearer tokens when making requests.
+
+The bearer token is hashed, salted, and stored in the `access.tokens` database table.
+As such, if a client/service forget their token, you will need to generate a new one for them and delete the old one.
+
 ## Contributing
 
 Contributions are welcome, and any help is greatly appreciated!
