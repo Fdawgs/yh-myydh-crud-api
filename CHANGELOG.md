@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file.
 
+## [7.0.0](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.4.1...v7.0.0) (2022-03-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **routes:** `admin/access` route moved to `admin/access/bearer-token`
+* **admin/access:** `access.scopes` search param no longer case-insensitive
+* **config:** `ADMIN_PASSWORD` env variable now has minimum length of 8 characters
+* **routes/admin:** `AUTH_BEARER_TOKEN_ARRAY` env variable removed
+* **migrations/mssql:** merge `create schema` queries
+
+### Features
+
+* **routes/admin:** add access route ([6a4332c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6a4332c4fd83d174380938441bcac32c23915d61))
+
+
+### Bug Fixes
+
+* **admin/access:** searching using `access.scopes` ([0bfa647](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0bfa6477f1bfd3d29f9b34b9b511a1883ca0e889))
+* **config:** enforce minimum length for `ADMIN_PASSWORD` env variable ([bf93742](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/bf93742d67ecf6d58db3b6009dcb630c1c42c604))
+* **plugins/hashed-bearer-auth:** log client name ([6484723](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6484723e40a1b208e4d13538d4ac9442c21d48e8))
+
+
+### Miscellaneous
+
+* **plugins/db:** whitespace in switch statement ([53c18f4](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/53c18f48bdb1462eb6c96412a134c7371be44e21))
+* **routes/schemas:** update `produces` and `consumes` values ([39050af](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/39050af0ae4f721267f0d7ed9c72103d69783b95))
+
+
+### Dependencies
+
+* **deps:** bump fastify from 3.27.3 to 3.27.4 ([9a14063](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9a1406316214e91ac4e267b1a549159619f7b42f))
+* **deps:** bump jstoxml from 3.1.0 to 3.2.0 ([69bd77d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/69bd77d60bdab9c008866c463f46b2699cca4476))
+* **deps:** bump pino from 7.8.0 to 7.8.1 ([ab24c5f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ab24c5f6e8669c53ab2f2e5a4e5afaf82fa5481d))
+
+
+### Improvements
+
+* **migrate:** use db variable in switch statement ([6a6cd98](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6a6cd98f83657d73a0b1a8b031be1e50291d61bd))
+* **migrations/mssql:** merge `create schema` queries ([e7d939d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e7d939d61904e3d86c1d74d4be4aa66a675705ee))
+* **routes/admin/access/b-t:** remove unused param ([674b6cd](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/674b6cdaee70c047b9544c8f0f3f5b5835573d37))
+* **routes:** move `admin/access` to `admin/access/bearer-token` ([072dafb](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/072dafb49409838e4fa03fff265db673eeba98d5))
+
 ### [6.4.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.4.0...v6.4.1) (2022-03-08)
 
 
