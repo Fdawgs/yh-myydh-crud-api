@@ -1,4 +1,4 @@
-const escSq = require("../../../utils/escape-single-quotes");
+const escSq = require("../../../../utils/escape-single-quotes");
 
 /**
  * @author Frazer Smith

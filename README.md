@@ -111,7 +111,7 @@ API documentation can be found at `/docs`:
 ### Generating Bearer Tokens for Access
 
 If `BEARER_TOKEN_AUTH_ENABLED` is set to `true` in the `.env` file, you will need to generate bearer tokens for a client/service to access the `/preferences` and `/user` routes of the API.
-To do this make a POST request to the `/admin/access` route, which is protected with Basic auth (provide the admin username and password from the `.env` file):
+To do this make a POST request to the `/admin/access/bearer-token` route, which is protected with Basic auth (provide the admin username and password from the `.env` file):
 
 Example body of POST request:
 
