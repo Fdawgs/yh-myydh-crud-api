@@ -131,7 +131,7 @@ async function getConfig() {
 
 			// Admin login
 			.prop("ADMIN_USERNAME", S.string())
-			.prop("ADMIN_PASSWORD", S.string())
+			.prop("ADMIN_PASSWORD", S.string().minLength(8))
 
 			// Bearer token auth
 			.prop(
