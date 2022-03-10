@@ -310,7 +310,6 @@ async function route(server, options) {
 
 					const results = await server.db.query(
 						accessGetSearch({
-							client: options.database.client,
 							whereClausePredicates,
 							page,
 							perPage,
