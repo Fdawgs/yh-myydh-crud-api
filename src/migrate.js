@@ -20,7 +20,7 @@ async function migrate() {
 
 		db = database.client.toLowerCase();
 
-		switch (database.client.toLowerCase()) {
+		switch (db) {
 			case "postgresql":
 				client = new pg.Client(database.connection);
 				postgrator = new Postgrator({

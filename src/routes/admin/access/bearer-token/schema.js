@@ -215,15 +215,13 @@ const accessGetSearchSchema = {
 			S.anyOf([
 				S.string()
 					.enum(accessRecordScopes)
-					.description(
-						"An action the bearer token can perform, case-insensitive"
-					),
+					.description("An action the bearer token can perform"),
 				S.array()
 					.items(
 						S.string()
 							.enum(accessRecordScopes)
 							.description(
-								"An action the bearer token can perform, case-insensitive"
+								"An action the bearer token can perform"
 							)
 					)
 					.minItems(2)
@@ -364,6 +362,7 @@ const accessPostSchema = {
 	summary: "Create a bearer token",
 	description: "Generate a new bearer token that grants access to the API.",
 	operationId: "postAccess",
+	consumes: ["application/json"],
 	produces: ["application/json", "application/xml"],
 	body: S.object()
 		.additionalProperties(false)
