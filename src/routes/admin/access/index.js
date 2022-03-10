@@ -187,7 +187,7 @@ async function route(server, options) {
 					);
 				}
 
-				// access.scopes - One of the values in the scopes array, case-insensitive
+				// access.scopes - One of the values in the scopes array
 				if (req?.query?.["access.scopes"]) {
 					let scopes = [];
 					if (Array.isArray(req.query["access.scopes"])) {
@@ -197,12 +197,23 @@ async function route(server, options) {
 					}
 
 					scopes.forEach((scopesValue) => {
-						// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
-						whereArray.push(
-							escSq`(LOWER(CAST(scopes AS TEXT)) LIKE LOWER('%${scopesValue
-								.replace(/%/g, "!%")
-								.replace(/_/g, "!_")}%') ESCAPE '!')`
-						);
+						switch (options.database.client) {
+							case "postgresql":
+								whereArray.push(
+									escSq`scopes @> '"${scopesValue}"'`
+								);
+								break;
+
+							case "mssql":
+							default:
+								// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
+								whereArray.push(
+									escSq`(scopes LIKE '%${scopesValue
+										.replace(/%/g, "!%")
+										.replace(/_/g, "!_")}%' ESCAPE '!')`
+								);
+								break;
+						}
 					});
 				}
 
