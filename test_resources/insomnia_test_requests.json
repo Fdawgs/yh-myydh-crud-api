@@ -1,36 +1,23 @@
 {
 	"_type": "export",
 	"__export_format": 4,
-	"__export_date": "2021-07-14T14:47:42.674Z",
-	"__export_source": "insomnia.desktop.app:v2021.4.1",
+	"__export_date": "2022-03-10T11:34:31.191Z",
+	"__export_source": "insomnia.desktop.app:v2022.1.1",
 	"resources": [
 		{
-			"_id": "req_03838f5fb1e544bb80eafa137e51cf6e",
+			"_id": "req_edd560a34acc47ea951710144627024a",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626273948540,
-			"created": 1626182714395,
-			"url": "http://localhost:8204/docs/json",
-			"name": "docs/json",
+			"modified": 1646911405257,
+			"created": 1626182757728,
+			"url": "http://localhost:8204/admin/healthcheck",
+			"name": "admin/healthcheck",
 			"description": "",
 			"method": "GET",
 			"body": {},
 			"parameters": [],
-			"headers": [
-				{
-					"id": "pair_2db981fa14e847b2b9644c006ca04d4e",
-					"name": "Accept",
-					"value": "application/json",
-					"description": ""
-				},
-				{
-					"id": "pair_3691d81c6b0d43e6b11b630dcb934239",
-					"name": "Accept-Encoding",
-					"value": "br, gzip, deflate",
-					"description": ""
-				}
-			],
-			"authentication": { "type": "bearer", "token": "testtoken" },
-			"metaSortKey": -1626182714395,
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1626182714495,
 			"isPrivate": false,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
@@ -43,13 +30,13 @@
 		{
 			"_id": "fld_c78c145cf399434da45fbce4fb6e69c2",
 			"parentId": "wrk_5f78877c54f94a73ad20a010ac5c4fde",
-			"modified": 1611841570638,
+			"modified": 1626351412813,
 			"created": 1611841537466,
 			"name": "Example MyYDH CRUD API Requests",
 			"description": "",
 			"environment": {},
 			"environmentPropertyOrder": null,
-			"metaSortKey": -1000000000,
+			"metaSortKey": 100,
 			"_type": "request_group"
 		},
 		{
@@ -63,36 +50,175 @@
 			"_type": "workspace"
 		},
 		{
-			"_id": "req_edd560a34acc47ea951710144627024a",
+			"_id": "req_9fdda6c06769483baf96a2586bfd2a0d",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626274008539,
-			"created": 1626182757728,
-			"url": "http://localhost:8204/healthcheck",
-			"name": "healthcheck",
+			"modified": 1646911599853,
+			"created": 1646911157965,
+			"url": "http://localhost:8204/admin/access/bearer-token",
+			"name": "admin/access/bearer-token",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"name\": \"Mirth Connect instance\",\n\t\"email\": \"frazer.smith@ydh.nhs.uk\",\n\t\"expires\": \"2099-03-09\",\n\t\"scopes\": [\n\t\"documents/receipt.delete\",\n\t\"documents/receipt.put\",\n\t\"documents/register.search\",\n\t\"preferences/options.search\",\n\t\"preferences/user.put\",\n\t\"preferences/user.read\"\n\t]\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_33637a3d851a4fffa7456f9ad3744ebc",
+					"disabled": false
+				}
+			],
+			"authentication": {
+				"type": "basic",
+				"useISO88591": true,
+				"disabled": false,
+				"username": "admin",
+				"password": "password"
+			},
+			"metaSortKey": -1619952857895.8125,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_75c78f05c3024bc2947a82ab7cc9d289",
+			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
+			"modified": 1646911176281,
+			"created": 1646911164456,
+			"url": "http://localhost:8204/admin/access/bearer-token/{% response 'body', 'req_9fdda6c06769483baf96a2586bfd2a0d', 'b64::JC5pZA==::46b', 'always', 60 %}",
+			"name": "admin/access/bearer-token/:id",
 			"description": "",
 			"method": "GET",
 			"body": {},
 			"parameters": [],
-			"headers": [
+			"headers": [],
+			"authentication": {
+				"type": "basic",
+				"useISO88591": true,
+				"disabled": false,
+				"username": "admin",
+				"password": "password"
+			},
+			"metaSortKey": -1616837929596.2188,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_5dce7cb6beed47ea9f92ce1ed2e09429",
+			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
+			"modified": 1646911594510,
+			"created": 1646911582738,
+			"url": "http://localhost:8204/admin/access/bearer-token/{% response 'body', 'req_9fdda6c06769483baf96a2586bfd2a0d', 'b64::JC5pZA==::46b', 'always', 60 %}",
+			"name": "admin/access/bearer-token/:id",
+			"description": "",
+			"method": "DELETE",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "basic",
+				"useISO88591": true,
+				"disabled": false,
+				"username": "admin",
+				"password": "password"
+			},
+			"metaSortKey": -1616059197521.3203,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_416e364eac3f4373a889aac2a40f7497",
+			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
+			"modified": 1646911384343,
+			"created": 1646911373882,
+			"url": "http://localhost:8204/admin/access/bearer-token",
+			"name": "admin/access/bearer-token",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [
 				{
-					"id": "pair_2db981fa14e847b2b9644c006ca04d4e",
-					"name": "Accept",
-					"value": "text/plain",
-					"description": ""
-				},
-				{
-					"id": "pair_e09aadb9105a4a70869e61e607c737db",
-					"name": "Accept-Encoding",
-					"value": "br, gzip, deflate",
+					"id": "pair_d487469ce4a44708948cc7859966bce5",
+					"name": "access.scopes",
+					"value": "documents/receipt.delete",
 					"description": ""
 				}
 			],
+			"headers": [],
 			"authentication": {
-				"type": "bearer",
-				"token": "testtoken",
-				"disabled": true
+				"type": "basic",
+				"useISO88591": true,
+				"disabled": false,
+				"username": "admin",
+				"password": "password"
 			},
-			"metaSortKey": -1601263288198.25,
+			"metaSortKey": -1615280465446.4219,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a52ec107902e4ab782dc5f500af5ce59",
+			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
+			"modified": 1646911417768,
+			"created": 1629450140734,
+			"url": "http://localhost:8204/docs",
+			"name": "docs",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1613723001296.625,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_03838f5fb1e544bb80eafa137e51cf6e",
+			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
+			"modified": 1646911420122,
+			"created": 1626182714395,
+			"url": "http://localhost:8204/docs/json",
+			"name": "docs/json",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1605935680610.1406,
 			"isPrivate": false,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
@@ -105,66 +231,27 @@
 		{
 			"_id": "req_56d7599eb87b4eb68f7fb53983cb1b2f",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626274006861,
+			"modified": 1646912017445,
 			"created": 1611841537522,
-			"url": "http://localhost:8204/documents/receipt/1?patientId=9999999999",
+			"url": "http://localhost:8204/documents/receipt/1",
 			"name": "documents/receipt",
 			"description": "",
 			"method": "DELETE",
 			"body": {},
-			"parameters": [],
-			"headers": [
+			"parameters": [
 				{
-					"id": "pair_6038d7e944d048b4bb96c8d13f9c8299",
-					"name": "Accept",
-					"value": "application/json",
-					"description": ""
-				},
-				{
-					"id": "pair_38f7c7976d814dab884a2fa5b96baacd",
-					"name": "Accept-Encoding",
-					"value": "br, gzip, deflate",
+					"id": "pair_9e92f0e1ea8741969ff36dff0c3c7d6d",
+					"name": "patientId",
+					"value": "9999999999",
 					"description": ""
 				}
 			],
-			"authentication": { "token": "testtoken", "type": "bearer" },
+			"headers": [],
+			"authentication": {
+				"token": "{% response 'body', 'req_9fdda6c06769483baf96a2586bfd2a0d', 'b64::JC5hY2Nlc3MudG9rZW4=::46b', 'always', 60 %}",
+				"type": "bearer"
+			},
 			"metaSortKey": -1598148359923.6562,
-			"isPrivate": false,
-			"settingStoreCookies": true,
-			"settingSendCookies": true,
-			"settingDisableRenderRequestBody": false,
-			"settingEncodeUrl": true,
-			"settingRebuildPath": true,
-			"settingFollowRedirects": "global",
-			"_type": "request"
-		},
-		{
-			"_id": "req_bfb2b65433ec49fb864cae800a9fa373",
-			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626274005103,
-			"created": 1611841537504,
-			"url": "http://localhost:8204/documents/register?lastModified=ge2021-01-01T00:00:01&lastModified=le2021-02-01T00:00:01&page=1",
-			"name": "documents/register",
-			"description": "",
-			"method": "GET",
-			"body": {},
-			"parameters": [],
-			"headers": [
-				{
-					"id": "pair_75475899bf534463a8e8cb621202e680",
-					"name": "Accept",
-					"value": "application/json",
-					"description": ""
-				},
-				{
-					"id": "pair_b6928555b3d7468d8a2cf1fb12c7f73b",
-					"name": "Accept-Encoding",
-					"value": "br, gzip, deflate",
-					"description": ""
-				}
-			],
-			"authentication": { "token": "testtoken", "type": "bearer" },
-			"metaSortKey": -1595033431649.0625,
 			"isPrivate": false,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
@@ -177,30 +264,67 @@
 		{
 			"_id": "req_d9ecf23f85774fafb742f3b2071a03f8",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626274003167,
+			"modified": 1646912027951,
 			"created": 1611841537517,
-			"url": "http://localhost:8204/documents/receipt/1?patientId=9999999999&timestamp=2020-01-09T20:00:00Z",
+			"url": "http://localhost:8204/documents/receipt/1",
 			"name": "documents/receipt",
 			"description": "",
 			"method": "PUT",
 			"body": {},
-			"parameters": [],
-			"headers": [
+			"parameters": [
 				{
-					"id": "pair_a3656b6adaf146a596692de60fe58192",
-					"name": "Accept",
-					"value": "application/json",
+					"id": "pair_0ef649144c3346e6b094904434be1ac9",
+					"name": "patientId",
+					"value": "9999999999",
 					"description": ""
 				},
 				{
-					"id": "pair_7da7997bf274465aa1789bfe49ec8834",
-					"name": "Accept-Encoding",
-					"value": "br, gzip, deflate",
+					"id": "pair_39d57697b0cb45cdac57578d886fc133",
+					"name": "timestamp",
+					"value": "2020-01-09T20:00:00Z",
 					"description": ""
 				}
 			],
-			"authentication": { "token": "testtoken", "type": "bearer" },
-			"metaSortKey": -1588803575099.875,
+			"headers": [],
+			"authentication": {
+				"token": "{% response 'body', 'req_9fdda6c06769483baf96a2586bfd2a0d', 'b64::JC5hY2Nlc3MudG9rZW4=::46b', 'always', 60 %}",
+				"type": "bearer",
+				"disabled": true
+			},
+			"metaSortKey": -1595033431649.0625,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a1852c9c15e041bfb81d4e7f7787e7cb",
+			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
+			"modified": 1646912002481,
+			"created": 1627977662347,
+			"url": "http://localhost:8204/documents/register",
+			"name": "documents/register",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [
+				{
+					"id": "pair_eabfa81a1cf34a7aa83a39cb2bbd8be8",
+					"name": "lastModified",
+					"value": "ge2021-01-01T00:00:00",
+					"description": ""
+				}
+			],
+			"headers": [],
+			"authentication": {
+				"token": "{% response 'body', 'req_9fdda6c06769483baf96a2586bfd2a0d', 'b64::JC5hY2Nlc3MudG9rZW4=::46b', 'always', 60 %}",
+				"type": "bearer"
+			},
+			"metaSortKey": -1591918503374.4688,
 			"isPrivate": false,
 			"settingStoreCookies": true,
 			"settingSendCookies": true,
@@ -213,7 +337,7 @@
 		{
 			"_id": "req_cd10fcafff464007858a7c37e169345b",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626274000726,
+			"modified": 1646912001807,
 			"created": 1611841537472,
 			"url": "http://localhost:8204/preferences/options",
 			"name": "preferences/options",
@@ -221,21 +345,12 @@
 			"method": "GET",
 			"body": {},
 			"parameters": [],
-			"headers": [
-				{
-					"id": "pair_500377ea9daa48cca41f196d999d1d2c",
-					"name": "Accept",
-					"value": "application/json",
-					"description": ""
-				},
-				{
-					"id": "pair_a6ec1ad83fb54f0bbeca798f24a873f2",
-					"name": "Accept-Encoding",
-					"value": "br, gzip, deflate",
-					"description": ""
-				}
-			],
-			"authentication": { "token": "testtoken", "type": "bearer" },
+			"headers": [],
+			"authentication": {
+				"token": "{% response 'body', 'req_9fdda6c06769483baf96a2586bfd2a0d', 'b64::JC5hY2Nlc3MudG9rZW4=::46b', 'always', 60 %}",
+				"type": "bearer",
+				"disabled": false
+			},
 			"metaSortKey": -1576343862001.5,
 			"isPrivate": false,
 			"settingStoreCookies": true,
@@ -249,7 +364,7 @@
 		{
 			"_id": "req_14336eef9fca45afb8a2704efedb4b10",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626273998619,
+			"modified": 1646912001513,
 			"created": 1611841537480,
 			"url": "http://localhost:8204/preferences/user/9999999999",
 			"name": "preferences/user/9999999999",
@@ -257,21 +372,11 @@
 			"method": "GET",
 			"body": {},
 			"parameters": [],
-			"headers": [
-				{
-					"id": "pair_c2c9dc21710b4e038726683fd0c2f1ad",
-					"name": "Accept",
-					"value": "application/json",
-					"description": ""
-				},
-				{
-					"id": "pair_808598ece41643fdaebd439e9de42d34",
-					"name": "Accept-Encoding",
-					"value": "br, gzip, deflate",
-					"description": ""
-				}
-			],
-			"authentication": { "token": "testtoken", "type": "bearer" },
+			"headers": [],
+			"authentication": {
+				"token": "{% response 'body', 'req_9fdda6c06769483baf96a2586bfd2a0d', 'b64::JC5hY2Nlc3MudG9rZW4=::46b', 'always', 60 %}",
+				"type": "bearer"
+			},
 			"metaSortKey": -1575917663755.2188,
 			"isPrivate": false,
 			"settingStoreCookies": true,
@@ -285,7 +390,7 @@
 		{
 			"_id": "req_05ce4ac814774f11b98647b9c9bb46d9",
 			"parentId": "fld_c78c145cf399434da45fbce4fb6e69c2",
-			"modified": 1626273992060,
+			"modified": 1646911994504,
 			"created": 1611841537486,
 			"url": "http://localhost:8204/preferences/user/9999999999",
 			"name": "preferences/user/9999999999",
@@ -293,29 +398,20 @@
 			"method": "PUT",
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n  \"preferences\": [\n    {\n        \"id\": 1,\n        \"priority\": 0,\n        \"selected\": 1\n    },\n    {\n        \"id\": 2,\n        \"priority\": 1,\n        \"selected\": 2\n    },\n    {\n      \n        \"id\": 3,\n        \"priority\": 2,\n        \"selected\": 1\n    },\n    {\n        \"id\": 4,\n        \"priority\": 3,\n        \"selected\": 2\n    }\n  ]\n}"
+				"text": "{\n  \"preferences\": [\n    {\n        \"id\": 1,\n        \"priority\": 0,\n        \"selected\": 1,\n\t\t\t\"test\": 4\n    },\n    {\n        \"id\": 2,\n        \"priority\": 1,\n        \"selected\": 2\n    },\n    {\n      \n        \"id\": 3,\n        \"priority\": 2,\n        \"selected\": 1\n    },\n    {\n        \"id\": 4,\n        \"priority\": 3,\n        \"selected\": 2\n    }\n  ],\n\t\n\t\"test\": \"hello\"\n}"
 			},
 			"parameters": [],
 			"headers": [
-				{
-					"id": "pair_a954f55aae66472bac46ade8677a9c48",
-					"name": "Accept",
-					"value": "application/json",
-					"description": ""
-				},
-				{
-					"id": "pair_a0608351fa8443a19c626532e20b9415",
-					"name": "Accept-Encoding",
-					"value": "br, gzip, deflate",
-					"description": ""
-				},
 				{
 					"id": "pair_fc309fbbd7d141aea54d463c47373659",
 					"name": "Content-Type",
 					"value": "application/json"
 				}
 			],
-			"authentication": { "token": "testtoken", "type": "bearer" },
+			"authentication": {
+				"token": "{% response 'body', 'req_9fdda6c06769483baf96a2586bfd2a0d', 'b64::JC5hY2Nlc3MudG9rZW4=::46b', 'always', 60 %}",
+				"type": "bearer"
+			},
 			"metaSortKey": -1575704564632.0781,
 			"isPrivate": false,
 			"settingStoreCookies": true,
