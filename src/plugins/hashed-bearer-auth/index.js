@@ -19,6 +19,7 @@ async function plugin(server) {
 		auth: async (key, req) => {
 			const results = await server.db.query(
 				`SELECT DISTINCT
+					name,
                     hash,
                     salt,
                     scopes
@@ -48,6 +49,8 @@ async function plugin(server) {
 						typeof token.scopes === "string"
 							? JSON.parse(token.scopes)
 							: token.scopes;
+
+					req.log.info({ client: token.name });
 					break;
 				}
 			}
