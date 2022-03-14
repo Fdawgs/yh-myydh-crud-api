@@ -30,7 +30,7 @@ Perform the following steps before deployment:
 3. Make a copy of `.env.template` in the root directory and rename it to `.env`
 4. Configure the application using the environment variables in `.env`
 
-**Note:** You will need to create a database prior to using it in the `DB_CONNECTION_STRING` environment variable (this does not apply if using the included Docker Compose file to deploy)
+**Note:** You will need to create a database before using it in the `DB_CONNECTION_STRING` environment variable (this does not apply if using the included Docker Compose file to deploy)
 
 **Note:** Set the following environment variables in `.env` to meet NHS Digital's recommendation to retain 6 months' worth of logs:
 
@@ -46,7 +46,7 @@ Perform the following steps before deployment:
 2. Run `npm run db:migrate` to create supporting database, schemas, and tables
 3. Run `npm start`
 
-The service should be up and running on the port set in the config. You should see the following output in stdout or the log file specified using the `LOG_ROTATION_FILENAME` environment variable:
+The service should be up and running on the port set in the config. You should see output similar to the following in stdout or in the log file specified using the `LOG_ROTATION_FILENAME` environment variable:
 
 ```json
 {
@@ -145,7 +145,7 @@ As such, if a client/service forget their token, you will need to generate a new
 
 Contributions are welcome, and any help is greatly appreciated!
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to get started.
+See [the contributing guide](./CONTRIBUTING.md) for details on how to get started.
 Please adhere to this project's [Code of Conduct](./CODE_OF_CONDUCT.md) when contributing.
 
 ## License
