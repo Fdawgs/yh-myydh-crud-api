@@ -402,6 +402,10 @@ describe("Server Deployment", () => {
 					await server.ready();
 				});
 
+				afterAll(async () => {
+					await server.close();
+				});
+
 				describe("/admin/access/bearer-token/:id Route", () => {
 					test("Should return HTTP status code 401 if basic auth username invalid", async () => {
 						const response = await server.inject({
