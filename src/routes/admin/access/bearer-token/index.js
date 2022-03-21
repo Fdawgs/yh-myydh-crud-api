@@ -421,6 +421,13 @@ async function route(server, options) {
 						},
 					};
 
+					res.header(
+						"location",
+						new URL(
+							`/admin/access/bearer-token/${resObj.id}`,
+							`${req.protocol}://${req.hostname}`
+						).href
+					);
 					res.status(201).send(resObj);
 				} else {
 					// TODO: resolve "Promise errored, but reply.sent = true was set" being logged, should be fixed in Fastify v4.x.x
