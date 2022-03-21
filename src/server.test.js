@@ -80,6 +80,12 @@ const expResHeadersXml = {
 	"content-type": expect.stringContaining("application/xml"),
 };
 
+const expResHeaders4xxErrors = {
+	...expResHeadersJson,
+	vary: "accept-encoding",
+};
+delete expResHeaders4xxErrors["keep-alive"];
+
 describe("Server Deployment", () => {
 	const connectionTests = [
 		{
@@ -195,6 +201,29 @@ describe("Server Deployment", () => {
 					});
 				});
 
+				describe("Undeclared Route", () => {
+					test("Should return HTTP status code 404 if route not found", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/invalid",
+							headers: {
+								accept: "application/json",
+							},
+						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Not Found",
+							message: "Route GET:/invalid not found",
+							statusCode: 404,
+						});
+
+						expect(response.headers).toEqual(
+							expResHeaders4xxErrors
+						);
+						expect(response.statusCode).toBe(404);
+					});
+				});
+
 				describe("/docs Route", () => {
 					test("Should return HTML", async () => {
 						const response = await server.inject({
@@ -265,6 +294,29 @@ describe("Server Deployment", () => {
 						});
 						expect(response.headers).toEqual(expResHeadersJson);
 						expect(response.statusCode).toBe(406);
+					});
+				});
+
+				describe("Undeclared Route", () => {
+					test("Should return HTTP status code 404 if route not found", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: "/invalid",
+							headers: {
+								accept: "application/json",
+							},
+						});
+
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Not Found",
+							message: "Route GET:/invalid not found",
+							statusCode: 404,
+						});
+
+						expect(response.headers).toEqual(
+							expResHeaders4xxErrors
+						);
+						expect(response.statusCode).toBe(404);
 					});
 				});
 

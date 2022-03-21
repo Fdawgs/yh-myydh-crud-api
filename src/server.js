@@ -71,9 +71,6 @@ async function plugin(server, config) {
 
 	// Register routes
 	server
-		// Ensure rate limit also applies to 4xx and 5xx responses
-		.addHook("onSend", server.rateLimit())
-
 		/*
 		 * `x-xss-protection` and `content-security-policy` is set by default by Helmet.
 		 * These are only useful for HTML/XML content; the only CSP directive that
@@ -230,7 +227,17 @@ async function plugin(server, config) {
 					dir: path.joinSafe(__dirname, "routes", "docs"),
 					options: { ...config, prefix: "docs" },
 				});
-		});
+		})
+
+		// Rate limit 404 responses
+		.setNotFoundHandler(
+			{
+				preHandler: server.rateLimit(),
+			},
+			(req, res) => {
+				res.notFound(`Route ${req.method}:${req.url} not found`);
+			}
+		);
 }
 
 module.exports = fp(plugin, { fastify: "3.x", name: "server" });
