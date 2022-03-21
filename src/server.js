@@ -40,6 +40,9 @@ async function plugin(server, config) {
 		// Database connection
 		.register(db, config.database)
 
+		// Set response headers to disable client-side caching
+		.register(disableCache)
+
 		// Opt-out of Google's FLoC advertising-surveillance network
 		.register(flocOff)
 
@@ -68,9 +71,6 @@ async function plugin(server, config) {
 
 	// Register routes
 	server
-		// Ensure rate limit also applies to 4xx and 5xx responses
-		.addHook("onSend", server.rateLimit())
-
 		/*
 		 * `x-xss-protection` and `content-security-policy` is set by default by Helmet.
 		 * These are only useful for HTML/XML content; the only CSP directive that
@@ -105,10 +105,6 @@ async function plugin(server, config) {
 		 */
 		.register(async (serializedContext) => {
 			serializedContext
-
-				// Set response headers to disable client-side caching
-				.register(disableCache)
-
 				// Catch unsupported Accept header media types
 				.addHook("preValidation", async (req, res) => {
 					if (
@@ -201,7 +197,8 @@ async function plugin(server, config) {
 
 		/**
 		 * Encapsulate the docs routes into a child context, so that the
-		 * CSP can be relaxed without impacting security of other routes
+		 * CSP can be relaxed, and cache enabled, without impacting
+		 * security of other routes
 		 */
 		.register(async (publicContext) => {
 			const relaxedHelmetConfig = secJSON.parse(
@@ -230,7 +227,17 @@ async function plugin(server, config) {
 					dir: path.joinSafe(__dirname, "routes", "docs"),
 					options: { ...config, prefix: "docs" },
 				});
-		});
+		})
+
+		// Rate limit 404 responses
+		.setNotFoundHandler(
+			{
+				preHandler: server.rateLimit(),
+			},
+			(req, res) => {
+				res.notFound(`Route ${req.method}:${req.url} not found`);
+			}
+		);
 }
 
 module.exports = fp(plugin, { fastify: "3.x", name: "server" });

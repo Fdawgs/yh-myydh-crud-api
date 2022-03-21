@@ -21,6 +21,9 @@ async function route(server) {
 			}
 		},
 		handler: (req, res) => {
+			res.removeHeader("pragma");
+			res.removeHeader("expires");
+			res.removeHeader("surrogate-control");
 			res.header("cache-control", "public, max-age=3600");
 			res.send(server.swagger());
 		},
