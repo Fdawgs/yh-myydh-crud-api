@@ -40,6 +40,9 @@ async function plugin(server, config) {
 		// Database connection
 		.register(db, config.database)
 
+		// Set response headers to disable client-side caching
+		.register(disableCache)
+
 		// Opt-out of Google's FLoC advertising-surveillance network
 		.register(flocOff)
 
@@ -105,10 +108,6 @@ async function plugin(server, config) {
 		 */
 		.register(async (serializedContext) => {
 			serializedContext
-
-				// Set response headers to disable client-side caching
-				.register(disableCache)
-
 				// Catch unsupported Accept header media types
 				.addHook("preValidation", async (req, res) => {
 					if (
@@ -201,7 +200,8 @@ async function plugin(server, config) {
 
 		/**
 		 * Encapsulate the docs routes into a child context, so that the
-		 * CSP can be relaxed without impacting security of other routes
+		 * CSP can be relaxed, and cache enabled, without impacting
+		 * security of other routes
 		 */
 		.register(async (publicContext) => {
 			const relaxedHelmetConfig = secJSON.parse(
