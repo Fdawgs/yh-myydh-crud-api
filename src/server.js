@@ -120,8 +120,6 @@ async function plugin(server, config) {
 
 				// Serialize response
 				.addHook("onSend", async (req, res, payload) => {
-					let newPayload;
-
 					switch (
 						req
 							.accepts()
@@ -132,18 +130,14 @@ async function plugin(server, config) {
 								"content-type",
 								"application/xml; charset=utf-8"
 							);
-							newPayload = toXML(JSON.parse(payload), {
+							return toXML(JSON.parse(payload), {
 								header: '<?xml version="1.0" encoding="UTF-8"?>',
 							});
-							break;
 
 						case "application/json":
 						default:
-							newPayload = payload;
-							break;
+							return payload;
 					}
-
-					return newPayload;
 				});
 
 			serializedContext
