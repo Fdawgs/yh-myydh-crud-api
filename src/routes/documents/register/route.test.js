@@ -1,4 +1,4 @@
-const faker = require("faker/locale/en_GB");
+const { faker } = require("@faker-js/faker");
 const Fastify = require("fastify");
 const sensible = require("fastify-sensible");
 const route = require(".");
@@ -6,6 +6,8 @@ const getConfig = require("../../../config");
 const cleanObject = require("../../../plugins/clean-object");
 const convertDateParamOperator = require("../../../plugins/convert-date-param-operator");
 const sharedSchemas = require("../../../plugins/shared-schemas");
+
+faker.locale = "en_GB";
 
 const testPage = faker.datatype.number({
 	min: 1,

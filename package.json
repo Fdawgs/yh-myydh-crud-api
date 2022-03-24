@@ -72,6 +72,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^16.2.3",
 		"@commitlint/config-conventional": "^16.2.1",
+		"@faker-js/faker": "^6.0.0",
 		"autocannon": "^7.8.0",
 		"eslint": "^8.11.0",
 		"eslint-config-airbnb-base": "^15.0.0",
@@ -82,7 +83,6 @@
 		"eslint-plugin-promise": "^6.0.0",
 		"eslint-plugin-security": "^1.4.0",
 		"eslint-plugin-security-node": "^1.1.1",
-		"faker": "5.5.3",
 		"glob": "^7.2.0",
 		"husky": "^7.0.4",
 		"is-html": "^2.0.0",
