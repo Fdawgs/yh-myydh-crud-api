@@ -110,7 +110,6 @@ async function route(server, options) {
 					);
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to delete bearer token record from database"
 				);
@@ -144,7 +143,6 @@ async function route(server, options) {
 					res.notFound("Bearer token record not found");
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to return result from database"
 				);
@@ -352,7 +350,6 @@ async function route(server, options) {
 					res.send(server.cleanObject(tokensObject));
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to return result(s) from database"
 				);
@@ -434,7 +431,6 @@ async function route(server, options) {
 					throw new Error();
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to add bearer token record to database"
 				);

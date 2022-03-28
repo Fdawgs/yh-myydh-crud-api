@@ -122,7 +122,6 @@ async function route(server, options) {
 					res.notFound("Invalid or expired search results");
 				}
 			} catch (err) {
-				req.log.error({ req, res, err }, err && err.message);
 				throw res.internalServerError(
 					"Unable to return result(s) from database"
 				);

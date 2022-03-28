@@ -227,6 +227,15 @@ async function plugin(server, config) {
 			(req, res) => {
 				res.notFound(`Route ${req.method}:${req.url} not found`);
 			}
+		)
+
+		// Errors thrown by routes and plugins are caught here
+		.setErrorHandler(
+			// eslint-disable-next-line promise/prefer-await-to-callbacks
+			(err, req, res) => {
+				req.log.error({ req, res, err }, err && err.message);
+				res.send(err);
+			}
 		);
 }
 
