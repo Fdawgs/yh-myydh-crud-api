@@ -126,10 +126,7 @@ async function plugin(server, config) {
 							.type(["application/json", "application/xml"])
 					) {
 						case "application/xml":
-							res.header(
-								"content-type",
-								"application/xml; charset=utf-8"
-							);
+							res.type("application/xml; charset=utf-8");
 							return toXML(JSON.parse(payload), {
 								header: '<?xml version="1.0" encoding="UTF-8"?>',
 							});
