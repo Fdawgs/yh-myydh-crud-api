@@ -83,11 +83,12 @@ async function plugin(server, config) {
 				!res.getHeader("content-type")?.includes("html") &&
 				!res.getHeader("content-type")?.includes("xml")
 			) {
-				res.raw.setHeader(
-					"content-security-policy",
-					"default-src 'self';frame-ancestors 'none'"
-				);
-				res.raw.removeHeader("x-xss-protection");
+				res.raw
+					.setHeader(
+						"content-security-policy",
+						"default-src 'self';frame-ancestors 'none'"
+					)
+					.removeHeader("x-xss-protection");
 			}
 			return res;
 		})
@@ -108,11 +109,9 @@ async function plugin(server, config) {
 				// Catch unsupported Accept header media types
 				.addHook("preValidation", async (req, res) => {
 					if (
-						!["application/json", "application/xml"].includes(
-							req
-								.accepts()
-								.type(["application/json", "application/xml"])
-						)
+						!req
+							.accepts()
+							.type(["application/json", "application/xml"])
 					) {
 						throw res.notAcceptable();
 					}
@@ -126,10 +125,7 @@ async function plugin(server, config) {
 							.type(["application/json", "application/xml"])
 					) {
 						case "application/xml":
-							res.header(
-								"content-type",
-								"application/xml; charset=utf-8"
-							);
+							res.type("application/xml; charset=utf-8");
 							return toXML(JSON.parse(payload), {
 								header: '<?xml version="1.0" encoding="UTF-8"?>',
 							});
@@ -230,6 +226,15 @@ async function plugin(server, config) {
 			},
 			(req, res) => {
 				res.notFound(`Route ${req.method}:${req.url} not found`);
+			}
+		)
+
+		// Errors thrown by routes and plugins are caught here
+		.setErrorHandler(
+			// eslint-disable-next-line promise/prefer-await-to-callbacks
+			(err, req, res) => {
+				req.log.error({ req, res, err }, err && err.message);
+				res.send(err);
 			}
 		);
 }
