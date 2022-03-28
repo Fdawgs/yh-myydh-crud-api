@@ -108,11 +108,9 @@ async function plugin(server, config) {
 				// Catch unsupported Accept header media types
 				.addHook("preValidation", async (req, res) => {
 					if (
-						!["application/json", "application/xml"].includes(
-							req
-								.accepts()
-								.type(["application/json", "application/xml"])
-						)
+						!req
+							.accepts()
+							.type(["application/json", "application/xml"])
 					) {
 						throw res.notAcceptable();
 					}
