@@ -8,9 +8,9 @@ module.exports.generateSql = function () {
         [hash] VARCHAR(MAX) NOT NULL,
         salt VARCHAR(MAX) NOT NULL,
         scopes NVARCHAR(MAX) NOT NULL,
-        expires DATETIME2 NOT NULL,
-        created DATETIME2 NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        last_updated DATETIME2 DEFAULT CURRENT_TIMESTAMP,
+        expires DATETIMEOFFSET NOT NULL,
+        created DATETIMEOFFSET NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        last_updated DATETIMEOFFSET DEFAULT CURRENT_TIMESTAMP,
     );  
     
     
@@ -34,8 +34,8 @@ module.exports.generateSql = function () {
         preference_type_id INT NOT NULL,
         preference_value_id INT NULL,
         preference_priority INT NULL,
-        created DATETIME NOT NULL,
-        last_updated DATETIME,
+        created DATETIMEOFFSET NOT NULL,
+        last_updated DATETIMEOFFSET,
         CONSTRAINT ck_patient_preference PRIMARY KEY (patient_id, preference_type_id),
         CONSTRAINT fk_preference_type FOREIGN KEY (preference_type_id) REFERENCES ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}(preference_type_id),
         CONSTRAINT fk_preference_value FOREIGN KEY (preference_value_id) REFERENCES ${process.env.DB_PATIENT_PREFERENCES_VALUE_TABLE}(preference_value_id)
@@ -45,7 +45,7 @@ module.exports.generateSql = function () {
     (
         patient_id VARCHAR(255) NOT NULL,
         guid CHAR(36) NOT NULL,
-        ts DATETIME NOT NULL,
+        ts DATETIMEOFFSET NOT NULL,
         CONSTRAINT ck_document_receipt PRIMARY KEY (patient_id, guid)
     );
     

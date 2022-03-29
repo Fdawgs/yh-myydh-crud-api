@@ -18,9 +18,9 @@ module.exports.generateSql = function () {
             hash VARCHAR NOT NULL,
             salt VARCHAR NOT NULL,
             scopes JSONB NOT NULL,
-            expires TIMESTAMP NOT NULL,
-            created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            expires TIMESTAMPTZ NOT NULL,
+            created TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            last_updated TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
         );
         
         CREATE TABLE IF NOT EXISTS ${process.env.DB_PATIENT_PREFERENCES_TYPE_TABLE}
@@ -43,8 +43,8 @@ module.exports.generateSql = function () {
             preference_type_id INT NOT NULL,
             preference_value_id INT NULL,
             preference_priority INT NULL,
-            created TIMESTAMP NOT NULL,
-            last_updated TIMESTAMP,
+            created TIMESTAMPTZ NOT NULL,
+            last_updated TIMESTAMPTZ,
             CONSTRAINT ck_patient_preference PRIMARY KEY (patient_id, preference_type_id),
             CONSTRAINT fk_preference_type FOREIGN KEY (preference_type_id) REFERENCES lookup.preference_type (preference_type_id),
             CONSTRAINT fk_preference_value FOREIGN KEY (preference_value_id) REFERENCES lookup.preference_value (preference_value_id)
@@ -55,7 +55,7 @@ module.exports.generateSql = function () {
         (
             patient_id VARCHAR (255) NOT NULL,
             guid CHAR (36) NOT NULL,
-            ts TIMESTAMP NOT NULL,
+            ts TIMESTAMPTZ NOT NULL,
             CONSTRAINT ck_document_receipt PRIMARY KEY (patient_id, guid)
         );
         
