@@ -81,7 +81,10 @@ const receiptPutSchema = {
 		)
 		.prop(
 			"timestamp",
-			S.string().description("Read time of document").format("date-time")
+			S.string()
+				.description("Read time of document")
+				.examples(["2020-08-10T03:51:54.000Z"])
+				.format("date-time")
 		)
 		.required(["patientId", "timestamp"]),
 	response: {
