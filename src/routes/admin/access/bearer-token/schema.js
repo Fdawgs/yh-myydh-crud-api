@@ -4,16 +4,19 @@ const security = [{ basicAuth: [] }];
 const tags = ["System Administration"];
 
 const dateTimeSearchPattern =
-	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}|)(?:.\d{3}|)(?:Z|)$/im;
+	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}(?:-[0-1]\d-[0-3]\d(?:t(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:z|[+-]\d\d(?::?\d\d)?))?)?$/im;
 
 const dateTimeSearchPatternExamples = [
+	"2022",
 	"2022-01-13",
-	"2022-01-13T00:00:01",
-	"2022-01-13T00:00:01.001",
 	"2022-01-13T00:00:01Z",
 	"2022-01-13T00:00:01.001Z",
-	"ge2022-01-13T00:00:01",
+	"2022-01-13T00:00:01+01:00",
+	"ge2022",
 	"ge2022-01-13",
+	"ge2022-01-13T00:00:01Z",
+	"ge2022-01-13T00:00:01.001Z",
+	"ge2022-01-13T00:00:01+01:00",
 ];
 
 const accessRecordScopes = [
