@@ -1,5 +1,6 @@
 const autoLoad = require("fastify-autoload");
 const fp = require("fastify-plugin");
+const js2xmlparser = require("js2xmlparser");
 const path = require("upath");
 const secJSON = require("secure-json-parse");
 
@@ -14,7 +15,6 @@ const rateLimit = require("fastify-rate-limit");
 const sensible = require("fastify-sensible");
 const staticPlugin = require("fastify-static");
 const swagger = require("fastify-swagger");
-const { toXML } = require("jstoxml");
 const underPressure = require("under-pressure");
 const clean = require("./plugins/clean-object");
 const convertDateParamOperator = require("./plugins/convert-date-param-operator");
@@ -93,6 +93,44 @@ async function plugin(server, config) {
 			return res;
 		})
 
+		// Serialize response to XML if requested and supported by route
+		.addHook("onSend", async (req, res, payload) => {
+			/**
+			 * Ensure it does not attempt to serialise non-JSON responses,
+			 * by default Fastify sets response type to json if it has not
+			 * been explicitly defined
+			 */
+			if (res.getHeader("content-type").includes("json")) {
+				let parsedPayload = payload;
+
+				try {
+					parsedPayload = JSON.parse(payload);
+				} catch (err) {
+					// Do nothing, payload already object
+				}
+
+				if (
+					typeof parsedPayload === "object" &&
+					req
+						.accepts()
+						.type(["application/json", "application/xml"]) ===
+						"application/xml"
+				) {
+					res.type("application/xml, charset=utf-8");
+					return js2xmlparser.parse("response", parsedPayload, {
+						format: {
+							doubleQuotes: true,
+						},
+						declaration: {
+							encoding: "UTF-8",
+						},
+					});
+				}
+			}
+
+			return payload;
+		})
+
 		// Import and register healthcheck route
 		.register(autoLoad, {
 			dir: path.joinSafe(__dirname, "routes", "admin", "healthcheck"),
@@ -101,7 +139,7 @@ async function plugin(server, config) {
 
 		/**
 		 * Encapsulate plugins and routes into child context, so that other
-		 * routes do not inherit `accepts` preHandler or response serialization.
+		 * routes do not inherit `accepts` preHandler.
 		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
 		 */
 		.register(async (serializedContext) => {
@@ -114,25 +152,6 @@ async function plugin(server, config) {
 							.type(["application/json", "application/xml"])
 					) {
 						throw res.notAcceptable();
-					}
-				})
-
-				// Serialize response
-				.addHook("onSend", async (req, res, payload) => {
-					switch (
-						req
-							.accepts()
-							.type(["application/json", "application/xml"])
-					) {
-						case "application/xml":
-							res.type("application/xml; charset=utf-8");
-							return toXML(JSON.parse(payload), {
-								header: '<?xml version="1.0" encoding="UTF-8"?>',
-							});
-
-						case "application/json":
-						default:
-							return payload;
 					}
 				});
 
