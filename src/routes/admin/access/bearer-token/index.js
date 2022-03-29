@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const secJSON = require("secure-json-parse");
 
 // Import plugins
 const cors = require("fastify-cors");
@@ -57,7 +58,7 @@ function buildBearerTokenRecord(result, req) {
 			 */
 			scopes:
 				typeof result.scopes === "string"
-					? JSON.parse(result.scopes)
+					? secJSON.parse(result.scopes)
 					: result.scopes,
 
 			expires: result?.expires,
@@ -413,7 +414,7 @@ async function route(server, options) {
 							 */
 							scopes:
 								typeof token.scopes === "string"
-									? JSON.parse(token.scopes)
+									? secJSON.parse(token.scopes)
 									: token.scopes,
 						},
 					};
