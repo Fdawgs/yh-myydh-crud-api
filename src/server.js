@@ -14,12 +14,12 @@ const rateLimit = require("fastify-rate-limit");
 const sensible = require("fastify-sensible");
 const staticPlugin = require("fastify-static");
 const swagger = require("fastify-swagger");
-const { toXML } = require("jstoxml");
 const underPressure = require("under-pressure");
 const clean = require("./plugins/clean-object");
 const convertDateParamOperator = require("./plugins/convert-date-param-operator");
 const db = require("./plugins/db");
 const hashedBearerAuth = require("./plugins/hashed-bearer-auth");
+const serializeJsonToXml = require("./plugins/serialize-json-to-xml");
 const sharedSchemas = require("./plugins/shared-schemas");
 
 /**
@@ -51,6 +51,9 @@ async function plugin(server, config) {
 
 		// Utility functions and error handlers
 		.register(sensible)
+
+		// Serialization support for XML responses
+		.register(serializeJsonToXml)
 
 		// Re-usable schemas
 		.register(sharedSchemas)
@@ -101,7 +104,7 @@ async function plugin(server, config) {
 
 		/**
 		 * Encapsulate plugins and routes into child context, so that other
-		 * routes do not inherit `accepts` preHandler or response serialization.
+		 * routes do not inherit `accepts` preHandler.
 		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
 		 */
 		.register(async (serializedContext) => {
@@ -114,25 +117,6 @@ async function plugin(server, config) {
 							.type(["application/json", "application/xml"])
 					) {
 						throw res.notAcceptable();
-					}
-				})
-
-				// Serialize response
-				.addHook("onSend", async (req, res, payload) => {
-					switch (
-						req
-							.accepts()
-							.type(["application/json", "application/xml"])
-					) {
-						case "application/xml":
-							res.type("application/xml; charset=utf-8");
-							return toXML(JSON.parse(payload), {
-								header: '<?xml version="1.0" encoding="UTF-8"?>',
-							});
-
-						case "application/json":
-						default:
-							return payload;
 					}
 				});
 

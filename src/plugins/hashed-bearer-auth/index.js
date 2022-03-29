@@ -2,6 +2,7 @@
 const fp = require("fastify-plugin");
 const bearer = require("fastify-bearer-auth");
 const crypto = require("crypto");
+const secJSON = require("secure-json-parse");
 
 /**
  * @author Frazer Smith
@@ -47,7 +48,7 @@ async function plugin(server) {
 					authorized = true;
 					req.scopes =
 						typeof token.scopes === "string"
-							? JSON.parse(token.scopes)
+							? secJSON.parse(token.scopes)
 							: token.scopes;
 
 					req.log.info({ client: token.name });
