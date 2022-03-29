@@ -6,11 +6,11 @@ const S = require("fluent-json-schema");
  *
  * Input validation protects against XSS, HPP, and most injection attacks.
  */
-const docsJsonGetSchema = {
+const docsOpenapiGetSchema = {
 	hide: true,
 	summary: "List OpenAPI specification",
-	description: "Retrieves OpenAPI specification in JSON format.",
-	operationId: "getDocsJson",
+	description: "Retrieves OpenAPI specification.",
+	operationId: "getDocsOpenapi",
 	produces: ["application/json"],
 	response: {
 		406: S.ref("responses#/definitions/notAcceptable").description(
@@ -25,4 +25,4 @@ const docsJsonGetSchema = {
 	},
 };
 
-module.exports = { docsJsonGetSchema };
+module.exports = { docsOpenapiGetSchema };
