@@ -77,7 +77,10 @@ const expResHeadersJson = {
 
 const expResHeadersXml = {
 	...expResHeaders,
+	"content-security-policy":
+		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content",
 	"content-type": expect.stringContaining("application/xml"),
+	"x-xss-protection": "0",
 };
 
 const expResHeaders4xxErrors = {
