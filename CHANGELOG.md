@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
+## [8.0.0](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v7.1.0...v8.0.0) (2022-03-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **routes:** datetime search params require timezone if time provided
+* **migrations:** `DATETIME2` replaced with `DATETIMEOFFSET` in MSSQL. `TIMESTAMP` replaced with `TIMESTAMPTZ` in Postgres
+* **routes/docs:** `docs/json` route renamed to `docs/openapi`
+
+### Bug Fixes
+
+* **migrations:** datetime with timezone data types now used ([52feaaa](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/52feaaaff7b86eca277e5f1a4c3362233c21fb4a))
+* **routes/docs/json:** add cors support ([#736](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/736)) ([8795e77](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8795e7704f7cc4e5a17d92992a1520db1176a297))
+* **routes:** datetime search params require timezone if time provided ([1d14735](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1d14735de32da479347c4094422d786964f0922d))
+* **server:** enable xml serialisation api-wide; fix missing route elem ([bb3d839](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/bb3d8395351c105b546a2bf0077d8a5fcaca381a))
+
+
+### Miscellaneous
+
+* **routes/docs:** rename `docs/json` to `docs/openapi` ([#739](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/739)) ([5ffa882](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/5ffa8828b70af27db2fcb9ff8b21c7b7e9f85e24))
+* **routes/documents/receipt:** add example for `timestamp` param ([3f50f54](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3f50f540d9a93109a8f511aeba79216036460e29))
+
+
+### Dependencies
+
+* **deps-dev:** bump @faker-js/faker from 6.0.0 to 6.1.1 ([cc68f57](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/cc68f574cfa86691b8a81cb19d8f33018c2ebc2f))
+* **deps-dev:** bump autocannon from 7.8.0 to 7.8.1 ([27a011b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/27a011ba499562b4022922b3a005649172ddefb2))
+* **deps-dev:** bump eslint from 8.11.0 to 8.12.0 ([a35fc90](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a35fc90f5fcb36963b488c192d280171f5ab7ac6))
+* **deps-dev:** bump eslint-plugin-jsdoc from 38.0.6 to 38.1.4 ([469e30c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/469e30ca6e16f1bf2fc8ae9eebe05f7e1e9f0f15))
+* **deps-dev:** bump prettier from 2.6.0 to 2.6.1 ([9130c98](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9130c98e11a1baf9b06303ac67d7fc4aef7dd3f9))
+* **deps:** bump fastify-disablecache from 2.0.6 to 2.0.7 ([0e1f975](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0e1f97549ee84fa2b33730d17aed4bb322f2280b))
+* **deps:** bump hadolint/hadolint-action from 1.7.0 to 2.0.0 ([655ffe7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/655ffe72255db32908ce16a9334d471b57e53088))
+* **deps:** bump pino-pretty from 7.5.4 to 7.6.0 ([a29b1af](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a29b1afe82ac712b73e7340d85f7cdb17dca3f0f))
+* **deps:** replace `jstoxml` with `js2xmlparser` ([0db4d85](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0db4d8536843c6c5df35b712ef0b8d6a191d1827))
+
+
+### Improvements
+
+* chain response functions ([e8b917c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e8b917cb3ec014bf87e2ab29a354b8e101719a60))
+* **plugins/serialize-json-to-xml:** target application/json only ([#751](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/751)) ([de60eac](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/de60eacfc63411d8e8874e9a66b45e2c59ac8004))
+* **routes:** clean `accept` header conditionals ([1c87715](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1c87715f0137710eaefda29cfef387bf46ee02de))
+* **server:** add error handler ([38f9f29](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/38f9f294907930625eff40d5b1f868adfb82f8ea))
+* **server:** move xml serialisation to plugin ([5272c73](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/5272c73db98f06db77beb6293dd0c6321262c117))
+* use `type()` alias function to set content-type ([279124a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/279124a3e8afb216d7ffa74ed6a5418d6298fb7f))
+* use secure-json-parse for json parsing ([2940748](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/29407481776955ef4677dc5241377a3ccf0051fa))
+
 ## [7.1.0](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v7.0.0...v7.1.0) (2022-03-25)
 
 
