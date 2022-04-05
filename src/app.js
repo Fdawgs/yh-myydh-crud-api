@@ -1,6 +1,7 @@
 const Fastify = require("fastify");
 const startServer = require("./server");
 const getConfig = require("./config");
+const migrate = require("./migrate");
 
 /**
  * @author Frazer Smith
@@ -14,6 +15,7 @@ const main = async () => {
 	});
 
 	const config = await getConfig();
+	await migrate();
 
 	const server = Fastify(config.fastifyInit);
 	server.register(startServer, config);

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const mssql = require("mssql");
-const path = require("path");
+const path = require("upath");
 const pg = require("pg");
 const pgParse = require("pg-connection-string").parse;
 const Postgrator = require("postgrator");
