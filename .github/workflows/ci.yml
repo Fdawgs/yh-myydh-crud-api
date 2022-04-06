@@ -126,6 +126,18 @@ jobs:
                   cp .env.template .env
                   npm run jest:coverage
 
+            - name: Run MSSQL migrations
+              env:
+                  DB_CLIENT: mssql
+                  DB_CONNECTION_STRING: Server=localhost,1433;Database=master;User Id=sa;Password=Password!;Encrypt=true;TrustServerCertificate=true;
+              run: npm run db:migrate
+
+            - name: Run PostgreSQL migrations
+              env:
+                  DB_CLIENT: postgresql
+                  DB_CONNECTION_STRING: postgresql://postgres:password@localhost:5432/myydh_crud_api
+              run: npm run db:migrate
+
             - name: Coveralls parallel
               if: github.repository == 'Fdawgs/ydh-myydh-crud-api'
               uses: coverallsapp/github-action@1.1.3
