@@ -15,11 +15,12 @@ const mssql = require("mssql");
  */
 async function plugin(server, options) {
 	try {
+		let pool;
+
 		switch (options.client.toLowerCase()) {
 			case "postgresql":
 				server.log.info("Connecting to PostgreSQL DB");
-				// eslint-disable-next-line no-case-declarations
-				const pool = new Pool({
+				pool = new Pool({
 					connectionString: options.connection,
 				});
 
@@ -27,7 +28,7 @@ async function plugin(server, options) {
 				 * Attempt to connect to DB and check connection string
 				 * is valid, will throw error if not
 				 */
-				await pool.query("SELECT '1' AS \"connection_test\"");
+				await pool.query("SELECT version();");
 
 				server.log.info("PostgreSQL DB connection opened");
 

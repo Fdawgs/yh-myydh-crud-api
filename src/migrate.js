@@ -45,23 +45,14 @@ async function migrate() {
 					),
 					driver: "mssql",
 					database: client.config.database,
-					execQuery: /* istanbul ignore next */ (query) =>
-						new Promise((resolve, reject) => {
-							const request = new mssql.Request(client);
-							// batch will handle multiple queries
-							// eslint-disable-next-line promise/prefer-await-to-callbacks
-							request.batch(query, (err, result) => {
-								if (err) {
-									return reject(err);
-								}
-								return resolve({
-									rows:
-										result && result.recordset
-											? result.recordset
-											: result,
-								});
-							});
-						}),
+					execQuery: /* istanbul ignore next */ async (query) => {
+						const request = new mssql.Request(client);
+						const result = await request.batch(query);
+
+						return {
+							rows: result?.recordset ? result.recordset : result,
+						};
+					},
 				});
 				break;
 		}
