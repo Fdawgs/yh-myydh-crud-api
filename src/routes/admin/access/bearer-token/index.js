@@ -27,10 +27,10 @@ const {
  * @param {string} result.id - Unique identifier of bearer token record.
  * @param {string} result.name - Name of client or service accessing API.
  * @param {string} result.email - Contact email of client or service accessing API.
- * @param {string} result.scopes - Stringified JSON object containing actions the API key can perform.
- * @param {string} result.hash - Hashed API key.
- * @param {string} result.salt - Salt used on hashed API key.
- * @param {string=} result.expires - Expiry date of API key.
+ * @param {string} result.scopes - Stringified JSON object containing actions the bearer token can perform.
+ * @param {string} result.hash - Hashed bearer token.
+ * @param {string} result.salt - Salt used on hashed bearer token.
+ * @param {string=} result.expires - Expiry date of bearer token.
  * @param {string} result.created - Date bearer token record was created.
  * @param {string=} result.last_updated - Date bearer token record was last updated.
  * @param {object=} req - Fastify Request object.
@@ -217,7 +217,7 @@ async function route(server, options) {
 				}
 
 				/**
-				 * access.expires - Datetime when API key expires,
+				 * access.expires - Datetime when bearer token expires,
 				 * can be a string or array
 				 */
 				if (req?.query?.["access.expires"]) {
