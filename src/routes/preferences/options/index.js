@@ -87,6 +87,7 @@ async function route(server, options) {
 						};
 
 						// Build option objects to populate options array
+						/* istanbul ignore else */
 						if (
 							preferenceValueOptions &&
 							preferenceValueOptions.length !== 0
