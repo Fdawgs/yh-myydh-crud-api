@@ -13,6 +13,48 @@ const testPatientId = faker.datatype.number({
 	max: 9999999999,
 });
 
+const testPayload = {
+	preferences: [
+		{
+			id: 1,
+			priority: 0,
+			selected: 1,
+		},
+		{
+			id: 2,
+			priority: 1,
+			selected: 2,
+		},
+	],
+};
+
+const testPatientPreferencesResult = [
+	{
+		id: "9999999999",
+		metaCreated: "2021-01-07T10:49:03.503Z",
+		metaLastUpdated: "2021-01-08T10:03:50.130Z",
+		preferenceValueId: 1,
+		preferenceTypeId: 1,
+		preferenceTypeDisplay: "SMS",
+		preferenceTypePriority: 0,
+	},
+];
+
+const testPatientPreferencesValuesResult = [
+	{
+		preferenceTypeId: 1,
+		preferenceTypeDisplay: "SMS",
+		preferenceOptionDisplay: "yes",
+		preferenceOptionValue: 1,
+	},
+	{
+		preferenceTypeId: 1,
+		preferenceTypeDisplay: "SMS",
+		preferenceOptionDisplay: "no",
+		preferenceOptionValue: 2,
+	},
+];
+
 const expResPayload = {
 	id: "9999999999",
 	meta: {
@@ -56,32 +98,8 @@ describe("User Route", () => {
 						},
 						ok: {
 							recordsets: [
-								[
-									{
-										id: "9999999999",
-										metaCreated: "2021-01-07T10:49:03.503Z",
-										metaLastUpdated:
-											"2021-01-08T10:03:50.130Z",
-										preferenceValueId: 1,
-										preferenceTypeId: 1,
-										preferenceTypeDisplay: "SMS",
-										preferenceTypePriority: 0,
-									},
-								],
-								[
-									{
-										preferenceTypeId: 1,
-										preferenceTypeDisplay: "SMS",
-										preferenceOptionDisplay: "yes",
-										preferenceOptionValue: 1,
-									},
-									{
-										preferenceTypeId: 1,
-										preferenceTypeDisplay: "SMS",
-										preferenceOptionDisplay: "no",
-										preferenceOptionValue: 2,
-									},
-								],
+								testPatientPreferencesResult,
+								testPatientPreferencesValuesResult,
 							],
 						},
 					},
@@ -107,34 +125,10 @@ describe("User Route", () => {
 						error: [{}, {}],
 						ok: [
 							{
-								rows: [
-									{
-										id: "9999999999",
-										metaCreated: "2021-01-07T10:49:03.503Z",
-										metaLastUpdated:
-											"2021-01-08T10:03:50.130Z",
-										preferenceValueId: 1,
-										preferenceTypeId: 1,
-										preferenceTypeDisplay: "SMS",
-										preferenceTypePriority: 0,
-									},
-								],
+								rows: testPatientPreferencesResult,
 							},
 							{
-								rows: [
-									{
-										preferenceTypeId: 1,
-										preferenceTypeDisplay: "SMS",
-										preferenceOptionDisplay: "yes",
-										preferenceOptionValue: 1,
-									},
-									{
-										preferenceTypeId: 1,
-										preferenceTypeDisplay: "SMS",
-										preferenceOptionDisplay: "no",
-										preferenceOptionValue: 2,
-									},
-								],
+								rows: testPatientPreferencesValuesResult,
 							},
 						],
 					},
@@ -264,20 +258,7 @@ describe("User Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: {
-							preferences: [
-								{
-									id: 1,
-									priority: 0,
-									selected: 1,
-								},
-								{
-									id: 2,
-									priority: 1,
-									selected: 2,
-								},
-							],
-						},
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
@@ -302,20 +283,7 @@ describe("User Route", () => {
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: {
-							preferences: [
-								{
-									id: 1,
-									priority: 0,
-									selected: 1,
-								},
-								{
-									id: 2,
-									priority: 1,
-									selected: 2,
-								},
-							],
-						},
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
@@ -345,20 +313,7 @@ describe("User Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: {
-							preferences: [
-								{
-									id: 1,
-									priority: 0,
-									selected: 1,
-								},
-								{
-									id: 2,
-									priority: 1,
-									selected: 2,
-								},
-							],
-						},
+						payload: testPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
@@ -423,20 +378,7 @@ describe("User Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: {
-							preferences: [
-								{
-									id: 1,
-									priority: 0,
-									selected: 1,
-								},
-								{
-									id: 2,
-									priority: 1,
-									selected: 2,
-								},
-							],
-						},
+						payload: testPayload,
 					});
 
 					expect(JSON.parse(response.payload)).toEqual({

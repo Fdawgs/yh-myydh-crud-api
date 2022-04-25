@@ -5,6 +5,28 @@ const getConfig = require("../../../config");
 const cleanObject = require("../../../plugins/clean-object");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
+const testPreferenceTypeOptionsResult = [
+	{
+		preferenceTypeId: 1,
+		preferenceTypeDisplay: "SMS",
+	},
+];
+
+const testPreferenceValueOptionsResult = [
+	{
+		preferenceTypeId: 1,
+		preferenceTypeDisplay: "SMS",
+		preferenceOptionDisplay: "yes",
+		preferenceOptionValue: 1,
+	},
+	{
+		preferenceTypeId: 1,
+		preferenceTypeDisplay: "SMS",
+		preferenceOptionDisplay: "no",
+		preferenceOptionValue: 2,
+	},
+];
+
 const expResPayload = {
 	preferences: [
 		{
@@ -42,26 +64,8 @@ describe("Options Route", () => {
 					},
 					ok: {
 						recordsets: [
-							[
-								{
-									preferenceTypeId: 1,
-									preferenceTypeDisplay: "SMS",
-								},
-							],
-							[
-								{
-									preferenceTypeId: 1,
-									preferenceTypeDisplay: "SMS",
-									preferenceOptionDisplay: "yes",
-									preferenceOptionValue: 1,
-								},
-								{
-									preferenceTypeId: 1,
-									preferenceTypeDisplay: "SMS",
-									preferenceOptionDisplay: "no",
-									preferenceOptionValue: 2,
-								},
-							],
+							testPreferenceTypeOptionsResult,
+							testPreferenceValueOptionsResult,
 						],
 					},
 				},
@@ -77,28 +81,10 @@ describe("Options Route", () => {
 					error: [{}, {}],
 					ok: [
 						{
-							rows: [
-								{
-									preferenceTypeId: 1,
-									preferenceTypeDisplay: "SMS",
-								},
-							],
+							rows: testPreferenceTypeOptionsResult,
 						},
 						{
-							rows: [
-								{
-									preferenceTypeId: 1,
-									preferenceTypeDisplay: "SMS",
-									preferenceOptionDisplay: "yes",
-									preferenceOptionValue: 1,
-								},
-								{
-									preferenceTypeId: 1,
-									preferenceTypeDisplay: "SMS",
-									preferenceOptionDisplay: "no",
-									preferenceOptionValue: 2,
-								},
-							],
+							rows: testPreferenceValueOptionsResult,
 						},
 					],
 				},
