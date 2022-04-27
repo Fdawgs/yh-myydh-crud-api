@@ -56,6 +56,10 @@ async function route(server, options) {
 					})
 				);
 
+				/**
+				 * Database client packages return results in different structures,
+				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 */
 				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
 					res.status(204);
 				} else {
@@ -64,9 +68,7 @@ async function route(server, options) {
 					);
 				}
 			} catch (err) {
-				throw res.internalServerError(
-					"Unable to delete read receipt from database"
-				);
+				throw res.internalServerError(err);
 			}
 		},
 	});
@@ -97,15 +99,17 @@ async function route(server, options) {
 					})
 				);
 
+				/**
+				 * Database client packages return results in different structures,
+				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 */
 				if (rows?.rowsAffected?.[0] > 0 || rows?.rowCount > 0) {
 					res.status(204);
 				} else {
-					throw Error;
+					throw new Error("No rows were inserted");
 				}
 			} catch (err) {
-				throw res.internalServerError(
-					"Unable to update read receipt in database"
-				);
+				throw res.internalServerError(err);
 			}
 		},
 	});

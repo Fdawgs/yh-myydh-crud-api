@@ -110,9 +110,7 @@ async function route(server, options) {
 				};
 				res.send(response);
 			} catch (err) {
-				throw res.internalServerError(
-					"Unable to return result(s) from database"
-				);
+				throw res.internalServerError(err);
 			}
 		},
 	});

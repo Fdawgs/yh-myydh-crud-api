@@ -16,9 +16,10 @@ const testHash = crypto
 	.pbkdf2Sync(testKey, testSalt, 1000, 64, "sha512")
 	.toString("hex");
 
-const testScopes = ["documents/register.search", "documents/receipt.delete"];
+const testScopes = ["preferences/options.search"];
 
 const testResult = {
+	name: "MyYDH Frontend SPA",
 	salt: testSalt,
 	hash: testHash,
 };
@@ -224,6 +225,33 @@ describe("Server Deployment", () => {
 							expResHeaders4xxErrors
 						);
 						expect(response.statusCode).toBe(404);
+					});
+				});
+
+				describe("/preferences/options Route", () => {
+					test("Should return HTTP status code 500 if connection issue encountered", async () => {
+						const mockQueryFn = jest
+							.fn()
+							.mockRejectedValue(
+								Error("Failed to connect to DB")
+							);
+
+						server.db = {
+							query: mockQueryFn,
+						};
+
+						const response = await server.inject({
+							method: "GET",
+							url: "/preferences/options",
+						});
+
+						expect(mockQueryFn).toHaveBeenCalledTimes(1);
+						expect(JSON.parse(response.payload)).toEqual({
+							error: "Internal Server Error",
+							message: "Internal Server Error",
+							statusCode: 500,
+						});
+						expect(response.statusCode).toBe(500);
 					});
 				});
 

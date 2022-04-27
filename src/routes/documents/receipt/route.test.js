@@ -145,7 +145,7 @@ describe("Receipt Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to delete read receipt from database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -176,7 +176,7 @@ describe("Receipt Route", () => {
 					expect(response.statusCode).toBe(204);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				test("Should return HTTP status code 500 if rows were not inserted", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(testObject.mocks.queryResults.error);
@@ -197,7 +197,34 @@ describe("Receipt Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to update read receipt in database",
+						message: "Error: No rows were inserted",
+						statusCode: 500,
+					});
+					expect(response.statusCode).toBe(500);
+				});
+
+				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+					const mockQueryFn = jest
+						.fn()
+						.mockRejectedValue(Error("Failed to connect to DB"));
+
+					server.db = {
+						query: mockQueryFn,
+					};
+
+					const response = await server.inject({
+						method: "PUT",
+						url: `/${testId}`,
+						query: {
+							patientId: testPatientId,
+							timestamp: testTimeStamp,
+						},
+					});
+
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(JSON.parse(response.payload)).toEqual({
+						error: "Internal Server Error",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
