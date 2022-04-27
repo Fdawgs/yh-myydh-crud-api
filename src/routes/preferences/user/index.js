@@ -129,9 +129,7 @@ async function route(server, options) {
 					res.notFound("User not found");
 				}
 			} catch (err) {
-				throw res.internalServerError(
-					"Unable to return result(s) from database"
-				);
+				throw res.internalServerError(err);
 			}
 		},
 	});
@@ -176,17 +174,19 @@ async function route(server, options) {
 						})
 				);
 
+				let count = 0;
 				results.forEach((preferenceType) => {
 					if (preferenceType?.[0] < 1 || preferenceType < 1) {
-						throw Error;
+						count += 1;
 					}
 				});
+				if (count) {
+					throw new Error(`${count} rows were not inserted`);
+				}
 
 				res.status(204);
 			} catch (err) {
-				throw res.internalServerError(
-					"Unable to update user preferences in database"
-				);
+				throw res.internalServerError(err);
 			}
 		},
 	});

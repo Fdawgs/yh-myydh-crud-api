@@ -216,8 +216,13 @@ async function plugin(server, config) {
 		.setErrorHandler(
 			// eslint-disable-next-line promise/prefer-await-to-callbacks
 			(err, req, res) => {
-				req.log.error({ req, res, err }, err && err.message);
-				res.send(err);
+				if (res.statusCode >= 500) {
+					req.log.error({ req, res, err }, err && err.message);
+					res.internalServerError();
+				} else {
+					req.log.info({ req, res, err }, err && err.message);
+					res.send(err);
+				}
 			}
 		);
 }

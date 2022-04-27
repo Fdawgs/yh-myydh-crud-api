@@ -289,8 +289,7 @@ describe("Access Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message:
-							"Unable to delete bearer token record from database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -361,7 +360,7 @@ describe("Access Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to return result from database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -538,7 +537,7 @@ describe("Access Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message: "Unable to return result(s) from database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -670,8 +669,7 @@ describe("Access Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message:
-							"Unable to add bearer token record to database",
+						message: "Error",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -698,8 +696,7 @@ describe("Access Route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.payload)).toEqual({
 						error: "Internal Server Error",
-						message:
-							"Unable to add bearer token record to database",
+						message: "Error: Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);

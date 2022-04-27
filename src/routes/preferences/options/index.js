@@ -123,9 +123,7 @@ async function route(server, options) {
 					res.notFound("Invalid or expired search results");
 				}
 			} catch (err) {
-				throw res.internalServerError(
-					"Unable to return result(s) from database"
-				);
+				throw res.internalServerError(err);
 			}
 		},
 	});

@@ -16,7 +16,7 @@ const testHash = crypto
 	.pbkdf2Sync(testKey, testSalt, 1000, 64, "sha512")
 	.toString("hex");
 
-const testScopes = ["documents/register.search", "documents/receipt.delete"];
+const testScopes = ["preferences/options.search"];
 
 const testResult = {
 	salt: testSalt,
