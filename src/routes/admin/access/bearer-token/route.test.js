@@ -1,7 +1,7 @@
 /* eslint-disable jest/no-disabled-tests */
 const { faker } = require("@faker-js/faker");
 const Fastify = require("fastify");
-const sensible = require("fastify-sensible");
+const sensible = require("@fastify/sensible");
 const route = require(".");
 const getConfig = require("../../../../config");
 const cleanObject = require("../../../../plugins/clean-object");

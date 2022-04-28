@@ -1,5 +1,5 @@
 const Fastify = require("fastify");
-const accepts = require("fastify-accepts");
+const accepts = require("@fastify/accepts");
 const js2xmlparser = require("js2xmlparser");
 const plugin = require(".");
 

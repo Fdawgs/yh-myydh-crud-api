@@ -1,6 +1,6 @@
 /* eslint-disable security-node/detect-crlf */
 const fp = require("fastify-plugin");
-const bearer = require("fastify-bearer-auth");
+const bearer = require("@fastify/bearer-auth");
 const crypto = require("crypto");
 const secJSON = require("secure-json-parse");
 
