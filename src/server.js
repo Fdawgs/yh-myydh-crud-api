@@ -1,18 +1,18 @@
-const autoLoad = require("fastify-autoload");
+const autoLoad = require("@fastify/autoload");
 const fp = require("fastify-plugin");
 const path = require("upath");
 const secJSON = require("secure-json-parse");
 
 // Import plugins
-const accepts = require("fastify-accepts");
-const basic = require("fastify-basic-auth");
-const compress = require("fastify-compress");
+const accepts = require("@fastify/accepts");
+const basic = require("@fastify/basic-auth");
+const compress = require("@fastify/compress");
 const disableCache = require("fastify-disablecache");
 const flocOff = require("fastify-floc-off");
-const helmet = require("fastify-helmet");
-const rateLimit = require("fastify-rate-limit");
-const sensible = require("fastify-sensible");
-const staticPlugin = require("fastify-static");
+const helmet = require("@fastify/helmet");
+const rateLimit = require("@fastify/rate-limit");
+const sensible = require("@fastify/sensible");
+const staticPlugin = require("@fastify/static");
 const swagger = require("fastify-swagger");
 const underPressure = require("under-pressure");
 const clean = require("./plugins/clean-object");

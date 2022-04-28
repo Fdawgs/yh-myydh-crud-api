@@ -1,5 +1,5 @@
 // Import plugins
-const cors = require("fastify-cors");
+const cors = require("@fastify/cors");
 
 const { optionsGetSchema } = require("./schema");
 const { optionsSelect } = require("./query");

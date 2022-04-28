@@ -1,6 +1,6 @@
 const { faker } = require("@faker-js/faker");
 const Fastify = require("fastify");
-const sensible = require("fastify-sensible");
+const sensible = require("@fastify/sensible");
 const route = require(".");
 const getConfig = require("../../../config");
 const sharedSchemas = require("../../../plugins/shared-schemas");
