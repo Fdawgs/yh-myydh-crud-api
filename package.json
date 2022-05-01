@@ -70,7 +70,7 @@
 		]
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^16.2.3",
+		"@commitlint/cli": "^16.2.4",
 		"@commitlint/config-conventional": "^16.2.4",
 		"@faker-js/faker": "^6.2.0",
 		"autocannon": "^7.8.1",
