@@ -19,7 +19,7 @@ Ensure you have all prerequisites installed (including any optional ones), as no
 
 If you have [Docker](https://www.docker.com) installed, there are commands available in [package.json](./package.json) (all beginning with `test:db`) that will help easily with building, starting, stopping, and removing test instances of SQL Server and PostgreSQL.
 
-With those in place, you can fork the repository, clone it, and then run `npm i` to install all dependencies.
+With those in place, you can fork the repository, clone it, and then run `npm ci` to install all dependencies.
 Make a copy of `.env.template` in the root directory and rename it to `.env`, configuring the environment variables in the file as required.
 
 ### Development Workflow
