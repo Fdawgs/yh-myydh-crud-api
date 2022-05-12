@@ -57,7 +57,7 @@ describe("Migrate Script", () => {
 
 				await migrate();
 
-				expect(process.exitCode).toEqual(1);
+				expect(process.exitCode).toBe(1);
 				expect(mockMigrate).toHaveBeenCalledTimes(1);
 				expect(mockLog).toHaveBeenCalledTimes(1);
 			});
