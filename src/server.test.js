@@ -375,7 +375,7 @@ describe("Server Deployment", () => {
 
 						expect(JSON.parse(response.payload)).toEqual({
 							error: "Unauthorized",
-							message: expect.any(String),
+							message: "invalid authorization header",
 							statusCode: 401,
 						});
 						expect(response.headers).toEqual({
@@ -504,7 +504,7 @@ describe("Server Deployment", () => {
 
 						expect(JSON.parse(response.payload)).toEqual({
 							error: "Unauthorized",
-							message: expect.any(String),
+							message: "Unauthorized",
 							statusCode: 401,
 						});
 						expect(response.headers).toEqual({
@@ -527,7 +527,7 @@ describe("Server Deployment", () => {
 
 						expect(JSON.parse(response.payload)).toEqual({
 							error: "Unauthorized",
-							message: expect.any(String),
+							message: "Unauthorized",
 							statusCode: 401,
 						});
 						expect(response.headers).toEqual({
