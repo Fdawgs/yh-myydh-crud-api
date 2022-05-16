@@ -27,7 +27,7 @@ const testResult = {
 const expResHeaders = {
 	"cache-control": "no-store, max-age=0, must-revalidate",
 	connection: "keep-alive",
-	"content-length": expect.anything(),
+	"content-length": expect.stringMatching(/\d+/),
 	"content-security-policy": "default-src 'self';frame-ancestors 'none'",
 	"content-type": expect.stringContaining("text/plain"),
 	date: expect.any(String),
@@ -61,6 +61,7 @@ const expResHeadersHtmlStatic = {
 	...expResHeadersHtml,
 	"accept-ranges": "bytes",
 	"cache-control": "private, max-age=180",
+	"content-length": expect.any(Number), // @fastify/static plugin returns content-length as number
 	"content-security-policy":
 		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self' blob:;frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content;script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline'",
 	etag: expect.any(String),
@@ -374,7 +375,7 @@ describe("Server Deployment", () => {
 
 						expect(JSON.parse(response.payload)).toEqual({
 							error: "Unauthorized",
-							message: expect.any(String),
+							message: "invalid authorization header",
 							statusCode: 401,
 						});
 						expect(response.headers).toEqual({
@@ -503,7 +504,7 @@ describe("Server Deployment", () => {
 
 						expect(JSON.parse(response.payload)).toEqual({
 							error: "Unauthorized",
-							message: expect.any(String),
+							message: "Unauthorized",
 							statusCode: 401,
 						});
 						expect(response.headers).toEqual({
@@ -526,7 +527,7 @@ describe("Server Deployment", () => {
 
 						expect(JSON.parse(response.payload)).toEqual({
 							error: "Unauthorized",
-							message: expect.any(String),
+							message: "Unauthorized",
 							statusCode: 401,
 						});
 						expect(response.headers).toEqual({
