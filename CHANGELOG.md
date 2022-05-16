@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+### [8.0.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v8.0.2...v8.0.3) (2022-05-16)
+
+
+### Bug Fixes
+
+* **routes/admin/access/bearer-token:** missing record url path ([e0e9b67](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e0e9b6773c975171f62385928c8da61e8a044c17))
+* **server:** do not transform 503 http err into 500 http err response ([0278102](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/02781027bba80994293da2e664949331d24a05d3))
+
+
+### Documentation
+
+* update deployment steps to use `npm ci` ([2a25e2b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/2a25e2bb3b4a99aa5d47d55997ade835bb059b2b))
+
+
+### Miscellaneous
+
+* **.eslintrc:** enable `plugin:jest/style` rules ([9440d20](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9440d205e05c248cf9c4da1dccb06cd77e567599))
+* **.github/codeql-config:** remove quotation marks ([196279d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/196279d9d347c5001afd72026f6eda981b8f5ac1))
+* **server:** use optional chaining for error message logging ([b8b3b3c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b8b3b3cf5a7f81c5b5874a03de58442cedaacbba))
+
+
+### Continuous Integration
+
+* check `user.login` is dependabot instead of `actor` ([ff8c54a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ff8c54a78a702aef31f94c05dfce2032ae9c3d76))
+* **ci:** require `unit-tests` job to pass for `save-pr-number` job to run ([de58477](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/de5847771a5964d033c3145fc6832a3850d948f0))
+* **codeql:** only run on pr changes to `.html`, `.js`, and `.yml` files ([981e1d3](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/981e1d3b3b0d07bf1c1bee08c640b91db81e8403))
+* **codeql:** resolve missing analyses ([85d6eb5](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/85d6eb57525bac66418e42e3113e4c0120fec2c7))
+* **codeql:** specify which files to scan during analysis ([e3f2452](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e3f2452cb239f9090ab3d7b78d67ce1c249de5cb))
+
 ### [8.0.2](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v8.0.1...v8.0.2) (2022-05-04)
 
 
