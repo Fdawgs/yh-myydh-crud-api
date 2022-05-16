@@ -42,7 +42,7 @@ function buildBearerTokenRecord(result, req) {
 		url:
 			req !== undefined
 				? new URL(
-						`/access/${result.id}`,
+						`/access/bearer-token/${result.id}`,
 						`${req.protocol}://${req.hostname}`
 				  ).href
 				: undefined,

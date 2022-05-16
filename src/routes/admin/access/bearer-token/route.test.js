@@ -60,7 +60,7 @@ const expSearchResult = {
 	},
 	entry: [
 		{
-			url: expect.any(String),
+			url: `http://localhost/access/bearer-token/${testId}`,
 			...testRecord,
 		},
 	],
