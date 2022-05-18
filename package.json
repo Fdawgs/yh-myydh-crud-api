@@ -99,7 +99,7 @@
 		"@fastify/bearer-auth": "^7.0.1",
 		"@fastify/compress": "^5.0.0",
 		"@fastify/cors": "^7.0.0",
-		"@fastify/helmet": "^8.0.0",
+		"@fastify/helmet": "^8.0.1",
 		"@fastify/rate-limit": "^6.0.0",
 		"@fastify/sensible": "^4.0.0",
 		"@fastify/static": "^5.0.1",
@@ -119,9 +119,9 @@
 		"pino": "^7.11.0",
 		"pino-pretty": "^7.6.1",
 		"postgrator": "^5.0.1",
-		"redoc": "^2.0.0-rc.67",
+		"redoc": "^2.0.0-rc.70",
 		"secure-json-parse": "^2.4.0",
-		"under-pressure": "^5.8.1",
+		"under-pressure": "^6.0.0",
 		"upath": "^2.0.1"
 	}
 }
