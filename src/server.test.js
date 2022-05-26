@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable security-node/detect-crlf */
 const { chromium, firefox } = require("playwright");
 const crypto = require("crypto");
 const Fastify = require("fastify");

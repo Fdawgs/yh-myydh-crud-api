@@ -1,4 +1,3 @@
-/* eslint-disable security-node/detect-crlf */
 const fp = require("fastify-plugin");
 
 const { Pool } = require("pg");
