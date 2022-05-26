@@ -3,16 +3,18 @@ const S = require("fluent-json-schema");
 const security = [{ basicAuth: [] }];
 const tags = ["System Administration"];
 
+/**
+ * JSON Schema expects a String, `fluent-json-schema` converts this from
+ * a RegExp to a String. JSON Schema does not support Regex flags.
+ */
 const dateTimeSearchPattern =
-	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}(?:-[0-1]\d-[0-3]\d(?:t(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:z|[+-]\d\d(?::?\d\d)?))?)?$/im;
+	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-[0-1]\d-[0-3]\d(?:T(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:Z|[+-]\d\d(?::?\d\d)?))?$/m;
 
 const dateTimeSearchPatternExamples = [
-	"2022",
 	"2022-01-13",
 	"2022-01-13T00:00:01Z",
 	"2022-01-13T00:00:01.001Z",
 	"2022-01-13T00:00:01+01:00",
-	"ge2022",
 	"ge2022-01-13",
 	"ge2022-01-13T00:00:01Z",
 	"ge2022-01-13T00:00:01.001Z",

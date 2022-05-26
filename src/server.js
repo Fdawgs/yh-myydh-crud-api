@@ -55,7 +55,7 @@ async function plugin(server, config) {
 		// Serialization support for XML responses
 		.register(serializeJsonToXml)
 
-		// Re-usable schemas
+		// Reusable schemas
 		.register(sharedSchemas)
 
 		// Generate OpenAPI/Swagger schemas
