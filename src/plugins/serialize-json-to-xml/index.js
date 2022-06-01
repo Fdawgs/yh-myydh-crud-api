@@ -6,8 +6,9 @@ const secJSON = require("secure-json-parse");
  * @author Frazer Smith
  * @description On-send plugin that adds support for serialization
  * of application/json responses, allowing them to be returned as XML
- * if the accepts request header explicitly includes the
- * "application/xml" media type before "application/json".
+ * if the accepts request header only includes "application/xml"
+ * or if it explicitly includes the "application/xml" media type
+ * before "application/json".
  * @param {object} server - Fastify instance.
  */
 async function plugin(server) {
@@ -19,8 +20,8 @@ async function plugin(server) {
 		 */
 		if (res.getHeader("content-type")?.includes("application/json")) {
 			/**
-			 * If XML is the preferred response type if both XML
-			 * and JSON are declared
+			 * If XML is the only accepted response type or if XML is the
+			 * preferred response type if both XML and JSON are declared
 			 */
 			if (
 				req.accepts().type(["application/json", "application/xml"]) ===
