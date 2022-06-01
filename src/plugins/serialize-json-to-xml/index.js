@@ -17,7 +17,7 @@ async function plugin(server) {
 		 * by default Fastify sets response type to application/json
 		 * if it has not been explicitly defined
 		 */
-		if (res.getHeader("content-type").includes("application/json")) {
+		if (res.getHeader("content-type")?.includes("application/json")) {
 			/**
 			 * If XML is the preferred response type if both XML
 			 * and JSON are declared
