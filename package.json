@@ -78,7 +78,7 @@
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-jest": "^26.2.2",
+		"eslint-plugin-jest": "^26.4.6",
 		"eslint-plugin-jsdoc": "^39.2.9",
 		"eslint-plugin-promise": "^6.0.0",
 		"eslint-plugin-security": "^1.5.0",
@@ -89,7 +89,7 @@
 		"jest": "^28.1.0",
 		"license-checker": "^25.0.1",
 		"nodemon": "^2.0.16",
-		"playwright": "^1.22.1",
+		"playwright": "^1.22.2",
 		"prettier": "2.6.2"
 	},
 	"dependencies": {
@@ -113,7 +113,7 @@
 		"file-stream-rotator": "^0.6.1",
 		"fluent-json-schema": "^3.1.0",
 		"js2xmlparser": "^4.0.2",
-		"mssql": "^8.1.1",
+		"mssql": "^8.1.2",
 		"pg": "^8.7.3",
 		"pg-connection-string": "^2.5.0",
 		"pino": "^7.11.0",
