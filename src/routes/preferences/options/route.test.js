@@ -5,14 +5,14 @@ const getConfig = require("../../../config");
 const cleanObject = require("../../../plugins/clean-object");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
-const testPreferenceTypeOptionsResult = [
+const testPreferenceTypeOptionsDbResult = [
 	{
 		preferenceTypeId: 1,
 		preferenceTypeDisplay: "SMS",
 	},
 ];
 
-const testPreferenceValueOptionsResult = [
+const testPreferenceValueOptionsDbResult = [
 	{
 		preferenceTypeId: 1,
 		preferenceTypeDisplay: "SMS",
@@ -64,8 +64,8 @@ describe("Options Route", () => {
 					},
 					ok: {
 						recordsets: [
-							testPreferenceTypeOptionsResult,
-							testPreferenceValueOptionsResult,
+							testPreferenceTypeOptionsDbResult,
+							testPreferenceValueOptionsDbResult,
 						],
 					},
 				},
@@ -81,10 +81,10 @@ describe("Options Route", () => {
 					error: [{}, {}],
 					ok: [
 						{
-							rows: testPreferenceTypeOptionsResult,
+							rows: testPreferenceTypeOptionsDbResult,
 						},
 						{
-							rows: testPreferenceValueOptionsResult,
+							rows: testPreferenceValueOptionsDbResult,
 						},
 					],
 				},

@@ -13,37 +13,38 @@ const testDate1 = faker.date.past().toISOString().split("T")[0];
 const testDate2 = faker.date.past().toISOString().split("T")[0];
 
 const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
-const testPayload = {
+
+const testReqPayload = {
 	name: "MyYDH Frontend SPA",
 	email: "example@example.com",
 	expires: faker.date.past().toISOString().split("T")[0],
 	scopes: ["documents/register.search", "documents/receipt.delete"],
 };
 
-const testResult = {
+const testDbResult = {
 	id: testId,
-	name: testPayload.name,
-	email: testPayload.email,
+	name: testReqPayload.name,
+	email: testReqPayload.email,
 	hash: "testhash",
 	salt: "testsalt",
-	expires: testPayload.expires,
+	expires: testReqPayload.expires,
 	created: "2022-01-18T14:07:48.190Z",
 	last_updated: "2022-01-18T14:07:48.190Z",
 };
 
-const testRecord = {
+const testResRecord = {
 	id: testId,
 	access: {
-		name: testResult.name,
-		email: testResult.email,
-		expires: testResult.expires,
-		hash: testResult.hash,
-		salt: testResult.salt,
-		scopes: testPayload.scopes,
+		name: testDbResult.name,
+		email: testDbResult.email,
+		expires: testDbResult.expires,
+		hash: testDbResult.hash,
+		salt: testDbResult.salt,
+		scopes: testReqPayload.scopes,
 	},
 	meta: {
-		created: testResult.created,
-		last_updated: testResult.last_updated,
+		created: testDbResult.created,
+		last_updated: testDbResult.last_updated,
 	},
 };
 
@@ -60,7 +61,7 @@ const expSearchResult = {
 	entry: [
 		{
 			url: `http://localhost/access/bearer-token/${testId}`,
-			...testRecord,
+			...testResRecord,
 		},
 	],
 };
@@ -86,9 +87,9 @@ describe("Access Route", () => {
 							recordsets: [
 								[
 									{
-										...testResult,
+										...testDbResult,
 										scopes: JSON.stringify(
-											testPayload.scopes
+											testReqPayload.scopes
 										),
 									},
 								],
@@ -104,9 +105,9 @@ describe("Access Route", () => {
 								[{ total: 1 }],
 								[
 									{
-										...testResult,
+										...testDbResult,
 										scopes: JSON.stringify(
-											testPayload.scopes
+											testReqPayload.scopes
 										),
 									},
 								],
@@ -123,7 +124,7 @@ describe("Access Route", () => {
 									{
 										id: testId,
 										scopes: JSON.stringify(
-											testPayload.scopes
+											testReqPayload.scopes
 										),
 									},
 								],
@@ -159,8 +160,8 @@ describe("Access Route", () => {
 						ok: {
 							rows: [
 								{
-									...testResult,
-									scopes: testPayload.scopes,
+									...testDbResult,
+									scopes: testReqPayload.scopes,
 								},
 							],
 						},
@@ -174,8 +175,8 @@ describe("Access Route", () => {
 							{
 								rows: [
 									{
-										...testResult,
-										scopes: testPayload.scopes,
+										...testDbResult,
+										scopes: testReqPayload.scopes,
 									},
 								],
 							},
@@ -189,7 +190,7 @@ describe("Access Route", () => {
 							rows: [
 								{
 									id: testId,
-									scopes: testPayload.scopes,
+									scopes: testReqPayload.scopes,
 								},
 							],
 						},
@@ -313,7 +314,7 @@ describe("Access Route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(testRecord);
+					expect(JSON.parse(response.payload)).toEqual(testResRecord);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -382,9 +383,9 @@ describe("Access Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"access.name": testResult.name,
-							"access.email": testResult.email,
-							"access.expires": testResult.expires,
+							"access.name": testDbResult.name,
+							"access.email": testDbResult.email,
+							"access.expires": testDbResult.expires,
 							"access.scopes": "documents/register.search",
 							"meta.created": testDate1,
 							"meta.last_updated": testDate1,
@@ -471,7 +472,7 @@ describe("Access Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"access.name": testResult.name,
+							"access.name": testDbResult.name,
 						},
 					});
 
@@ -529,7 +530,7 @@ describe("Access Route", () => {
 						method: "GET",
 						url: "/",
 						query: {
-							"access.name": testResult.name,
+							"access.name": testDbResult.name,
 						},
 					});
 
@@ -561,7 +562,7 @@ describe("Access Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -569,7 +570,7 @@ describe("Access Route", () => {
 						id: testId,
 						access: {
 							token: expect.stringMatching(/^ydhmyydh_/im),
-							scopes: testPayload.scopes,
+							scopes: testReqPayload.scopes,
 						},
 					});
 					expect(response.headers).toMatchObject({
@@ -591,9 +592,9 @@ describe("Access Route", () => {
 						query: mockQueryFn,
 					};
 
-					const trimmedTestPayload = { ...testPayload };
-					delete trimmedTestPayload.email;
-					delete trimmedTestPayload.expires;
+					const trimmedTestReqPayload = { ...testReqPayload };
+					delete trimmedTestReqPayload.email;
+					delete trimmedTestReqPayload.expires;
 
 					const response = await server.inject({
 						method: "POST",
@@ -601,7 +602,7 @@ describe("Access Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: trimmedTestPayload,
+						payload: trimmedTestReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -609,7 +610,7 @@ describe("Access Route", () => {
 						id: testId,
 						access: {
 							token: expect.stringMatching(/^ydhmyydh_/im),
-							scopes: testPayload.scopes,
+							scopes: testReqPayload.scopes,
 						},
 					});
 					expect(response.statusCode).toBe(201);
@@ -632,7 +633,7 @@ describe("Access Route", () => {
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
@@ -662,7 +663,7 @@ describe("Access Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
@@ -689,7 +690,7 @@ describe("Access Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
