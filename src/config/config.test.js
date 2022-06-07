@@ -6,10 +6,6 @@ const getConfig = require(".");
 describe("Configuration", () => {
 	const currentEnv = { ...process.env };
 
-	beforeAll(() => {
-		jest.resetModules();
-	});
-
 	afterAll(async () => {
 		const files = glob.sync(`./test_resources/test-log*`);
 
@@ -19,7 +15,6 @@ describe("Configuration", () => {
 
 	afterEach(() => {
 		// Reset the process.env to default after each test
-		jest.resetModules();
 		Object.assign(process.env, currentEnv);
 	});
 
