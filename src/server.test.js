@@ -1,3 +1,4 @@
+const { faker } = require("@faker-js/faker/locale/en_GB");
 const { chromium, firefox } = require("playwright");
 const crypto = require("crypto");
 const Fastify = require("fastify");
@@ -5,7 +6,7 @@ const isHtml = require("is-html");
 const startServer = require("./server");
 const getConfig = require("./config");
 
-const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
+const testId = faker.datatype.uuid();
 
 const testAccessToken = `ydhmyydh_${crypto.randomUUID().replace(/-/g, "_")}`;
 
@@ -17,7 +18,7 @@ const testHash = crypto
 const testScopes = ["preferences/options.search"];
 
 const testDbResult = {
-	name: "MyYDH Frontend SPA",
+	name: faker.commerce.productName(),
 	salt: testSalt,
 	hash: testHash,
 };

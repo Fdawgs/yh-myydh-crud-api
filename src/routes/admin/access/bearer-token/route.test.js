@@ -1,4 +1,4 @@
-const { faker } = require("@faker-js/faker");
+const { faker } = require("@faker-js/faker/locale/en_GB");
 const Fastify = require("fastify");
 const sensible = require("@fastify/sensible");
 const route = require(".");
@@ -12,11 +12,11 @@ const testPage = 1;
 const testDate1 = faker.date.past().toISOString().split("T")[0];
 const testDate2 = faker.date.past().toISOString().split("T")[0];
 
-const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
+const testId = faker.datatype.uuid();
 
 const testReqPayload = {
-	name: "MyYDH Frontend SPA",
-	email: "example@example.com",
+	name: faker.commerce.productName(),
+	email: faker.internet.email(),
 	expires: faker.date.past().toISOString().split("T")[0],
 	scopes: ["documents/register.search", "documents/receipt.delete"],
 };
