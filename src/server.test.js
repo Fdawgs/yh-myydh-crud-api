@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+const { faker } = require("@faker-js/faker/locale/en_GB");
 const { chromium, firefox } = require("playwright");
 const crypto = require("crypto");
 const Fastify = require("fastify");
@@ -6,19 +6,19 @@ const isHtml = require("is-html");
 const startServer = require("./server");
 const getConfig = require("./config");
 
-const testId = "b8e7265c-4733-44be-9238-7d7b8718fb88";
+const testId = faker.datatype.uuid();
 
-const testKey = `ydhmyydh_${crypto.randomUUID().replace(/-/g, "_")}`;
+const testAccessToken = `ydhmyydh_${crypto.randomUUID().replace(/-/g, "_")}`;
 
 const testSalt = crypto.randomBytes(16).toString("hex");
 const testHash = crypto
-	.pbkdf2Sync(testKey, testSalt, 1000, 64, "sha512")
+	.pbkdf2Sync(testAccessToken, testSalt, 1000, 64, "sha512")
 	.toString("hex");
 
 const testScopes = ["preferences/options.search"];
 
-const testResult = {
-	name: "MyYDH Frontend SPA",
+const testDbResult = {
+	name: faker.commerce.productName(),
 	salt: testSalt,
 	hash: testHash,
 };
@@ -109,7 +109,7 @@ describe("Server Deployment", () => {
 							recordsets: [
 								[
 									{
-										...testResult,
+										...testDbResult,
 										scopes: JSON.stringify(testScopes),
 									},
 								],
@@ -135,7 +135,7 @@ describe("Server Deployment", () => {
 						ok: {
 							rows: [
 								{
-									...testResult,
+									...testDbResult,
 									scopes: testScopes,
 								},
 							],
@@ -400,7 +400,7 @@ describe("Server Deployment", () => {
 							url: "/preferences/options",
 							headers: {
 								accept: "application/javascript",
-								authorization: `Bearer ${testKey}`,
+								authorization: `Bearer ${testAccessToken}`,
 							},
 						});
 
@@ -429,7 +429,7 @@ describe("Server Deployment", () => {
 							url: "/preferences/options",
 							headers: {
 								accept: "application/json",
-								authorization: `Bearer ${testKey}`,
+								authorization: `Bearer ${testAccessToken}`,
 							},
 						});
 
@@ -453,7 +453,7 @@ describe("Server Deployment", () => {
 							url: "/preferences/options",
 							headers: {
 								accept: "application/xml",
-								authorization: `Bearer ${testKey}`,
+								authorization: `Bearer ${testAccessToken}`,
 							},
 						});
 

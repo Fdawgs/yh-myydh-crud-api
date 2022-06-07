@@ -1,11 +1,9 @@
-const { faker } = require("@faker-js/faker");
+const { faker } = require("@faker-js/faker/locale/en_GB");
 const Fastify = require("fastify");
 const sensible = require("@fastify/sensible");
 const route = require(".");
 const getConfig = require("../../../config");
 const sharedSchemas = require("../../../plugins/shared-schemas");
-
-faker.locale = "en_GB";
 
 const testId = faker.datatype.number({
 	min: 1,

@@ -1,4 +1,4 @@
-const { faker } = require("@faker-js/faker");
+const { faker } = require("@faker-js/faker/locale/en_GB");
 const Fastify = require("fastify");
 const sensible = require("@fastify/sensible");
 const route = require(".");
@@ -6,14 +6,12 @@ const getConfig = require("../../../config");
 const cleanObject = require("../../../plugins/clean-object");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
-faker.locale = "en_GB";
-
 const testPatientId = faker.datatype.number({
 	min: 1000000000,
 	max: 9999999999,
 });
 
-const testPayload = {
+const testReqPayload = {
 	preferences: [
 		{
 			id: 1,
@@ -28,7 +26,7 @@ const testPayload = {
 	],
 };
 
-const testPatientPreferencesResult = [
+const testPatientPreferencesDbResult = [
 	{
 		id: "9999999999",
 		metaCreated: "2021-01-07T10:49:03.503Z",
@@ -40,7 +38,7 @@ const testPatientPreferencesResult = [
 	},
 ];
 
-const testPatientPreferencesValuesResult = [
+const testPatientPreferencesValuesDbResult = [
 	{
 		preferenceTypeId: 1,
 		preferenceTypeDisplay: "SMS",
@@ -98,8 +96,8 @@ describe("User Route", () => {
 						},
 						ok: {
 							recordsets: [
-								testPatientPreferencesResult,
-								testPatientPreferencesValuesResult,
+								testPatientPreferencesDbResult,
+								testPatientPreferencesValuesDbResult,
 							],
 						},
 					},
@@ -125,10 +123,10 @@ describe("User Route", () => {
 						error: [{}, {}],
 						ok: [
 							{
-								rows: testPatientPreferencesResult,
+								rows: testPatientPreferencesDbResult,
 							},
 							{
-								rows: testPatientPreferencesValuesResult,
+								rows: testPatientPreferencesValuesDbResult,
 							},
 						],
 					},
@@ -258,7 +256,7 @@ describe("User Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
@@ -283,7 +281,7 @@ describe("User Route", () => {
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
@@ -313,7 +311,7 @@ describe("User Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
@@ -340,7 +338,7 @@ describe("User Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
@@ -404,7 +402,7 @@ describe("User Route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testPayload,
+						payload: testReqPayload,
 					});
 
 					expect(JSON.parse(response.payload)).toEqual({
