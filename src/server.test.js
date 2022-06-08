@@ -472,50 +472,45 @@ describe("Server Deployment", () => {
 				});
 
 				describe("/admin/access/bearer-token/:id Route", () => {
-					test("Should return HTTP status code 401 if basic auth username invalid", async () => {
-						const response = await server.inject({
-							method: "GET",
-							url: `/admin/access/bearer-token/${testId}`,
-							headers: {
-								authorization: `Basic ${Buffer.from(
-									"invalidadmin:password"
-								).toString("base64")}`,
-							},
-						});
+					const basicAuthTests = [
+						{
+							testName: "basic auth username invalid",
+							authString: "invalidadmin:password",
+						},
+						{
+							testName: "basic auth password invalid",
+							authString: "admin:invalidpassword",
+						},
+						{
+							testName:
+								"basic auth username and password invalid",
+							authString: "invalidadmin:invalidpassword",
+						},
+					];
 
-						expect(JSON.parse(response.payload)).toEqual({
-							error: "Unauthorized",
-							message: "Unauthorized",
-							statusCode: 401,
-						});
-						expect(response.headers).toEqual({
-							...expResHeadersJson,
-							vary: "accept-encoding",
-						});
-						expect(response.statusCode).toBe(401);
-					});
+					basicAuthTests.forEach((basicAuthTestObject) => {
+						test(`Should return HTTP status code 401 if ${basicAuthTestObject.testName}`, async () => {
+							const response = await server.inject({
+								method: "GET",
+								url: `/admin/access/bearer-token/${testId}`,
+								headers: {
+									authorization: `Basic ${Buffer.from(
+										`${basicAuthTestObject.authString}`
+									).toString("base64")}`,
+								},
+							});
 
-					test("Should return HTTP status code 401 if basic auth password invalid", async () => {
-						const response = await server.inject({
-							method: "GET",
-							url: `/admin/access/bearer-token/${testId}`,
-							headers: {
-								authorization: `Basic ${Buffer.from(
-									"admin:invalidpassword"
-								).toString("base64")}`,
-							},
+							expect(JSON.parse(response.payload)).toEqual({
+								error: "Unauthorized",
+								message: "Unauthorized",
+								statusCode: 401,
+							});
+							expect(response.headers).toEqual({
+								...expResHeadersJson,
+								vary: "accept-encoding",
+							});
+							expect(response.statusCode).toBe(401);
 						});
-
-						expect(JSON.parse(response.payload)).toEqual({
-							error: "Unauthorized",
-							message: "Unauthorized",
-							statusCode: 401,
-						});
-						expect(response.headers).toEqual({
-							...expResHeadersJson,
-							vary: "accept-encoding",
-						});
-						expect(response.statusCode).toBe(401);
 					});
 
 					test("Should return HTTP status code 406 if basic auth username and password valid, and media type in `Accept` request header is unsupported", async () => {
