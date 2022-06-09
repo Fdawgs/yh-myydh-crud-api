@@ -82,7 +82,7 @@ To quickly test it, use [Insomnia](https://insomnia.rest/) and import the exampl
 
 This requires [Docker](https://www.docker.com) installed.
 
-1. Run `docker compose up` (or `docker compose up -d` to run in background)
+1. Run `docker compose up` (or `docker compose up -d` to run in the background)
 
 ### Deploying Using PM2
 
@@ -138,7 +138,7 @@ If successful, something similar to the following will be returned:
 Provide the client/service with the value in `access.token`, for them to use as bearer tokens when making requests.
 
 The bearer token is hashed, salted, and stored in the `access.tokens` database table.
-As such, if a client/service forget their token, you will need to generate a new one for them and delete the old one.
+As such, if a client/service forgets their token, you will need to generate a new one for them and delete the old one.
 
 ## Contributing
 
