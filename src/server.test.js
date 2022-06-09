@@ -513,6 +513,23 @@ describe("Server Deployment", () => {
 						});
 					});
 
+					test("Should return response if basic auth username and password valid", async () => {
+						const response = await server.inject({
+							method: "GET",
+							url: `/admin/access/bearer-token/${testId}`,
+							headers: {
+								accept: "application/json",
+								authorization: `Basic ${Buffer.from(
+									"admin:password"
+								).toString("base64")}`,
+							},
+						});
+
+						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.statusCode).not.toBe(401);
+						expect(response.statusCode).not.toBe(406);
+					});
+
 					test("Should return HTTP status code 406 if basic auth username and password valid, and media type in `Accept` request header is unsupported", async () => {
 						const response = await server.inject({
 							method: "GET",
