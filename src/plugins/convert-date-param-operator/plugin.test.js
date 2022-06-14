@@ -38,22 +38,24 @@ describe("Convert-Date-Param-Operator Plugin", () => {
 		};
 
 		await Promise.all(
-			Object.keys(values).map(async (key) => {
-				const response = await server.inject({
-					method: "PUT",
-					url: "/",
-					headers: {
-						"content-type": "text/plain",
-					},
-					payload: `${key}`,
-				});
+			Object.keys(values).map(async (key) =>
+				server
+					.inject({
+						method: "PUT",
+						url: "/",
+						headers: {
+							"content-type": "text/plain",
+						},
+						payload: `${key}`,
+					})
+					.then((response) => {
+						// eslint-disable-next-line security/detect-object-injection
+						expect(response.payload).toEqual(values[key]);
+						expect(response.statusCode).toBe(200);
 
-				// eslint-disable-next-line security/detect-object-injection
-				expect(response.payload).toEqual(values[key]);
-				expect(response.statusCode).toBe(200);
-
-				return response.statusCode;
-			})
+						return response.statusCode;
+					})
+			)
 		);
 	});
 });
