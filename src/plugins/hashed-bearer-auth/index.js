@@ -40,9 +40,8 @@ async function plugin(server) {
 				// TODO: look at making this async with Promise.any and Array.map
 				/* istanbul ignore else */
 				if (
-					crypto
-						.pbkdf2Sync(key, token.salt, 1000, 64, "sha512")
-						.toString("hex") === token.hash
+					crypto.scryptSync(key, token.salt, 64).toString("hex") ===
+					token.hash
 				) {
 					authorized = true;
 					req.scopes =

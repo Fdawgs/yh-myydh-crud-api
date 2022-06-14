@@ -12,7 +12,7 @@ const testAccessToken = `ydhmyydh_${crypto.randomUUID().replace(/-/g, "_")}`;
 
 const testSalt = crypto.randomBytes(16).toString("hex");
 const testHash = crypto
-	.pbkdf2Sync(testAccessToken, testSalt, 1000, 64, "sha512")
+	.scryptSync(testAccessToken, testSalt, 64)
 	.toString("hex");
 
 const testScopes = ["preferences/options.search"];
