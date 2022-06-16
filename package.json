@@ -86,7 +86,7 @@
 		"glob": "^8.0.3",
 		"husky": "^8.0.1",
 		"is-html": "^2.0.0",
-		"jest": "^28.1.0",
+		"jest": "^28.1.1",
 		"license-checker": "^25.0.1",
 		"nodemon": "^2.0.16",
 		"pino-pretty": "^8.0.0",
@@ -121,7 +121,7 @@
 		"postgrator": "^5.0.1",
 		"redoc": "^2.0.0-rc.71",
 		"secure-json-parse": "^2.4.0",
-		"under-pressure": "^5.8.1",
+		"under-pressure": "^6.1.0",
 		"upath": "^2.0.1"
 	}
 }
