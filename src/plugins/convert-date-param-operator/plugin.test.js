@@ -38,7 +38,7 @@ describe("Convert-Date-Param-Operator Plugin", () => {
 		};
 
 		await Promise.all(
-			Object.keys(values).map(async (key) =>
+			Object.keys(values).map((key) =>
 				server
 					.inject({
 						method: "PUT",

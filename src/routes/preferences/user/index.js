@@ -151,31 +151,27 @@ async function route(server, options) {
 		handler: async (req, res) => {
 			try {
 				const results = await Promise.all(
-					server
-						.cleanObject(req.body.preferences)
-						.map(async (preference) =>
-							server.db
-								.query(
-									userInsert({
-										dbClient: options.database.client,
-										patientId: req.params.id,
-										preferenceTypeId: preference.id,
-										preferenceValueId: preference.selected,
-										preferencePriority: preference.priority,
-										patientPreferencesTable:
-											options.database.tables.patientPref,
-									})
-								)
-								.then((rows) => {
-									if (
-										options.database.client === "postgresql"
-									) {
-										return rows.rowCount;
-									}
-
-									return rows.rowsAffected;
+					server.cleanObject(req.body.preferences).map((preference) =>
+						server.db
+							.query(
+								userInsert({
+									dbClient: options.database.client,
+									patientId: req.params.id,
+									preferenceTypeId: preference.id,
+									preferenceValueId: preference.selected,
+									preferencePriority: preference.priority,
+									patientPreferencesTable:
+										options.database.tables.patientPref,
 								})
-						)
+							)
+							.then((rows) => {
+								if (options.database.client === "postgresql") {
+									return rows.rowCount;
+								}
+
+								return rows.rowsAffected;
+							})
+					)
 				);
 
 				let count = 0;
