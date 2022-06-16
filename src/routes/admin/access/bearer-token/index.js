@@ -331,7 +331,7 @@ async function route(server, options) {
 						entry: [],
 						meta: {
 							pagination: {
-								total: count,
+								total: Number.parseInt(count, 10),
 								per_page: perPage,
 								current_page: page + 1,
 								total_pages: Math.ceil(count / perPage),
