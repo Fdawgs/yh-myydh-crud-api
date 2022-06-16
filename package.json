@@ -119,7 +119,7 @@
 		"pg-connection-string": "^2.5.0",
 		"pino": "^8.0.0",
 		"postgrator": "^5.0.1",
-		"redoc": "^2.0.0-rc.71",
+		"redoc": "^2.0.0-rc.72",
 		"secure-json-parse": "^2.4.0",
 		"under-pressure": "^5.8.1",
 		"upath": "^2.0.1"
