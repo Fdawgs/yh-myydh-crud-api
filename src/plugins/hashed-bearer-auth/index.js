@@ -1,7 +1,10 @@
 const fp = require("fastify-plugin");
 const bearer = require("@fastify/bearer-auth");
-const crypto = require("crypto");
+const { scrypt } = require("crypto");
 const secJSON = require("secure-json-parse");
+const { promisify } = require("util");
+
+const scryptAsync = promisify(scrypt);
 
 /**
  * @author Frazer Smith
@@ -33,26 +36,27 @@ async function plugin(server) {
 			 */
 			const tokens = results?.recordsets?.[0] ?? results?.rows;
 
-			let authorized = false;
-			for (let index = 0; index < tokens.length; index += 1) {
-				// eslint-disable-next-line security/detect-object-injection
-				const token = tokens[index];
-				// TODO: look at making this async with Promise.any and Array.map
-				/* istanbul ignore else */
-				if (
-					crypto.scryptSync(key, token.salt, 64).toString("hex") ===
-					token.hash
-				) {
-					authorized = true;
+			const authorized = await Promise.any(
+				tokens.map((token) =>
+					scryptAsync(key, token.salt, 64).then((derivedKey) => {
+						if (derivedKey.toString("hex") === token.hash) {
+							return token;
+						}
+
+						throw new Error("No match");
+					})
+				)
+			)
+				.then((token) => {
 					req.scopes =
 						typeof token.scopes === "string"
 							? secJSON.parse(token.scopes)
 							: token.scopes;
 
 					req.log.info({ client: token.name });
-					break;
-				}
-			}
+					return true;
+				})
+				.catch(() => false);
 
 			return authorized;
 		},

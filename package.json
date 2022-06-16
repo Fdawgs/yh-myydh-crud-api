@@ -11,7 +11,7 @@
 	"license": "MIT",
 	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
 	"engines": {
-		"node": "^14.17.0 || ^15.6.0 || >=16.0.0"
+		"node": "^15.6.0 || >=16.0.0"
 	},
 	"scripts": {
 		"benchmark": "autocannon -a 1000 \"http://0.0.0.0:8204/preferences/options\"",
