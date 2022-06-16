@@ -17,11 +17,40 @@ const testHash = crypto
 
 const testScopes = ["preferences/options.search"];
 
-const testDbResult = {
+const testDbBearerToken = {
 	name: faker.commerce.productName(),
 	salt: testSalt,
 	hash: testHash,
 };
+
+// Tests "No match" error thrown in hashed-bearer-auth plugin
+const testDbBearerTokenInvalid = {
+	name: faker.commerce.productName(),
+	salt: testSalt,
+	hash: "brown",
+};
+
+const testDbPreferenceTypeOptions = [
+	{
+		preferenceTypeId: 1,
+		preferenceTypeDisplay: "SMS",
+	},
+];
+
+const testDbPreferenceValueOptions = [
+	{
+		preferenceTypeId: 1,
+		preferenceTypeDisplay: "SMS",
+		preferenceOptionDisplay: "yes",
+		preferenceOptionValue: 1,
+	},
+	{
+		preferenceTypeId: 1,
+		preferenceTypeDisplay: "SMS",
+		preferenceOptionDisplay: "no",
+		preferenceOptionValue: 2,
+	},
+];
 
 const expResHeaders = {
 	"cache-control": "no-store, max-age=0, must-revalidate",
@@ -109,10 +138,22 @@ describe("Server Deployment", () => {
 							recordsets: [
 								[
 									{
-										...testDbResult,
+										...testDbBearerToken,
+										scopes: JSON.stringify(testScopes),
+									},
+									{
+										...testDbBearerTokenInvalid,
 										scopes: JSON.stringify(testScopes),
 									},
 								],
+							],
+						},
+					},
+					preferencesOptions: {
+						ok: {
+							recordsets: [
+								testDbPreferenceTypeOptions,
+								testDbPreferenceValueOptions,
 							],
 						},
 					},
@@ -135,11 +176,25 @@ describe("Server Deployment", () => {
 						ok: {
 							rows: [
 								{
-									...testDbResult,
+									...testDbBearerToken,
+									scopes: testScopes,
+								},
+								{
+									...testDbBearerTokenInvalid,
 									scopes: testScopes,
 								},
 							],
 						},
+					},
+					preferencesOptions: {
+						ok: [
+							{
+								rows: testDbPreferenceTypeOptions,
+							},
+							{
+								rows: testDbPreferenceValueOptions,
+							},
+						],
 					},
 				},
 			},
@@ -398,8 +453,12 @@ describe("Server Deployment", () => {
 					test("Should return response if media type in `Accept` request header is `application/json`", async () => {
 						const mockQueryFn = jest
 							.fn()
-							.mockResolvedValue(
+							.mockResolvedValueOnce(
 								testObject.mocks.queryResults.bearerAuth.ok
+							)
+							.mockResolvedValueOnce(
+								testObject.mocks.queryResults.preferencesOptions
+									.ok
 							);
 
 						server.db = {
@@ -416,14 +475,18 @@ describe("Server Deployment", () => {
 						});
 
 						expect(response.headers).toEqual(expResHeadersJson);
-						expect(response.statusCode).not.toBe(406);
+						expect(response.statusCode).toBe(200);
 					});
 
 					test("Should return response if media type in `Accept` request header is `application/xml`", async () => {
 						const mockQueryFn = jest
 							.fn()
-							.mockResolvedValue(
+							.mockResolvedValueOnce(
 								testObject.mocks.queryResults.bearerAuth.ok
+							)
+							.mockResolvedValueOnce(
+								testObject.mocks.queryResults.preferencesOptions
+									.ok
 							);
 
 						server.db = {
@@ -445,7 +508,7 @@ describe("Server Deployment", () => {
 							)
 						);
 						expect(response.headers).toEqual(expResHeadersXml);
-						expect(response.statusCode).not.toBe(406);
+						expect(response.statusCode).toBe(200);
 					});
 				});
 			});
