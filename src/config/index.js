@@ -178,15 +178,6 @@ async function getConfig() {
 					},
 				},
 				level: env.LOG_LEVEL || "info",
-				/**
-				 * Pretty output to stdout if not in production.
-				 * Replaces using `pino-pretty` in scripts, as it does not play
-				 * well with Nodemon
-				 */
-				prettyPrint:
-					env.NODE_ENV.toLowerCase() !== "production" &&
-					(!env.LOG_ROTATION_FILENAME ||
-						env.LOG_ROTATION_FILENAME === ""),
 				redact: ["req.headers.authorization"],
 				serializers: {
 					/* istanbul ignore next: pino functions not explicitly tested */

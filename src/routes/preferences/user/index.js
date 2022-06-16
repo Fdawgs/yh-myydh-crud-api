@@ -151,10 +151,9 @@ async function route(server, options) {
 		handler: async (req, res) => {
 			try {
 				const results = await Promise.all(
-					server
-						.cleanObject(req.body.preferences)
-						.map(async (preference) => {
-							const rows = await server.db.query(
+					server.cleanObject(req.body.preferences).map((preference) =>
+						server.db
+							.query(
 								userInsert({
 									dbClient: options.database.client,
 									patientId: req.params.id,
@@ -164,14 +163,15 @@ async function route(server, options) {
 									patientPreferencesTable:
 										options.database.tables.patientPref,
 								})
-							);
+							)
+							.then((rows) => {
+								if (options.database.client === "postgresql") {
+									return rows.rowCount;
+								}
 
-							if (options.database.client === "postgresql") {
-								return rows.rowCount;
-							}
-
-							return rows.rowsAffected;
-						})
+								return rows.rowsAffected;
+							})
+					)
 				);
 
 				let count = 0;

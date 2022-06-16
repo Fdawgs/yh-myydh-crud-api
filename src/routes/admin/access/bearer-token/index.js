@@ -372,9 +372,7 @@ async function route(server, options) {
 					.replace(/-/g, "_")}`;
 
 				const salt = crypto.randomBytes(16).toString("hex");
-				const hash = crypto
-					.pbkdf2Sync(key, salt, 1000, 64, "sha512")
-					.toString("hex");
+				const hash = crypto.scryptSync(key, salt, 64).toString("hex");
 
 				const results = await server.db.query(
 					accessPost({
