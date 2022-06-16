@@ -29,13 +29,15 @@ Perform the following steps before deployment:
 3. Make a copy of `.env.template` in the root directory and rename it to `.env`
 4. Configure the application using the environment variables in `.env`
 
-**Note:** You will need to create a database before using it in the `DB_CONNECTION_STRING` environment variable (this does not apply if using the included Docker Compose file to deploy)
+> **Note**
+> You will need to create a database before using it in the `DB_CONNECTION_STRING` environment variable (this does not apply if using the included Docker Compose file to deploy)
 
-**Note:** Set the following environment variables in `.env` to meet NHS Digital's recommendation to retain 6 months' worth of logs:
-
--   `LOG_ROTATION_DATE_FORMAT="YYYY-MM-DD"`
--   `LOG_ROTATION_FREQUENCY="daily"`
--   `LOG_ROTATION_MAX_LOGS="180"`
+> **Note**
+> Set the following environment variables in `.env` to meet NHS Digital's recommendation to retain 6 months' worth of logs:
+>
+> -   `LOG_ROTATION_DATE_FORMAT="YYYY-MM-DD"`
+> -   `LOG_ROTATION_FREQUENCY="daily"`
+> -   `LOG_ROTATION_MAX_LOGS="180"`
 
 ## Deployment
 
@@ -97,7 +99,8 @@ If you are unable to deploy this into production using Docker, it is recommended
 
 If using a Microsoft Windows OS utilise [pm2-installer](https://github.com/jessety/pm2-installer) to install PM2 as a Windows service.
 
-**Note:** PM2 will automatically restart the application if `.env` is modified.
+> **Note**
+> PM2 will automatically restart the application if `.env` is modified.
 
 ## Usage
 
