@@ -36,7 +36,12 @@ async function plugin(server) {
 				}
 
 				/* istanbul ignore else */
-				if (typeof parsedPayload === "object") {
+				if (
+					typeof parsedPayload === "object" &&
+					// Swagger and OpenAPI spec elements use characters not allowed in XML names (i.e. "$schema")
+					parsedPayload?.openapi === undefined &&
+					parsedPayload?.swagger === undefined
+				) {
 					res.type("application/xml; charset=utf-8");
 					return js2xmlparser.parse("response", parsedPayload, {
 						format: {
