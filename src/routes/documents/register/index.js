@@ -77,6 +77,7 @@ async function route(server, options) {
 
 				const results = await server.db.query(
 					registerSelect({
+						client: options.database.client,
 						whereClausePredicates,
 						documentRegisterTable:
 							options.database.tables.documentRegister,

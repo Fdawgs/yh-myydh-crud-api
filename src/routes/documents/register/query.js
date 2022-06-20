@@ -2,6 +2,7 @@
  * @author Frazer Smith
  * @description Build SQL query string.
  * @param {object} options - Query string and database config values.
+ * @param {('mssql'|'postgresql')} options.client - Database client.
  * @param {string} options.whereClausePredicates - WHERE clause predicates.
  * @param {string} options.documentRegisterTable - Name and schema of document register table.
  * @param {number} options.page - Page to retrieve.
@@ -9,12 +10,16 @@
  * @returns {string} Query string.
  */
 const registerSelect = ({
+	client,
 	whereClausePredicates,
 	documentRegisterTable,
 	page,
 	perPage,
 }) => `
-SELECT COUNT(*) AS total
+SELECT COUNT(*)${
+	// Cast from string to int - https://node-postgres.com/features/types
+	client === "postgresql" ? "::int" : ""
+} AS total
 FROM ${documentRegisterTable}
 WHERE ${whereClausePredicates};
 

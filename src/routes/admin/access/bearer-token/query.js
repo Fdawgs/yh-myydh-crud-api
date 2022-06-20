@@ -35,13 +35,17 @@ WHERE id = '${id}';`;
  * @author Frazer Smith
  * @description Build SQL query string.
  * @param {object} options - Query string and database config values.
+ * @param {('mssql'|'postgresql')} options.client - Database client.
  * @param {string} options.whereClausePredicates - WHERE clause predicates.
  * @param {number} options.page - Page to retrieve.
  * @param {number} options.perPage - Number of bearer token records to return per page.
  * @returns {string} Query string.
  */
-const accessGetSearch = ({ whereClausePredicates, page, perPage }) => `
-SELECT COUNT(DISTINCT id) AS total
+const accessGetSearch = ({ client, whereClausePredicates, page, perPage }) => `
+SELECT COUNT(DISTINCT id)${
+	// Cast from string to int - https://node-postgres.com/features/types
+	client === "postgresql" ? "::int" : ""
+} AS total
 FROM access.tokens
 WHERE ${whereClausePredicates};
 
