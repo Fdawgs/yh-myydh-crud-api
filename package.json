@@ -71,7 +71,7 @@
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.0.2",
-		"@commitlint/config-conventional": "^17.0.2",
+		"@commitlint/config-conventional": "^17.0.3",
 		"@faker-js/faker": "^7.2.0",
 		"autocannon": "^7.9.0",
 		"eslint": "^8.18.0",
@@ -86,9 +86,9 @@
 		"glob": "^8.0.3",
 		"husky": "^8.0.1",
 		"is-html": "^2.0.0",
-		"jest": "^28.1.1",
+		"jest": "^28.1.2",
 		"license-checker": "^25.0.1",
-		"nodemon": "^2.0.16",
+		"nodemon": "^2.0.19",
 		"pino-pretty": "^8.0.0",
 		"playwright": "^1.22.2",
 		"prettier": "^2.7.1"
