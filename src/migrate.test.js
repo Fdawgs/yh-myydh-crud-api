@@ -24,7 +24,7 @@ describe("Migrate Script", () => {
 	];
 	connectionTests.forEach((testObject) => {
 		describe(`${testObject.testName}`, () => {
-			beforeAll(async () => {
+			beforeAll(() => {
 				Object.assign(process.env, testObject.envVariables);
 			});
 
