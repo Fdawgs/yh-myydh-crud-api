@@ -20,7 +20,7 @@ describe("DB Plugin", () => {
 			config = await getConfig();
 
 			server = Fastify();
-			server.register(plugin, config.database);
+			await server.register(plugin, config.database);
 			server.route({
 				method: "GET",
 				url: "/",
@@ -62,7 +62,7 @@ describe("DB Plugin", () => {
 			config = await getConfig();
 
 			server = Fastify();
-			server.register(plugin, config.database);
+			await server.register(plugin, config.database);
 			server.route({
 				method: "GET",
 				url: "/",

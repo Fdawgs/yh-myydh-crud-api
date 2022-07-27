@@ -119,7 +119,7 @@ describe("Register Route", () => {
 				config = await getConfig();
 
 				server = Fastify();
-				server
+				await server
 					.register(cleanObject)
 					.register(convertDateParamOperator)
 					.addHook("preValidation", async (req) => {
@@ -129,9 +129,8 @@ describe("Register Route", () => {
 					})
 					.register(sensible)
 					.register(sharedSchemas)
-					.register(route, config);
-
-				await server.ready();
+					.register(route, config)
+					.ready();
 			});
 
 			afterAll(async () => {
@@ -300,14 +299,13 @@ describe("Register Route", () => {
 				config = await getConfig();
 
 				server = Fastify();
-				server
+				await server
 					.register(cleanObject)
 					.register(convertDateParamOperator)
 					.register(sensible)
 					.register(sharedSchemas)
-					.register(route, config);
-
-				await server.ready();
+					.register(route, config)
+					.ready();
 			});
 
 			afterAll(async () => {

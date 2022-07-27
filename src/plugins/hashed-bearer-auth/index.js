@@ -13,7 +13,7 @@ const scryptAsync = promisify(scrypt);
  * @param {object} server - Fastify instance.
  */
 async function plugin(server) {
-	server.register(bearer, {
+	await server.register(bearer, {
 		errorResponse: (err) => ({
 			statusCode: 401,
 			error: "Unauthorized",

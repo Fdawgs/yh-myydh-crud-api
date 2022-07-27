@@ -55,7 +55,7 @@ describe("Receipt Route", () => {
 				config = await getConfig();
 
 				server = Fastify();
-				server
+				await server
 					.addHook("preValidation", async (req) => {
 						req.scopes = [
 							"documents/receipt.delete",
@@ -66,9 +66,8 @@ describe("Receipt Route", () => {
 					})
 					.register(sensible)
 					.register(sharedSchemas)
-					.register(route, config);
-
-				await server.ready();
+					.register(route, config)
+					.ready();
 			});
 
 			afterAll(async () => {
@@ -244,12 +243,11 @@ describe("Receipt Route", () => {
 				config = await getConfig();
 
 				server = Fastify();
-				server
+				await server
 					.register(sensible)
 					.register(sharedSchemas)
-					.register(route, config);
-
-				await server.ready();
+					.register(route, config)
+					.ready();
 			});
 
 			afterAll(async () => {

@@ -9,7 +9,7 @@ describe("Serialize-JSON-To-XML Plugin", () => {
 	beforeAll(async () => {
 		server = Fastify();
 
-		server.register(accepts).register(plugin);
+		await server.register(accepts).register(plugin);
 		server.route({
 			method: "GET",
 			url: "/",

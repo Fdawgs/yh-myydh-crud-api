@@ -7,7 +7,7 @@ describe("Convert-Date-Param-Operator Plugin", () => {
 	beforeAll(async () => {
 		server = Fastify();
 
-		server.register(plugin);
+		await server.register(plugin);
 		server.route({
 			method: "PUT",
 			url: "/",

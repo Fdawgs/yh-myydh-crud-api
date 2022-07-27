@@ -30,7 +30,7 @@ const sharedSchemas = require("./plugins/shared-schemas");
  */
 async function plugin(server, config) {
 	// Register plugins
-	server
+	await server
 		// Accept header handler
 		.register(accepts)
 
@@ -66,14 +66,13 @@ async function plugin(server, config) {
 
 		// Additional utility functions
 		.register(clean)
-		.register(convertDateParamOperator);
+		.register(convertDateParamOperator)
 
-	await server
 		// Rate limiting and 429 response handling
 		.register(rateLimit, config.rateLimit);
 
 	// Register routes
-	server
+	await server
 		/**
 		 * `x-xss-protection` and `content-security-policy` is set by default by Helmet.
 		 * These are only useful for HTML/XML content; the only CSP directive that
@@ -121,7 +120,7 @@ async function plugin(server, config) {
 					return req;
 				});
 
-			serializedContext
+			await serializedContext
 				/**
 				 * Encapsulate plugins and routes into secured child context, so that other
 				 * routes do not inherit bearer token auth plugin (if enabled).
@@ -129,9 +128,9 @@ async function plugin(server, config) {
 				.register(async (securedContext) => {
 					// Protect routes with Bearer token auth if enabled
 					if (config.bearerTokenAuthEnabled) {
-						securedContext.register(hashedBearerAuth);
+						await securedContext.register(hashedBearerAuth);
 					}
-					securedContext
+					await securedContext
 						// Import and register service routes
 						.register(autoLoad, {
 							dir: path.joinSafe(__dirname, "routes"),
@@ -159,8 +158,9 @@ async function plugin(server, config) {
 							authenticate: false,
 						});
 
-					adminContext
-						.addHook("onRequest", adminContext.basicAuth)
+					adminContext.addHook("onRequest", adminContext.basicAuth);
+
+					await adminContext
 						// Import and register service routes
 						.register(autoLoad, {
 							dir: path.joinSafe(__dirname, "routes", "admin"),
@@ -188,7 +188,7 @@ async function plugin(server, config) {
 				}
 			);
 
-			publicContext
+			await publicContext
 				// Set relaxed response headers
 				.register(helmet, relaxedHelmetConfig)
 

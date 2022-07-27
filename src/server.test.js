@@ -217,9 +217,7 @@ describe("Server Deployment", () => {
 					config = await getConfig();
 
 					server = Fastify();
-					server.register(startServer, config);
-
-					await server.ready();
+					await server.register(startServer, config).ready();
 				});
 
 				afterAll(async () => {
@@ -322,9 +320,7 @@ describe("Server Deployment", () => {
 					config = await getConfig();
 
 					server = Fastify();
-					server.register(startServer, config);
-
-					await server.ready();
+					await server.register(startServer, config).ready();
 				});
 
 				afterAll(async () => {
@@ -525,9 +521,7 @@ describe("Server Deployment", () => {
 					config = await getConfig();
 
 					server = Fastify();
-					server.register(startServer, config);
-
-					await server.ready();
+					await server.register(startServer, config).ready();
 				});
 
 				afterAll(async () => {
@@ -643,9 +637,7 @@ describe("Server Deployment", () => {
 			// Turn off logging for test runs
 			delete config.fastifyInit.logger;
 			server = Fastify(config.fastifyInit);
-			server.register(startServer, config);
-
-			await server.listen(config.fastify);
+			await server.register(startServer, config).listen(config.fastify);
 		});
 
 		afterAll(async () => {
