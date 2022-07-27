@@ -60,7 +60,7 @@ async function plugin(server) {
 }
 
 module.exports = fp(plugin, {
-	fastify: "3.x",
+	fastify: "4.x",
 	name: "serialize-json-to-xml",
-	dependencies: ["fastify-accepts"],
+	dependencies: ["@fastify/accepts"],
 });
