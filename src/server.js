@@ -147,12 +147,12 @@ async function plugin(server, config) {
 					await adminContext
 						// Protect routes with Basic auth
 						.register(basic, {
-							validate: async (username, password, req, res) => {
+							validate: async (username, password) => {
 								if (
 									username !== config.admin.username ||
 									password !== config.admin.password
 								) {
-									throw res.unauthorized();
+									throw server.httpErrors.unauthorized();
 								}
 							},
 							authenticate: false,
@@ -209,9 +209,8 @@ async function plugin(server, config) {
 			{
 				preHandler: server.rateLimit(),
 			},
-			(req, res) => {
-				res.notFound(`Route ${req.method}:${req.url} not found`);
-			}
+			async (req, res) =>
+				res.notFound(`Route ${req.method}:${req.url} not found`)
 		)
 
 		// Errors thrown by routes and plugins are caught here

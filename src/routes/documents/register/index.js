@@ -111,9 +111,9 @@ async function route(server, options) {
 						},
 					},
 				};
-				res.send(response);
+				return response;
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});

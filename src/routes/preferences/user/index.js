@@ -126,12 +126,11 @@ async function route(server, options) {
 						patientObj.preferences.push(preferenceObj);
 					});
 
-					res.send(server.cleanObject(patientObj));
-				} else {
-					res.notFound("User not found");
+					return server.cleanObject(patientObj);
 				}
+				return res.notFound("User not found");
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -188,9 +187,9 @@ async function route(server, options) {
 					throw new Error(`${count} rows were not inserted`);
 				}
 
-				res.status(204);
+				return res.status(204).send();
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});

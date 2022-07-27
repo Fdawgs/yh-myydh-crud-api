@@ -63,14 +63,13 @@ async function route(server, options) {
 				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
 				 */
 				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
-					res.status(204);
-				} else {
-					res.notFound(
-						"Record does not exist or has already been deleted"
-					);
+					return res.status(204).send();
 				}
+				return res.notFound(
+					"Record does not exist or has already been deleted"
+				);
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -108,12 +107,11 @@ async function route(server, options) {
 				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
 				 */
 				if (rows?.rowsAffected?.[0] > 0 || rows?.rowCount > 0) {
-					res.status(204);
-				} else {
-					throw new Error("No rows were inserted");
+					return res.status(204).send();
 				}
+				throw new Error("No rows were inserted");
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});

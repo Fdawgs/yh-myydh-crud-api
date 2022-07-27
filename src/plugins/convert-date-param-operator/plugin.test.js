@@ -11,9 +11,7 @@ describe("Convert-Date-Param-Operator Plugin", () => {
 		server.route({
 			method: "PUT",
 			url: "/",
-			handler(req, res) {
-				res.send(server.convertDateParamOperator(req.body));
-			},
+			handler: async (req) => server.convertDateParamOperator(req.body),
 		});
 
 		await server.ready();

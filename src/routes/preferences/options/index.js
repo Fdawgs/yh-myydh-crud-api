@@ -120,12 +120,11 @@ async function route(server, options) {
 						priorityCount += 1;
 					});
 
-					res.send(server.cleanObject(patientObj));
-				} else {
-					res.notFound("Invalid or expired search results");
+					return server.cleanObject(patientObj);
 				}
+				return res.notFound("Invalid or expired search results");
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
