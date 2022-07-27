@@ -41,10 +41,12 @@ async function route(server, options) {
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("documents/receipt.delete")
 			) {
-				throw res.unauthorized(
+				return res.unauthorized(
 					"You do not have permission to perform an HTTP DELETE request on this route"
 				);
 			}
+
+			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -82,10 +84,12 @@ async function route(server, options) {
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("documents/receipt.put")
 			) {
-				throw res.unauthorized(
+				return res.unauthorized(
 					"You do not have permission to perform an HTTP PUT request on this route"
 				);
 			}
+
+			return req;
 		},
 		handler: async (req, res) => {
 			try {

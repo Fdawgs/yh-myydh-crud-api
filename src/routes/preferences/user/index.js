@@ -43,10 +43,12 @@ async function route(server, options) {
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("preferences/user.read")
 			) {
-				throw res.unauthorized(
+				return res.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
 				);
 			}
+
+			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -143,10 +145,12 @@ async function route(server, options) {
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("preferences/user.put")
 			) {
-				throw res.unauthorized(
+				return res.unauthorized(
 					"You do not have permission to perform an HTTP PUT request on this route"
 				);
 			}
+
+			return req;
 		},
 		handler: async (req, res) => {
 			try {

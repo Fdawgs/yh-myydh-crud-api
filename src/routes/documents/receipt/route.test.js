@@ -61,6 +61,8 @@ describe("Receipt Route", () => {
 							"documents/receipt.delete",
 							"documents/receipt.put",
 						];
+
+						return req;
 					})
 					.register(sensible)
 					.register(sharedSchemas)

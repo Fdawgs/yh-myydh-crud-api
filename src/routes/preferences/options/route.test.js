@@ -108,6 +108,8 @@ describe("Options Route", () => {
 					.register(cleanObject)
 					.addHook("preValidation", async (req) => {
 						req.scopes = ["preferences/options.search"];
+
+						return req;
 					})
 					.register(sensible)
 					.register(sharedSchemas)

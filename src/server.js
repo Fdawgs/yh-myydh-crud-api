@@ -115,8 +115,10 @@ async function plugin(server, config) {
 							.accepts()
 							.type(["application/json", "application/xml"])
 					) {
-						throw res.notAcceptable();
+						return res.notAcceptable();
 					}
+
+					return req;
 				});
 
 			serializedContext
