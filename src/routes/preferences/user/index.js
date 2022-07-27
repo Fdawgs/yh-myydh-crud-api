@@ -27,7 +27,7 @@ async function route(server, options) {
 	}
 
 	// Register plugins
-	server
+	await server
 		// Enable CORS if options passed
 		.register(cors, {
 			...options.cors,
@@ -43,10 +43,12 @@ async function route(server, options) {
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("preferences/user.read")
 			) {
-				throw res.unauthorized(
+				return res.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
 				);
 			}
+
+			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -124,12 +126,11 @@ async function route(server, options) {
 						patientObj.preferences.push(preferenceObj);
 					});
 
-					res.send(server.cleanObject(patientObj));
-				} else {
-					res.notFound("User not found");
+					return server.cleanObject(patientObj);
 				}
+				return res.notFound("User not found");
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
@@ -143,10 +144,12 @@ async function route(server, options) {
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("preferences/user.put")
 			) {
-				throw res.unauthorized(
+				return res.unauthorized(
 					"You do not have permission to perform an HTTP PUT request on this route"
 				);
 			}
+
+			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -184,9 +187,9 @@ async function route(server, options) {
 					throw new Error(`${count} rows were not inserted`);
 				}
 
-				res.status(204);
+				return res.status(204).send();
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});

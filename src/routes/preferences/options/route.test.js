@@ -104,16 +104,17 @@ describe("Options Route", () => {
 				config = await getConfig();
 
 				server = Fastify();
-				server
+				await server
 					.register(cleanObject)
 					.addHook("preValidation", async (req) => {
 						req.scopes = ["preferences/options.search"];
+
+						return req;
 					})
 					.register(sensible)
 					.register(sharedSchemas)
-					.register(route, config);
-
-				await server.ready();
+					.register(route, config)
+					.ready();
 			});
 
 			afterAll(async () => {
@@ -200,13 +201,12 @@ describe("Options Route", () => {
 				config = await getConfig();
 
 				server = Fastify();
-				server
+				await server
 					.register(cleanObject)
 					.register(sensible)
 					.register(sharedSchemas)
-					.register(route, config);
-
-				await server.ready();
+					.register(route, config)
+					.ready();
 			});
 
 			afterAll(async () => {

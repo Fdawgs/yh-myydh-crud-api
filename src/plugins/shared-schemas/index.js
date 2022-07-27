@@ -101,6 +101,6 @@ async function plugin(server) {
 }
 
 module.exports = fp(plugin, {
-	fastify: "3.x",
+	fastify: "4.x",
 	name: "shared-schemas",
 });

@@ -14,7 +14,7 @@ const rateLimit = require("@fastify/rate-limit");
 const sensible = require("@fastify/sensible");
 const staticPlugin = require("@fastify/static");
 const swagger = require("fastify-swagger");
-const underPressure = require("under-pressure");
+const underPressure = require("@fastify/under-pressure");
 const clean = require("./plugins/clean-object");
 const convertDateParamOperator = require("./plugins/convert-date-param-operator");
 const db = require("./plugins/db");
@@ -30,7 +30,7 @@ const sharedSchemas = require("./plugins/shared-schemas");
  */
 async function plugin(server, config) {
 	// Register plugins
-	server
+	await server
 		// Accept header handler
 		.register(accepts)
 
@@ -66,21 +66,20 @@ async function plugin(server, config) {
 
 		// Additional utility functions
 		.register(clean)
-		.register(convertDateParamOperator);
+		.register(convertDateParamOperator)
 
-	await server
 		// Rate limiting and 429 response handling
 		.register(rateLimit, config.rateLimit);
 
 	// Register routes
-	server
+	await server
 		/**
 		 * `x-xss-protection` and `content-security-policy` is set by default by Helmet.
 		 * These are only useful for HTML/XML content; the only CSP directive that
 		 * is of use to other content is "frame-ancestors 'none'" to stop responses
 		 * from being wrapped in iframes and used for clickjacking attacks.
 		 */
-		.addHook("onSend", async (req, res) => {
+		.addHook("onSend", async (req, res, payload) => {
 			if (
 				res.getHeader("content-type") !== undefined &&
 				!res.getHeader("content-type")?.includes("html") &&
@@ -92,7 +91,7 @@ async function plugin(server, config) {
 				);
 				res.raw.removeHeader("x-xss-protection");
 			}
-			return res;
+			return payload;
 		})
 
 		// Import and register healthcheck route
@@ -115,11 +114,13 @@ async function plugin(server, config) {
 							.accepts()
 							.type(["application/json", "application/xml"])
 					) {
-						throw res.notAcceptable();
+						return res.notAcceptable();
 					}
+
+					return req;
 				});
 
-			serializedContext
+			await serializedContext
 				/**
 				 * Encapsulate plugins and routes into secured child context, so that other
 				 * routes do not inherit bearer token auth plugin (if enabled).
@@ -127,9 +128,9 @@ async function plugin(server, config) {
 				.register(async (securedContext) => {
 					// Protect routes with Bearer token auth if enabled
 					if (config.bearerTokenAuthEnabled) {
-						securedContext.register(hashedBearerAuth);
+						await securedContext.register(hashedBearerAuth);
 					}
-					securedContext
+					await securedContext
 						// Import and register service routes
 						.register(autoLoad, {
 							dir: path.joinSafe(__dirname, "routes"),
@@ -146,19 +147,20 @@ async function plugin(server, config) {
 					await adminContext
 						// Protect routes with Basic auth
 						.register(basic, {
-							validate: async (username, password, req, res) => {
+							validate: async (username, password) => {
 								if (
 									username !== config.admin.username ||
 									password !== config.admin.password
 								) {
-									throw res.unauthorized();
+									throw server.httpErrors.unauthorized();
 								}
 							},
 							authenticate: false,
 						});
 
-					adminContext
-						.addHook("onRequest", adminContext.basicAuth)
+					adminContext.addHook("onRequest", adminContext.basicAuth);
+
+					await adminContext
 						// Import and register service routes
 						.register(autoLoad, {
 							dir: path.joinSafe(__dirname, "routes", "admin"),
@@ -186,7 +188,7 @@ async function plugin(server, config) {
 				}
 			);
 
-			publicContext
+			await publicContext
 				// Set relaxed response headers
 				.register(helmet, relaxedHelmetConfig)
 
@@ -207,28 +209,28 @@ async function plugin(server, config) {
 			{
 				preHandler: server.rateLimit(),
 			},
-			(req, res) => {
-				res.notFound(`Route ${req.method}:${req.url} not found`);
-			}
+			async (req, res) =>
+				res.notFound(`Route ${req.method}:${req.url} not found`)
 		)
 
 		// Errors thrown by routes and plugins are caught here
-		.setErrorHandler(
-			// eslint-disable-next-line promise/prefer-await-to-callbacks
-			(err, req, res) => {
-				if (
-					res.statusCode >= 500 &&
+		.setErrorHandler(async (err, req, res) => {
+			if (
+				(err.statusCode >= 500 &&
 					/* istanbul ignore next: under-pressure plugin throws valid 503s */
-					res.statusCode !== 503
-				) {
-					req.log.error({ req, res, err }, err?.message);
-					res.internalServerError();
-				} else {
-					req.log.info({ req, res, err }, err?.message);
-					res.send(err);
-				}
+					err.statusCode !== 503) ||
+				/**
+				 * Uncaught errors will have a res.statusCode but not
+				 * an err.statusCode as @fastify/sensible sets that
+				 */
+				(res.statusCode === 200 && !err.statusCode)
+			) {
+				res.log.error(err);
+				return res.internalServerError();
 			}
-		);
+
+			throw err;
+		});
 }
 
-module.exports = fp(plugin, { fastify: "3.x", name: "server" });
+module.exports = fp(plugin, { fastify: "4.x", name: "server" });

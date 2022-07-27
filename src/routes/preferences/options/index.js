@@ -22,7 +22,7 @@ async function route(server, options) {
 	}
 
 	// Register plugins
-	server
+	await server
 		// Enable CORS if options passed
 		.register(cors, {
 			...options.cors,
@@ -38,10 +38,12 @@ async function route(server, options) {
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("preferences/options.search")
 			) {
-				throw res.unauthorized(
+				return res.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
 				);
 			}
+
+			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -118,12 +120,11 @@ async function route(server, options) {
 						priorityCount += 1;
 					});
 
-					res.send(server.cleanObject(patientObj));
-				} else {
-					res.notFound("Invalid or expired search results");
+					return server.cleanObject(patientObj);
 				}
+				return res.notFound("Invalid or expired search results");
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});

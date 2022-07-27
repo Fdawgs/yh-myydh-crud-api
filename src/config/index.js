@@ -163,7 +163,6 @@ async function getConfig() {
 
 	const config = {
 		fastify: {
-			host: env.SERVICE_HOST,
 			port: env.SERVICE_PORT,
 		},
 		fastifyInit: {
@@ -186,6 +185,9 @@ async function getConfig() {
 					},
 					/* istanbul ignore next: pino functions not explicitly tested */
 					res(res) {
+						// Required for the statusCode to be logged
+						// https://github.com/pinojs/pino-std-serializers/blob/9da36144d43aabc7933f0504b02fef5a341583c2/lib/res.js#L37
+						res.headersSent = true;
 						return pino.stdSerializers.res(res);
 					},
 				},
@@ -234,7 +236,6 @@ async function getConfig() {
 		},
 		rateLimit: {
 			continueExceeding: true,
-			// Ensure rate limit also applies to 4xx and 5xx responses
 			hook: "onSend",
 			max: env.RATE_LIMIT_MAX_CONNECTIONS_PER_MIN || 1000,
 			timeWindow: 60000,
@@ -307,6 +308,11 @@ async function getConfig() {
 			},
 		},
 	};
+
+	// Ensure API listens on both IPv4 and IPv6 addresses
+	if (env.SERVICE_HOST) {
+		config.fastify.host = env.SERVICE_HOST;
+	}
 
 	if (env.LOG_ROTATION_FILENAME) {
 		// Rotation options: https://github.com/rogerc/file-stream-rotator/#options

@@ -13,7 +13,7 @@ const scryptAsync = promisify(scrypt);
  * @param {object} server - Fastify instance.
  */
 async function plugin(server) {
-	server.register(bearer, {
+	await server.register(bearer, {
 		errorResponse: (err) => ({
 			statusCode: 401,
 			error: "Unauthorized",
@@ -64,7 +64,7 @@ async function plugin(server) {
 }
 
 module.exports = fp(plugin, {
-	fastify: "3.x",
+	fastify: "4.x",
 	name: "hashed-bearer-auth",
 	dependencies: ["db"],
 });

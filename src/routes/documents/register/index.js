@@ -24,7 +24,7 @@ async function route(server, options) {
 	}
 
 	// Register plugins
-	server
+	await server
 		// Enable CORS if options passed
 		.register(cors, {
 			...options.cors,
@@ -40,10 +40,12 @@ async function route(server, options) {
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("documents/register.search")
 			) {
-				throw res.unauthorized(
+				return res.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
 				);
 			}
+
+			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -109,9 +111,9 @@ async function route(server, options) {
 						},
 					},
 				};
-				res.send(response);
+				return response;
 			} catch (err) {
-				throw res.internalServerError(err);
+				return res.internalServerError(err);
 			}
 		},
 	});
