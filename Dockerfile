@@ -7,7 +7,7 @@ WORKDIR /usr/app
 COPY . .
 # Curl needed for healthcheck command
 RUN apk add --no-cache curl && \
-    npm ci --production --ignore-scripts && \
+    npm ci --ignore-scripts --omit=dev && \
     npm cache clean --force
 
 # Node images provide 'node' unprivileged user to run apps and prevent
