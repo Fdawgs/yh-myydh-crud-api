@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.0.2](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.1...v9.0.2) (2022-08-01)
+
+
+### Improvements
+
+* migrate from fastify v3 to v4 ([#914](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/914)) ([696833f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/696833f17e2eb6304ced55fe1a5aadc1ccc57530))
+
+
+### Continuous Integration
+
+* **ci:** audit npm package signatures ([aa6e88f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/aa6e88f855271d870e17bf6eeaf98106afd068e0))
+
+
+### Miscellaneous
+
+* **.*ignore:** add pnpm lockfile ([#920](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/920)) ([05588f6](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/05588f6b786803d342a997e607d6d693e95c6ba0))
+* replace `--production` npm arg with `--omit=dev` ([0523bde](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0523bdea69b3b6dda129d348e8287e1d1b6786b1))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint from 8.20.0 to 8.21.0 ([#927](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/927)) ([aa470a3](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/aa470a3d68f6626ec925f3a4fc264446787dad64))
+* **deps-dev:** bump eslint-plugin-jest from 26.6.0 to 26.7.0 ([#922](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/922)) ([2750cd1](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/2750cd1aeb2c7adb86bc3a0fd23849d3c1c91f44))
+* **deps-dev:** bump eslint-plugin-jsdoc from 39.3.3 to 39.3.4 ([#924](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/924)) ([54bf4ef](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/54bf4ef51d93cd2ddeb4cf4e40c8e3ca0c1c6f00))
+* **deps-dev:** bump playwright from 1.24.1 to 1.24.2 ([#923](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/923)) ([32009bf](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/32009bf89952183cb9bba8a1cc65bb1b498a33c2))
+* **deps:** bump @fastify/static from 6.4.1 to 6.5.0 ([#926](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/926)) ([46698b7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/46698b741d2326a4819a4e1cfdf5165713825149))
+* **deps:** bump fastify-disablecache from 3.0.0 to 3.0.1 ([#919](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/919)) ([95d02f8](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/95d02f84c744e3769668d36de7de72c29530acc4))
+* **deps:** bump fastify-floc-off from 2.0.0 to 2.0.1 ([#917](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/917)) ([1b7be43](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1b7be437cd75439094b18875cecbeff28b43bfcf))
+* **deps:** bump pino from 8.3.0 to 8.3.1 ([#918](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/918)) ([b71278e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b71278e774faf9e27c90092c3b5f1f555ad3615f))
+* **deps:** bump redoc from 2.0.0-rc.72 to 2.0.0-rc.74 ([#921](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/921)) ([9d0afe3](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9d0afe3359e9325d63fd0b942ceedf52ef8a4d42))
+* **deps:** bump secure-json-parse from 2.4.0 to 2.5.0 ([#925](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/925)) ([8cb00ca](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8cb00caf61b9721670aeb4f89ac7ace9f8ac3e8a))
+* **deps:** bump sub-dependencies ([#928](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/928)) ([81aba30](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/81aba3011fe23aaad32319d33245c442c1d60794))
+
 ## [9.0.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.0...v9.0.1) (2022-07-14)
 
 
