@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.0.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.2...v9.0.3) (2022-08-04)
+
+
+### Bug Fixes
+
+* **routes:** invalid openapi shared schema definitions ([#929](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/929)) ([d4ce95c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d4ce95cb1b665efadaa4e4b4b59172cd5b04c9ed))
+* **server:** reduce `content-security-policy` for options routes ([#931](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/931)) ([4f793ce](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/4f793cedb3e94b5c78e14f99326fe4bf7fd7aa0c))
+
+
+### Dependencies
+
+* **deps:** bump @fastify/cors from 8.0.0 to 8.1.0 ([#932](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/932)) ([193d2f1](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/193d2f1a7d34e318a78f44616ff050efbda1efd0))
+
 ## [9.0.2](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.1...v9.0.2) (2022-08-01)
 
 
