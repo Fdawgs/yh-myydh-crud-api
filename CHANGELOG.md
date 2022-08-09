@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.0.4](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.3...v9.0.4) (2022-08-09)
+
+
+### Bug Fixes
+
+* **config:** log rotation max files ([#933](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/933)) ([c0661bf](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c0661bfb5fd745bc0118b7035d14f5da1cc70bd0))
+
+
+### Dependencies
+
+* **deps-dev:** bump @faker-js/faker from 7.3.0 to 7.4.0 ([#936](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/936)) ([9bb85f5](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9bb85f5d168c2bd5bbdf8ea963b780893558b3bb))
+* **deps-dev:** bump eslint-plugin-jest from 26.7.0 to 26.8.2 ([#943](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/943)) ([b22fb7c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b22fb7c945c7755b5ce959cb197529daddd0654d))
+* **deps-dev:** bump eslint-plugin-jsdoc from 39.3.4 to 39.3.6 ([#941](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/941)) ([152406b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/152406b765046ab45906155efa10958676e872a0))
+* **deps:** bump @fastify/autoload from 5.1.0 to 5.2.0 ([#938](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/938)) ([abac682](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/abac68200ed64600102f736208ea6c016b77049a))
+* **deps:** bump fastify from 4.3.0 to 4.4.0 ([#939](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/939)) ([df91e44](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/df91e4494825a278ff805ecc3a9fa172370b5f90))
+* **deps:** bump fastify-disablecache from 3.0.1 to 3.0.2 ([#935](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/935)) ([46e74cf](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/46e74cfbe8855131a1215aac17083fffa48494d2))
+* **deps:** bump fastify-floc-off from 2.0.1 to 2.0.2 ([#944](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/944)) ([576b1d3](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/576b1d3322ea365798c4e49dc6c39d332d3c36bf))
+* **deps:** bump mssql from 8.1.2 to 8.1.3 ([#937](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/937)) ([02eadef](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/02eadefb1c3f6407dc2df6e3aaed3c1b71f2ed6f))
+* **deps:** bump pino from 8.3.1 to 8.4.0 ([#942](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/942)) ([e5631a8](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e5631a8491a9c3ff0708ba0e35c98750816513c1))
+
 ## [9.0.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.2...v9.0.3) (2022-08-04)
 
 
