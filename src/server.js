@@ -107,7 +107,7 @@ async function plugin(server, config) {
 		.register(async (serializedContext) => {
 			serializedContext
 				// Catch unsupported Accept header media types
-				.addHook("preValidation", async (req, res) => {
+				.addHook("onRequest", async (req, res) => {
 					if (
 						!req
 							.accepts()
