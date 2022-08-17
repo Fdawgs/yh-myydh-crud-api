@@ -33,17 +33,15 @@ async function route(server, options) {
 		method: "GET",
 		url: "/",
 		schema: optionsGetSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("preferences/options.search")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {

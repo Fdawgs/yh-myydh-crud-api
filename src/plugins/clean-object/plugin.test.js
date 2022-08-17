@@ -11,13 +11,17 @@ describe("Clean-Object Plugin", () => {
 		server.route({
 			method: "PUT",
 			url: "/",
-			handler: async (req) => server.cleanObject(req.body),
+			handler: (req, res) => {
+				res.send(server.cleanObject(req.body));
+			},
 		});
 
 		server.route({
 			method: "PUT",
 			url: "/empty",
-			handler: async () => server.cleanObject(),
+			handler: (req, res) => {
+				res.send(server.cleanObject());
+			},
 		});
 
 		await server.ready();

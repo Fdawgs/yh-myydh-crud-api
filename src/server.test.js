@@ -442,7 +442,9 @@ describe("Server Deployment", () => {
 							message: "Not Acceptable",
 							statusCode: 406,
 						});
-						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.headers).toEqual(
+							expResHeaders4xxErrors
+						);
 						expect(response.statusCode).toBe(406);
 					});
 
@@ -604,7 +606,9 @@ describe("Server Deployment", () => {
 							message: "Not Acceptable",
 							statusCode: 406,
 						});
-						expect(response.headers).toEqual(expResHeadersJson);
+						expect(response.headers).toEqual(
+							expResHeaders4xxErrors
+						);
 						expect(response.statusCode).toBe(406);
 					});
 				});
