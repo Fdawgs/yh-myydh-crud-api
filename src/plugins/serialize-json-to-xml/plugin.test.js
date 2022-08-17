@@ -13,7 +13,9 @@ describe("Serialize-JSON-To-XML Plugin", () => {
 		server.route({
 			method: "GET",
 			url: "/",
-			handler: async () => ({ "test-key": "test-value" }),
+			handler: (req, res) => {
+				res.send({ "test-key": "test-value" });
+			},
 		});
 
 		await server.ready();
