@@ -38,17 +38,15 @@ async function route(server, options) {
 		method: "GET",
 		url: "/:id",
 		schema: userGetSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("preferences/user.read")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -139,17 +137,15 @@ async function route(server, options) {
 		method: "PUT",
 		url: "/:id",
 		schema: userPutSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("preferences/user.put")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP PUT request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {

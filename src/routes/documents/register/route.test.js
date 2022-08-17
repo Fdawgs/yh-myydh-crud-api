@@ -124,8 +124,6 @@ describe("Register Route", () => {
 					.register(convertDateParamOperator)
 					.addHook("preValidation", async (req) => {
 						req.scopes = ["documents/register.search"];
-
-						return req;
 					})
 					.register(sensible)
 					.register(sharedSchemas)

@@ -36,17 +36,15 @@ async function route(server, options) {
 		method: "DELETE",
 		url: "/:id",
 		schema: receiptDeleteSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("documents/receipt.delete")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP DELETE request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {
@@ -78,17 +76,15 @@ async function route(server, options) {
 		method: "PUT",
 		url: "/:id",
 		schema: receiptPutSchema,
-		preValidation: async (req, res) => {
+		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
 				!req?.scopes?.includes("documents/receipt.put")
 			) {
-				return res.unauthorized(
+				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP PUT request on this route"
 				);
 			}
-
-			return req;
 		},
 		handler: async (req, res) => {
 			try {

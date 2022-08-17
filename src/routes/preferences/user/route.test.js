@@ -155,8 +155,6 @@ describe("User Route", () => {
 							"preferences/user.put",
 							"preferences/user.read",
 						];
-
-						return req;
 					})
 					.register(sensible)
 					.register(sharedSchemas)
