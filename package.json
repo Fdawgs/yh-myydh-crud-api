@@ -105,7 +105,7 @@
 		"@fastify/sensible": "^5.1.0",
 		"@fastify/static": "^6.5.0",
 		"@fastify/swagger": "^7.4.1",
-		"@fastify/under-pressure": "^7.0.0",
+		"@fastify/under-pressure": "^8.0.0",
 		"dotenv": "^16.0.1",
 		"env-schema": "^5.0.0",
 		"fastify": "^4.5.0",
