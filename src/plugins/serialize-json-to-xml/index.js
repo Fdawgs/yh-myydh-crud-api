@@ -18,40 +18,39 @@ async function plugin(server) {
 		 * by default Fastify sets response type to application/json
 		 * if it has not been explicitly defined
 		 */
-		if (res.getHeader("content-type")?.includes("application/json")) {
+		if (
+			res.getHeader("content-type")?.includes("application/json") &&
 			/**
 			 * If XML is the only accepted response type or if XML is the
 			 * preferred response type if both XML and JSON are declared
 			 */
-			if (
-				req.accepts().type(["application/json", "application/xml"]) ===
+			req.accepts().type(["application/json", "application/xml"]) ===
 				"application/xml"
+		) {
+			let parsedPayload = payload;
+
+			try {
+				parsedPayload = secJSON.parse(payload);
+			} catch (err) {
+				// Do nothing, payload already object
+			}
+
+			/* istanbul ignore else */
+			if (
+				typeof parsedPayload === "object" &&
+				// Swagger and OpenAPI spec elements use characters not allowed in XML names (i.e. "$schema")
+				parsedPayload?.openapi === undefined &&
+				parsedPayload?.swagger === undefined
 			) {
-				let parsedPayload = payload;
-
-				try {
-					parsedPayload = secJSON.parse(payload);
-				} catch (err) {
-					// Do nothing, payload already object
-				}
-
-				/* istanbul ignore else */
-				if (
-					typeof parsedPayload === "object" &&
-					// Swagger and OpenAPI spec elements use characters not allowed in XML names (i.e. "$schema")
-					parsedPayload?.openapi === undefined &&
-					parsedPayload?.swagger === undefined
-				) {
-					res.type("application/xml; charset=utf-8");
-					return js2xmlparser.parse("response", parsedPayload, {
-						format: {
-							doubleQuotes: true,
-						},
-						declaration: {
-							encoding: "UTF-8",
-						},
-					});
-				}
+				res.type("application/xml; charset=utf-8");
+				return js2xmlparser.parse("response", parsedPayload, {
+					format: {
+						doubleQuotes: true,
+					},
+					declaration: {
+						encoding: "UTF-8",
+					},
+				});
 			}
 		}
 
