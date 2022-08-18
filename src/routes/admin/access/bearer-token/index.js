@@ -131,12 +131,10 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
-				let token = results?.recordsets?.[0] ?? results?.rows;
+				const token = results?.recordsets?.[0] ?? results?.rows;
 
 				if (token && token.length > 0) {
-					token = token[0];
-
-					return server.cleanObject(buildBearerTokenRecord(token));
+					return server.cleanObject(buildBearerTokenRecord(token[0]));
 				}
 				return res.notFound("Bearer token record not found");
 			} catch (err) {
