@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.0.6](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.5...v9.0.6) (2022-08-20)
+
+
+### Miscellaneous
+
+* compress images ([#960](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/960)) ([99039d2](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/99039d27f496bd3da7e18ff3a122963b0ef7e6a8))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-plugin-jest from 26.8.3 to 26.8.4 ([#965](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/965)) ([68caf91](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/68caf9110574b9ed5a21fe1072e572845784e837))
+* **deps:** bump fastify from 4.5.0 to 4.5.2 ([#964](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/964)) ([8af1527](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8af15272120df67e1301b1a52cbd1ee1b2f3acdb))
+* **deps:** bump mssql from 9.0.0 to 9.0.1 ([#962](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/962)) ([8e7097d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8e7097df2afd505a067d4a01a05096d774b9106a))
+* **deps:** bump pino from 8.4.1 to 8.4.2 ([#966](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/966)) ([119ef10](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/119ef106213941a4848351401d1d06e6c0fec282))
+* **deps:** bump redoc from 2.0.0-rc.75 to 2.0.0-rc.76 ([#963](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/963)) ([0ad4f8a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0ad4f8aa177cb1122ede4738e1f22f4371a021b7))
+
 ## [9.0.5](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.4...v9.0.5) (2022-08-18)
 
 
