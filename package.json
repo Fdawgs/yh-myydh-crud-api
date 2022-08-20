@@ -115,7 +115,7 @@
 		"file-stream-rotator": "^0.6.1",
 		"fluent-json-schema": "^3.1.0",
 		"js2xmlparser": "^4.0.2",
-		"mssql": "^9.0.0",
+		"mssql": "^9.0.1",
 		"pg": "^8.7.3",
 		"pg-connection-string": "^2.5.0",
 		"pino": "^8.4.1",
