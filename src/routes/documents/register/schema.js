@@ -33,6 +33,7 @@ const registerGetSchema = {
 	operationId: "getRegister",
 	produces: ["application/json", "application/xml"],
 	query: S.object()
+		.additionalProperties(false)
 		.prop(
 			"lastModified",
 			S.anyOf([
