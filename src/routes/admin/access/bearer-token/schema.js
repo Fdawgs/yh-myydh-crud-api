@@ -182,6 +182,7 @@ const accessGetSearchSchema = {
 	operationId: "getSearchAccess",
 	produces: ["application/json", "application/xml"],
 	query: S.object()
+		.additionalProperties(false)
 		.prop(
 			"access.name",
 			S.string().description(

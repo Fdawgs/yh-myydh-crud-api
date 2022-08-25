@@ -68,31 +68,24 @@ async function getConfig() {
 			.prop(
 				"LOG_LEVEL",
 				S.anyOf([
-					S.string()
-						.enum([
-							"fatal",
-							"error",
-							"warn",
-							"info",
-							"debug",
-							"trace",
-							"silent",
-						])
-						.default("info"),
+					S.string().enum([
+						"fatal",
+						"error",
+						"warn",
+						"info",
+						"debug",
+						"trace",
+						"silent",
+					]),
 					S.null(),
 				])
 			)
-			.prop(
-				"LOG_ROTATION_DATE_FORMAT",
-				S.anyOf([S.string().default("YYYY-MM-DD"), S.null()])
-			)
+			.prop("LOG_ROTATION_DATE_FORMAT", S.anyOf([S.string(), S.null()]))
 			.prop("LOG_ROTATION_FILENAME", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"LOG_ROTATION_FREQUENCY",
 				S.anyOf([
-					S.string()
-						.enum(["custom", "daily", "test"])
-						.default("daily"),
+					S.string().enum(["custom", "daily", "test"]),
 					S.null(),
 				])
 			)
@@ -102,26 +95,23 @@ async function getConfig() {
 			// Process Load Handling
 			.prop(
 				"PROC_LOAD_MAX_EVENT_LOOP_DELAY",
-				S.anyOf([S.number().default(0), S.null()])
+				S.anyOf([S.number(), S.null()])
 			)
 			.prop(
 				"PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION",
-				S.anyOf([S.number().default(0), S.null()])
+				S.anyOf([S.number(), S.null()])
 			)
 			.prop(
 				"PROC_LOAD_MAX_HEAP_USED_BYTES",
-				S.anyOf([S.number().default(0), S.null()])
+				S.anyOf([S.number(), S.null()])
 			)
-			.prop(
-				"PROC_LOAD_MAX_RSS_BYTES",
-				S.anyOf([S.number().default(0), S.null()])
-			)
+			.prop("PROC_LOAD_MAX_RSS_BYTES", S.anyOf([S.number(), S.null()]))
 
 			// Rate Limiting
 			.prop("RATE_LIMIT_EXCLUDED_ARRAY", S.anyOf([S.string(), S.null()]))
 			.prop(
 				"RATE_LIMIT_MAX_CONNECTIONS_PER_MIN",
-				S.anyOf([S.number().default(1000), S.null()])
+				S.anyOf([S.number(), S.null()])
 			)
 
 			// Admin login
@@ -129,18 +119,12 @@ async function getConfig() {
 			.prop("ADMIN_PASSWORD", S.string().minLength(8))
 
 			// Bearer token auth
-			.prop(
-				"BEARER_TOKEN_AUTH_ENABLED",
-				S.anyOf([S.boolean().default(false), S.null()])
-			)
+			.prop("BEARER_TOKEN_AUTH_ENABLED", S.anyOf([S.boolean(), S.null()]))
 
 			// Database Connection
 			.prop(
 				"DB_CLIENT",
-				S.anyOf([
-					S.string().enum(["mssql", "postgresql"]).default("mssql"),
-					S.null(),
-				])
+				S.anyOf([S.string().enum(["mssql", "postgresql"]), S.null()])
 			)
 			.prop("DB_CONNECTION_STRING", S.string())
 			.prop("DB_DOCUMENT_REGISTER_TABLE", S.string())
@@ -224,7 +208,6 @@ async function getConfig() {
 				maxAge: 31536000,
 			},
 			// Only supported by Chrome at time of writing
-			// TODO: enable when more browsers support it
 			originAgentCluster: false,
 		},
 		processLoad: {
