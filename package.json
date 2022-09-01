@@ -116,7 +116,7 @@
 		"fluent-json-schema": "^3.1.0",
 		"js2xmlparser": "^4.0.2",
 		"mssql": "^9.0.1",
-		"pg": "^8.7.3",
+		"pg": "^8.8.0",
 		"pg-connection-string": "^2.5.0",
 		"pino": "^8.4.2",
 		"postgrator": "^5.0.1",
