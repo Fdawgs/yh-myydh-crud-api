@@ -240,7 +240,7 @@ describe("Access Route", () => {
 						url: `/${testId}`,
 					});
 
-					// expect(mockQueryFn).toHaveBeenCalledTimes(1);
+					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(response.payload).toBe("");
 					expect(response.statusCode).toBe(204);
 				});
