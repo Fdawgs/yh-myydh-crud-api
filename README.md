@@ -140,7 +140,7 @@ If successful, something similar to the following will be returned:
 
 Provide the client/service with the value in `access.token`, for them to use as bearer tokens when making requests.
 
-The bearer token is hashed, salted, and stored in the `access.tokens` database table.
+The bearer token is bcrypt-hashed and stored in the `access.tokens` database table.
 As such, if a client/service forgets their token, you will need to generate a new one for them and delete the old one.
 
 ## Contributing

@@ -106,6 +106,7 @@
 		"@fastify/static": "^6.5.0",
 		"@fastify/swagger": "^7.5.0",
 		"@fastify/under-pressure": "^8.1.0",
+		"bcryptjs": "^2.4.3",
 		"dotenv": "^16.0.2",
 		"env-schema": "^5.0.0",
 		"fastify": "^4.5.3",

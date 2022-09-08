@@ -1,15 +1,12 @@
 const fp = require("fastify-plugin");
 const bearer = require("@fastify/bearer-auth");
-const { scrypt } = require("crypto");
+const bcrypt = require("bcryptjs");
 const secJSON = require("secure-json-parse");
-const { promisify } = require("util");
-
-const scryptAsync = promisify(scrypt);
 
 /**
  * @author Frazer Smith
  * @description Decorator plugin that adds bearer token authentication,
- * querying a database for hashed and salted bearer token keys.
+ * querying a database for bcrypt-hashed bearer token keys.
  * @param {object} server - Fastify instance.
  */
 async function plugin(server) {
@@ -24,7 +21,6 @@ async function plugin(server) {
 				`SELECT DISTINCT
 					name,
                     hash,
-                    salt,
                     scopes
                 FROM access.tokens
                 WHERE expires > CURRENT_TIMESTAMP`
@@ -38,11 +34,10 @@ async function plugin(server) {
 
 			const authorized = await Promise.any(
 				tokens.map((token) =>
-					scryptAsync(key, token.salt, 64).then((derivedKey) => {
-						if (derivedKey.toString("hex") === token.hash) {
+					bcrypt.compare(key, token.hash).then((result) => {
+						if (result === true) {
 							return token;
 						}
-
 						throw new Error("No match");
 					})
 				)

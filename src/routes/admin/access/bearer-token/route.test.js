@@ -26,7 +26,6 @@ const testDbResult = {
 	name: testReqPayload.name,
 	email: testReqPayload.email,
 	hash: "testhash",
-	salt: "testsalt",
 	expires: testReqPayload.expires,
 	created: "2022-01-18T14:07:48.190Z",
 	last_updated: "2022-01-18T14:07:48.190Z",
@@ -39,7 +38,6 @@ const testResRecord = {
 		email: testDbResult.email,
 		expires: testDbResult.expires,
 		hash: testDbResult.hash,
-		salt: testDbResult.salt,
 		scopes: testReqPayload.scopes,
 	},
 	meta: {
