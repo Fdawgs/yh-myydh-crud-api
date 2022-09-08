@@ -1,5 +1,5 @@
-const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 const secJSON = require("secure-json-parse");
 
 // Import plugins

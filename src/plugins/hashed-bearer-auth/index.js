@@ -1,6 +1,6 @@
 const fp = require("fastify-plugin");
-const bearer = require("@fastify/bearer-auth");
 const bcrypt = require("bcryptjs");
+const bearer = require("@fastify/bearer-auth");
 const secJSON = require("secure-json-parse");
 
 /**
