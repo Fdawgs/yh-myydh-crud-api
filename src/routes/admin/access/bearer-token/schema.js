@@ -57,11 +57,7 @@ const accessRecordBaseSchema = S.object()
 					.examples(["2022-01-13T14:05:54.000Z"])
 					.format("date-time")
 			)
-			.prop("hash", S.string().description("Hashed bearer token"))
-			.prop(
-				"salt",
-				S.string().description("Salt used on hashed bearer token")
-			)
+			.prop("hash", S.string().description("Bcrypt-hashed bearer token"))
 			.prop(
 				"scopes",
 				S.array()

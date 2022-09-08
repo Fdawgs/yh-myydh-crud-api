@@ -16,7 +16,6 @@ module.exports.generateSql = function () {
             name VARCHAR NOT NULL,
             email VARCHAR NOT NULL,
             hash VARCHAR NOT NULL,
-            salt VARCHAR NOT NULL,
             scopes JSONB NOT NULL,
             expires TIMESTAMPTZ NOT NULL,
             created TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,

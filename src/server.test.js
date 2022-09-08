@@ -1,5 +1,6 @@
 const { faker } = require("@faker-js/faker/locale/en_GB");
 const { chromium, firefox } = require("playwright");
+const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const Fastify = require("fastify");
 const isHtml = require("is-html");
@@ -10,23 +11,18 @@ const testId = faker.datatype.uuid();
 
 const testAccessToken = `ydhmyydh_${crypto.randomUUID().replace(/-/g, "_")}`;
 
-const testSalt = crypto.randomBytes(16).toString("hex");
-const testHash = crypto
-	.scryptSync(testAccessToken, testSalt, 64)
-	.toString("hex");
+const testHash = bcrypt.hashSync(testAccessToken, 10);
 
 const testScopes = ["preferences/options.search"];
 
 const testDbBearerToken = {
 	name: faker.commerce.productName(),
-	salt: testSalt,
 	hash: testHash,
 };
 
 // Tests "No match" error thrown in hashed-bearer-auth plugin
 const testDbBearerTokenInvalid = {
 	name: faker.commerce.productName(),
-	salt: testSalt,
 	hash: "brown",
 };
 

@@ -24,7 +24,6 @@ const accessGetRead = ({ id }) => escSq`SELECT
     email,
     scopes,
     hash,
-    salt,
     expires,
     created,
     last_updated
@@ -55,7 +54,6 @@ SELECT DISTINCT
     email,
     scopes,
     hash,
-    salt,
     expires,
     created,
     last_updated
@@ -73,15 +71,14 @@ FETCH NEXT ${perPage} ROWS ONLY;`;
  * @param {string} options.name - Type of matching value.
  * @param {string} options.email - Matching Value.
  * @param {string} options.scopes - JSON string containing actions the bearer token can perform.
- * @param {string} options.hash - Hashed bearer token.
- * @param {string} options.salt - Salt used on hashed bearer token.
+ * @param {string} options.hash - Bcrypt-hashed bearer token.
  * @param {string=} options.expires - Datetime the bearer token expires.
  * @returns {string} Query string.
  */
-const accessPost = ({ client, name, email, scopes, hash, salt, expires }) =>
-	escSq`INSERT INTO access.tokens (name, email, scopes, hash, salt, expires)
+const accessPost = ({ client, name, email, scopes, hash, expires }) =>
+	escSq`INSERT INTO access.tokens (name, email, scopes, hash, expires)
     ${client === "mssql" ? "OUTPUT Inserted.id, Inserted.scopes" : ""}
-    VALUES ('${name}', '${email}', '${scopes}', '${hash}', '${salt}', '${expires}')
+    VALUES ('${name}', '${email}', '${scopes}', '${hash}',, '${expires}')
     ${client === "postgresql" ? "RETURNING id, scopes" : ""};`;
 
 module.exports = {
