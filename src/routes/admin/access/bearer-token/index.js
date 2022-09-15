@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
+const { randomUUID } = require("crypto");
 const secJSON = require("secure-json-parse");
 
 // Import plugins
@@ -363,9 +363,7 @@ async function route(server, options) {
 				 * Underscores are also good as they allow for the whole token to be selected
 				 * when double-clicking on it, as opposed to dashes.
 				 */
-				const key = `ydhmyydh_${crypto
-					.randomUUID()
-					.replace(/-/g, "_")}`;
+				const key = `ydhmyydh_${randomUUID().replace(/-/g, "_")}`;
 
 				const hash = await bcrypt.hash(key, 10);
 
