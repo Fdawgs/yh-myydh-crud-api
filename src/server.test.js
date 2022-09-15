@@ -1,7 +1,7 @@
 const { faker } = require("@faker-js/faker/locale/en_GB");
 const { chromium, firefox } = require("playwright");
 const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
+const { randomUUID } = require("crypto");
 const Fastify = require("fastify");
 const isHtml = require("is-html");
 const startServer = require("./server");
@@ -9,7 +9,7 @@ const getConfig = require("./config");
 
 const testId = faker.datatype.uuid();
 
-const testAccessToken = `ydhmyydh_${crypto.randomUUID().replace(/-/g, "_")}`;
+const testAccessToken = `ydhmyydh_${randomUUID().replace(/-/g, "_")}`;
 
 const testHash = bcrypt.hashSync(testAccessToken, 10);
 
