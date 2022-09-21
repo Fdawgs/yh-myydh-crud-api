@@ -102,7 +102,7 @@ async function plugin(server, config) {
 		/**
 		 * Encapsulate plugins and routes into child context, so that other
 		 * routes do not inherit `accepts` preHandler.
-		 * See https://www.fastify.io/docs/latest/Encapsulation/ for more info
+		 * See https://fastify.io/docs/latest/Reference/Encapsulation/ for more info
 		 */
 		.register(async (serializedContext) => {
 			serializedContext
