@@ -13,12 +13,12 @@
 
 ## Intro
 
-This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s MyYDH RESTful API, a Node.js application using the [Fastify](https://www.fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the [MyYDH patient and clinician app](https://my.ydh.nhs.uk/).
+This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s MyYDH RESTful API, a Node.js application using the [Fastify](https://fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the [MyYDH patient and clinician app](https://my.ydh.nhs.uk/).
 
 ## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/) >=16.0.0 (if running outside of Docker)
--   [SQL Server](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) >=13.0.1601.5 or [PostgreSQL](https://www.postgresql.org/download/) >=9.4 (either as services/instances or Docker containers)
+-   [SQL Server](https://microsoft.com/en-gb/sql-server/sql-server-downloads) >=13.0.1601.5 or [PostgreSQL](https://postgresql.org/download/) >=9.4 (either as services/instances or Docker containers)
 
 ## Setup
 
@@ -82,7 +82,7 @@ To quickly test it, use [Insomnia](https://insomnia.rest/) and import the exampl
 
 ### Deploying Using Docker
 
-This requires [Docker](https://www.docker.com) installed.
+This requires [Docker](https://docker.com) installed.
 
 1. Run `docker compose up` (or `docker compose up -d` to run in the background)
 
