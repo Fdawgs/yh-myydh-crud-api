@@ -53,11 +53,9 @@ async function route(server, options) {
 				// Build WHERE clause using lastModified querystring params
 				const whereArray = [];
 
-				let lastModified = [];
+				let lastModified = new Array(req.query.lastModified);
 				if (Array.isArray(req.query.lastModified)) {
-					lastModified = req.query.lastModified;
-				} else {
-					lastModified.push(req.query.lastModified);
+					lastModified = Array.from(req.query.lastModified);
 				}
 
 				lastModified.forEach((modified) => {
