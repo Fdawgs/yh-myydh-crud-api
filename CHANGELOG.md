@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.1.0](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v10.0.0...v10.1.0) (2022-10-06)
+
+
+### Features
+
+* **config:** use first available open port if `PORT` env variable unset ([#1022](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1022)) ([e61310e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e61310eb29cd43cb0c4e9b8a757b1587e9291ad6))
+
+
+### Continuous Integration
+
+* **cd:** create release asset ([e80a36b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e80a36b9633c48ce55f8e7b6492b8a90c242eab3))
+
+
+### Dependencies
+
+* **.dockerignore:** add `SECURITY.md` ([1dcaff1](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1dcaff133c8a39b7922c3b5ac59186c96c1e89c2))
+* **.dockerignore:** fix `CODE_OF_CONDUCT` entry ([#1024](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1024)) ([5fdefff](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/5fdefff459dc3677882c8facb25f11c2672d079f))
+* **deps-dev:** bump eslint-plugin-jest from 27.0.4 to 27.1.1 ([#1026](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1026)) ([393e74a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/393e74a92faf107564e2c1ae4402051c743b0535))
+* **deps-dev:** bump pino-pretty from 9.1.0 to 9.1.1 ([#1027](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1027)) ([037c79a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/037c79ad7988fe9c3a1e6596873ca6146024d737))
+* **deps:** bump fluent-json-schema from 3.1.0 to 4.0.0 ([#1028](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1028)) ([bb2a62a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/bb2a62a83e8f6f2867f0f393e572ddc3f8371bad))
+
 ## [10.0.0](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.7...v10.0.0) (2022-10-03)
 
 
