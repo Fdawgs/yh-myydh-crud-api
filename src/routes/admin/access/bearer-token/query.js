@@ -78,7 +78,7 @@ FETCH NEXT ${perPage} ROWS ONLY;`;
 const accessPost = ({ client, name, email, scopes, hash, expires }) =>
 	escSq`INSERT INTO access.tokens (name, email, scopes, hash, expires)
     ${client === "mssql" ? "OUTPUT Inserted.id, Inserted.scopes" : ""}
-    VALUES ('${name}', '${email}', '${scopes}', '${hash}',, '${expires}')
+    VALUES ('${name}', '${email}', '${scopes}', '${hash}', '${expires}')
     ${client === "postgresql" ? "RETURNING id, scopes" : ""};`;
 
 module.exports = {
