@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.1.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v10.1.0...v10.1.1) (2022-10-18)
+
+
+### Bug Fixes
+
+* **routes/admin/access/bearer-token:** remove stray `,` ([#1032](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1032)) ([09a1512](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/09a15129cc34221e335185f16ae33db20ff6b6d8))
+
+
+### Miscellaneous
+
+* **server:** remove reference to hardcoded dir ([767212e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/767212e55dcffb065460e561d4cca0f969731b95))
+
+
+### Dependencies
+
+* **deps-dev:** bump @faker-js/faker from 7.5.0 to 7.6.0 ([#1035](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1035)) ([55dd11d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/55dd11d76ec4676ecd6aa62b1d38d4ba3b548d1c))
+* **deps-dev:** bump eslint from 8.24.0 to 8.25.0 ([#1043](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1043)) ([dfe2c90](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/dfe2c90aceea1220a2b5e352baab6bf097d37408))
+* **deps-dev:** bump eslint-plugin-jest from 27.1.1 to 27.1.2 ([#1034](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1034)) ([253bdf1](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/253bdf10ba0d473ff40cd434098d7df0386a9763))
+* **deps-dev:** bump eslint-plugin-jsdoc from 39.3.6 to 39.3.13 ([#1045](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1045)) ([41d93e9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/41d93e983560c2c2dbf8e583cae7a692e3c4868a))
+* **deps-dev:** bump eslint-plugin-promise from 6.0.1 to 6.1.0 ([#1038](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1038)) ([fd9036f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/fd9036fbd76b0caba442099396a51924d63fb429))
+* **deps-dev:** bump jest from 29.1.2 to 29.2.0 ([#1040](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1040)) ([835898b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/835898b4f972fe0ed75fd68d49f7af0a7766f150))
+* **deps-dev:** bump playwright from 1.26.1 to 1.27.1 ([#1041](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1041)) ([02253d2](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/02253d22c5ae0fa184b9e716a65a105366cd5a17))
+* **deps:** bump @fastify/autoload from 5.4.0 to 5.4.1 ([#1042](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1042)) ([ed77423](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ed774233332a81682e13aec181642a5282968149))
+* **deps:** bump @fastify/helmet from 10.0.1 to 10.0.2 ([#1037](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1037)) ([af02562](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/af0256290cdd872e79655efd10118a2a80dae845))
+* **deps:** bump @fastify/rate-limit from 7.4.0 to 7.5.0 ([#1044](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1044)) ([99e398e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/99e398e76fa4b04b733e3f0e5de8f0b7e036bb2e))
+* **deps:** bump @fastify/swagger from 7.6.1 to 8.0.0 ([#1033](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1033)) ([bf70fff](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/bf70fff7178bc7f1e71ab825239caaed53f3c07e))
+* **deps:** bump fastify from 4.7.0 to 4.8.1 ([#1030](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1030)) ([abbea63](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/abbea63e165379be45d42cda2d093cc032e52947))
+* **deps:** bump fastify from 4.8.1 to 4.9.1 ([#1036](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1036)) ([d83d56a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d83d56ae0293e44b2bbaf1bf2df5a5e5306011de))
+* **deps:** bump fastify-plugin from 4.2.1 to 4.3.0 ([#1039](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1039)) ([9ac2b5e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9ac2b5e35026e739d059162b941d96a10518ce3c))
+
+
+### Continuous Integration
+
+* **cd:** remove test files from release asset ([#1046](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1046)) ([6c8be8e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6c8be8edf1e6217bfa68af57ead3b6b4a75efbbc))
+
 ## [10.1.0](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v10.0.0...v10.1.0) (2022-10-06)
 
 
