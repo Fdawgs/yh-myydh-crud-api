@@ -51,8 +51,8 @@ The service should be up and running on the port set in the config. You should s
 ```json
 {
 	"level": "info",
-	"time": "2022-01-10T10:17:35.556Z",
-	"pid": 18,
+	"time": "2022-10-20T08:06:32.354Z",
+	"pid": 18604,
 	"hostname": "MYCOMPUTER",
 	"msg": "Connecting to MSSQL DB"
 }
@@ -61,8 +61,8 @@ The service should be up and running on the port set in the config. You should s
 ```json
 {
 	"level": "info",
-	"time": "2022-01-10T10:17:35.558Z",
-	"pid": 18,
+	"time": "2022-10-20T08:06:32.381Z",
+	"pid": 18604,
 	"hostname": "MYCOMPUTER",
 	"msg": "MSSQL DB connection opened"
 }
@@ -71,10 +71,10 @@ The service should be up and running on the port set in the config. You should s
 ```json
 {
 	"level": "info",
-	"time": "2022-01-10T10:17:35.760Z",
-	"pid": 18,
+	"time": "2022-10-20T08:06:32.934Z",
+	"pid": 18604,
 	"hostname": "MYCOMPUTER",
-	"msg": "Server listening at http://0.0.0.0:8204"
+	"msg": "Server listening at http://127.0.0.1:51616"
 }
 ```
 
