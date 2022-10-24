@@ -33,7 +33,7 @@ Perform the following steps before deployment:
 > You will need to create a database before using it in the `DB_CONNECTION_STRING` environment variable (this does not apply if using the included Docker Compose file to deploy)
 
 > **Note**
-> Set the following environment variables in `.env` to meet NHS Digital's recommendation to retain 6 months' worth of logs:
+> Set the following environment variables in `.env` to meet NHS Digital's recommendation to retain six months' worth of logs:
 >
 > -   `LOG_ROTATION_DATE_FORMAT="YYYY-MM-DD"`
 > -   `LOG_ROTATION_FREQUENCY="daily"`
@@ -92,8 +92,8 @@ If you are unable to deploy this into production using Docker, it is recommended
 
 1. Run `npm ci --ignore-scripts --omit=dev` to install dependencies
 2. Run `npm i -g pm2` to install pm2 globally
-3. Launch application with `pm2 start .pm2.config.js`
-4. Check the application has been deployed using `pm2 list` or `pm2 monit`
+3. Launch the application with `pm2 start .pm2.config.js`
+4. Check that the application has been deployed using `pm2 list` or `pm2 monit`
 
 #### To Install as a Windows Service:
 
@@ -141,7 +141,7 @@ If successful, something similar to the following will be returned:
 Provide the client/service with the value in `access.token`, for them to use as bearer tokens when making requests.
 
 The bearer token is bcrypt-hashed and stored in the `access.tokens` database table.
-As such, if a client/service forgets their token, you will need to generate a new one for them and delete the old one.
+If a client/service forgets their token, you will need to generate a new one for them and delete the old one.
 
 ## Contributing
 
