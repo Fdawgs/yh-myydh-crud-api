@@ -104,7 +104,7 @@
 		"@fastify/rate-limit": "^7.5.0",
 		"@fastify/sensible": "^5.1.1",
 		"@fastify/static": "^6.5.0",
-		"@fastify/swagger": "^8.0.0",
+		"@fastify/swagger": "^8.1.0",
 		"@fastify/under-pressure": "^8.1.0",
 		"bcryptjs": "^2.4.3",
 		"dotenv": "^16.0.3",
