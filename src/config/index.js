@@ -133,8 +133,6 @@ async function getConfig() {
 			.prop("DB_PATIENT_PREFERENCES_VALUE_TABLE", S.string())
 			.prop("DB_READ_RECEIPT_DOCS_TABLE", S.string())
 			.required([
-				"NODE_ENV",
-				"HOST",
 				"DB_CONNECTION_STRING",
 				"DB_DOCUMENT_REGISTER_TABLE",
 				"DB_PATIENT_PREFERENCES_TABLE",
