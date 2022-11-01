@@ -83,7 +83,7 @@ async function route(server, options) {
 		// Enable CORS if options passed
 		.register(cors, {
 			...options.cors,
-			methods: ["DELETE", "GET", "POST"],
+			methods: ["DELETE", "GET", "HEAD", "POST"],
 		});
 
 	server.route({

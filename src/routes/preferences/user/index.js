@@ -31,7 +31,7 @@ async function route(server, options) {
 		// Enable CORS if options passed
 		.register(cors, {
 			...options.cors,
-			methods: ["GET", "PUT"],
+			methods: ["GET", "HEAD", "PUT"],
 		});
 
 	server.route({
