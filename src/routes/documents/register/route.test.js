@@ -1,4 +1,3 @@
-const { faker } = require("@faker-js/faker/locale/en_GB");
 const Fastify = require("fastify");
 const sensible = require("@fastify/sensible");
 const route = require(".");
@@ -7,13 +6,10 @@ const cleanObject = require("../../../plugins/clean-object");
 const convertDateParamOperator = require("../../../plugins/convert-date-param-operator");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
-const testPage = faker.datatype.number({
-	min: 1,
-	max: 10,
-});
+const testPage = 2;
 
-const testLastModified1 = faker.date.past().toISOString().split("T")[0];
-const testLastModified2 = faker.date.past().toISOString().split("T")[0];
+const testLastModified1 = "2018-08-01";
+const testLastModified2 = "2022-11-07";
 
 const mockRecord = {
 	guid: "EXAMPLEGUID-0123456789-99999",

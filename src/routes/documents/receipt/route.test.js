@@ -1,19 +1,12 @@
-const { faker } = require("@faker-js/faker/locale/en_GB");
 const Fastify = require("fastify");
 const sensible = require("@fastify/sensible");
 const route = require(".");
 const getConfig = require("../../../config");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
-const testId = faker.datatype.number({
-	min: 1,
-	max: 10,
-});
-const testPatientId = faker.datatype.number({
-	min: 1000000000,
-	max: 9999999999,
-});
-const testTimeStamp = faker.date.past().toISOString();
+const testId = 1;
+const testPatientId = 9999999999;
+const testTimeStamp = "2018-08-01T03:51:54.000Z";
 
 describe("Receipt Route", () => {
 	const connectionTests = [
