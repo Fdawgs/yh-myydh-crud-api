@@ -1,4 +1,4 @@
-const { faker } = require("@faker-js/faker/locale/en_GB");
+const { randomUUID } = require("crypto");
 const Fastify = require("fastify");
 const sensible = require("@fastify/sensible");
 const route = require(".");
@@ -9,15 +9,15 @@ const sharedSchemas = require("../../../../plugins/shared-schemas");
 
 const testPage = 1;
 
-const testDate1 = faker.date.past().toISOString().split("T")[0];
-const testDate2 = faker.date.past().toISOString().split("T")[0];
+const testDate1 = "2018-08-01";
+const testDate2 = "2022-11-07";
 
-const testId = faker.datatype.uuid();
+const testId = randomUUID();
 
 const testReqPayload = {
-	name: faker.commerce.productName(),
-	email: faker.internet.email(),
-	expires: faker.date.past().toISOString().split("T")[0],
+	name: "Test Clinical System Supplier Product",
+	email: "testFirstName.testLastName@ydh.nhs.uk",
+	expires: "2022-11-07",
 	scopes: ["documents/register.search", "documents/receipt.delete"],
 };
 
