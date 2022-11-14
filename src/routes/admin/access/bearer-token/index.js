@@ -361,7 +361,7 @@ async function route(server, options) {
 				 * generated strings.
 				 *
 				 * Underscores are also good as they allow for the whole token to be selected
-				 * when double-clicking on it, as opposed to dashes.
+				 * when double-clicking on it, as opposed to dashes
 				 */
 				const key = `ydhmyydh_${randomUUID().replace(/-/g, "_")}`;
 

@@ -4,7 +4,7 @@ const tags = ["Documents"];
 
 /**
  * JSON Schema expects a String, `fluent-json-schema` converts this from
- * a RegExp to a String. JSON Schema does not support Regex flags.
+ * a RegExp to a String. JSON Schema does not support Regex flags
  */
 const dateTimeSearchPattern =
 	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-[0-1]\d-[0-3]\d(?:T(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:Z|[+-]\d\d(?::?\d\d)?))?$/m;
@@ -24,7 +24,7 @@ const dateTimeSearchPatternExamples = [
  * Fastify uses AJV for JSON Schema Validation,
  * see https://fastify.io/docs/latest/Reference/Validation-and-Serialization/
  *
- * Input validation protects against XSS, HPP, and most injection attacks.
+ * Input validation protects against XSS, HPP, and most injection attacks
  */
 const registerGetSchema = {
 	tags,
