@@ -3,12 +3,17 @@ FROM node:lts-alpine
 # Workdir
 WORKDIR /usr/app
 
-# Copy and install packages
-COPY . .
+# Install OS dependencies
 # Curl needed for healthcheck command
-RUN apk add --no-cache curl && \
-    npm ci --ignore-scripts --omit=dev && \
+RUN apk add --no-cache curl
+
+# Copy and install node dependencies
+COPY package.json package-lock.json ./
+RUN npm ci --ignore-scripts --omit=dev && \
     npm cache clean --force
+
+# Copy source
+COPY . .
 
 # Node images provide 'node' unprivileged user to run apps and prevent
 # privilege escalation attacks
