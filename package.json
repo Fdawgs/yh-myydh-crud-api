@@ -14,7 +14,7 @@
 		"node": ">=16.0.0"
 	},
 	"scripts": {
-		"benchmark": "autocannon -a 1000 \"http://0.0.0.0:8204/preferences/options\"",
+		"benchmark": "autocannon -a 1000 \"http://0.0.0.0:3000/preferences/options\"",
 		"db:migrate": "node ./src/migrate.js",
 		"jest": "jest",
 		"jest:coverage": "jest --coverage",
