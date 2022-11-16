@@ -88,7 +88,7 @@ describe("Configuration", () => {
 		const config = await getConfig();
 
 		expect(config.fastify).toEqual({
-			port: 0,
+			port: 3000,
 		});
 
 		expect(config.fastifyInit.logger).toEqual({

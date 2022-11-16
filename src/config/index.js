@@ -147,8 +147,7 @@ async function getConfig() {
 
 	const config = {
 		fastify: {
-			// 0 picks the first available open port
-			port: env.PORT || 0,
+			port: env.PORT || 3000,
 		},
 		fastifyInit: {
 			/**
