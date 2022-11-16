@@ -32,7 +32,7 @@ describe("Configuration", () => {
 		const HTTPS_HTTP2_ENABLED = "";
 		const LOG_LEVEL = "";
 		const LOG_ROTATION_DATE_FORMAT = "";
-		const LOG_ROTATION_FILENAME = "./test_resources/test-log-%DATE%.log";
+		const LOG_ROTATION_FILENAME = "";
 		const LOG_ROTATION_FREQUENCY = "";
 		const PROC_LOAD_MAX_EVENT_LOOP_DELAY = "";
 		const PROC_LOAD_MAX_EVENT_LOOP_UTILIZATION = "";
@@ -100,7 +100,6 @@ describe("Configuration", () => {
 				res: expect.any(Function),
 			},
 			timestamp: expect.any(Function),
-			stream: expect.any(Object),
 		});
 		expect(config.fastifyInit.logger.formatters.level()).toEqual({
 			level: undefined,
@@ -152,6 +151,66 @@ describe("Configuration", () => {
 		});
 	});
 
+	test("Should use defaults logging values if values missing", async () => {
+		const LOG_LEVEL = "";
+		const LOG_ROTATION_DATE_FORMAT = "";
+		const LOG_ROTATION_FILENAME = "./test_resources/test-log-%DATE%.log";
+		const LOG_ROTATION_FREQUENCY = "";
+		const ADMIN_USERNAME = "admin";
+		const ADMIN_PASSWORD = "password";
+		const DB_CLIENT = "";
+		const DB_CONNECTION_STRING =
+			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
+		const DB_DOCUMENT_REGISTER_TABLE = "YDHAPPDOC.dbo.SPINDEX";
+		const DB_PATIENT_PREFERENCES_TABLE = "patient.preferences";
+		const DB_PATIENT_PREFERENCES_TYPE_TABLE = "lookup.preferenceType";
+		const DB_PATIENT_PREFERENCES_VALUE_TABLE = "lookup.preferenceValue";
+		const DB_READ_RECEIPT_DOCS_TABLE = "receipt.documents";
+
+		Object.assign(process.env, {
+			LOG_LEVEL,
+			LOG_ROTATION_DATE_FORMAT,
+			LOG_ROTATION_FILENAME,
+			LOG_ROTATION_FREQUENCY,
+			ADMIN_USERNAME,
+			ADMIN_PASSWORD,
+			DB_CLIENT,
+			DB_CONNECTION_STRING,
+			DB_DOCUMENT_REGISTER_TABLE,
+			DB_PATIENT_PREFERENCES_TABLE,
+			DB_PATIENT_PREFERENCES_TYPE_TABLE,
+			DB_PATIENT_PREFERENCES_VALUE_TABLE,
+			DB_READ_RECEIPT_DOCS_TABLE,
+		});
+
+		const config = await getConfig();
+
+		expect(config.fastifyInit.logger).toEqual({
+			formatters: { level: expect.any(Function) },
+			level: "info",
+			redact: ["req.headers.authorization"],
+			serializers: {
+				req: expect.any(Function),
+				res: expect.any(Function),
+			},
+			stream: expect.any(Object),
+			timestamp: expect.any(Function),
+		});
+		expect(config.fastifyInit.logger.formatters.level()).toEqual({
+			level: undefined,
+		});
+		expect(config.fastifyInit.logger.stream.config.options).toEqual(
+			expect.objectContaining({
+				filename: LOG_ROTATION_FILENAME,
+				date_format: "YYYY-MM-DD",
+				frequency: "daily",
+			})
+		);
+		expect(config.fastifyInit.logger.timestamp().substring(0, 7)).toBe(
+			',"time"'
+		);
+	});
+
 	test("Should return values according to environment variables - HTTPS (SSL cert) enabled and HTTP2 enabled", async () => {
 		const HOST = "0.0.0.0";
 		const PORT = 443;
@@ -162,7 +221,7 @@ describe("Configuration", () => {
 		const LOG_LEVEL = "trace";
 		const LOG_ROTATION_DATE_FORMAT = "YYYY-MM";
 		const LOG_ROTATION_FILENAME = "./test_resources/test-log-%DATE%.log";
-		const LOG_ROTATION_FREQUENCY = "custom";
+		const LOG_ROTATION_FREQUENCY = "date";
 		const LOG_ROTATION_MAX_LOGS = "1";
 		const LOG_ROTATION_MAX_SIZE = "1g";
 		const PROC_LOAD_MAX_EVENT_LOOP_DELAY = 1000;
@@ -228,12 +287,21 @@ describe("Configuration", () => {
 				req: expect.any(Function),
 				res: expect.any(Function),
 			},
-			timestamp: expect.any(Function),
 			stream: expect.any(Object),
+			timestamp: expect.any(Function),
 		});
 		expect(config.fastifyInit.logger.formatters.level()).toEqual({
 			level: undefined,
 		});
+		expect(config.fastifyInit.logger.stream.config.options).toEqual(
+			expect.objectContaining({
+				date_format: LOG_ROTATION_DATE_FORMAT,
+				filename: LOG_ROTATION_FILENAME,
+				frequency: LOG_ROTATION_FREQUENCY,
+				max_logs: LOG_ROTATION_MAX_LOGS,
+				size: LOG_ROTATION_MAX_SIZE,
+			})
+		);
 		expect(config.fastifyInit.logger.timestamp().substring(0, 7)).toBe(
 			',"time"'
 		);
