@@ -107,7 +107,7 @@
 		"@fastify/under-pressure": "^8.1.0",
 		"bcryptjs": "^2.4.3",
 		"dotenv": "^16.0.3",
-		"env-schema": "^5.1.0",
+		"env-schema": "^5.1.1",
 		"fastify": "^4.9.2",
 		"fastify-disablecache": "^3.0.4",
 		"fastify-floc-off": "^2.0.4",
