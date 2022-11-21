@@ -8,12 +8,8 @@ describe("Convert-Date-Param-Operator Plugin", () => {
 		server = Fastify();
 
 		await server.register(plugin);
-		server.route({
-			method: "PUT",
-			url: "/",
-			handler: (req, res) => {
-				res.send(server.convertDateParamOperator(req.body));
-			},
+		server.put("/", (req, res) => {
+			res.send(server.convertDateParamOperator(req.body));
 		});
 
 		await server.ready();

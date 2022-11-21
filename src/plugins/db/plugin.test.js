@@ -21,13 +21,9 @@ describe("DB Plugin", () => {
 
 			server = Fastify();
 			await server.register(plugin, config.database);
-			server.route({
-				method: "GET",
-				url: "/",
-				handler: async () => {
-					const results = await server.db.query(query);
-					return results;
-				},
+			server.get("/", async () => {
+				const results = await server.db.query(query);
+				return results;
 			});
 
 			await server.ready();
@@ -63,13 +59,9 @@ describe("DB Plugin", () => {
 
 			server = Fastify();
 			await server.register(plugin, config.database);
-			server.route({
-				method: "GET",
-				url: "/",
-				handler: async () => {
-					const results = await server.db.query(query);
-					return results.rows;
-				},
+			server.get("/", async () => {
+				const results = await server.db.query(query);
+				return results.rows;
 			});
 
 			await server.ready();
