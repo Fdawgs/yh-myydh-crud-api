@@ -8,20 +8,12 @@ describe("Clean-Object Plugin", () => {
 		server = Fastify();
 
 		await server.register(plugin);
-		server.route({
-			method: "PUT",
-			url: "/",
-			handler: (req, res) => {
-				res.send(server.cleanObject(req.body));
-			},
+		server.put("/", (req, res) => {
+			res.send(server.cleanObject(req.body));
 		});
 
-		server.route({
-			method: "PUT",
-			url: "/empty",
-			handler: (req, res) => {
-				res.send(server.cleanObject());
-			},
+		server.put("/empty", (req, res) => {
+			res.send(server.cleanObject());
 		});
 
 		await server.ready();
