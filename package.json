@@ -24,7 +24,6 @@
 		"lint:prettier:ci": "prettier . -c -u",
 		"prepare": "husky install",
 		"start": "node .",
-		"start:migrate": "node ./src/migrate.js && node .",
 		"start:dev": "nodemon | pino-pretty",
 		"test": "npm run lint && npm run jest",
 		"test:db:mssql:build": "docker run -p 1433:1433 --name ydh-myydh-crud-api-mssql -e ACCEPT_EULA=Y -e SA_PASSWORD=Password! -e MSSQL_PID=Express -d mcr.microsoft.com/mssql/server:2019-latest",
