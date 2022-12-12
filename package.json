@@ -103,7 +103,7 @@
 		"@fastify/sensible": "^5.2.0",
 		"@fastify/static": "^6.5.1",
 		"@fastify/swagger": "^8.2.1",
-		"@fastify/under-pressure": "^8.1.0",
+		"@fastify/under-pressure": "^8.2.0",
 		"bcryptjs": "^2.4.3",
 		"dotenv": "^16.0.3",
 		"env-schema": "^5.2.0",
