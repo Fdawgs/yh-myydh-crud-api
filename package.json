@@ -110,7 +110,7 @@
 		"fastify": "^4.10.2",
 		"fastify-disablecache": "^3.0.4",
 		"fastify-floc-off": "^2.0.4",
-		"fastify-plugin": "^4.3.0",
+		"fastify-plugin": "^4.4.0",
 		"file-stream-rotator": "^1.0.0",
 		"fluent-json-schema": "^4.0.0",
 		"js2xmlparser": "^5.0.0",
