@@ -8,6 +8,7 @@ const tags = ["System Administration"];
  * a RegExp to a String. JSON Schema does not support Regex flags
  */
 const dateTimeSearchPattern =
+	// eslint-disable-next-line security/detect-unsafe-regex
 	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-[0-1]\d-[0-3]\d(?:T(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:Z|[+-]\d\d(?::?\d\d)?))?$/m;
 
 const dateTimeSearchPatternExamples = [
