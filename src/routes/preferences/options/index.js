@@ -14,7 +14,7 @@ const { optionsSelect } = require("./query");
  * @param {object} options.database - Database config values.
  * @param {object} options.database.tables - Database tables.
  * @param {string} options.database.tables.patientPrefTypeLookup - Name and schema of patient preferences type table.
- * @param {string} options.database.tables.patientPrefValueLookup - Name and schema of patient preference value table.
+ * @param {string} options.database.tables.patientPrefValueLookup - Name and schema of patient preferences value table.
  */
 async function route(server, options) {
 	if (options.bearerTokenAuthEnabled) {
