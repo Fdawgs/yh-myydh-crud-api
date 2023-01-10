@@ -123,7 +123,7 @@
 		"pino": "^8.8.0",
 		"postgrator": "^5.0.1",
 		"redoc": "^2.0.0",
-		"secure-json-parse": "^2.6.0",
+		"secure-json-parse": "^2.7.0",
 		"upath": "^2.0.1"
 	}
 }
