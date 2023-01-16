@@ -59,7 +59,7 @@ SELECT DISTINCT
     last_updated
 FROM access.tokens
 WHERE ${whereClausePredicates}
-ORDER BY created DESC
+ORDER BY created ASC
 OFFSET ${page * perPage} ROWS
 FETCH NEXT ${perPage} ROWS ONLY;`;
 

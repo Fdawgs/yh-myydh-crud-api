@@ -39,7 +39,7 @@ Modified AS "modifiedDate",
 patient_visible AS "patientVisible"
 FROM ${documentRegisterTable}
 WHERE ${whereClausePredicates}
-ORDER BY Modified DESC
+ORDER BY CreatedDate ASC
 OFFSET ${page * perPage} ROWS
 FETCH NEXT ${perPage} ROWS ONLY;`;
 
