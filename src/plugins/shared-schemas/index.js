@@ -20,6 +20,19 @@ async function plugin(server) {
 			.title("Responses")
 			.description("Common response schemas")
 			.prop(
+				"badRequest",
+				S.object()
+					.title("400 Bad Request")
+					.prop("statusCode", S.number().const(400))
+					.prop("error", S.string().const("Bad Request"))
+					.prop(
+						"message",
+						S.string().examples([
+							"No valid query string parameters provided",
+						])
+					)
+			)
+			.prop(
 				"unauthorized",
 				S.object()
 					.title("401 Unauthorized")

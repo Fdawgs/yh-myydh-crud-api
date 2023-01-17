@@ -94,6 +94,9 @@ const userGetSchema = {
 					.maxItems(4)
 					.uniqueItems(true)
 			),
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
@@ -150,6 +153,9 @@ const userPutSchema = {
 		.required("preferences"),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
