@@ -169,6 +169,9 @@ const registerGetSchema = {
 							.prop("total_pages", S.number().examples([1, 10]))
 					)
 			),
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),

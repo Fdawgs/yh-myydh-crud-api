@@ -111,6 +111,9 @@ const accessDeleteSchema = {
 		.required(["id"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
@@ -150,6 +153,9 @@ const accessGetReadSchema = {
 		.required(["id"]),
 	response: {
 		200: accessRecordBaseSchema,
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
@@ -441,6 +447,9 @@ const accessPostSchema = {
 					)
 			)
 			.required(["access"]),
+		400: S.ref("responses#/properties/badRequest").description(
+			"Bad Request"
+		),
 		401: S.ref("responses#/properties/unauthorized").description(
 			"Unauthorized"
 		),
