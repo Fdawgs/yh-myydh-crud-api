@@ -12,6 +12,7 @@ const flocOff = require("fastify-floc-off");
 const helmet = require("@fastify/helmet");
 const rateLimit = require("@fastify/rate-limit");
 const sensible = require("@fastify/sensible");
+const serialiseJsonToXml = require("fastify-json-to-xml");
 const staticPlugin = require("@fastify/static");
 const swagger = require("@fastify/swagger");
 const underPressure = require("@fastify/under-pressure");
@@ -19,7 +20,6 @@ const clean = require("./plugins/clean-object");
 const convertDateParamOperator = require("./plugins/convert-date-param-operator");
 const db = require("./plugins/db");
 const hashedBearerAuth = require("./plugins/hashed-bearer-auth");
-const serialiseJsonToXml = require("./plugins/serialise-json-to-xml");
 const sharedSchemas = require("./plugins/shared-schemas");
 
 /**
