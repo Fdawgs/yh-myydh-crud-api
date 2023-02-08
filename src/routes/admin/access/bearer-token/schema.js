@@ -302,7 +302,7 @@ const accessGetSearchSchema = {
 				.minimum(1)
 				.maximum(100)
 		),
-	responses: {
+	response: {
 		200: S.object()
 			.additionalProperties(false)
 			.prop("link", S.string().format("uri"))
