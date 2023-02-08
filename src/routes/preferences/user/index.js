@@ -21,9 +21,16 @@ const { userInsert, userSelect } = require("./query");
 async function route(server, options) {
 	if (options.bearerTokenAuthEnabled) {
 		const security = [{ bearerToken: [] }];
+		const unauthRef = {
+			$ref: "responses#/properties/unauthorized",
+			description: "Unauthorized",
+		};
 
 		userGetSchema.security = security;
+		userGetSchema.response[401] = unauthRef;
+
 		userPutSchema.security = security;
+		userPutSchema.response[401] = unauthRef;
 	}
 
 	// Register plugins
