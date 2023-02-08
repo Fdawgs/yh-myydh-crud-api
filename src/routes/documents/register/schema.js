@@ -172,9 +172,6 @@ const registerGetSchema = {
 		400: S.ref("responses#/properties/badRequest").description(
 			"Bad Request"
 		),
-		401: S.ref("responses#/properties/unauthorized").description(
-			"Unauthorized"
-		),
 		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
 		),

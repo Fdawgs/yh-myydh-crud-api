@@ -38,9 +38,6 @@ const receiptDeleteSchema = {
 		400: S.ref("responses#/properties/badRequest").description(
 			"Bad Request"
 		),
-		401: S.ref("responses#/properties/unauthorized").description(
-			"Unauthorized"
-		),
 		404: S.ref("responses#/properties/notFoundDbResults").description(
 			"Not Found"
 		),
@@ -96,9 +93,6 @@ const receiptPutSchema = {
 		204: S.string().raw({ nullable: true }).description("No Content"),
 		400: S.ref("responses#/properties/badRequest").description(
 			"Bad Request"
-		),
-		401: S.ref("responses#/properties/unauthorized").description(
-			"Unauthorized"
 		),
 		406: S.ref("responses#/properties/notAcceptable").description(
 			"Not Acceptable"

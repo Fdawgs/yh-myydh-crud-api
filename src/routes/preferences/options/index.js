@@ -19,6 +19,10 @@ const { optionsSelect } = require("./query");
 async function route(server, options) {
 	if (options.bearerTokenAuthEnabled) {
 		optionsGetSchema.security = [{ bearerToken: [] }];
+		optionsGetSchema.response[401] = {
+			$ref: "responses#/properties/unauthorized",
+			description: "Unauthorized",
+		};
 	}
 
 	// Register plugins

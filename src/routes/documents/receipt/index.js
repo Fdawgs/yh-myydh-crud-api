@@ -19,9 +19,16 @@ const { receiptDelete, receiptInsert } = require("./query");
 async function route(server, options) {
 	if (options.bearerTokenAuthEnabled) {
 		const security = [{ bearerToken: [] }];
+		const unauthRef = {
+			$ref: "responses#/properties/unauthorized",
+			description: "Unauthorized",
+		};
 
 		receiptDeleteSchema.security = security;
+		receiptDeleteSchema.response[401] = unauthRef;
+
 		receiptPutSchema.security = security;
+		receiptPutSchema.response[401] = unauthRef;
 	}
 
 	// Register plugins
