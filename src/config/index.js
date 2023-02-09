@@ -255,7 +255,7 @@ async function getConfig() {
 							"Yeovil District Hospital NHS Foundation Trust Logo",
 					},
 				},
-				// Components object always needed as shared schemas are added to it
+				// Components object always populated by shared schemas at launch
 				components: {
 					securitySchemes: {
 						basicAuth: {
