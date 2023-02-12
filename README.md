@@ -11,7 +11,7 @@
 
 > Yeovil District Hospital NHSFT's RESTful CRUD API for the MyYDH app
 
-## Intro
+## Overview
 
 This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s MyYDH RESTful API, a Node.js application using the [Fastify](https://fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the [MyYDH patient and clinician app](https://my.ydh.nhs.uk/).
 
@@ -46,7 +46,7 @@ Perform the following steps before deployment:
 1. Run `npm ci --ignore-scripts --omit=dev` to install dependencies
 2. Run `npm start`
 
-The service should be up and running on the port set in the config. You should see output similar to the following in stdout or in the log file specified using the `LOG_ROTATION_FILENAME` environment variable:
+The service should be up and running on the port set in the config. Output similar to the following should appear in stdout or in the log file specified using the `LOG_ROTATION_FILENAME` environment variable:
 
 ```json
 {
@@ -88,7 +88,7 @@ This requires [Docker](https://docker.com) installed.
 
 ### Deploying Using PM2
 
-If you cannot deploy this into production using Docker, use a process manager such as [PM2](https://pm2.keymetrics.io/).
+If this cannot be deployed into production using Docker, use a process manager such as [PM2](https://pm2.keymetrics.io/).
 
 1. Run `npm ci --ignore-scripts --omit=dev` to install dependencies
 2. Run `npm i -g pm2` to install pm2 globally
