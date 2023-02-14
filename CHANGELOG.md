@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [11.0.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.2...v11.0.3) (2023-02-01)
 
 
-### Bug Fixes
+### Bug fixes
 
 * pagination skipping concurrently created records ([#1144](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1144)) ([8c851a4](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8c851a4dec1ac655a153c03624907303048db251))
 * **routes:** missing 400 response in openapi schema ([#1145](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1145)) ([76c1799](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/76c17997bc13ea7089875165049c81a8a5187d29))
@@ -53,14 +53,14 @@ All notable changes to this project will be documented in this file.
 * use esbuild to compile ([#1137](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1137)) ([053ef2b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/053ef2bd7682cf6180f1aa0b661af5e39c1c6b16))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **cd:** add missing install step ([af4b9f7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/af4b9f776a3ef2eb26f4096ca6f7d9ef9623c820))
 
 ## [11.0.2](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.1...v11.0.2) (2023-01-05)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/docs:** limit files served from redoc module ([12ef711](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/12ef711722d7ab94e45a8d30ae2997ff9dcb0087))
 
@@ -108,7 +108,7 @@ All notable changes to this project will be documented in this file.
 * **package:** remove `start:migrate` script ([#1106](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1106)) ([427ca7b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/427ca7b95be8af33f8e3c7d0fccd030ada252f11))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **cd:** remove dev values from `package.json` ([#1107](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1107)) ([f056ffc](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f056ffcf369c7bb5900b592f58be9697d6bf9513))
 
@@ -153,7 +153,7 @@ All notable changes to this project will be documented in this file.
 * **config:** use port 3000 if `PORT` env variable unset (#1074)
 * **deps:** `LOG_ROTATION_FREQUENCY` env variable accepted values changed from "daily, custom, or test" to "daily, date, [1-12]h, or [1-30]m"
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** use port 3000 if `PORT` env variable unset ([#1074](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1074)) ([0a19fa9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0a19fa93cd8f00076924cf4fea2cef7d223d2e0d))
 * **routes:** add `HEAD` to cors allowed methods ([#1066](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1066)) ([abe07c6](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/abe07c67dd1b0c7c3f902e76194af75afe73bf41))
@@ -196,7 +196,7 @@ All notable changes to this project will be documented in this file.
 ## [10.1.2](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v10.1.1...v10.1.2) (2022-11-01)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes:** accept header handling ([a8ec5cd](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a8ec5cde69dfe38162e5c14c776a20349f094a7a))
 * **routes:** openapi schema content types ([e81f4f1](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e81f4f1e137851612f38cbe5f4085b3f057e6d46))
@@ -239,7 +239,7 @@ All notable changes to this project will be documented in this file.
 ## [10.1.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v10.1.0...v10.1.1) (2022-10-18)
 
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/admin/access/bearer-token:** remove stray `,` ([#1032](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1032)) ([09a1512](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/09a15129cc34221e335185f16ae33db20ff6b6d8))
 
@@ -267,7 +267,7 @@ All notable changes to this project will be documented in this file.
 * **deps:** bump fastify-plugin from 4.2.1 to 4.3.0 ([#1039](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1039)) ([9ac2b5e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9ac2b5e35026e739d059162b941d96a10518ce3c))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **cd:** remove test files from release asset ([#1046](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1046)) ([6c8be8e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6c8be8edf1e6217bfa68af57ead3b6b4a75efbbc))
 
@@ -279,7 +279,7 @@ All notable changes to this project will be documented in this file.
 * **config:** use first available open port if `PORT` env variable unset ([#1022](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1022)) ([e61310e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e61310eb29cd43cb0c4e9b8a757b1587e9291ad6))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **cd:** create release asset ([e80a36b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e80a36b9633c48ce55f8e7b6492b8a90c242eab3))
 
@@ -300,13 +300,13 @@ All notable changes to this project will be documented in this file.
 * **routes/admin/access:** bcrypt now used for hashing stored bearer tokens
 * **config:** `SERVICE_HOST` and `SERVICE_PORT` env variables renamed to `HOST` and `PORT` respectively.
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** use `HOST` and `PORT` env variables for cloud services ([68c36f6](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/68c36f6378f5f9260ec0b5c0d1cb8b6f99c662da))
 * **plugins/serialize-json-to-xml:** rep invalid xml chars with U+FFFD ([#1000](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1000)) ([e63bfee](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e63bfee5fc4677eb7a5e71a5551e104904dae809))
 
 
-### Continuous Integration
+### Continuous integration
 
 * **link-check:** skip checking ydh domain ([3bb16fb](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3bb16fb328814c7488757da88ab3cc90b3fbe478))
 
@@ -359,7 +359,7 @@ All notable changes to this project will be documented in this file.
 
 ## [9.0.7](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.6...v9.0.7) (2022-09-05)
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** `default` throws exceptions when used in `anyOf` schemas ([e484456](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e484456e23dcf7a26e9641fe96e5d2e102ba2413))
 * **plugins/shared-schemas:** replace 500 response message const ([cddf1da](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/cddf1da9505de3cc3b82682b805e11fca6eb8a15))
@@ -442,7 +442,7 @@ All notable changes to this project will be documented in this file.
 
 ## [9.0.4](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.3...v9.0.4) (2022-08-09)
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** log rotation max files ([#933](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/933)) ([c0661bf](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c0661bfb5fd745bc0118b7035d14f5da1cc70bd0))
 
@@ -460,7 +460,7 @@ All notable changes to this project will be documented in this file.
 
 ## [9.0.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v9.0.2...v9.0.3) (2022-08-04)
 
-### Bug Fixes
+### Bug fixes
 
 * **routes:** invalid openapi shared schema definitions ([#929](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/929)) ([d4ce95c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d4ce95cb1b665efadaa4e4b4b59172cd5b04c9ed))
 * **server:** reduce `content-security-policy` for options routes ([#931](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/931)) ([4f793ce](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/4f793cedb3e94b5c78e14f99326fe4bf7fd7aa0c))
@@ -475,7 +475,7 @@ All notable changes to this project will be documented in this file.
 
 * migrate from fastify v3 to v4 ([#914](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/914)) ([696833f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/696833f17e2eb6304ced55fe1a5aadc1ccc57530))
 
-### Continuous Integration
+### Continuous integration
 
 * **ci:** audit npm package signatures ([aa6e88f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/aa6e88f855271d870e17bf6eeaf98106afd068e0))
 
@@ -527,7 +527,7 @@ All notable changes to this project will be documented in this file.
 * **plugins/hashed-bearer-auth:** Dropped support for node 14 to be able to use `Promise.any()`
 * scrypt now used for hashing stored bearer tokens
 
-### Bug Fixes
+### Bug fixes
 
 * **plugins/serialize-json-to-xml:** ignore swagger and openapi specs ([#887](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/887)) ([f836b0f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f836b0f148275637ba03fb732e48fcfbd1b608f1))
 * **routes:** pagination count returning as string for postgres conns ([#886](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/886)) ([a4bbaa6](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a4bbaa60706ab9b35403a0db8d814ead18ec6486))
@@ -574,7 +574,7 @@ All notable changes to this project will be documented in this file.
 
 ### [8.0.4](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v8.0.3...v8.0.4) (2022-06-01)
 
-### Bug Fixes
+### Bug fixes
 
 * **plugins/serialize-json-to-xml:** 204 resps do not have content types ([f1815fe](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f1815febda43f69fbb8bf18d2c419502158e1aba))
 * **routes:** time and timezone suffix are case-sensitive ([18e5251](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/18e525108fc53ba60b8ca29220116c0206c1cdbb))
@@ -584,7 +584,7 @@ All notable changes to this project will be documented in this file.
 
 * **config:** replace `forEach()` with `map()` ([#838](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/838)) ([17339cb](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/17339cbaeace16e27428b40044552e7e8d06610e))
 
-### Continuous Integration
+### Continuous integration
 
 * **ci:** add node 18 to test matrix ([#814](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/814)) ([8816b94](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8816b944edabf2ff2aec413b685d7f23694aea8c))
 * remove git credentials after checkout ([#836](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/836)) ([10f740b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/10f740b90058fc9be31b28230ed06bc272eb73f9))
@@ -613,7 +613,7 @@ All notable changes to this project will be documented in this file.
 
 ### [8.0.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v8.0.2...v8.0.3) (2022-05-18)
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/admin/access/bearer-token:** missing record url path ([e0e9b67](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e0e9b6773c975171f62385928c8da61e8a044c17))
 * **server:** do not transform 503 http err into 500 http err response ([0278102](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/02781027bba80994293da2e664949331d24a05d3))
@@ -629,7 +629,7 @@ All notable changes to this project will be documented in this file.
 * **bug_report:** use node 18 as placeholder for `node-version` ([447422d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/447422d1bb0cb26854b4b93f3ae67ba0bc55e700))
 * **server:** use optional chaining for error message logging ([b8b3b3c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b8b3b3cf5a7f81c5b5874a03de58442cedaacbba))
 
-### Continuous Integration
+### Continuous integration
 
 * **automerge:** fix context ([1c59f9b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1c59f9b45bfea3c09e30ba980132fea747c8b56f))
 * check `user.login` is dependabot instead of `actor` ([ff8c54a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ff8c54a78a702aef31f94c05dfce2032ae9c3d76))
@@ -666,11 +666,11 @@ All notable changes to this project will be documented in this file.
 
 ### [8.0.2](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v8.0.1...v8.0.2) (2022-05-04)
 
-### Bug Fixes
+### Bug fixes
 
 * log error stack trace; adjust http 500 error responses ([#786](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/786)) ([bb19350](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/bb19350324afd4785e9ebfe82b13bf163b2a515e))
 
-### Continuous Integration
+### Continuous integration
 
 * add dependency-review job ([1680253](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1680253fc0def0ca3ee13cb1b91a267082fadc9f))
 * **link-check:** replace `npx linkinator` call with github action ([8842588](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8842588c14057abb1acb72bd0d113797c434cb9e))
@@ -718,11 +718,11 @@ All notable changes to this project will be documented in this file.
 
 ### [8.0.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v8.0.0...v8.0.1) (2022-04-12)
 
-### Bug Fixes
+### Bug fixes
 
 * stop npm from swallowing exit signals; run migrations on launch ([c152909](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c1529092652afbeec333e0507c69fe9ce5653b4b))
 
-### Continuous Integration
+### Continuous integration
 
 * **automerge:** squash automerge prs ([c76b8e8](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c76b8e818f5664482e79710deb53b3d1fe420734))
 * **cd:** update org name for release-please-action ([afc30e2](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/afc30e26ee18a35929cc60669d47f6cb8b6e0e9d))
@@ -771,7 +771,7 @@ All notable changes to this project will be documented in this file.
 * **migrations:** `DATETIME2` replaced with `DATETIMEOFFSET` in MSSQL. `TIMESTAMP` replaced with `TIMESTAMPTZ` in Postgres
 * **routes/docs:** `docs/json` route renamed to `docs/openapi`
 
-### Bug Fixes
+### Bug fixes
 
 * **migrations:** datetime with timezone data types now used ([52feaaa](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/52feaaaff7b86eca277e5f1a4c3362233c21fb4a))
 * **routes/docs/json:** add cors support ([#736](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/736)) ([8795e77](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8795e7704f7cc4e5a17d92992a1520db1176a297))
@@ -811,7 +811,7 @@ All notable changes to this project will be documented in this file.
 
 * **routes/admin/access:** add `location` header to 201 responses ([#711](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/711)) ([f78de1e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f78de1e0b5f54420095e848f527528f8b93babc8))
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/docs:** add ie unsupported script ([403b99e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/403b99e586fd8f9edbedd1f32f976a26e039f026))
 * **routes/docs:** resolve cwe-676 ([0b5047b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0b5047b5ae44cd5526d955b35e186513b363a313))
@@ -833,7 +833,7 @@ All notable changes to this project will be documented in this file.
 * **scripts:** remove redundant gitkraken fix from prepare script ([941ac63](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/941ac63e85b5fcf5985069c9362f97ecca809b8c))
 * **scripts:** use shorter arg aliases; remove debugging args from jest ([dbe6c7e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/dbe6c7eadca160bac989f30ca2c96b7ca6342220))
 
-### Continuous Integration
+### Continuous integration
 
 * add job step names, workflow comments, and whitespace ([7148a32](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/7148a326b975fd41d5743f18628b0a958020d009))
 * **codeql-analysis:** remove unused autobuild step ([ed2152a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ed2152a3469a017e830b74ab15347dcb972fca43))
@@ -877,7 +877,7 @@ All notable changes to this project will be documented in this file.
 
 * **routes/admin:** add access route ([6a4332c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6a4332c4fd83d174380938441bcac32c23915d61))
 
-### Bug Fixes
+### Bug fixes
 
 * **admin/access:** searching using `access.scopes` ([0bfa647](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0bfa6477f1bfd3d29f9b34b9b511a1883ca0e889))
 * **config:** enforce minimum length for `ADMIN_PASSWORD` env variable ([bf93742](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/bf93742d67ecf6d58db3b6009dcb630c1c42c604))
@@ -903,7 +903,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.4.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.4.0...v6.4.1) (2022-03-08)
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** redact request auth header from logs ([72249fd](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/72249fda1378bf7a1105eeaca56ba94d5921fcca))
 * **docker-compose:** declare `DB_CLIENT` env variable ([e262791](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e2627912986d78af63289b6988490b0a7539cf90))
@@ -921,7 +921,7 @@ All notable changes to this project will be documented in this file.
 
 * **readme:** move api docs access to usage section ([ae050a7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ae050a70b58851721be89eeaa3c4d9a01df7f297))
 
-### Continuous Integration
+### Continuous integration
 
 * add image optimisation workflow ([#688](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/688)) ([cf99a27](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/cf99a27596cc6aef6a148955c21d53b74f261ac6))
 * only install chromium and firefox with playwright ([3a9123f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3a9123f47ca93be1be256af64c0c48996a280ea7))
@@ -948,7 +948,7 @@ All notable changes to this project will be documented in this file.
 
 * **routes:** support `application/xml` responses ([#670](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/670)) ([bf1d952](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/bf1d952f237caa5d03e58c603e45e4f5a68e6f85))
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** renew rate-limit if user attempts req in limit time window ([#640](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/640)) ([0d51e3a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0d51e3a5f74aca241ec29971142c1b576386e26c))
 * **migrate:** catch errors thrown ([c00d9cf](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c00d9cf24197c351d558cb9378007abe1e3f5911))
@@ -1004,7 +1004,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.3.12](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.11...v6.3.12) (2022-02-01)
 
-### Bug Fixes
+### Bug fixes
 
 * **migrations:** database value for mssql ([38398ae](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/38398aeb8f6308ae5c3f7d6449d086dcab9a931f))
 * **migrations:** remove mention of database; use one set by deployer ([69d15eb](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/69d15ebfb4f11fd79d506023fb796d670c5d9f38))
@@ -1026,7 +1026,7 @@ All notable changes to this project will be documented in this file.
 * move test records sql to test_resources folder ([4b0d33f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/4b0d33fdb4fe7acff7fe6affdfe584d744d1b9dd))
 * **plugins/convert-date-param-operator:** update param description ([ae3925a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ae3925a300014737be5b49e53b56420a0fc48031))
 
-### Continuous Integration
+### Continuous integration
 
 * install playwright ([dfd1f3c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/dfd1f3cff1650def967db7bc3dd8dd95171cfd4c))
 
@@ -1081,7 +1081,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.3.10](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.9...v6.3.10) (2022-01-06)
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/docs:** remove cors support ([137744f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/137744fdc55d51a989e64a244e68c8bb9b2d711d))
 
@@ -1090,7 +1090,7 @@ All notable changes to this project will be documented in this file.
 * **contributing:** add mention of husky pre-commit hook ([0175f8b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0175f8b17cbab94f32312b27d0f0fc3339b7532b))
 * **contributing:** add step for `lint:licenses` script ([a7261be](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a7261be14eb2d2a9bfba0c3bd56a964563685869))
 
-### Continuous Integration
+### Continuous integration
 
 * remove spellcheck workflow ([#586](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/586)) ([ea39027](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ea3902740ecb511a42a9a5d68a61241d3d58afba))
 
@@ -1170,7 +1170,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.3.8](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.7...v6.3.8) (2021-11-16)
 
-### Continuous Integration
+### Continuous integration
 
 * trigger workflows when drafts marked as "ready to review" ([#530](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/530)) ([82291ad](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/82291adf26f4e71a0099d27a8af21aa335ddb064))
 
@@ -1209,7 +1209,7 @@ All notable changes to this project will be documented in this file.
 * **routes:** throw `notAcceptable` errors not return ([#520](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/520)) ([edcc1f2](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/edcc1f29402f71c07935dfe361b21d3778d5b99e))
 * **server:** use `path.joinSafe()` over `path.join()` ([#519](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/519)) ([a0d9bc5](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a0d9bc5fe2678797d98e8014c0672c319da78ff7))
 
-### Continuous Integration
+### Continuous integration
 
 * **ci:** do not run clean-up on draft prs ([e3c3821](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e3c38215f9ea874429f29dbac44b7e0ab44868dd))
 * **spell-check:** do not run on draft prs ([e796ae9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e796ae9f85d649f5fc1397aaf001b17cee1a3485))
@@ -1217,7 +1217,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.3.6](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.5...v6.3.6) (2021-11-04)
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/documents/register:** empty results handling ([#509](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/509)) ([3022b32](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3022b329862db955c1479f7f07deafb94d95d0fe))
 
@@ -1239,7 +1239,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.3.5](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.4...v6.3.5) (2021-10-29)
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** remove additional env variables ([#483](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/483)) ([5961977](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/59619774532baa203f8203444cf5fffdc8e0b829))
 * **routes:** remove additional properties from req body and query ([#482](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/482)) ([3cebeaa](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/3cebeaad48ba255f717db5f4616b5c309717968d))
@@ -1280,7 +1280,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.3.4](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.3...v6.3.4) (2021-10-13)
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/docs:** remove cors support ([45b7352](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/45b7352dd1aeac718bb412d56177c194b3a821f0))
 
@@ -1310,7 +1310,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.3.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.2...v6.3.3) (2021-10-06)
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/docs/json:** add missing cache-control header ([a05d22b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a05d22b622ca67f4a556e1d8bf78d6634a325933))
 
@@ -1341,7 +1341,7 @@ All notable changes to this project will be documented in this file.
 * **server:** reduce globbing use when registering routes ([#439](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/439)) ([cad0505](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/cad0505d137ef5af6c613c53458c74dde0d14ea6))
 * **server:** reduce response header size ([66928cc](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/66928cc7eaeff532dd34b271830ca6290ce0d81b))
 
-### Continuous Integration
+### Continuous integration
 
 * **automerge:** update location of octokit rest methods ([d22545e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d22545e3de0a886a719fa4d9144bb55302400a37))
 * ignore hadolint rule DL3018 ([6347770](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/63477706cb11bfb8967ea42434786c56cb8f6084))
@@ -1366,7 +1366,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.3.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.3.0...v6.3.1) (2021-09-24)
 
-### Bug Fixes
+### Bug fixes
 
 * **public/site.webmanifest:** set name values ([a5495df](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a5495dfc4b7ca6917f776142a2bcfa6795987df1))
 * **routes/docs:** add missing content-type response header ([d415cac](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d415cac0f436f6b5989d365c283190ac80e738b3))
@@ -1441,7 +1441,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.2.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.2.0...v6.2.1) (2021-09-09)
 
-### Continuous Integration
+### Continuous integration
 
 * **ci:** revert to workflow-run-clean-action from github concurrency ([e02950f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e02950fa8106e67a62a45c75fba81479116d07b5))
 * **link-check:** ignore link to `./sql/` directory ([#391](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/391)) ([4e08b3f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/4e08b3fedda4337f0b90709db484289b2314e6a8))
@@ -1475,7 +1475,7 @@ All notable changes to this project will be documented in this file.
 
 * **config:** add option to set `Access-Control-Max-Age` CORS header ([#382](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/382)) ([8350e20](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8350e20be567b54c35faf3b0a384ea1c5ad0a746))
 
-### Bug Fixes
+### Bug fixes
 
 * **server:** rate limit all 4xx and 5xx responses ([9e7e99e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9e7e99ec01391779325dc21dc14ab36feabe9ec5))
 
@@ -1486,7 +1486,7 @@ All notable changes to this project will be documented in this file.
 * **.env.template:** remove rate limit value ([0b33e58](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0b33e5835febb109ab0d8e9ff0a7449f2710300c))
 * **.github:** use new YAML configured GitHub issue forms ([#384](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/384)) ([60853ba](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/60853ba0966fdbc5751eb85b894ad2312f07befd))
 
-### Continuous Integration
+### Continuous integration
 
 * **ci:** replace workflow-run-cleanup-action with github concurrency ([#385](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/385)) ([6419f9a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6419f9a9defd3107e79b46926d1d8b0df4b83db3))
 
@@ -1501,7 +1501,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.1.2](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.1...v6.1.2) (2021-09-01)
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** bearer token security scheme format ([#371](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/371)) ([a61e6d3](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a61e6d306d90ebc53e89c922396dedd71ac4a039))
 
@@ -1513,7 +1513,7 @@ All notable changes to this project will be documented in this file.
 
 ### [6.1.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.1.0...v6.1.1) (2021-08-26)
 
-### Bug Fixes
+### Bug fixes
 
 * add 401 shared response schema ([90b4a18](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/90b4a18e8a0490f6f0e6085e89f6b82a48e7ce4e))
 * **plugin/shared-schemas:** remove enum for 500 error messages ([fe402ce](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/fe402ce60dfb5183a8460856ec18906f276fa905))
@@ -1526,7 +1526,7 @@ All notable changes to this project will be documented in this file.
 
 * **routes/docs:** replace swagger ui with redoc ui ([#357](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/357)) ([4288f13](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/4288f13b0a5167f09acd2d537ea0c008ca818d37))
 
-### Bug Fixes
+### Bug fixes
 
 * add 503 response schema ([67f9a16](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/67f9a167e673aab29e821abf22e939d4f477c10d))
 
@@ -1558,11 +1558,11 @@ All notable changes to this project will be documented in this file.
 
 ### [6.0.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v6.0.0...v6.0.1) (2021-08-19)
 
-### Bug Fixes
+### Bug fixes
 
 * **server:** allow bearer token auth to be disabled ([8f9c93f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8f9c93f7dd791ff7f7883580d9fc8fabd4a250e7))
 
-### Continuous Integration
+### Continuous integration
 
 * add `postgres` and `mssql` services; only test on ubuntu ([af81bec](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/af81bec3d25305ebff7303cdc41c11222ee540aa))
 
@@ -1595,7 +1595,7 @@ All notable changes to this project will be documented in this file.
 
 * **routes/admin/healthcheck:** add cors header support ([0faffb0](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0faffb00e3dea5c374b5ad7cfb62d0a535761200))
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** allow for empty logger env variables ([af25ce9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/af25ce9e0b7cc81d5c54746c798839c524b469b6))
 * **config:** defaults for undeclared variables ([048da35](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/048da35e8def8f6e8308e3e6f43c2cf746604cd7))
@@ -1635,7 +1635,7 @@ All notable changes to this project will be documented in this file.
 
 * **plugins/db:** add support for postgresql client ([#326](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/326)) ([b38a7f7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b38a7f7a96ab3ba5977e434577597c1b5b81fc5f))
 
-### Bug Fixes
+### Bug fixes
 
 * **app:** logging grammar fixes ([d840953](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d8409530608ba8415d6c25012a2a3f45f40e7a38))
 * **sql:** make guid column not null ([9b4b53c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9b4b53cc239b92497b66e94cc26c7b66070374c3))
@@ -1675,7 +1675,7 @@ All notable changes to this project will be documented in this file.
 
 * minimum required version of node increased from 12 to 14 to allow for new ECMAScript syntax to be used
 
-### Bug Fixes
+### Bug fixes
 
 * **docker-compose:** wrap variables in quotes ([#304](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/304)) ([418d6ca](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/418d6ca907aa230c7e1be21797eddfffbb1d7323))
 * **server:** remove test response header ([#302](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/302)) ([03a790f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/03a790f74079ce7de500441d289f26880aa540c1))
@@ -1696,7 +1696,7 @@ All notable changes to this project will be documented in this file.
 
 ### [3.2.6](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.5...v3.2.6) (2021-07-19)
 
-### Bug Fixes
+### Bug fixes
 
 * **package:** move `pino-pretty` to production dependency list ([#295](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/295)) ([a474d00](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a474d00ec4e198f293eefe29f88f1f178ecaf1eb))
 
@@ -1727,7 +1727,7 @@ All notable changes to this project will be documented in this file.
 
 ### [3.2.5](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.4...v3.2.5) (2021-07-12)
 
-### Bug Fixes
+### Bug fixes
 
 * **routes:** `Accept` header handling encapsulation ([#282](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/282)) ([8e780a7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8e780a7ef06a8310bc1ef7e276d5bbd3233261b5))
 
@@ -1746,7 +1746,7 @@ All notable changes to this project will be documented in this file.
 
 ### [3.2.4](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.3...v3.2.4) (2021-07-09)
 
-### Bug Fixes
+### Bug fixes
 
 * **routes/healthcheck:** add `Accept` request header handling ([a9d7a48](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a9d7a487086eedbe73330f4ee4e64b94d9bac2ba))
 
@@ -1778,13 +1778,13 @@ All notable changes to this project will be documented in this file.
 
 ### [3.2.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.2...v3.2.3) (2021-06-22)
 
-### Bug Fixes
+### Bug fixes
 
 * **server:** increase `Strict-Transport-Security` max age to 365 days ([052fb0f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/052fb0fc663381a007dcd782cf9da2e08b104402))
 * **server:** revert `Referrer-Policy` directives to "no-referrer" only ([c0e5017](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c0e5017dbfaced7ec65ca46f5f4807869d086279))
 * **server:** use stricter `Content-Security-Policy` values ([888ea32](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/888ea32e4bac43ce508a0c47570c00ffd7c65c99))
 
-### Continuous Integration
+### Continuous integration
 
 * **link-check:** reduce frequency from weekly to monthly ([#251](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/251)) ([2223459](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/2223459640c31b0a17bdf19b10d282bce633f6c7))
 
@@ -1812,7 +1812,7 @@ All notable changes to this project will be documented in this file.
 
 ### [3.2.1](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.2.0...v3.2.1) (2021-06-16)
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** prettyprint conditional ([#242](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/242)) ([fddc5cc](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/fddc5ccc6c93aa3a95e3f99d461b066db0080c4b))
 
@@ -1834,7 +1834,7 @@ All notable changes to this project will be documented in this file.
 
 ### [3.1.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.2...v3.1.3) (2021-06-09)
 
-### Bug Fixes
+### Bug fixes
 
 * **server:** remove swagger from csp for all routes apart from doc route ([dbdbf3b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/dbdbf3bf5fdeefb9fdee7c0d9807c5811d132106))
 * **server:** set `frame-ancestors` csp to `'none'`; add `child-src` csp ([debc025](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/debc025c0a0fb5910915bd7e36a87f06202a5dde))
@@ -1851,7 +1851,7 @@ All notable changes to this project will be documented in this file.
 
 ### [3.1.2](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.1.1...v3.1.2) (2021-06-02)
 
-### Continuous Integration
+### Continuous integration
 
 * remove redundant docker build job ([a919aab](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a919aab356e54b775688a3a47476449027cd9312))
 
@@ -1888,7 +1888,7 @@ All notable changes to this project will be documented in this file.
 * **deps-dev:** bump pino-pretty from 4.8.0 to 5.0.0 ([5d2d881](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/5d2d88145a6dfb3d09d31d768156eda4eba82c33))
 * **deps:** bump fastify from 3.15.1 to 3.16.2 ([c12e11f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c12e11fef30871133fdd71d9861ebbe3470bc9e3))
 
-### Continuous Integration
+### Continuous integration
 
 * **cd:** move perf optimizations and refactoring into same section ([659c4c0](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/659c4c03c2ec2dff21aaad813b51f2b84ad46f6b))
 
@@ -1898,7 +1898,7 @@ All notable changes to this project will be documented in this file.
 
 * **routes/documents/register:** support multiple `lastModified` params ([0116bf1](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0116bf1b8f4432bd4841e1a95f8be263d06c4f8e))
 
-### Continuous Integration
+### Continuous integration
 
 * fix key usage in `action/setup-node` ([b47430c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b47430ca6a4f5fd8b85b00da923843a3de5128ce))
 
@@ -1924,11 +1924,11 @@ All notable changes to this project will be documented in this file.
 
 ### [3.0.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v3.0.2...v3.0.3) (2021-05-11)
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** `LOG_LEVEL` env variable validation ([d36fd1f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d36fd1f528f4c950738e341b98ad482b4ed02fd7))
 
-### Continuous Integration
+### Continuous integration
 
 * **link-check:** run once a week on monday ([cf86213](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/cf86213b418188b07aac375f22dbf3ab811bbed3))
 
@@ -1982,7 +1982,7 @@ All notable changes to this project will be documented in this file.
 * **server:** add rate limiter ([8d183cd](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8d183cdc3d2ad26c858570ffd287dff6381c5240))
 * **server:** disable google floc support ([8dfce45](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8dfce4545754868e8eb53080b80460cbd94a6eca))
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** plugin defaults ([50c8b9c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/50c8b9c18abae56da9700e8c8d9140160b5068e3))
 * **config:** re-add removed defaults ([13d1ff0](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/13d1ff0b9538a752b2cbd97e91caf0db199f2ba7))
@@ -1995,7 +1995,7 @@ All notable changes to this project will be documented in this file.
 * remove support for nodejs v10 ([53a5d81](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/53a5d81bdae3bc6a9d17baff483c30d2e1f767e0))
 * **routes:** replace snakecase with camelcase ([9c9d1d6](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9c9d1d643c4414e981ee34c04c45430b45979dba))
 
-### Continuous Integration
+### Continuous integration
 
 * add nodejs v16 to unit test matrix ([11d08c3](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/11d08c340977dbd71de0acf5a45570a270c14992))
 * do not run coveralls steps/jobs on forks ([7318ad9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/7318ad9b0a269a1c90b1cce669b6c775118ac2a7))
@@ -2039,7 +2039,7 @@ All notable changes to this project will be documented in this file.
 * add support for cors preflight requests ([c27d9f5](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c27d9f5e704e260232f6a76c0778dc07bb184fba))
 * **config:** support `access-control-allow-credentials` cors header ([860ee55](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/860ee556e30f410814450eacb51412968444fc6f))
 
-### Bug Fixes
+### Bug fixes
 
 * **config:** comma-delimited string support for cors origin value ([883fe36](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/883fe3668bae2b174ad587723eb5bb2d8d805493))
 * **config:** remove cors_methods from schema validation ([28a2f08](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/28a2f0812e9b08cc98e7c4ad514a5992be2d0406))
@@ -2051,7 +2051,7 @@ All notable changes to this project will be documented in this file.
 * **env.template:** remove bad example ([6bb158a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6bb158a5578ec0c6214bb6e57f8d4146f64abd11))
 * **tests:** standardise test file names ([92cf197](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/92cf19760f388c1811ccc9f78564ce5b89b2f385))
 
-### Continuous Integration
+### Continuous integration
 
 * add cleanup-run job ([d48eb7a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d48eb7a667edfb02f59b647827426585b312922f))
 
@@ -2080,7 +2080,7 @@ All notable changes to this project will be documented in this file.
 * **server:** tidy inline comments ([d5cfe1c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d5cfe1c361c0e2808715e65ab8350c0b46eae7f2))
 * **workflows:** rename ci and perf sections ([6be7b4a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/6be7b4ad0b8522b1a6217c89dad02265df026eb0))
 
-### Continuous Integration
+### Continuous integration
 
 * **automerge:** move automerge job into new workflow ([c068ef0](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c068ef0bca33ef4abc041b70e090bb2339793554))
 * **ci:** ignore dependabot prs for commit message linting ([ff9b9ac](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ff9b9ac74768880dc7afcd0aeb1a50f92b918f55))
