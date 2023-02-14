@@ -8,10 +8,10 @@ const testId = 1;
 const testPatientId = 9999999999;
 const testTimeStamp = "2018-08-01T03:51:54.000Z";
 
-describe("Receipt Route", () => {
+describe("Receipt route", () => {
 	const connectionTests = [
 		{
-			testName: "MSSQL Connection",
+			testName: "MSSQL connection",
 			envVariables: {
 				DB_CLIENT: "mssql",
 			},
@@ -23,7 +23,7 @@ describe("Receipt Route", () => {
 			},
 		},
 		{
-			testName: "PostgreSQL Connection",
+			testName: "PostgreSQL connection",
 			envVariables: {
 				DB_CLIENT: "postgresql",
 			},
@@ -36,7 +36,7 @@ describe("Receipt Route", () => {
 		},
 	];
 	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName}  - With Request Scopes`, () => {
+		describe(`${testObject.testName}  - with request scopes`, () => {
 			let config;
 			let server;
 
@@ -65,7 +65,7 @@ describe("Receipt Route", () => {
 				await server.close();
 			});
 
-			describe("DELETE Requests", () => {
+			describe("DELETE requests", () => {
 				test("Should delete a document read receipt", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -142,7 +142,7 @@ describe("Receipt Route", () => {
 				});
 			});
 
-			describe("PUT Requests", () => {
+			describe("PUT requests", () => {
 				test("Should upsert document read receipt", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -222,7 +222,7 @@ describe("Receipt Route", () => {
 			});
 		});
 
-		describe(`${testObject.testName}  - Without Request Scopes`, () => {
+		describe(`${testObject.testName}  - without request scopes`, () => {
 			let config;
 			let server;
 
@@ -245,7 +245,7 @@ describe("Receipt Route", () => {
 				await server.close();
 			});
 
-			describe("DELETE Requests", () => {
+			describe("DELETE requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "DELETE",
@@ -265,7 +265,7 @@ describe("Receipt Route", () => {
 				});
 			});
 
-			describe("PUT Requests", () => {
+			describe("PUT requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "PUT",

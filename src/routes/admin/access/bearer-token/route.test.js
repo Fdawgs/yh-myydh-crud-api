@@ -64,10 +64,10 @@ const expSearchResult = {
 	],
 };
 
-describe("Access Route", () => {
+describe("Access route", () => {
 	const connectionTests = [
 		{
-			testName: "MSSQL Connection",
+			testName: "MSSQL connection",
 			envVariables: {
 				DB_CLIENT: "mssql",
 			},
@@ -141,7 +141,7 @@ describe("Access Route", () => {
 			},
 		},
 		{
-			testName: "PostgreSQL Connection",
+			testName: "PostgreSQL connection",
 			envVariables: {
 				DB_CLIENT: "postgresql",
 			},
@@ -221,7 +221,7 @@ describe("Access Route", () => {
 				await server.close();
 			});
 
-			describe("/:id DELETE Requests", () => {
+			describe("/:id DELETE requests", () => {
 				test("Should delete a bearer token record", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -293,7 +293,7 @@ describe("Access Route", () => {
 				});
 			});
 
-			describe("/:id GET Requests", () => {
+			describe("/:id GET requests", () => {
 				test("Should return bearer token record", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -364,7 +364,7 @@ describe("Access Route", () => {
 				});
 			});
 
-			describe("/ GET Requests", () => {
+			describe("/ GET requests", () => {
 				test("Should return bearer token record, using all query string parameters", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -541,7 +541,7 @@ describe("Access Route", () => {
 				});
 			});
 
-			describe("/ POST Requests", () => {
+			describe("/ POST requests", () => {
 				test("Should create bearer token record", async () => {
 					const mockQueryFn = jest
 						.fn()

@@ -3,10 +3,10 @@ const migrate = require("./migrate");
 
 jest.mock("postgrator");
 
-describe("Migrate Script", () => {
+describe("Migrate script", () => {
 	const connectionTests = [
 		{
-			testName: "MSSQL Connection",
+			testName: "MSSQL connection",
 			envVariables: {
 				DB_CLIENT: "mssql",
 				DB_CONNECTION_STRING:
@@ -14,7 +14,7 @@ describe("Migrate Script", () => {
 			},
 		},
 		{
-			testName: "PostgreSQL Connection",
+			testName: "PostgreSQL connection",
 			envVariables: {
 				DB_CLIENT: "postgresql",
 				DB_CONNECTION_STRING:
