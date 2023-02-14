@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## [11.0.4](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.3...v11.0.4) (2023-02-14)
+
+
+### Improvements
+
+* **plugins:** replace xml plugin with dedicated dependency ([#1172](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1172)) ([97b25cf](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/97b25cfabe823b8ca87ef13d461b902cff65b373))
+
+
+### Documentation
+
+* **readme:** use more inclusive language ([15e71d3](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/15e71d3f615842ca265bdbcf6bde4d3ebc40ae43))
+
+
+### Miscellaneous
+
+* **config:** add comment re openapi `components` object ([#1176](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1176)) ([db85610](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/db85610fec29295d6fbb22a91ef9c5cdec6c8195))
+* **config:** correct inline comment ([dab9474](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/dab94747e035b213677ae2fef321dffc7f4cd905))
+* **config:** use consistent style across api repos ([5a813bc](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/5a813bcc0a169880b0f568f4b0eadad0d83fe5ea))
+* use sentence case over ap style for titles and headings ([a342f24](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a342f24ad4d021d8bbb7ad54ae4a04c027296ed8))
+
+
+### Bug fixes
+
+* **config:** convert cors params to lowercase ([230e7a7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/230e7a73df074db4551a62d729100015420f48a3))
+* openapi title and doc page description ([e53d71d](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/e53d71dc0deb72d4cbbd638c5c23ffd41fc60d76))
+* **routes/admin/access/bearer-token:** search schema response key ([#1174](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1174)) ([76515f7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/76515f74f77b1e85c163e53ec4abaebfb23ccce1))
+* **routes:** only add 401 response to schema when auth enabled ([#1175](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1175)) ([d484646](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d4846469c8e22b6d6762c0a895094ec25591e752))
+
+
+### Continuous integration
+
+* **cd:** use sentence case for changelog headings ([85e9941](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/85e9941c9603acc8fefaea2a750e9f8248da64da))
+
 ## [11.0.3](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.2...v11.0.3) (2023-02-01)
 
 
