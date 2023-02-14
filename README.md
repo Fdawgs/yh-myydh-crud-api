@@ -5,8 +5,8 @@
 # Yeovil District Hospital NHS Foundation Trust - MyYDH RESTful CRUD API
 
 [![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-myydh-crud-api.svg)](https://github.com/Fdawgs/ydh-myydh-crud-api/releases/latest/)
-![Build Status](https://github.com/Fdawgs/ydh-myydh-crud-api/workflows/CI/badge.svg?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-myydh-crud-api/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-myydh-crud-api?branch=master)
+![Build Status](https://github.com/Fdawgs/ydh-myydh-crud-api/workflows/CI/badge.svg?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-myydh-crud-api/badge.svg?branch=main)](https://coveralls.io/github/Fdawgs/ydh-myydh-crud-api?branch=main)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 
 > Yeovil District Hospital NHSFT's RESTful CRUD API for the MyYDH app
@@ -108,7 +108,7 @@ If using a Microsoft Windows OS utilise [pm2-installer](https://github.com/jesse
 
 API documentation can be found at `/docs`:
 
-<img alttext="Screenshot of MyYDH CRUD API documentation page" src="https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/master/docs/images/api_documentation_screenshot.png" width="720">
+<img alttext="Screenshot of MyYDH CRUD API documentation page" src="https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/main/docs/images/api_documentation_screenshot.png" width="720">
 
 ### Generating bearer tokens for access
 
