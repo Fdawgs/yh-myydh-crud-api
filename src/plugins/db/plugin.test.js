@@ -2,13 +2,13 @@ const Fastify = require("fastify");
 const plugin = require(".");
 const getConfig = require("../../config");
 
-describe("DB Plugin", () => {
+describe("DB plugin", () => {
 	let config;
 	let server;
 
 	const query = "SELECT 'test' AS \"example\"";
 
-	describe("MSSQL Connection", () => {
+	describe("MSSQL connection", () => {
 		beforeAll(async () => {
 			const DB_CLIENT = "mssql";
 			const DB_CONNECTION_STRING =
@@ -46,7 +46,7 @@ describe("DB Plugin", () => {
 		});
 	});
 
-	describe("PostgreSQL Connection", () => {
+	describe("PostgreSQL connection", () => {
 		beforeAll(async () => {
 			const DB_CLIENT = "postgresql";
 			const DB_CONNECTION_STRING =

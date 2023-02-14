@@ -81,10 +81,10 @@ const mockPostgreSqlQueryResults = [
 ];
 mockPostgreSqlQueryResults[1].rows.push(mockRecord);
 
-describe("Register Route", () => {
+describe("Register route", () => {
 	const connectionTests = [
 		{
-			testName: "MSSQL Connection",
+			testName: "MSSQL connection",
 			envVariables: {
 				DB_CLIENT: "mssql",
 			},
@@ -93,7 +93,7 @@ describe("Register Route", () => {
 			},
 		},
 		{
-			testName: "PostgreSQL Connection",
+			testName: "PostgreSQL connection",
 			envVariables: {
 				DB_CLIENT: "postgresql",
 			},
@@ -103,7 +103,7 @@ describe("Register Route", () => {
 		},
 	];
 	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName}  - With Request Scopes`, () => {
+		describe(`${testObject.testName}  - with request scopes`, () => {
 			let config;
 			let server;
 
@@ -131,7 +131,7 @@ describe("Register Route", () => {
 				await server.close();
 			});
 
-			describe("GET Requests", () => {
+			describe("GET requests", () => {
 				test("Should return documents from register", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -281,7 +281,7 @@ describe("Register Route", () => {
 			});
 		});
 
-		describe(`${testObject.testName}  - Without Request Scopes`, () => {
+		describe(`${testObject.testName}  - without request scopes`, () => {
 			let config;
 			let server;
 
@@ -305,7 +305,7 @@ describe("Register Route", () => {
 			afterAll(async () => {
 				await server.close();
 			});
-			describe("GET Requests", () => {
+			describe("GET requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "GET",

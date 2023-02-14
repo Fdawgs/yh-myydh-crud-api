@@ -77,10 +77,10 @@ const expResPayload = {
 	],
 };
 
-describe("User Route", () => {
+describe("User route", () => {
 	const connectionTests = [
 		{
-			testName: "MSSQL Connection",
+			testName: "MSSQL connection",
 			envVariables: {
 				DB_CLIENT: "mssql",
 			},
@@ -109,7 +109,7 @@ describe("User Route", () => {
 			},
 		},
 		{
-			testName: "PostgreSQL Connection",
+			testName: "PostgreSQL connection",
 			envVariables: {
 				DB_CLIENT: "postgresql",
 			},
@@ -132,7 +132,7 @@ describe("User Route", () => {
 		},
 	];
 	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName}  - With Request Scopes`, () => {
+		describe(`${testObject.testName}  - with request scopes`, () => {
 			let config;
 			let server;
 
@@ -162,7 +162,7 @@ describe("User Route", () => {
 				await server.close();
 			});
 
-			describe("GET Requests", () => {
+			describe("GET requests", () => {
 				test("Should return user preferences", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -233,7 +233,7 @@ describe("User Route", () => {
 				});
 			});
 
-			describe("PUT Requests", () => {
+			describe("PUT requests", () => {
 				test("Should upsert user preferences", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -347,7 +347,7 @@ describe("User Route", () => {
 			});
 		});
 
-		describe(`${testObject.testName}  - Without Request Scopes`, () => {
+		describe(`${testObject.testName}  - without request scopes`, () => {
 			let config;
 			let server;
 
@@ -371,7 +371,7 @@ describe("User Route", () => {
 				await server.close();
 			});
 
-			describe("GET Requests", () => {
+			describe("GET requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "GET",
@@ -388,7 +388,7 @@ describe("User Route", () => {
 				});
 			});
 
-			describe("PUT Requests", () => {
+			describe("PUT requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "PUT",

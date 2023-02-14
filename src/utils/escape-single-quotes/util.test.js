@@ -1,6 +1,6 @@
 const util = require(".");
 
-describe("Escape-Single-Quote Util", () => {
+describe("Escape-Single-Quote util", () => {
 	test("Should replace single-quote character in string expression with two adjacent single quotes", () => {
 		const response = util`${"Yeovil's"} Hospital`;
 		expect(response).toBe("Yeovil''s Hospital");

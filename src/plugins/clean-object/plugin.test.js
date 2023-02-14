@@ -1,7 +1,7 @@
 const Fastify = require("fastify");
 const plugin = require(".");
 
-describe("Clean-Object Plugin", () => {
+describe("Clean-Object plugin", () => {
 	let server;
 
 	beforeAll(async () => {

@@ -50,10 +50,10 @@ const expResPayload = {
 	],
 };
 
-describe("Options Route", () => {
+describe("Options route", () => {
 	const connectionTests = [
 		{
-			testName: "MSSQL Connection",
+			testName: "MSSQL connection",
 			envVariables: {
 				DB_CLIENT: "mssql",
 			},
@@ -72,7 +72,7 @@ describe("Options Route", () => {
 			},
 		},
 		{
-			testName: "PostgreSQL Connection",
+			testName: "PostgreSQL connection",
 			envVariables: {
 				DB_CLIENT: "postgresql",
 			},
@@ -92,7 +92,7 @@ describe("Options Route", () => {
 		},
 	];
 	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName}  - With Request Scopes`, () => {
+		describe(`${testObject.testName}  - with request scopes`, () => {
 			let config;
 			let server;
 
@@ -119,7 +119,7 @@ describe("Options Route", () => {
 				await server.close();
 			});
 
-			describe("GET Requests", () => {
+			describe("GET requests", () => {
 				test("Should return preference options", async () => {
 					const mockQueryFn = jest
 						.fn()
@@ -187,7 +187,7 @@ describe("Options Route", () => {
 			});
 		});
 
-		describe(`${testObject.testName}  - Without Request Scopes`, () => {
+		describe(`${testObject.testName}  - without request scopes`, () => {
 			let config;
 			let server;
 
@@ -211,7 +211,7 @@ describe("Options Route", () => {
 				await server.close();
 			});
 
-			describe("GET Requests", () => {
+			describe("GET requests", () => {
 				test("Should return HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "GET",

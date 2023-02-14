@@ -1,7 +1,7 @@
 const Fastify = require("fastify");
 const plugin = require(".");
 
-describe("Convert-Date-Param-Operator Plugin", () => {
+describe("Convert-Date-Param-Operator plugin", () => {
 	let server;
 
 	beforeAll(async () => {

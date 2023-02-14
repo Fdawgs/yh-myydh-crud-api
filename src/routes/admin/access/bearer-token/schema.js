@@ -1,7 +1,7 @@
 const S = require("fluent-json-schema");
 
 const security = [{ basicAuth: [] }];
-const tags = ["System Administration"];
+const tags = ["System administration"];
 
 /**
  * JSON Schema expects a String, `fluent-json-schema` converts this from
