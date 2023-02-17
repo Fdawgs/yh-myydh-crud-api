@@ -48,7 +48,7 @@ async function plugin(server) {
 							? secJSON.parse(token.scopes)
 							: token.scopes;
 
-					req.log.info({ client: token.name });
+					req.log.info({ client: token.name }, "requesting client");
 					return true;
 				})
 				.catch(() => false);
