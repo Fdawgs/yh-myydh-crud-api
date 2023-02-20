@@ -15,7 +15,7 @@ const { license, version } = require("../../package.json");
  * @description Convert string boolean to boolean
  * or comma-delimited string to array.
  * @param {string} param - CORS parameter.
- * @returns {boolean|Array|string} CORS parameter.
+ * @returns {boolean|Array<string>|string} CORS parameter.
  */
 function parseCorsParameter(param) {
 	if (param.toLowerCase().trim() === "true") {
@@ -36,7 +36,7 @@ function parseCorsParameter(param) {
 /**
  * @author Frazer Smith
  * @description Validate environment variables and build server config.
- * @returns {object} Server config.
+ * @returns {Promise<object|Error>} Promise of server config object on resolve, or Error object on rejection.
  */
 async function getConfig() {
 	// Validate env variables
