@@ -47,7 +47,7 @@ async function route(server, options) {
 				);
 			}
 		},
-		handler: async (req, res) => {
+		handler: async (_req, res) => {
 			try {
 				const results = await server.db.query(
 					optionsSelect({
