@@ -12,7 +12,7 @@ describe("Clean-Object plugin", () => {
 			res.send(server.cleanObject(req.body));
 		});
 
-		server.put("/empty", (req, res) => {
+		server.put("/empty", (_req, res) => {
 			res.send(server.cleanObject());
 		});
 
