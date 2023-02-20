@@ -322,7 +322,7 @@ async function getConfig() {
 			};
 		} catch (err) {
 			throw new Error(
-				`No such file or directory ${err.path} for SSL cert/key, falling back to HTTP`
+				`No such file or directory ${err.path} for SSL cert/key`
 			);
 		}
 	}
@@ -338,7 +338,7 @@ async function getConfig() {
 			};
 		} catch (err) {
 			throw new Error(
-				`No such file or directory ${err.path} for PFX file, falling back to HTTP`
+				`No such file or directory ${err.path} for PFX file`
 			);
 		}
 	}
