@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file.
 
+## [11.0.5](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.4...v11.0.5) (2023-02-22)
+
+
+### Documentation
+
+* **images:** update api documentation screenshot ([0afea86](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/0afea86cf143e833a8700130d5fda4560e14e8d8))
+
+
+### Miscellaneous
+
+* **config:** correct jsdoc param types ([71c16e7](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/71c16e7fe9797d39a3ae747d9f665efae1bbb0b1))
+* **plugins/hashed-bearer-auth:** add message to logged client name ([#1197](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1197)) ([f540905](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/f5409059229e6e42d98762bfbff9381028d2a3cc))
+* prefix unused params with underscores ([07cb706](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/07cb706ea0137aa5589e2bbe759f25f4c9a6c2d3))
+
+
+### Bug fixes
+
+* **config:** misleading thrown error message ([427463a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/427463a979e61b4c1c8d7cc150545c09a42719a6))
+
+
+### Dependencies
+
+* **deps-dev:** bump @commitlint/cli from 17.4.3 to 17.4.4 ([#1201](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1201)) ([ca5a7b0](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ca5a7b022cae3612b0964f832b8a659d7f24b5b9))
+* **deps-dev:** bump @commitlint/config-conventional ([#1202](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1202)) ([26ae640](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/26ae6409d1a99cdbef6df12ed93887da236263c3))
+* **deps-dev:** bump jest from 29.4.2 to 29.4.3 ([#1200](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1200)) ([aca8c8c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/aca8c8c8a0c46802f760183eced03b0dc857da6f))
+* **deps-dev:** bump pino-pretty from 9.2.0 to 9.3.0 ([#1203](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1203)) ([a2095d0](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a2095d045e1d774cafb0e8c09f991eba6d533bfb))
+* **deps-dev:** bump playwright from 1.30.0 to 1.31.0 ([#1206](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1206)) ([1a95a7f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/1a95a7f16d8f1e1cdb6592bb65e1b19266de7a7f))
+* **deps:** bump fastify-disablecache from 3.0.6 to 3.1.0 ([#1205](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1205)) ([a9005d9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a9005d966b78c1614d792efc77946f3d78f43026))
+* **deps:** bump fastify-floc-off from 2.0.6 to 2.1.0 ([#1199](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1199)) ([8542b9b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8542b9b0316f6e81b7ed3bfabff3a011dd8d2d10))
+* **deps:** bump fastify-json-to-xml from 1.0.2 to 1.1.0 ([#1204](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1204)) ([28e2f49](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/28e2f493e7c0d9d63f043a4dff05bbf172056b96))
+
 ## [11.0.4](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.3...v11.0.4) (2023-02-15)
 
 
