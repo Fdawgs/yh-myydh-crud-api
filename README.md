@@ -110,6 +110,8 @@ API documentation can be found at `/docs`:
 
 <img alttext="Screenshot of MyYDH CRUD API documentation page" src="https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/main/docs/images/api_documentation_screenshot.png" width="720">
 
+The underlying OpenAPI definitions are found at `/docs/openapi`.
+
 ### Generating bearer tokens for access
 
 If `BEARER_TOKEN_AUTH_ENABLED` is set to `true` in the `.env` file, you will need to generate bearer tokens for a client/service to access the `/preferences` and `/user` routes of the API.
