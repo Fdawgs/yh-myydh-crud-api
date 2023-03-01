@@ -1,12 +1,12 @@
 const fs = require("fs/promises");
-const glob = require("glob");
+const { glob } = require("glob");
 const getConfig = require(".");
 
 describe("Configuration", () => {
 	const currentEnv = { ...process.env, NODE_ENV: "development" };
 
 	afterAll(async () => {
-		const files = glob.sync("./test_resources/+(test-log*|.audit.json)", {
+		const files = await glob("./test_resources/+(test-log*|.audit.json)", {
 			dot: true,
 		});
 
