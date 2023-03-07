@@ -33,7 +33,7 @@ Perform the following steps before deployment:
 > You will need to create a database before using it in the `DB_CONNECTION_STRING` environment variable (this does not apply if using the included Docker Compose file to deploy)
 
 > **Note**
-> Set the following environment variables in `.env` to meet NHS Digital's recommendation to retain six months' worth of logs:
+> Set the following environment variables in `.env` to meet NHS England's recommendation to retain six months' worth of logs:
 >
 > -   `LOG_ROTATION_DATE_FORMAT="YYYY-MM-DD"`
 > -   `LOG_ROTATION_FREQUENCY="daily"`
