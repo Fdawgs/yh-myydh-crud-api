@@ -17,9 +17,9 @@ async function plugin(server) {
 			message: err.message,
 		}),
 		auth: async (key, req) => {
+			// DISTINCT SQL keyword not needed as PK constraints enforce unique values
 			const results = await server.db.query(
-				`SELECT DISTINCT
-					name,
+				`SELECT name,
                     hash,
                     scopes
                 FROM access.tokens
