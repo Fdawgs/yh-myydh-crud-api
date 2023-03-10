@@ -40,16 +40,17 @@ WHERE id = '${id}';`;
  * @param {number} options.perPage - Number of bearer token records to return per page.
  * @returns {string} Query string.
  */
+
+// DISTINCT SQL keyword not needed as PK constraints enforce unique values
 const accessGetSearch = ({ client, whereClausePredicates, page, perPage }) => `
-SELECT COUNT(DISTINCT id)${
+SELECT COUNT(id)${
 	// Cast from string to int - https://node-postgres.com/features/types
 	client === "postgresql" ? "::int" : ""
 } AS total
 FROM access.tokens
 WHERE ${whereClausePredicates};
 
-SELECT DISTINCT
-    id,
+SELECT id,
     name,
     email,
     scopes,
