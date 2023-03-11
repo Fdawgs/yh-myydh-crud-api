@@ -198,506 +198,473 @@ describe("Access route", () => {
 			},
 		},
 	];
-	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName}`, () => {
-			let config;
-			let server;
+	describe.each(connectionTests)("$testName", ({ envVariables, mocks }) => {
+		let config;
+		let server;
 
-			beforeAll(async () => {
-				Object.assign(process.env, testObject.envVariables);
-				config = await getConfig();
+		beforeAll(async () => {
+			Object.assign(process.env, envVariables);
+			config = await getConfig();
 
-				server = Fastify();
-				await server
-					.register(cleanObject)
-					.register(convertDateParamOperator)
-					.register(sensible)
-					.register(sharedSchemas)
-					.register(route, config)
-					.ready();
+			server = Fastify();
+			await server
+				.register(cleanObject)
+				.register(convertDateParamOperator)
+				.register(sensible)
+				.register(sharedSchemas)
+				.register(route, config)
+				.ready();
+		});
+
+		afterAll(async () => {
+			await server.close();
+		});
+
+		describe("/:id DELETE requests", () => {
+			test("Should delete a bearer token record", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.delete.ok);
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "DELETE",
+					url: `/${testId}`,
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(response.payload).toBe("");
+				expect(response.statusCode).toBe(204);
 			});
 
-			afterAll(async () => {
-				await server.close();
+			test("Should return HTTP status code 404 if bearer token record missing or already deleted", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.delete.error);
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "DELETE",
+					url: `/${testId}`,
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Not Found",
+					message:
+						"Bearer token record does not exist or has already been deleted",
+					statusCode: 404,
+				});
+				expect(response.statusCode).toBe(404);
 			});
 
-			describe("/:id DELETE requests", () => {
-				test("Should delete a bearer token record", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.delete.ok
-						);
+			test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockRejectedValue(Error("Failed to connect to DB"));
 
-					server.db = {
-						query: mockQueryFn,
-					};
+				server.db = {
+					query: mockQueryFn,
+				};
 
-					const response = await server.inject({
-						method: "DELETE",
-						url: `/${testId}`,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(response.payload).toBe("");
-					expect(response.statusCode).toBe(204);
+				const response = await server.inject({
+					method: "DELETE",
+					url: `/${testId}`,
 				});
 
-				test("Should return HTTP status code 404 if bearer token record missing or already deleted", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.delete.error
-						);
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Error: Failed to connect to DB",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
+			});
+		});
 
-					server.db = {
-						query: mockQueryFn,
-					};
+		describe("/:id GET requests", () => {
+			test("Should return bearer token record", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.getRead.ok);
 
-					const response = await server.inject({
-						method: "DELETE",
-						url: `/${testId}`,
-					});
+				server.db = {
+					query: mockQueryFn,
+				};
 
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Not Found",
-						message:
-							"Bearer token record does not exist or has already been deleted",
-						statusCode: 404,
-					});
-					expect(response.statusCode).toBe(404);
+				const response = await server.inject({
+					method: "GET",
+					url: `/${testId}`,
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "DELETE",
-						url: `/${testId}`,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
-						message: "Error: Failed to connect to DB",
-						statusCode: 500,
-					});
-					expect(response.statusCode).toBe(500);
-				});
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(testResRecord);
+				expect(response.statusCode).toBe(200);
 			});
 
-			describe("/:id GET requests", () => {
-				test("Should return bearer token record", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.getRead.ok
-						);
+			test("Should return HTTP status code 404 if bearer token record missing", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.getRead.error);
 
-					server.db = {
-						query: mockQueryFn,
-					};
+				server.db = {
+					query: mockQueryFn,
+				};
 
-					const response = await server.inject({
-						method: "GET",
-						url: `/${testId}`,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(testResRecord);
-					expect(response.statusCode).toBe(200);
+				const response = await server.inject({
+					method: "GET",
+					url: `/${testId}`,
 				});
 
-				test("Should return HTTP status code 404 if bearer token record missing", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.getRead.error
-						);
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "GET",
-						url: `/${testId}`,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Not Found",
-						message: "Bearer token record not found",
-						statusCode: 404,
-					});
-					expect(response.statusCode).toBe(404);
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Not Found",
+					message: "Bearer token record not found",
+					statusCode: 404,
 				});
-
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "GET",
-						url: `/${testId}`,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
-						message: "Error: Failed to connect to DB",
-						statusCode: 500,
-					});
-					expect(response.statusCode).toBe(500);
-				});
+				expect(response.statusCode).toBe(404);
 			});
 
-			describe("/ GET requests", () => {
-				test("Should return bearer token record, using all query string parameters", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.getSearch.ok
-						);
+			test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockRejectedValue(Error("Failed to connect to DB"));
 
-					server.db = {
-						query: mockQueryFn,
-					};
+				server.db = {
+					query: mockQueryFn,
+				};
 
-					const response = await server.inject({
-						method: "GET",
-						url: "/",
-						query: {
-							"access.name": testDbResult.name,
-							"access.email": testDbResult.email,
-							"access.expires": testDbResult.expires,
-							"access.scopes": "documents/register.search",
-							"meta.created": testDate1,
-							"meta.last_updated": testDate1,
+				const response = await server.inject({
+					method: "GET",
+					url: `/${testId}`,
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Error: Failed to connect to DB",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
+			});
+		});
+
+		describe("/ GET requests", () => {
+			test("Should return bearer token record, using all query string parameters", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.getSearch.ok);
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "GET",
+					url: "/",
+					query: {
+						"access.name": testDbResult.name,
+						"access.email": testDbResult.email,
+						"access.expires": testDbResult.expires,
+						"access.scopes": "documents/register.search",
+						"meta.created": testDate1,
+						"meta.last_updated": testDate1,
+						per_page: testPage,
+						page: testPage,
+					},
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expSearchResult);
+				expect(response.statusCode).toBe(200);
+			});
+
+			test("Should return bearer token record, using more than one `access.expires`, `access.scopes`, meta.created`, and `meta.last_updated` query string params", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.getSearch.ok);
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "GET",
+					url: "/",
+					query: {
+						"access.expires": [testDate1, testDate2],
+						"access.scopes": [
+							"documents/register.search",
+							"documents/receipt.delete",
+						],
+						"meta.created": [testDate1, testDate2],
+						"meta.last_updated": [testDate1, testDate2],
+					},
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expSearchResult);
+				expect(response.statusCode).toBe(200);
+			});
+
+			test("Should return bearer token record, using operators in the `access.expires`, meta.created`, and `meta.last_updated` query string params", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.getSearch.ok);
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "GET",
+					url: "/",
+					query: {
+						"access.expires": `ge${testDate1}`,
+						"meta.created": `ge${testDate1}`,
+						"meta.last_updated": `ge${testDate1}`,
+					},
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual(expSearchResult);
+				expect(response.statusCode).toBe(200);
+			});
+
+			test("Should return no bearer token records if table empty", async () => {
+				const mockQueryFn = jest.fn().mockResolvedValue({});
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "GET",
+					url: "/",
+					query: {
+						"access.name": testDbResult.name,
+					},
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					link: expect.any(String),
+					meta: {
+						pagination: {
+							total: 0,
 							per_page: testPage,
-							page: testPage,
+							current_page: testPage,
+							total_pages: 0,
 						},
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(
-						expSearchResult
-					);
-					expect(response.statusCode).toBe(200);
+					},
+					entry: [],
 				});
-
-				test("Should return bearer token record, using more than one `access.expires`, `access.scopes`, meta.created`, and `meta.last_updated` query string params", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.getSearch.ok
-						);
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "GET",
-						url: "/",
-						query: {
-							"access.expires": [testDate1, testDate2],
-							"access.scopes": [
-								"documents/register.search",
-								"documents/receipt.delete",
-							],
-							"meta.created": [testDate1, testDate2],
-							"meta.last_updated": [testDate1, testDate2],
-						},
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(
-						expSearchResult
-					);
-					expect(response.statusCode).toBe(200);
-				});
-
-				test("Should return bearer token record, using operators in the `access.expires`, meta.created`, and `meta.last_updated` query string params", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.getSearch.ok
-						);
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "GET",
-						url: "/",
-						query: {
-							"access.expires": `ge${testDate1}`,
-							"meta.created": `ge${testDate1}`,
-							"meta.last_updated": `ge${testDate1}`,
-						},
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(
-						expSearchResult
-					);
-					expect(response.statusCode).toBe(200);
-				});
-
-				test("Should return no bearer token records if table empty", async () => {
-					const mockQueryFn = jest.fn().mockResolvedValue({});
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "GET",
-						url: "/",
-						query: {
-							"access.name": testDbResult.name,
-						},
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						link: expect.any(String),
-						meta: {
-							pagination: {
-								total: 0,
-								per_page: testPage,
-								current_page: testPage,
-								total_pages: 0,
-							},
-						},
-						entry: [],
-					});
-					expect(response.statusCode).toBe(200);
-				});
-
-				test("Should return HTTP status code 400 if no query string params present", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.getSearch.error
-						);
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "GET",
-						url: "/",
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Bad Request",
-						message: "No valid query string parameters provided",
-						statusCode: 400,
-					});
-					expect(response.statusCode).toBe(400);
-				});
-
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "GET",
-						url: "/",
-						query: {
-							"access.name": testDbResult.name,
-						},
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
-						message: "Error: Failed to connect to DB",
-						statusCode: 500,
-					});
-					expect(response.statusCode).toBe(500);
-				});
+				expect(response.statusCode).toBe(200);
 			});
 
-			describe("/ POST requests", () => {
-				test("Should create bearer token record", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.post.ok
-						);
+			test("Should return HTTP status code 400 if no query string params present", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.getSearch.error);
 
-					server.db = {
-						query: mockQueryFn,
-					};
+				server.db = {
+					query: mockQueryFn,
+				};
 
-					const response = await server.inject({
-						method: "POST",
-						url: "/",
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: testReqPayload,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						id: testId,
-						access: {
-							token: expect.stringMatching(/^ydhmyydh_/im),
-							scopes: testReqPayload.scopes,
-						},
-					});
-					expect(response.headers).toMatchObject({
-						location: expect.stringContaining(
-							`/admin/access/bearer-token/${testId}`
-						),
-					});
-					expect(response.statusCode).toBe(201);
+				const response = await server.inject({
+					method: "GET",
+					url: "/",
 				});
 
-				test("Should create bearer token record without optional body properties", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.post.ok
-						);
+				expect(mockQueryFn).toHaveBeenCalledTimes(0);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Bad Request",
+					message: "No valid query string parameters provided",
+					statusCode: 400,
+				});
+				expect(response.statusCode).toBe(400);
+			});
 
-					server.db = {
-						query: mockQueryFn,
-					};
+			test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockRejectedValue(Error("Failed to connect to DB"));
 
-					const trimmedTestReqPayload = { ...testReqPayload };
-					delete trimmedTestReqPayload.email;
-					delete trimmedTestReqPayload.expires;
+				server.db = {
+					query: mockQueryFn,
+				};
 
-					const response = await server.inject({
-						method: "POST",
-						url: "/",
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: trimmedTestReqPayload,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						id: testId,
-						access: {
-							token: expect.stringMatching(/^ydhmyydh_/im),
-							scopes: testReqPayload.scopes,
-						},
-					});
-					expect(response.statusCode).toBe(201);
+				const response = await server.inject({
+					method: "GET",
+					url: "/",
+					query: {
+						"access.name": testDbResult.name,
+					},
 				});
 
-				test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.post.ok
-						);
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Error: Failed to connect to DB",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
+			});
+		});
 
-					server.db = {
-						query: mockQueryFn,
-					};
+		describe("/ POST requests", () => {
+			test("Should create bearer token record", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.post.ok);
 
-					const response = await server.inject({
-						method: "POST",
-						url: "/",
-						headers: {
-							"content-type": "application/javascript",
-						},
-						payload: testReqPayload,
-					});
+				server.db = {
+					query: mockQueryFn,
+				};
 
-					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Unsupported Media Type",
-						message:
-							"Unsupported Media Type: application/javascript",
-						statusCode: 415,
-					});
-					expect(response.statusCode).toBe(415);
+				const response = await server.inject({
+					method: "POST",
+					url: "/",
+					headers: {
+						"content-type": "application/json",
+					},
+					payload: testReqPayload,
 				});
 
-				test("Should return HTTP status code 500 if unable to update a bearer token record", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockResolvedValue(
-							testObject.mocks.queryResults.post.error
-						);
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					id: testId,
+					access: {
+						token: expect.stringMatching(/^ydhmyydh_/im),
+						scopes: testReqPayload.scopes,
+					},
+				});
+				expect(response.headers).toMatchObject({
+					location: expect.stringContaining(
+						`/admin/access/bearer-token/${testId}`
+					),
+				});
+				expect(response.statusCode).toBe(201);
+			});
 
-					server.db = {
-						query: mockQueryFn,
-					};
+			test("Should create bearer token record without optional body properties", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.post.ok);
 
-					const response = await server.inject({
-						method: "POST",
-						url: "/",
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: testReqPayload,
-					});
+				server.db = {
+					query: mockQueryFn,
+				};
 
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
-						message: "Error",
-						statusCode: 500,
-					});
-					expect(response.statusCode).toBe(500);
+				const trimmedTestReqPayload = { ...testReqPayload };
+				delete trimmedTestReqPayload.email;
+				delete trimmedTestReqPayload.expires;
+
+				const response = await server.inject({
+					method: "POST",
+					url: "/",
+					headers: {
+						"content-type": "application/json",
+					},
+					payload: trimmedTestReqPayload,
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
-					const mockQueryFn = jest
-						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
-
-					server.db = {
-						query: mockQueryFn,
-					};
-
-					const response = await server.inject({
-						method: "POST",
-						url: "/",
-						headers: {
-							"content-type": "application/json",
-						},
-						payload: testReqPayload,
-					});
-
-					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
-						error: "Internal Server Error",
-						message: "Error: Failed to connect to DB",
-						statusCode: 500,
-					});
-					expect(response.statusCode).toBe(500);
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					id: testId,
+					access: {
+						token: expect.stringMatching(/^ydhmyydh_/im),
+						scopes: testReqPayload.scopes,
+					},
 				});
+				expect(response.statusCode).toBe(201);
+			});
+
+			test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.post.ok);
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "POST",
+					url: "/",
+					headers: {
+						"content-type": "application/javascript",
+					},
+					payload: testReqPayload,
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(0);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Unsupported Media Type",
+					message: "Unsupported Media Type: application/javascript",
+					statusCode: 415,
+				});
+				expect(response.statusCode).toBe(415);
+			});
+
+			test("Should return HTTP status code 500 if unable to update a bearer token record", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockResolvedValue(mocks.queryResults.post.error);
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "POST",
+					url: "/",
+					headers: {
+						"content-type": "application/json",
+					},
+					payload: testReqPayload,
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Error",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
+			});
+
+			test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				const mockQueryFn = jest
+					.fn()
+					.mockRejectedValue(Error("Failed to connect to DB"));
+
+				server.db = {
+					query: mockQueryFn,
+				};
+
+				const response = await server.inject({
+					method: "POST",
+					url: "/",
+					headers: {
+						"content-type": "application/json",
+					},
+					payload: testReqPayload,
+				});
+
+				expect(mockQueryFn).toHaveBeenCalledTimes(1);
+				expect(JSON.parse(response.payload)).toEqual({
+					error: "Internal Server Error",
+					message: "Error: Failed to connect to DB",
+					statusCode: 500,
+				});
+				expect(response.statusCode).toBe(500);
 			});
 		});
 	});
