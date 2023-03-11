@@ -92,10 +92,7 @@ async function route(server, options) {
 
 						// Build option objects to populate options array
 						/* istanbul ignore else */
-						if (
-							preferenceValueOptions &&
-							preferenceValueOptions.length !== 0
-						) {
+						if (preferenceValueOptions?.length !== 0) {
 							preferenceValueOptions.forEach(
 								(preferenceValue) => {
 									/* istanbul ignore else: will not add preference type options if no match */
