@@ -132,7 +132,7 @@ async function route(server, options) {
 				 */
 				const token = results?.recordsets?.[0] ?? results?.rows;
 
-				if (token && token.length > 0) {
+				if (token?.length > 0) {
 					return server.cleanObject(buildBearerTokenRecord(token[0]));
 				}
 
@@ -385,7 +385,7 @@ async function route(server, options) {
 				 */
 				let token = results?.recordsets?.[0] ?? results?.rows;
 
-				if (token && token.length > 0) {
+				if (token?.length > 0) {
 					token = token[0];
 
 					const resObj = {
