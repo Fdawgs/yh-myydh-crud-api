@@ -22,45 +22,43 @@ describe("Migrate script", () => {
 			},
 		},
 	];
-	connectionTests.forEach((testObject) => {
-		describe(`${testObject.testName}`, () => {
-			beforeAll(() => {
-				Object.assign(process.env, testObject.envVariables);
+	describe.each(connectionTests)("$testName", ({ envVariables }) => {
+		beforeAll(() => {
+			Object.assign(process.env, envVariables);
+		});
+
+		test("Should run migrations", async () => {
+			const mockMigrate = jest.fn().mockResolvedValue([]);
+			const mockLog = jest
+				.spyOn(console, "log")
+				// Used to silence log printing to CLI
+				.mockImplementation(() => {});
+
+			Postgrator.mockImplementation(() => ({ migrate: mockMigrate }));
+
+			await migrate();
+
+			expect(mockMigrate).toHaveBeenCalledTimes(1);
+			expect(mockLog).toHaveBeenCalledTimes(2);
+		});
+
+		test("Should throw error, and exit, if issue encountered", async () => {
+			const mockMigrate = jest.fn().mockImplementation(async () => {
+				throw new Error();
 			});
 
-			test("Should run migrations", async () => {
-				const mockMigrate = jest.fn().mockResolvedValue([]);
-				const mockLog = jest
-					.spyOn(console, "log")
-					// Used to silence log printing to CLI
-					.mockImplementation(() => {});
+			const mockLog = jest
+				.spyOn(console, "error")
+				// Used to silence log printing to CLI
+				.mockImplementation(() => {});
 
-				Postgrator.mockImplementation(() => ({ migrate: mockMigrate }));
+			Postgrator.mockImplementation(() => ({ migrate: mockMigrate }));
 
-				await migrate();
+			await migrate();
 
-				expect(mockMigrate).toHaveBeenCalledTimes(1);
-				expect(mockLog).toHaveBeenCalledTimes(2);
-			});
-
-			test("Should throw error, and exit, if issue encountered", async () => {
-				const mockMigrate = jest.fn().mockImplementation(async () => {
-					throw new Error();
-				});
-
-				const mockLog = jest
-					.spyOn(console, "error")
-					// Used to silence log printing to CLI
-					.mockImplementation(() => {});
-
-				Postgrator.mockImplementation(() => ({ migrate: mockMigrate }));
-
-				await migrate();
-
-				expect(process.exitCode).toBe(1);
-				expect(mockMigrate).toHaveBeenCalledTimes(1);
-				expect(mockLog).toHaveBeenCalledTimes(1);
-			});
+			expect(process.exitCode).toBe(1);
+			expect(mockMigrate).toHaveBeenCalledTimes(1);
+			expect(mockLog).toHaveBeenCalledTimes(1);
 		});
 	});
 });
