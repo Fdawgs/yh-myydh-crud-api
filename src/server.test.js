@@ -775,13 +775,11 @@ describe("Server deployment", () => {
 						},
 					},
 				];
-				corsTests.forEach((corsTestObject) => {
-					describe(`${corsTestObject.testName}`, () => {
+				describe.each(corsTests)(
+					"$testName",
+					({ envVariables, expected, request }) => {
 						beforeAll(async () => {
-							Object.assign(
-								process.env,
-								corsTestObject.envVariables
-							);
+							Object.assign(process.env, envVariables);
 							config = await getConfig();
 
 							server = Fastify();
@@ -802,15 +800,13 @@ describe("Server deployment", () => {
 									url: "/admin/healthcheck",
 									headers: {
 										accept: "text/plain",
-										origin: corsTestObject.request.headers
-											.origin,
+										origin: request.headers.origin,
 									},
 								});
 
 								expect(response.payload).toBe("ok");
 								expect(response.headers).toEqual(
-									corsTestObject.expected.response.headers
-										.text
+									expected.response.headers.text
 								);
 								expect(response.statusCode).toBe(200);
 							});
@@ -858,8 +854,7 @@ describe("Server deployment", () => {
 									url: "/admin/healthcheck",
 									headers: {
 										accept: "application/javascript",
-										origin: corsTestObject.request.headers
-											.origin,
+										origin: request.headers.origin,
 									},
 								});
 
@@ -869,8 +864,7 @@ describe("Server deployment", () => {
 									statusCode: 406,
 								});
 								expect(response.headers).toEqual(
-									corsTestObject.expected.response.headers
-										.json
+									expected.response.headers.json
 								);
 								expect(response.statusCode).toBe(406);
 							});
@@ -883,8 +877,7 @@ describe("Server deployment", () => {
 									url: "/invalid",
 									headers: {
 										accept: "application/json",
-										origin: corsTestObject.request.headers
-											.origin,
+										origin: request.headers.origin,
 									},
 								});
 
@@ -899,8 +892,8 @@ describe("Server deployment", () => {
 								expect(response.statusCode).toBe(404);
 							});
 						});
-					});
-				});
+					}
+				);
 			});
 		});
 	});
