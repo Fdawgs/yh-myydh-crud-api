@@ -10,6 +10,7 @@
 	},
 	"license": "MIT",
 	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
+	"funding": "https://justgiving.com/yeovilhospital",
 	"engines": {
 		"node": ">=18.12.1"
 	},
