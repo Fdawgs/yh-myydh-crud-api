@@ -174,18 +174,15 @@ async function route(server, options) {
 								if (options.database.client === "postgresql") {
 									return rows.rowCount;
 								}
-
-								return rows.rowsAffected;
+								return rows.rowsAffected?.[0];
 							})
 					)
 				);
 
-				let count = 0;
-				results.forEach((preferenceType) => {
-					if (preferenceType?.[0] < 1 || preferenceType < 1) {
-						count += 1;
-					}
-				});
+				const count = results.filter(
+					(preferenceType) => preferenceType === 0
+				).length;
+
 				if (count) {
 					throw new Error(`${count} rows were not inserted`);
 				}
