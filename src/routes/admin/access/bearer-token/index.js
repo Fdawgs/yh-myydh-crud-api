@@ -325,7 +325,9 @@ async function route(server, options) {
 				const tokensObject = {
 					link: new URL(req.url, `${req.protocol}://${req.hostname}`)
 						.href,
-					entry: [],
+					entry: tokens.map((contact) =>
+						buildBearerTokenRecord(contact, req)
+					),
 					meta: {
 						pagination: {
 							total: count,
@@ -336,11 +338,6 @@ async function route(server, options) {
 					},
 				};
 
-				tokens.forEach((contact) => {
-					tokensObject.entry.push(
-						buildBearerTokenRecord(contact, req)
-					);
-				});
 				return server.cleanObject(tokensObject);
 			} catch (err) {
 				return res.internalServerError(err);
