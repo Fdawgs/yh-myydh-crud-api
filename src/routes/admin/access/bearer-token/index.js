@@ -180,12 +180,9 @@ async function route(server, options) {
 
 				// access.scopes - One of the values in the scopes array
 				if (req?.query?.["access.scopes"]) {
-					let scopes = [];
-					if (Array.isArray(req.query["access.scopes"])) {
-						scopes = req.query["access.scopes"];
-					} else {
-						scopes.push(req.query["access.scopes"]);
-					}
+					const scopes = Array.isArray(req.query["access.scopes"])
+						? req.query["access.scopes"]
+						: [req.query["access.scopes"]];
 
 					scopes.forEach((scopesValue) => {
 						switch (options.database.client) {
@@ -213,12 +210,9 @@ async function route(server, options) {
 				 * can be a string or array
 				 */
 				if (req?.query?.["access.expires"]) {
-					let expires = [];
-					if (Array.isArray(req.query["access.expires"])) {
-						expires = req.query["access.expires"];
-					} else {
-						expires.push(req.query["access.expires"]);
-					}
+					const expires = Array.isArray(req.query["access.expires"])
+						? req.query["access.expires"]
+						: [req.query["access.expires"]];
 
 					expires.forEach((expiryDate) => {
 						let date = expiryDate;
@@ -239,12 +233,9 @@ async function route(server, options) {
 				 * can be a string or array
 				 */
 				if (req?.query?.["meta.created"]) {
-					let created = [];
-					if (Array.isArray(req.query["meta.created"])) {
-						created = req.query["meta.created"];
-					} else {
-						created.push(req.query["meta.created"]);
-					}
+					const created = Array.isArray(req.query["meta.created"])
+						? req.query["meta.created"]
+						: [req.query["meta.created"]];
 
 					created.forEach((createDate) => {
 						let date = createDate;
@@ -265,12 +256,11 @@ async function route(server, options) {
 				 * can be a string or array
 				 */
 				if (req?.query?.["meta.last_updated"]) {
-					let lastUpdated = [];
-					if (Array.isArray(req.query["meta.last_updated"])) {
-						lastUpdated = req.query["meta.last_updated"];
-					} else {
-						lastUpdated.push(req.query["meta.last_updated"]);
-					}
+					const lastUpdated = Array.isArray(
+						req.query["meta.last_updated"]
+					)
+						? req.query["meta.last_updated"]
+						: [req.query["meta.last_updated"]];
 
 					lastUpdated.forEach((lastUpdatedDate) => {
 						let date = lastUpdatedDate;
