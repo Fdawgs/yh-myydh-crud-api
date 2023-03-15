@@ -16,7 +16,7 @@
 	},
 	"scripts": {
 		"benchmark": "autocannon -a 1000 \"http://0.0.0.0:3000/preferences/options\"",
-		"build": "node .esbuild.js",
+		"build": "node scripts/esbuild.js",
 		"db:migrate": "node src/migrate.js",
 		"jest": "jest",
 		"jest:coverage": "jest --coverage",

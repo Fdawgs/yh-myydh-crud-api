@@ -126,9 +126,9 @@ test_resources/
 .husky/
 .vscode/
 docs/
+scripts/
 src/
 .env.template
-.esbuild.js
 .eslintrc.js
 .gitignore
 .pm2.config.js
