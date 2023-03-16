@@ -24,7 +24,7 @@ async function migrate() {
 			case "postgresql":
 				client = new pg.Client(database.connection);
 				postgrator = new Postgrator({
-					migrationPattern: path.join(
+					migrationPattern: path.joinSafe(
 						__dirname,
 						"../migrations/postgres/*"
 					),
@@ -39,7 +39,7 @@ async function migrate() {
 			default:
 				client = new mssql.ConnectionPool(database.connection);
 				postgrator = new Postgrator({
-					migrationPattern: path.join(
+					migrationPattern: path.joinSafe(
 						__dirname,
 						"../migrations/mssql/*"
 					),
