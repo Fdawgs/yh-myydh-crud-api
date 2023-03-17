@@ -216,8 +216,9 @@ async function plugin(server, config) {
 			{
 				preHandler: server.rateLimit(),
 			},
-			async (req, res) =>
-				res.notFound(`Route ${req.method}:${req.url} not found`)
+			(req, res) => {
+				res.notFound(`Route ${req.method}:${req.url} not found`);
+			}
 		)
 
 		// Errors thrown by routes and plugins are caught here
