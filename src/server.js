@@ -234,7 +234,7 @@ async function plugin(server, config) {
 				(res.statusCode === 200 && !err.statusCode)
 			) {
 				res.log.error(err);
-				return res.internalServerError();
+				throw server.httpErrors.internalServerError();
 			}
 
 			throw err;
