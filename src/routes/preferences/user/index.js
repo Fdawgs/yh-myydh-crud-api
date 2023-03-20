@@ -48,7 +48,7 @@ async function route(server, options) {
 		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
-				!req?.scopes?.includes("preferences/user.read")
+				!req.scopes?.includes("preferences/user.read")
 			) {
 				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
@@ -74,9 +74,9 @@ async function route(server, options) {
 				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining
 				 */
 				const patientPreferences =
-					results?.recordsets?.[0] ?? results?.[0]?.rows;
+					results.recordsets?.[0] ?? results[0]?.rows;
 				const patientPreferencesValues =
-					results?.recordsets?.[1] ?? results?.[1]?.rows;
+					results.recordsets?.[1] ?? results[1]?.rows;
 
 				if (patientPreferences?.length > 0) {
 					// Build patient object
@@ -147,7 +147,7 @@ async function route(server, options) {
 		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
-				!req?.scopes?.includes("preferences/user.put")
+				!req.scopes?.includes("preferences/user.put")
 			) {
 				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP PUT request on this route"

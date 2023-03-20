@@ -49,7 +49,7 @@ function buildBearerTokenRecord(result, req) {
 		id: result.id,
 		access: {
 			name: result.name,
-			email: result?.email,
+			email: result.email,
 			hash: result.hash,
 			/**
 			 * Database client packages return result in different structures:
@@ -60,12 +60,12 @@ function buildBearerTokenRecord(result, req) {
 					? secJSON.parse(result.scopes)
 					: result.scopes,
 
-			expires: result?.expires,
+			expires: result.expires,
 		},
 
 		meta: {
 			created: result.created,
-			last_updated: result?.last_updated,
+			last_updated: result.last_updated,
 		},
 	};
 }
@@ -102,7 +102,7 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
 				 */
-				if (results?.rowsAffected?.[0] > 0 || results?.rowCount > 0) {
+				if (results.rowsAffected?.[0] > 0 || results.rowCount > 0) {
 					return res.status(204).send();
 				}
 				return res.notFound(
@@ -130,7 +130,7 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
-				const token = results?.recordsets?.[0] ?? results?.rows;
+				const token = results.recordsets?.[0] ?? results.rows;
 
 				if (token?.length > 0) {
 					return server.cleanObject(buildBearerTokenRecord(token[0]));
@@ -153,7 +153,7 @@ async function route(server, options) {
 				const whereArray = [];
 
 				// access.name - Name of client or service granted access to API, case-insensitive and supports `*` wildcards
-				if (req?.query?.["access.name"]) {
+				if (req.query?.["access.name"]) {
 					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
 					whereArray.push(
 						escSq`(LOWER(name) LIKE LOWER('${req.query[
@@ -166,7 +166,7 @@ async function route(server, options) {
 				}
 
 				// access.email - Contact email of client or service granted access to API, case-insensitive and supports `*` wildcards
-				if (req?.query?.["access.email"]) {
+				if (req.query?.["access.email"]) {
 					// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
 					whereArray.push(
 						escSq`(LOWER(email) LIKE LOWER('${req.query[
@@ -179,7 +179,7 @@ async function route(server, options) {
 				}
 
 				// access.scopes - One of the values in the scopes array
-				if (req?.query?.["access.scopes"]) {
+				if (req.query?.["access.scopes"]) {
 					const scopes = Array.isArray(req.query["access.scopes"])
 						? req.query["access.scopes"]
 						: [req.query["access.scopes"]];
@@ -209,7 +209,7 @@ async function route(server, options) {
 				 * access.expires - Datetime when bearer token expires,
 				 * can be a string or array
 				 */
-				if (req?.query?.["access.expires"]) {
+				if (req.query?.["access.expires"]) {
 					const expires = Array.isArray(req.query["access.expires"])
 						? req.query["access.expires"]
 						: [req.query["access.expires"]];
@@ -232,7 +232,7 @@ async function route(server, options) {
 				 * meta.created - Datetime when bearer token record was created,
 				 * can be a string or array
 				 */
-				if (req?.query?.["meta.created"]) {
+				if (req.query?.["meta.created"]) {
 					const created = Array.isArray(req.query["meta.created"])
 						? req.query["meta.created"]
 						: [req.query["meta.created"]];
@@ -255,7 +255,7 @@ async function route(server, options) {
 				 * meta.last_updated - Last modified datetime of bearer token record,
 				 * can be a string or array
 				 */
-				if (req?.query?.["meta.last_updated"]) {
+				if (req.query?.["meta.last_updated"]) {
 					const lastUpdated = Array.isArray(
 						req.query["meta.last_updated"]
 					)
@@ -305,11 +305,11 @@ async function route(server, options) {
 				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
 				const count =
-					results?.recordsets?.[0]?.[0]?.total ??
-					results?.[0]?.rows?.[0]?.total ??
+					results.recordsets?.[0]?.[0]?.total ??
+					results[0]?.rows?.[0]?.total ??
 					0;
 				const tokens = server.cleanObject(
-					results?.recordsets?.[1] ?? results?.[1]?.rows ?? []
+					results.recordsets?.[1] ?? results[1]?.rows ?? []
 				);
 
 				const tokensObject = {
@@ -358,9 +358,9 @@ async function route(server, options) {
 					accessPost({
 						client: options.database.client,
 						name: req.body.name,
-						email: req?.body?.email ?? "",
+						email: req.body?.email ?? "",
 						// If not set then provide a date ridiculously far into the future
-						expires: req?.body?.expires ?? "9999-12-31",
+						expires: req.body?.expires ?? "9999-12-31",
 						hash,
 						scopes: JSON.stringify(req.body.scopes),
 					})
@@ -370,7 +370,7 @@ async function route(server, options) {
 				 * Database client packages return results in different structures,
 				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
 				 */
-				let token = results?.recordsets?.[0] ?? results?.rows;
+				let token = results.recordsets?.[0] ?? results.rows;
 
 				if (token?.length > 0) {
 					token = token[0];

@@ -447,7 +447,7 @@ describe("Configuration", () => {
 			const CORS_ALLOWED_HEADERS =
 				"Accept, Authorization, Content-Type, Origin, X-Requested-With";
 			const CORS_ALLOW_CREDENTIALS =
-				envVariables?.CORS_ALLOW_CREDENTIALS || "";
+				envVariables.CORS_ALLOW_CREDENTIALS || "";
 			const CORS_EXPOSED_HEADERS = "Location";
 			const CORS_MAX_AGE = 10;
 			const LOG_LEVEL = "trace";
@@ -477,7 +477,7 @@ describe("Configuration", () => {
 			expect(config.cors).toEqual({
 				origin: expected.origin,
 				allowedHeaders: CORS_ALLOWED_HEADERS,
-				credentials: expected?.credentials || false,
+				credentials: expected.credentials || false,
 				exposedHeaders: CORS_EXPOSED_HEADERS,
 				hideOptionsRoute: true,
 				maxAge: CORS_MAX_AGE,
@@ -505,10 +505,10 @@ describe("Configuration", () => {
 	])("Should throw error if $testName", async ({ envVariables }) => {
 		const HOST = "0.0.0.0";
 		const PORT = 443;
-		const HTTPS_SSL_KEY_PATH = envVariables?.HTTPS_SSL_KEY_PATH || "";
-		const HTTPS_SSL_CERT_PATH = envVariables?.HTTPS_SSL_CERT_PATH || "";
-		const HTTPS_PFX_FILE_PATH = envVariables?.HTTPS_PFX_FILE_PATH || "";
-		const HTTPS_PFX_PASSPHRASE = envVariables?.HTTPS_PFX_PASSPHRASE || "";
+		const HTTPS_SSL_KEY_PATH = envVariables.HTTPS_SSL_KEY_PATH || "";
+		const HTTPS_SSL_CERT_PATH = envVariables.HTTPS_SSL_CERT_PATH || "";
+		const HTTPS_PFX_FILE_PATH = envVariables.HTTPS_PFX_FILE_PATH || "";
+		const HTTPS_PFX_PASSPHRASE = envVariables.HTTPS_PFX_PASSPHRASE || "";
 		const LOG_LEVEL = "trace";
 		const ADMIN_USERNAME = "admin";
 		const ADMIN_PASSWORD = "password";
