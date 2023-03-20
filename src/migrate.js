@@ -50,7 +50,7 @@ async function migrate() {
 						const result = await request.batch(query);
 
 						return {
-							rows: result?.recordset ? result.recordset : result,
+							rows: result.recordset ? result.recordset : result,
 						};
 					},
 				});

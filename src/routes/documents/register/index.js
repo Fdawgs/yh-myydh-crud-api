@@ -42,7 +42,7 @@ async function route(server, options) {
 		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
-				!req?.scopes?.includes("documents/register.search")
+				!req.scopes?.includes("documents/register.search")
 			) {
 				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
@@ -92,11 +92,11 @@ async function route(server, options) {
 				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining
 				 */
 				const count =
-					results?.recordsets?.[0]?.[0]?.total ??
-					results?.[0]?.rows?.[0]?.total ??
+					results.recordsets?.[0]?.[0]?.total ??
+					results[0]?.rows?.[0]?.total ??
 					0;
 				const data = server.cleanObject(
-					results?.recordsets?.[1] ?? results?.[1]?.rows ?? []
+					results.recordsets?.[1] ?? results[1]?.rows ?? []
 				);
 
 				const response = {

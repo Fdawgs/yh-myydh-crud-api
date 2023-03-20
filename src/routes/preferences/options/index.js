@@ -40,7 +40,7 @@ async function route(server, options) {
 		preValidation: async (req) => {
 			if (
 				options.bearerTokenAuthEnabled &&
-				!req?.scopes?.includes("preferences/options.search")
+				!req.scopes?.includes("preferences/options.search")
 			) {
 				throw server.httpErrors.unauthorized(
 					"You do not have permission to perform an HTTP GET request on this route"
@@ -63,14 +63,11 @@ async function route(server, options) {
 				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining
 				 */
 				const preferenceTypeOptions =
-					results?.recordsets?.[0] ?? results?.[0]?.rows;
+					results.recordsets?.[0] ?? results[0]?.rows;
 				const preferenceValueOptions =
-					results?.recordsets?.[1] ?? results?.[1]?.rows;
+					results.recordsets?.[1] ?? results[1]?.rows;
 
-				if (
-					preferenceTypeOptions &&
-					preferenceTypeOptions.length !== 0
-				) {
+				if (preferenceTypeOptions?.length > 0) {
 					// Build patient object
 					const patientObj = {
 						preferences: [],
@@ -92,7 +89,7 @@ async function route(server, options) {
 
 						// Build option objects to populate options array
 						/* istanbul ignore else */
-						if (preferenceValueOptions?.length !== 0) {
+						if (preferenceValueOptions?.length > 0) {
 							preferenceValueOptions.forEach(
 								(preferenceValue) => {
 									/* istanbul ignore else: will not add preference type options if no match */
