@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
+## [11.0.8](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.7...v11.0.8) (2023-03-21)
+
+
+### Bug fixes
+
+* **server:** premature closes crashing server ([daa9c29](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/daa9c2918de3975ad45505ed89d46a575eda495a))
+
+
+### Improvements
+
+* **migrate:** use `path.joinSafe()` over `path.join()` ([afe0fd4](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/afe0fd4b219d1bb109871ae3409bb5f5f20392db))
+* remove optional chaining for first level properties ([#1244](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1244)) ([7ea5704](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/7ea570423c27c265d6145bee5a150d3875e1b0e8))
+* **server:** convert sync async notfoundhandler to sync only ([#1242](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1242)) ([50a3778](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/50a37786883d29e15948ca008c28ea25b6300865))
+
+
+### Miscellaneous
+
+* **routes:** update schema inline comment re injection attacks ([#1245](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1245)) ([4e95dbe](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/4e95dbed24ec498e1b42822e72df11c6a4ed61cd))
+* **scripts:** move esbuild to script dir ([#1241](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1241)) ([a5678b2](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/a5678b2ecaf9ad852509c61cfb22954ee23e4eb3))
+* **scripts:** remove redundant export ([9ae884a](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/9ae884ac39f9708df3f0b5f8d0ff725b6b3ae8d4))
+* **scripts:** use js script to check licenses ([#1238](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1238)) ([c050e92](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c050e927f1fb3afce46e05cb226982dcdfb00b53))
+* **server:** inline comment re internal server error handling ([ce80e53](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ce80e5361510af2579ae1907edba3d31acded5e3))
+
+
+### Dependencies
+
+* **deps-dev:** bump eslint-config-prettier from 8.7.0 to 8.8.0 ([#1251](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1251)) ([557f110](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/557f110acc71ec5584f0654856443d3a7de10af3))
+* **deps-dev:** bump eslint-plugin-jsdoc from 40.0.2 to 40.1.0 ([#1250](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1250)) ([c636fd9](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/c636fd9b22c753454a45b085ffbfa4d9bf09b6b0))
+* **deps-dev:** bump glob from 9.3.0 to 9.3.1 ([#1252](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1252)) ([782296c](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/782296ca5abb4f981bc967b844f01334c876716e))
+* **deps-dev:** bump prettier from 2.8.4 to 2.8.6 ([#1249](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1249)) ([dccd51f](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/dccd51f144c90cf426c75c0f7babe7b6534fb99b))
+* **deps:** bump @fastify/cors from 8.2.0 to 8.2.1 ([#1247](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1247)) ([7328a7e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/7328a7ea2266b4fe28fc390070ebcff82dc3ef69))
+* **deps:** bump coverallsapp/github-action from 1.2.4 to 2.0.0 ([#1246](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1246)) ([ef6174e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/ef6174e67e5a513d379f03fe23e467494e3235de))
+* **deps:** bump fastify from 4.14.1 to 4.15.0 ([#1248](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1248)) ([b0db424](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/b0db4242f70143f22aff2db15305f607956f3de2))
+* **deps:** bump webpack from 5.75.0 to 5.76.1 ([#1239](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1239)) ([d69ec04](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/d69ec0402456b030fcb7308d4d12d70429336ec9))
+
 ## [11.0.7](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.6...v11.0.7) (2023-03-14)
 
 
