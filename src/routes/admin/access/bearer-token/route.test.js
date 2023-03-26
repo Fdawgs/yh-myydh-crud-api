@@ -562,9 +562,11 @@ describe("Access route", () => {
 					query: mockQueryFn,
 				};
 
-				const trimmedTestReqPayload = { ...testReqPayload };
-				delete trimmedTestReqPayload.email;
-				delete trimmedTestReqPayload.expires;
+				const trimmedTestReqPayload = {
+					...testReqPayload,
+					email: undefined,
+					expires: undefined,
+				};
 
 				const response = await server.inject({
 					method: "POST",
