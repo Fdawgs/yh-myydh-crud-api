@@ -39,13 +39,12 @@ const {
 function buildBearerTokenRecord(result, req) {
 	return {
 		// cleanObject will remove the undefined url key if present
-		url:
-			req !== undefined
-				? new URL(
-						`/access/bearer-token/${result.id}`,
-						`${req.protocol}://${req.hostname}`
-				  ).href
-				: undefined,
+		url: req
+			? new URL(
+					`/access/bearer-token/${result.id}`,
+					`${req.protocol}://${req.hostname}`
+			  ).href
+			: undefined,
 		id: result.id,
 		access: {
 			name: result.name,
