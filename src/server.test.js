@@ -498,10 +498,8 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(response.payload).toEqual(
-						expect.stringContaining(
-							'<?xml version="1.0" encoding="UTF-8"?>'
-						)
+					expect(response.payload).toMatch(
+						'<?xml version="1.0" encoding="UTF-8"?>'
 					);
 					expect(response.headers).toEqual(expResHeadersXml);
 					expect(response.statusCode).toBe(200);
