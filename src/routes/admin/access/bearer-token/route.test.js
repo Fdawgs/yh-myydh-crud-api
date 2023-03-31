@@ -541,7 +541,7 @@ describe("Access route", () => {
 				expect(JSON.parse(response.payload)).toEqual({
 					id: testId,
 					access: {
-						token: expect.stringMatching(/^ydhmyydh_/im),
+						token: expect.stringMatching(/^ydhmyydh_/i),
 						scopes: testReqPayload.scopes,
 					},
 				});
@@ -581,7 +581,7 @@ describe("Access route", () => {
 				expect(JSON.parse(response.payload)).toEqual({
 					id: testId,
 					access: {
-						token: expect.stringMatching(/^ydhmyydh_/im),
+						token: expect.stringMatching(/^ydhmyydh_/i),
 						scopes: testReqPayload.scopes,
 					},
 				});
