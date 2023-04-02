@@ -100,9 +100,8 @@ async function plugin(server) {
 					.prop("error", S.string().const("Internal Server Error"))
 					.prop(
 						"message",
-						// JSON Schema does not support Regex flags, added for posterity
 						S.string().pattern(
-							/^(?:Internal Server Error|Error.*)$/m
+							/^(?:Internal Server Error|Error.*)$/
 						)
 					)
 			)
