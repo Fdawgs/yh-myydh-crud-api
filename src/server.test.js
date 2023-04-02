@@ -52,7 +52,7 @@ const expResHeaders = {
 	connection: "keep-alive",
 	"content-length": expect.stringMatching(/\d+/),
 	"content-security-policy": "default-src 'self';frame-ancestors 'none'",
-	"content-type": expect.stringContaining("text/plain"),
+	"content-type": expect.stringMatching(/^text\/plain; charset=utf-8$/i),
 	date: expect.any(String),
 	expires: "0",
 	"permissions-policy": "interest-cohort=()",
@@ -75,7 +75,7 @@ const expResHeadersHtml = {
 	...expResHeaders,
 	"content-security-policy":
 		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content",
-	"content-type": expect.stringContaining("text/html"),
+	"content-type": expect.stringMatching(/^text\/html; charset=utf-8$/i),
 	"x-xss-protection": "0",
 };
 
@@ -99,7 +99,7 @@ const expeResHeadersPublicImage = {
 	"accept-ranges": "bytes",
 	"cache-control": "public, max-age=31536000, immutable",
 	"content-length": expect.any(Number), // @fastify/static plugin returns content-length as number
-	"content-type": expect.stringContaining("image/"),
+	"content-type": expect.stringMatching(/^image\//i),
 	etag: expect.any(String),
 	expires: undefined,
 	"last-modified": expect.any(String),
@@ -110,19 +110,21 @@ const expeResHeadersPublicImage = {
 
 const expResHeadersJson = {
 	...expResHeaders,
-	"content-type": expect.stringContaining("application/json"),
+	"content-type": expect.stringMatching(
+		/^application\/json; charset=utf-8$/i
+	),
 };
 
 const expResHeadersText = {
 	...expResHeaders,
-	"content-type": expect.stringContaining("text/plain"),
+	"content-type": expect.stringMatching(/^text\/plain; charset=utf-8$/i),
 };
 
 const expResHeadersXml = {
 	...expResHeaders,
 	"content-security-policy":
 		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content",
-	"content-type": expect.stringContaining("application/xml"),
+	"content-type": expect.stringMatching(/^application\/xml; charset=utf-8$/i),
 	"x-xss-protection": "0",
 };
 
@@ -498,10 +500,8 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(response.payload).toEqual(
-						expect.stringContaining(
-							'<?xml version="1.0" encoding="UTF-8"?>'
-						)
+					expect(response.payload).toMatch(
+						/^<\?xml version="1.0" encoding="UTF-8"\?>/
 					);
 					expect(response.headers).toEqual(expResHeadersXml);
 					expect(response.statusCode).toBe(200);
@@ -943,7 +943,7 @@ describe("Server deployment", () => {
 					const page = await browserType.newPage();
 
 					await page.goto("http://localhost:3000/docs");
-					expect(await page.title()).toBe(
+					await expect(page.title()).resolves.toBe(
 						"MyYDH CRUD API | Documentation"
 					);
 					/**
@@ -953,8 +953,8 @@ describe("Server deployment", () => {
 					const heading = page.locator("h1 >> nth=0");
 					await heading.waitFor();
 
-					expect(await heading.textContent()).not.toEqual(
-						expect.stringMatching(/something\s*went\s*wrong/i)
+					await expect(heading.textContent()).resolves.not.toMatch(
+						/something\s*went\s*wrong/i
 					);
 
 					await page.close();
