@@ -943,7 +943,7 @@ describe("Server deployment", () => {
 					const page = await browserType.newPage();
 
 					await page.goto("http://localhost:3000/docs");
-					expect(await page.title()).toBe(
+					await expect(page.title()).resolves.toBe(
 						"MyYDH CRUD API | Documentation"
 					);
 					/**
@@ -953,8 +953,8 @@ describe("Server deployment", () => {
 					const heading = page.locator("h1 >> nth=0");
 					await heading.waitFor();
 
-					expect(await heading.textContent()).not.toEqual(
-						expect.stringMatching(/something\s*went\s*wrong/i)
+					await expect(heading.textContent()).resolves.not.toMatch(
+						/something\s*went\s*wrong/i
 					);
 
 					await page.close();
