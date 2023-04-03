@@ -66,7 +66,7 @@ describe("Receipt route", () => {
 			});
 
 			describe("DELETE requests", () => {
-				test("Should delete a document read receipt", async () => {
+				it("Deletes a document read receipt", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(testObject.mocks.queryResults.ok);
@@ -88,7 +88,7 @@ describe("Receipt route", () => {
 					expect(response.statusCode).toBe(204);
 				});
 
-				test("Should return HTTP status code 404 if document missing or already deleted", async () => {
+				it("Returns HTTP status code 404 if document missing or already deleted", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(testObject.mocks.queryResults.error);
@@ -115,7 +115,7 @@ describe("Receipt route", () => {
 					expect(response.statusCode).toBe(404);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -143,7 +143,7 @@ describe("Receipt route", () => {
 			});
 
 			describe("PUT requests", () => {
-				test("Should upsert document read receipt", async () => {
+				it("Upserts document read receipt", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(testObject.mocks.queryResults.ok);
@@ -166,7 +166,7 @@ describe("Receipt route", () => {
 					expect(response.statusCode).toBe(204);
 				});
 
-				test("Should return HTTP status code 500 if rows were not inserted", async () => {
+				it("Returns HTTP status code 500 if rows were not inserted", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(testObject.mocks.queryResults.error);
@@ -193,7 +193,7 @@ describe("Receipt route", () => {
 					expect(response.statusCode).toBe(500);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -246,7 +246,7 @@ describe("Receipt route", () => {
 			});
 
 			describe("DELETE requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "DELETE",
 						url: `/${testId}`,
@@ -266,7 +266,7 @@ describe("Receipt route", () => {
 			});
 
 			describe("PUT requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "PUT",
 						url: `/${testId}`,

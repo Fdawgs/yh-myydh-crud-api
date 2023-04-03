@@ -19,7 +19,7 @@ describe("Convert-Date-Param-Operator plugin", () => {
 		await server.close();
 	});
 
-	test("Should convert date param operators to expected value", async () => {
+	it("Converts date param operators to expected value", async () => {
 		const values = {
 			ap: "=",
 			eb: "<",
