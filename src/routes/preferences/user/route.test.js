@@ -163,7 +163,7 @@ describe("User route", () => {
 			});
 
 			describe("GET requests", () => {
-				test("Should return user preferences", async () => {
+				it("Returns user preferences", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -184,7 +184,7 @@ describe("User route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return HTTP status code 404 if no values returned from database", async () => {
+				it("Returns HTTP status code 404 if no values returned from database", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -209,7 +209,7 @@ describe("User route", () => {
 					expect(response.statusCode).toBe(404);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -234,7 +234,7 @@ describe("User route", () => {
 			});
 
 			describe("PUT requests", () => {
-				test("Should upsert user preferences", async () => {
+				it("Upserts user preferences", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -259,7 +259,7 @@ describe("User route", () => {
 					expect(response.statusCode).toBe(204);
 				});
 
-				test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
+				it("Returns HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -289,7 +289,7 @@ describe("User route", () => {
 					expect(response.statusCode).toBe(415);
 				});
 
-				test("Should return HTTP status code 500 if rows were not inserted", async () => {
+				it("Returns HTTP status code 500 if rows were not inserted", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(
@@ -318,7 +318,7 @@ describe("User route", () => {
 					expect(response.statusCode).toBe(500);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -372,7 +372,7 @@ describe("User route", () => {
 			});
 
 			describe("GET requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: `/${testPatientId}`,
@@ -389,7 +389,7 @@ describe("User route", () => {
 			});
 
 			describe("PUT requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "PUT",
 						url: `/${testPatientId}`,

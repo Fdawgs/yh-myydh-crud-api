@@ -33,7 +33,7 @@ describe("DB plugin", () => {
 			await server.close();
 		});
 
-		test("Should return 'test' string", async () => {
+		it("Returns 'test' string", async () => {
 			const response = await server.inject({
 				method: "GET",
 				url: "/",
@@ -71,7 +71,7 @@ describe("DB plugin", () => {
 			await server.close();
 		});
 
-		test("Should return 'test' string", async () => {
+		it("Returns 'test' string", async () => {
 			const response = await server.inject({
 				method: "GET",
 				url: "/",

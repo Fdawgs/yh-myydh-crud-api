@@ -221,7 +221,7 @@ describe("Access route", () => {
 		});
 
 		describe("/:id DELETE requests", () => {
-			test("Should delete a bearer token record", async () => {
+			it("Deletes a bearer token record", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.delete.ok);
@@ -240,7 +240,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(204);
 			});
 
-			test("Should return HTTP status code 404 if bearer token record missing or already deleted", async () => {
+			it("Returns HTTP status code 404 if bearer token record missing or already deleted", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.delete.error);
@@ -264,7 +264,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(404);
 			});
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
+			it("Returns HTTP status code 500 if connection issue encountered", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockRejectedValue(Error("Failed to connect to DB"));
@@ -289,7 +289,7 @@ describe("Access route", () => {
 		});
 
 		describe("/:id GET requests", () => {
-			test("Should return bearer token record", async () => {
+			it("Returns bearer token record", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.getRead.ok);
@@ -308,7 +308,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(200);
 			});
 
-			test("Should return HTTP status code 404 if bearer token record missing", async () => {
+			it("Returns HTTP status code 404 if bearer token record missing", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.getRead.error);
@@ -331,7 +331,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(404);
 			});
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
+			it("Returns HTTP status code 500 if connection issue encountered", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockRejectedValue(Error("Failed to connect to DB"));
@@ -356,7 +356,7 @@ describe("Access route", () => {
 		});
 
 		describe("/ GET requests", () => {
-			test("Should return bearer token record, using all query string parameters", async () => {
+			it("Returns bearer token record, using all query string parameters", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.getSearch.ok);
@@ -385,7 +385,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(200);
 			});
 
-			test("Should return bearer token record, using more than one `access.expires`, `access.scopes`, meta.created`, and `meta.last_updated` query string params", async () => {
+			it("Returns bearer token record, using more than one `access.expires`, `access.scopes`, meta.created`, and `meta.last_updated` query string params", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.getSearch.ok);
@@ -413,7 +413,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(200);
 			});
 
-			test("Should return bearer token record, using operators in the `access.expires`, meta.created`, and `meta.last_updated` query string params", async () => {
+			it("Returns bearer token record, using operators in the `access.expires`, meta.created`, and `meta.last_updated` query string params", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.getSearch.ok);
@@ -437,7 +437,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(200);
 			});
 
-			test("Should return no bearer token records if table empty", async () => {
+			it("Returns no bearer token records if table empty", async () => {
 				const mockQueryFn = jest.fn().mockResolvedValue({});
 
 				server.db = {
@@ -468,7 +468,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(200);
 			});
 
-			test("Should return HTTP status code 400 if no query string params present", async () => {
+			it("Returns HTTP status code 400 if no query string params present", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.getSearch.error);
@@ -491,7 +491,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(400);
 			});
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
+			it("Returns HTTP status code 500 if connection issue encountered", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockRejectedValue(Error("Failed to connect to DB"));
@@ -519,7 +519,7 @@ describe("Access route", () => {
 		});
 
 		describe("/ POST requests", () => {
-			test("Should create bearer token record", async () => {
+			it("Creates bearer token record", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.post.ok);
@@ -553,7 +553,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(201);
 			});
 
-			test("Should create bearer token record without optional body properties", async () => {
+			it("Creates bearer token record without optional body properties", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.post.ok);
@@ -588,7 +588,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(201);
 			});
 
-			test("Should return HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
+			it("Returns HTTP status code 415 if content-type in `Content-Type` request header unsupported", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.post.ok);
@@ -615,7 +615,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(415);
 			});
 
-			test("Should return HTTP status code 500 if unable to update a bearer token record", async () => {
+			it("Returns HTTP status code 500 if unable to update a bearer token record", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.post.error);
@@ -642,7 +642,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(500);
 			});
 
-			test("Should return HTTP status code 500 if connection issue encountered", async () => {
+			it("Returns HTTP status code 500 if connection issue encountered", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockRejectedValue(Error("Failed to connect to DB"));

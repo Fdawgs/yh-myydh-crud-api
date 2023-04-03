@@ -23,7 +23,7 @@ describe("Clean-Object plugin", () => {
 		await server.close();
 	});
 
-	test("Should remove keys from request object where value is undefined or null", async () => {
+	it("Removes keys from request object where value is undefined or null", async () => {
 		const response = await server.inject({
 			method: "PUT",
 			url: "/",
@@ -42,7 +42,7 @@ describe("Clean-Object plugin", () => {
 		expect(response.statusCode).toBe(200);
 	});
 
-	test("Should return empty object if request payload not passed to plugin function", async () => {
+	it("Returns empty object if request payload not passed to plugin function", async () => {
 		const response = await server.inject({
 			method: "PUT",
 			url: "/empty",

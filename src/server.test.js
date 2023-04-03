@@ -243,7 +243,7 @@ describe("Server deployment", () => {
 			});
 
 			describe("/admin/healthcheck route", () => {
-				test("Should return `ok`", async () => {
+				it("Returns `ok`", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/admin/healthcheck",
@@ -257,7 +257,7 @@ describe("Server deployment", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+				it("Returns HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/admin/healthcheck",
@@ -277,7 +277,7 @@ describe("Server deployment", () => {
 			});
 
 			describe("Undeclared route", () => {
-				test("Should return HTTP status code 404 if route not found", async () => {
+				it("Returns HTTP status code 404 if route not found", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/invalid",
@@ -298,7 +298,7 @@ describe("Server deployment", () => {
 			});
 
 			describe("/preferences/options route", () => {
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -342,7 +342,7 @@ describe("Server deployment", () => {
 			});
 
 			describe("/admin/healthcheck route", () => {
-				test("Should return `ok`", async () => {
+				it("Returns `ok`", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/admin/healthcheck",
@@ -356,7 +356,7 @@ describe("Server deployment", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+				it("Returns HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/admin/healthcheck",
@@ -376,7 +376,7 @@ describe("Server deployment", () => {
 			});
 
 			describe("Undeclared route", () => {
-				test("Should return HTTP status code 404 if route not found", async () => {
+				it("Returns HTTP status code 404 if route not found", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/invalid",
@@ -397,7 +397,7 @@ describe("Server deployment", () => {
 			});
 
 			describe("/preferences/options route", () => {
-				test("Should return HTTP status code 401 if bearer token invalid", async () => {
+				it("Returns HTTP status code 401 if bearer token invalid", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(mocks.queryResults.bearerAuth.error);
@@ -427,7 +427,7 @@ describe("Server deployment", () => {
 					expect(response.statusCode).toBe(401);
 				});
 
-				test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+				it("Returns HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(mocks.queryResults.bearerAuth.ok);
@@ -454,7 +454,7 @@ describe("Server deployment", () => {
 					expect(response.statusCode).toBe(406);
 				});
 
-				test("Should return response if media type in `Accept` request header is `application/json`", async () => {
+				it("Returns response if media type in `Accept` request header is `application/json`", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValueOnce(mocks.queryResults.bearerAuth.ok)
@@ -479,7 +479,7 @@ describe("Server deployment", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return response if media type in `Accept` request header is `application/xml`", async () => {
+				it("Returns response if media type in `Accept` request header is `application/xml`", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValueOnce(mocks.queryResults.bearerAuth.ok)
@@ -529,7 +529,8 @@ describe("Server deployment", () => {
 			});
 
 			describe("/admin/access/bearer-token/:id route", () => {
-				test.each([
+				// TODO: use `it.concurrent.each()` once it is no longer experimental
+				it.each([
 					{
 						testName: "basic auth username invalid",
 						authString: "invalidadmin:password",
@@ -543,7 +544,7 @@ describe("Server deployment", () => {
 						authString: "invalidadmin:invalidpassword",
 					},
 				])(
-					"Should return HTTP status code 401 if $testName",
+					"Returns HTTP status code 401 if $testName",
 					async ({ authString }) => {
 						const response = await server.inject({
 							method: "GET",
@@ -567,7 +568,7 @@ describe("Server deployment", () => {
 					}
 				);
 
-				test("Should return response if basic auth username and password valid", async () => {
+				it("Returns response if basic auth username and password valid", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: `/admin/access/bearer-token/${testId}`,
@@ -584,7 +585,7 @@ describe("Server deployment", () => {
 					expect(response.statusCode).not.toBe(406);
 				});
 
-				test("Should return HTTP status code 406 if basic auth username and password valid, and media type in `Accept` request header is unsupported", async () => {
+				it("Returns HTTP status code 406 if basic auth username and password valid, and media type in `Accept` request header is unsupported", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/admin/access/bearer-token",
@@ -770,7 +771,7 @@ describe("Server deployment", () => {
 					});
 
 					describe("/admin/healthcheck route", () => {
-						test("Should return `ok`", async () => {
+						it("Returns `ok`", async () => {
 							const response = await server.inject({
 								method: "GET",
 								url: "/admin/healthcheck",
@@ -789,7 +790,7 @@ describe("Server deployment", () => {
 
 						// Only applicable if CORS enabled
 						if (corsEnvVariables.CORS_ORIGIN) {
-							test("Should return response to CORS preflight request", async () => {
+							it("Returns response to CORS preflight request", async () => {
 								const response = await server.inject({
 									method: "OPTIONS",
 									url: "/admin/healthcheck",
@@ -819,7 +820,7 @@ describe("Server deployment", () => {
 							});
 						}
 
-						test("Should return HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
+						it("Returns HTTP status code 406 if media type in `Accept` request header is unsupported", async () => {
 							const response = await server.inject({
 								method: "GET",
 								url: "/admin/healthcheck",
@@ -842,7 +843,7 @@ describe("Server deployment", () => {
 					});
 
 					describe("Undeclared route", () => {
-						test("Should return HTTP status code 404 if route not found", async () => {
+						it("Returns HTTP status code 404 if route not found", async () => {
 							const response = await server.inject({
 								method: "GET",
 								url: "/invalid",
@@ -899,7 +900,7 @@ describe("Server deployment", () => {
 
 		describe("Content", () => {
 			describe("/docs route", () => {
-				test("Should return HTML", async () => {
+				it("Returns HTML", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/docs",
@@ -915,7 +916,7 @@ describe("Server deployment", () => {
 			});
 
 			describe("/public route", () => {
-				test("Should return image", async () => {
+				it("Returns image", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/public/images/icons/favicon.ico",
@@ -932,12 +933,12 @@ describe("Server deployment", () => {
 
 		describe("Frontend", () => {
 			// Webkit not tested as it is flakey in context of Playwright
-			// TODO: use `test.concurrent.each()` once it is no longer experimental
-			test.each([
+			// TODO: use `it.concurrent.each()` once it is no longer experimental
+			it.each([
 				{ browser: chromium, name: "Chromium" },
 				{ browser: firefox, name: "Firefox" },
 			])(
-				"Should render docs page without error components - $name",
+				"Renders docs page without error components - $name",
 				async ({ browser }) => {
 					const browserType = await browser.launch();
 					const page = await browserType.newPage();

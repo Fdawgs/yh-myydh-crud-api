@@ -132,7 +132,7 @@ describe("Register route", () => {
 			});
 
 			describe("GET requests", () => {
-				test("Should return documents from register", async () => {
+				it("Returns documents from register", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(testObject.mocks.queryResults);
@@ -156,7 +156,7 @@ describe("Register route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return no documents from register if table empty", async () => {
+				it("Returns no documents from register if table empty", async () => {
 					const mockQueryFn = jest.fn().mockResolvedValue({});
 
 					server.db = {
@@ -180,7 +180,7 @@ describe("Register route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return documents from register using default pagination values", async () => {
+				it("Returns documents from register using default pagination values", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(testObject.mocks.queryResults);
@@ -202,7 +202,7 @@ describe("Register route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return documents from register using more than one lastModified querystring param", async () => {
+				it("Returns documents from register using more than one lastModified querystring param", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(testObject.mocks.queryResults);
@@ -229,7 +229,7 @@ describe("Register route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return documents from register using an operator in the lastModified querystring param", async () => {
+				it("Returns documents from register using an operator in the lastModified querystring param", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValue(testObject.mocks.queryResults);
@@ -251,7 +251,7 @@ describe("Register route", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				test("Should return HTTP status code 500 if connection issue encountered", async () => {
+				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockRejectedValue(Error("Failed to connect to DB"));
@@ -306,7 +306,7 @@ describe("Register route", () => {
 				await server.close();
 			});
 			describe("GET requests", () => {
-				test("Should return HTTP status code 401 if not in permitted access", async () => {
+				it("Returns HTTP status code 401 if not in permitted access", async () => {
 					const response = await server.inject({
 						method: "GET",
 						url: "/",

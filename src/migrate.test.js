@@ -27,7 +27,7 @@ describe("Migrate script", () => {
 			Object.assign(process.env, envVariables);
 		});
 
-		test("Should run migrations", async () => {
+		it("Runs migrations", async () => {
 			const mockMigrate = jest.fn().mockResolvedValue([]);
 			const mockLog = jest
 				.spyOn(console, "log")
@@ -42,7 +42,7 @@ describe("Migrate script", () => {
 			expect(mockLog).toHaveBeenCalledTimes(2);
 		});
 
-		test("Should throw error, and exit, if issue encountered", async () => {
+		it("Throws error, and exit, if issue encountered", async () => {
 			const mockMigrate = jest.fn().mockImplementation(async () => {
 				throw new Error();
 			});
