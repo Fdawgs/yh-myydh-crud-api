@@ -26,6 +26,7 @@ Make a copy of `.env.template` in the root directory and rename it to `.env`, co
 
 After cloning the repository and installing all the dependencies, there are several commands available for local development:
 
+-   `npm run build` - Runs esbuild to compile code into dist directory
 -   `npm run lint` - Lints everything in src directory
 -   `npm run jest` - Runs Jest over all tests in src directory
 -   `npm run start:dev` - Starts a development server with live reload
