@@ -18,13 +18,13 @@ const { license, version } = require("../../package.json");
  * @returns {boolean|Array<string>|string} CORS parameter.
  */
 function parseCorsParameter(param) {
-	if (param.toLowerCase().trim() === "true") {
+	if (param?.toLowerCase().trim() === "true") {
 		return true;
 	}
-	if (param.toLowerCase().trim() === "false") {
+	if (param?.toLowerCase().trim() === "false") {
 		return false;
 	}
-	if (param.includes(",")) {
+	if (param?.includes(",")) {
 		return param
 			.trim()
 			.split(",")
