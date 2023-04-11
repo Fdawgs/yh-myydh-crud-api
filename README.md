@@ -122,7 +122,7 @@ Example body of POST request:
 ```json
 {
 	"name": "Example Mirth Connect instance",
-	"email": "frazer.smith@ydh.nhs.uk",
+	"email": "frazer.smith@somersetft.nhs.uk",
 	"expires": "2022-03-09",
 	"scopes": ["documents/register.search", "documents/receipt.delete"]
 }

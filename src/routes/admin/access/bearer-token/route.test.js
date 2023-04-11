@@ -16,7 +16,7 @@ const testId = randomUUID();
 
 const testReqPayload = {
 	name: "Test Clinical System Supplier Product",
-	email: "testFirstName.testLastName@ydh.nhs.uk",
+	email: "testFirstName.testLastName@somersetft.nhs.uk",
 	expires: "2022-11-07",
 	scopes: ["documents/register.search", "documents/receipt.delete"],
 };
