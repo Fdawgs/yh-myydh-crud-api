@@ -15,7 +15,7 @@
 			"method": "POST",
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"name\": \"Mirth Connect instance\",\n\t\"email\": \"frazer.smith@ydh.nhs.uk\",\n\t\"expires\": \"2099-03-09\",\n\t\"scopes\": [\n\t\"documents/receipt.delete\",\n\t\"documents/receipt.put\",\n\t\"documents/register.search\",\n\t\"preferences/options.search\",\n\t\"preferences/user.put\",\n\t\"preferences/user.read\"\n\t]\n}"
+				"text": "{\n\t\"name\": \"Mirth Connect instance\",\n\t\"email\": \"frazer.smith@somersetft.nhs.uk\",\n\t\"expires\": \"2099-03-09\",\n\t\"scopes\": [\n\t\"documents/receipt.delete\",\n\t\"documents/receipt.put\",\n\t\"documents/register.search\",\n\t\"preferences/options.search\",\n\t\"preferences/user.put\",\n\t\"preferences/user.read\"\n\t]\n}"
 			},
 			"parameters": [],
 			"headers": [

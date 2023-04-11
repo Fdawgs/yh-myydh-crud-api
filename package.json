@@ -9,7 +9,7 @@
 		"url": "https://github.com/Fdawgs/ydh-myydh-crud-api/issues"
 	},
 	"license": "MIT",
-	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
+	"author": "Frazer Smith <frazer.smith@somersetft.nhs.uk>",
 	"funding": "https://justgiving.com/yeovilhospital",
 	"engines": {
 		"node": ">=18.12.1"
