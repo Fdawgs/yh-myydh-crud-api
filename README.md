@@ -1,19 +1,19 @@
-<a href="https://yeovilhospital.co.uk/">
-	<img alttext="Yeovil District Hospital logo" src="https://github.com/Fdawgs/ydh-logos/raw/HEAD/images/ydh-full-logo-transparent-background.svg" width="480" />
+<a href="https://somersetft.nhs.uk/yeovilhospital/">
+	<img alttext="Somerset NHSFT logo" src="https://github.com/TauntonandSomersetNHSTrust/sft-logos/raw/HEAD/images/sft-nhsft-logo-left-aligned-transparent-background.png" width="480" />
 </a>
 
-# Yeovil District Hospital NHS Foundation Trust - MyYDH RESTful CRUD API
+# Yeovil Hospital - MyYDH RESTful CRUD API
 
 [![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-myydh-crud-api.svg)](https://github.com/Fdawgs/ydh-myydh-crud-api/releases/latest/)
 ![Build Status](https://github.com/Fdawgs/ydh-myydh-crud-api/workflows/CI/badge.svg?branch=main)
 [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-myydh-crud-api/badge.svg?branch=main)](https://coveralls.io/github/Fdawgs/ydh-myydh-crud-api?branch=main)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 
-> Yeovil District Hospital NHSFT's RESTful CRUD API for the MyYDH app
+> Yeovil Hospital's RESTful CRUD API for the MyYDH app
 
 ## Overview
 
-This is [Yeovil District Hospital NHSFT](https://yeovilhospital.co.uk/)'s MyYDH RESTful API, a Node.js application using the [Fastify](https://fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the [MyYDH patient and clinician app](https://my.ydh.nhs.uk/).
+This is [Yeovil Hospital](https://somersetft.nhs.uk/yeovilhospital/)'s MyYDH RESTful API, a Node.js application using the [Fastify](https://fastify.io/) web framework, built to support CRUD (Create, Read, Update, and Delete) functionality of patient contact preferences for the [MyYDH patient and clinician app](https://my.ydh.nhs.uk/).
 
 ## Prerequisites
 
