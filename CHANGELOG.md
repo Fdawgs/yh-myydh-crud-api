@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [11.0.10](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.9...v11.0.10) (2023-04-18)
+
+
+### Improvements
+
+* **server:** replace json parse stringify with `structuredClone()` ([#1287](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1287)) ([faeb32e](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/faeb32e7184dc34d1af90f9c052182eba69cb6df))
+
+
+### Miscellaneous
+
+* **license:** add somerset nhsft ([cbb93a3](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/cbb93a3e5e831adc90126c443e2ceb5d276f8883))
+* replace ydh nhsft branding and links with somerset nhsft ([#1288](https://github.com/Fdawgs/ydh-myydh-crud-api/issues/1288)) ([8978551](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/8978551d8d904d8f83c7663dfcd1528a7557b62b))
+* update ydh email domain ([4c7776b](https://github.com/Fdawgs/ydh-myydh-crud-api/commit/4c7776b2270aa85cb0a684a8ce77318c4e62af65))
+
 ## [11.0.9](https://github.com/Fdawgs/ydh-myydh-crud-api/compare/v11.0.8...v11.0.9) (2023-04-04)
 
 
