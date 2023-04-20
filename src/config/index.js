@@ -247,7 +247,7 @@ async function getConfig() {
 					},
 					license: {
 						name: license,
-						url: "https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/main/LICENSE",
+						url: "https://raw.githubusercontent.com/Fdawgs/yh-myydh-crud-api/main/LICENSE",
 					},
 					version,
 					// Redoc specific extension to support loading image in docs

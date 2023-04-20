@@ -55,4 +55,4 @@ Steps 2. and 4. are automatically run by a pre-commit hook added by [Husky](http
 
 ## Issues
 
-Please file your issues [here](https://github.com/Fdawgs/ydh-myydh-crud-api/issues) and try to provide as much information in the template as possible/relevant.
+Please file your issues [here](https://github.com/Fdawgs/yh-myydh-crud-api/issues) and try to provide as much information in the template as possible/relevant.

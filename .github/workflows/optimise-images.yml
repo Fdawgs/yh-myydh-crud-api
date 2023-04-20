@@ -30,7 +30,7 @@ jobs:
         runs-on: ubuntu-latest
         # Only run on main repo and PRs that match the main repo
         if: >
-            github.repository == 'Fdawgs/ydh-myydh-crud-api' &&
+            github.repository == 'Fdawgs/yh-myydh-crud-api' &&
             (github.event_name != 'pull_request' ||
              github.event.pull_request.head.repo.full_name == github.repository)
         steps:
