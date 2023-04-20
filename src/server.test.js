@@ -479,7 +479,7 @@ describe("Server deployment", () => {
 					expect(response.statusCode).toBe(200);
 				});
 
-				it("Returns response if media type in `Accept` request header is `application/xml`", async () => {
+				it("Returns an XML response if media type in `Accept` request header is `application/xml`", async () => {
 					const mockQueryFn = jest
 						.fn()
 						.mockResolvedValueOnce(mocks.queryResults.bearerAuth.ok)
