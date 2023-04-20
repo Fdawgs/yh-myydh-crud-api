@@ -1,6 +1,6 @@
 services:
     db:
-        container_name: ydh-myydh-crud-api-db
+        container_name: yh-myydh-crud-api-db
         image: postgres:14-alpine
         environment:
             POSTGRES_DB: myydh_crud_api
@@ -9,10 +9,10 @@ services:
         ports:
             - 5432:5432
         volumes:
-            - ydh-myydh-crud-api-db-data:/var/lib/postgresql/data
+            - yh-myydh-crud-api-db-data:/var/lib/postgresql/data
 
     app:
-        container_name: ydh-myydh-crud-api
+        container_name: yh-myydh-crud-api
         build:
             context: .
         deploy:
@@ -23,7 +23,7 @@ services:
         env_file: .env
         environment:
             DB_CLIENT: "postgresql"
-            DB_CONNECTION_STRING: "postgresql://postgres:password@ydh-myydh-crud-api-db:5432/myydh_crud_api"
+            DB_CONNECTION_STRING: "postgresql://postgres:password@yh-myydh-crud-api-db:5432/myydh_crud_api"
             LOG_ROTATION_DATE_FORMAT:
             LOG_ROTATION_FILENAME:
             NODE_ENV: production
@@ -39,7 +39,7 @@ services:
             # See https://github.com/opencontainers/image-spec/blob/main/annotations.md
             org.opencontainers.image.authors: Frazer Smith <frazer.smith@somersetft.nhs.uk>
             org.opencontainers.image.licenses: MIT
-            org.opencontainers.image.url: https://github.com/Fdawgs/ydh-myydh-crud-api
+            org.opencontainers.image.url: https://github.com/Fdawgs/yh-myydh-crud-api
         logging:
             options:
                 max-file: "${LOG_ROTATION_MAX_LOGS:-10}"
@@ -49,5 +49,5 @@ services:
         restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
 
 volumes:
-    ydh-myydh-crud-api-db-data:
+    yh-myydh-crud-api-db-data:
         external: false

@@ -1,12 +1,12 @@
 {
-	"name": "ydh-myydh-crud-api",
+	"name": "yh-myydh-crud-api",
 	"version": "11.0.9",
 	"description": "Yeovil Hospital's RESTful CRUD API for the MyYDH app",
 	"main": "dist/app.js",
-	"repository": "git+https://github.com/Fdawgs/ydh-myydh-crud-api.git",
-	"homepage": "https://github.com/Fdawgs/ydh-myydh-crud-api",
+	"repository": "git+https://github.com/Fdawgs/yh-myydh-crud-api.git",
+	"homepage": "https://github.com/Fdawgs/yh-myydh-crud-api",
 	"bugs": {
-		"url": "https://github.com/Fdawgs/ydh-myydh-crud-api/issues"
+		"url": "https://github.com/Fdawgs/yh-myydh-crud-api/issues"
 	},
 	"license": "MIT",
 	"author": "Frazer Smith <frazer.smith@somersetft.nhs.uk>",
@@ -28,14 +28,14 @@
 		"start": "node .",
 		"start:dev": "nodemon src/app.js | pino-pretty",
 		"test": "npm run lint && npm run jest",
-		"test:db:mssql:build": "docker run -p 1433:1433 --name ydh-myydh-crud-api-mssql -e ACCEPT_EULA=Y -e SA_PASSWORD=Password! -e MSSQL_PID=Express -d mcr.microsoft.com/mssql/server:2019-latest",
-		"test:db:mssql:down": "docker stop ydh-myydh-crud-api-mssql",
-		"test:db:mssql:nuke": "docker stop ydh-myydh-crud-api-mssql && docker rm -v ydh-myydh-crud-api-mssql",
-		"test:db:mssql:up": "docker start ydh-myydh-crud-api-mssql",
-		"test:db:postgres:build": "docker run -p 5432:5432 --name ydh-myydh-crud-api-postgres -e POSTGRES_DB=myydh_crud_api -e POSTGRES_PASSWORD=password -d postgres:14-alpine",
-		"test:db:postgres:down": "docker stop ydh-myydh-crud-api-postgres",
-		"test:db:postgres:nuke": "docker stop ydh-myydh-crud-api-postgres && docker rm -v ydh-myydh-crud-api-postgres",
-		"test:db:postgres:up": "docker start ydh-myydh-crud-api-postgres"
+		"test:db:mssql:build": "docker run -p 1433:1433 --name yh-myydh-crud-api-mssql -e ACCEPT_EULA=Y -e SA_PASSWORD=Password! -e MSSQL_PID=Express -d mcr.microsoft.com/mssql/server:2019-latest",
+		"test:db:mssql:down": "docker stop yh-myydh-crud-api-mssql",
+		"test:db:mssql:nuke": "docker stop yh-myydh-crud-api-mssql && docker rm -v yh-myydh-crud-api-mssql",
+		"test:db:mssql:up": "docker start yh-myydh-crud-api-mssql",
+		"test:db:postgres:build": "docker run -p 5432:5432 --name yh-myydh-crud-api-postgres -e POSTGRES_DB=myydh_crud_api -e POSTGRES_PASSWORD=password -d postgres:14-alpine",
+		"test:db:postgres:down": "docker stop yh-myydh-crud-api-postgres",
+		"test:db:postgres:nuke": "docker stop yh-myydh-crud-api-postgres && docker rm -v yh-myydh-crud-api-postgres",
+		"test:db:postgres:up": "docker start yh-myydh-crud-api-postgres"
 	},
 	"commitlint": {
 		"extends": [

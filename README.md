@@ -4,9 +4,9 @@
 
 # Yeovil Hospital - MyYDH RESTful CRUD API
 
-[![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-myydh-crud-api.svg)](https://github.com/Fdawgs/ydh-myydh-crud-api/releases/latest/)
-![Build Status](https://github.com/Fdawgs/ydh-myydh-crud-api/workflows/CI/badge.svg?branch=main)
-[![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-myydh-crud-api/badge.svg?branch=main)](https://coveralls.io/github/Fdawgs/ydh-myydh-crud-api?branch=main)
+[![GitHub Release](https://img.shields.io/github/release/Fdawgs/yh-myydh-crud-api.svg)](https://github.com/Fdawgs/yh-myydh-crud-api/releases/latest/)
+![Build Status](https://github.com/Fdawgs/yh-myydh-crud-api/workflows/CI/badge.svg?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/Fdawgs/yh-myydh-crud-api/badge.svg?branch=main)](https://coveralls.io/github/Fdawgs/yh-myydh-crud-api?branch=main)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 
 > Yeovil Hospital's RESTful CRUD API for the MyYDH app
@@ -24,7 +24,7 @@ This is [Yeovil Hospital](https://somersetft.nhs.uk/yeovilhospital/)'s MyYDH RES
 
 Perform the following steps before deployment:
 
-1. Download and extract the [latest release asset](https://github.com/Fdawgs/ydh-myydh-crud-api/releases/latest)
+1. Download and extract the [latest release asset](https://github.com/Fdawgs/yh-myydh-crud-api/releases/latest)
 2. Navigate to the extracted directory
 3. Make a copy of `.env.template` in the root directory and rename it to `.env`
 4. Configure the application using the environment variables in `.env`
@@ -108,7 +108,7 @@ If using a Microsoft Windows OS utilise [pm2-installer](https://github.com/jesse
 
 API documentation can be found at `/docs`:
 
-<img alttext="Screenshot of MyYDH CRUD API documentation page" src="https://raw.githubusercontent.com/Fdawgs/ydh-myydh-crud-api/main/docs/images/api_documentation_screenshot.png" width="720">
+<img alttext="Screenshot of MyYDH CRUD API documentation page" src="https://raw.githubusercontent.com/Fdawgs/yh-myydh-crud-api/main/docs/images/api_documentation_screenshot.png" width="720">
 
 The underlying OpenAPI definitions are found at `/docs/openapi`.
 
@@ -154,4 +154,4 @@ Please adhere to this project's [Code of Conduct](./CODE_OF_CONDUCT.md) when con
 
 ## License
 
-`ydh-myydh-crud-api` is licensed under the [MIT](./LICENSE) license.
+`yh-myydh-crud-api` is licensed under the [MIT](./LICENSE) license.
