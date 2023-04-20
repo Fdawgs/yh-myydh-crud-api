@@ -1,5 +1,5 @@
 <a href="https://somersetft.nhs.uk/yeovilhospital/">
-	<img alttext="Somerset NHSFT logo" src="https://github.com/TauntonandSomersetNHSTrust/sft-logos/raw/HEAD/images/sft-nhsft-logo-left-aligned-transparent-background.png" width="480" />
+	<img alttext="Somerset NHSFT logo" src="https://raw.githubusercontent.com/Fdawgs/yh-myydh-crud-api/main/docs/images/somerset-nhsft-logo-left-aligned-transparent-background.png" width="480" />
 </a>
 
 # Yeovil Hospital - MyYDH RESTful CRUD API
