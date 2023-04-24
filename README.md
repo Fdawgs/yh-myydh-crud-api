@@ -1,3 +1,7 @@
+> **Note**
+> This repository is unmaintained as of 2023-05-03 as
+> I am no longer employed by Somerset NHS Foundation Trust.
+
 <a href="https://somersetft.nhs.uk/yeovilhospital/">
 	<img alttext="Somerset NHSFT logo" src="https://raw.githubusercontent.com/Fdawgs/yh-myydh-crud-api/main/docs/images/somerset-nhsft-logo-left-aligned-transparent-background.png" width="480" />
 </a>
