@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [11.0.11](https://github.com/Fdawgs/yh-myydh-crud-api/compare/v11.0.10...v11.0.11) (2023-04-24)
+
+
+### Documentation
+
+* **readme:** add unmaintained note ([217f0a5](https://github.com/Fdawgs/yh-myydh-crud-api/commit/217f0a51bc90e011029fd0c2d9fe5ee67951165a))
+
 ## [11.0.10](https://github.com/Fdawgs/yh-myydh-crud-api/compare/v11.0.9...v11.0.10) (2023-04-24)
 
 
