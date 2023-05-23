@@ -29,8 +29,8 @@ const sharedSchemas = require("./plugins/shared-schemas");
  */
 async function plugin(server, config) {
 	/**
-	 * Stop routes from accepting 'text/plain' requests
-	 * by removing included default parser
+	 * Stop routes from accepting 'text/plain' POST/PUT/PATCH
+	 * requests by removing included default parser
 	 */
 	await server.removeContentTypeParser("text/plain");
 
