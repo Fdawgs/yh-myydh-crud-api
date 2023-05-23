@@ -28,6 +28,12 @@ const sharedSchemas = require("./plugins/shared-schemas");
  * @param {object} config - Fastify configuration values.
  */
 async function plugin(server, config) {
+	/**
+	 * Stop routes from accepting 'text/plain' requests
+	 * by removing included default parser
+	 */
+	await server.removeContentTypeParser("text/plain");
+
 	// Register plugins
 	await server
 		// Accept header handler
