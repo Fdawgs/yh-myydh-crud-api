@@ -32,7 +32,7 @@ async function plugin(server, config) {
 	 * Stop routes from accepting 'text/plain' POST/PUT/PATCH
 	 * requests by removing included default parser
 	 */
-	await server.removeContentTypeParser("text/plain");
+	server.removeContentTypeParser("text/plain");
 
 	// Register plugins
 	await server
