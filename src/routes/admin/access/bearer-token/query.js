@@ -2,7 +2,7 @@ const escSq = require("../../../../utils/escape-single-quotes");
 
 /**
  * @author Frazer Smith
- * @description Build SQL query string.
+ * @description Builds SQL query string.
  * @param {object} options - Query string and database config values.
  * @param {string} options.id - Logical id of the artifact.
  * @returns {string} Query string.
@@ -13,7 +13,7 @@ const accessDelete = ({ id }) => escSq`DELETE
 
 /**
  * @author Frazer Smith
- * @description Build SQL query string.
+ * @description Builds SQL query string.
  * @param {object} options - Query string and database config values.
  * @param {string} options.id - Logical id of the artifact.
  * @returns {string} Query string.
@@ -32,7 +32,7 @@ WHERE id = '${id}';`;
 
 /**
  * @author Frazer Smith
- * @description Build SQL query string.
+ * @description Builds SQL query string.
  * @param {object} options - Query string and database config values.
  * @param {('mssql'|'postgresql')} options.client - Database client.
  * @param {string} options.whereClausePredicates - WHERE clause predicates.
@@ -66,7 +66,7 @@ FETCH NEXT ${perPage} ROWS ONLY;`;
 
 /**
  * @author Frazer Smith
- * @description Build SQL query string.
+ * @description Builds SQL query string.
  * @param {object} options - Query string and database config values.
  * @param {('mssql'|'postgresql')} options.client - Database client.
  * @param {string} options.name - Type of matching value.

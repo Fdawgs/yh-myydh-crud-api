@@ -2,7 +2,7 @@ const escSq = require("../../../utils/escape-single-quotes");
 
 /**
  * @author Frazer Smith
- * @description Build SQL query string.
+ * @description Builds SQL query string.
  * @param {object} options - Query string and database config values.
  * @param {string} options.patientPreferencesTypeTable - Name and schema of patient preferences type table.
  * @param {string} options.patientPreferencesValueTable - Name and schema of patient preferences value table.
