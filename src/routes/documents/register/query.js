@@ -1,6 +1,6 @@
 /**
  * @author Frazer Smith
- * @description Build SQL query string.
+ * @description Builds SQL query string.
  * @param {object} options - Query string and database config values.
  * @param {('mssql'|'postgresql')} options.client - Database client.
  * @param {string} options.whereClausePredicates - WHERE clause predicates.

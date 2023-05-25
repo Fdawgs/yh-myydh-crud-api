@@ -5,7 +5,7 @@ const migrate = require("./migrate");
 
 /**
  * @author Frazer Smith
- * @description Start server.
+ * @description Starts server.
  */
 const main = async () => {
 	process.on("unhandledRejection", (err) => {

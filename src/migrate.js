@@ -8,7 +8,7 @@ const getConfig = require("./config");
 
 /**
  * @author Frazer Smith
- * @description Run Postgrator to execute SQL queries in ../migrations/** directories.
+ * @description Runs Postgrator to execute SQL queries in ../migrations/** directories.
  */
 async function migrate() {
 	let client;

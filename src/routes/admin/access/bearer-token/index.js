@@ -23,7 +23,7 @@ const {
 
 /**
  * @author Frazer Smith
- * @description Build bearer token object from database result.
+ * @description Builds bearer token object from database result.
  * @param {object} result - Database query result.
  * @param {string} result.id - Unique identifier of bearer token record.
  * @param {string} result.name - Name of client or service accessing API.

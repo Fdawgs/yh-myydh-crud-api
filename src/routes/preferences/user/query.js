@@ -2,7 +2,7 @@ const escSq = require("../../../utils/escape-single-quotes");
 
 /**
  * @author Frazer Smith
- * @description Build SQL query string.
+ * @description Builds SQL query string.
  * @param {object} options - Query string and database config values.
  * @param {('mssql'|'postgresql')} options.dbClient - Database client.
  * @param {string} options.patientId - Unique patient identifier.
@@ -48,7 +48,7 @@ const userInsert = ({
 
 /**
  * @author Frazer Smith
- * @description Build SQL query string.
+ * @description Builds SQL query string.
  * @param {object} options - Query string and database config values.
  * @param {string} options.patientId - Unique patient identifier.
  * @param {string} options.patientPreferencesTable - Name and schema of patient preferences table.
