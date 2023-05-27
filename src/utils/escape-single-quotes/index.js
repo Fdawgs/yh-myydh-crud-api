@@ -7,7 +7,7 @@
  * in string expressions with two adjacent single quotes, which allows
  * a single-quote character within a string constant in SQL.
  * @param {*} strings
- * @param  {...any} expressions
+ * @param  {...*} expressions
  * @returns {string} Template literal with single-quote characters replaced
  * with two adjacent single quotes in expressions.
  */
