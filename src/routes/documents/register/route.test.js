@@ -28,7 +28,7 @@ const mockRecord = {
 	patientVisible: 1,
 };
 
-const expResPayload = {
+const expResBody = {
 	data: [],
 	meta: {
 		pagination: {
@@ -39,9 +39,9 @@ const expResPayload = {
 		},
 	},
 };
-expResPayload.data.push(mockRecord);
+expResBody.data.push(mockRecord);
 
-const expResPayloadEmpty = {
+const expResBodyEmpty = {
 	data: [],
 	meta: {
 		pagination: {
@@ -152,7 +152,7 @@ describe("Register route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(JSON.parse(response.body)).toEqual(expResBody);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -174,9 +174,7 @@ describe("Register route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(
-						expResPayloadEmpty
-					);
+					expect(JSON.parse(response.body)).toEqual(expResBodyEmpty);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -198,7 +196,7 @@ describe("Register route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(JSON.parse(response.body)).toEqual(expResBody);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -225,7 +223,7 @@ describe("Register route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(JSON.parse(response.body)).toEqual(expResBody);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -247,7 +245,7 @@ describe("Register route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(JSON.parse(response.body)).toEqual(expResBody);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -271,7 +269,7 @@ describe("Register route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -317,7 +315,7 @@ describe("Register route", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP GET request on this route",

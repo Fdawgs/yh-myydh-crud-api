@@ -252,7 +252,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(response.payload).toBe("ok");
+					expect(response.body).toBe("ok");
 					expect(response.headers).toEqual(expResHeaders);
 					expect(response.statusCode).toBe(200);
 				});
@@ -266,7 +266,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Acceptable",
 						message: "Not Acceptable",
 						statusCode: 406,
@@ -286,7 +286,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Found",
 						message: "Route GET:/invalid not found",
 						statusCode: 404,
@@ -313,7 +313,7 @@ describe("Server deployment", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Internal Server Error",
 						statusCode: 500,
@@ -351,7 +351,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(response.payload).toBe("ok");
+					expect(response.body).toBe("ok");
 					expect(response.headers).toEqual(expResHeaders);
 					expect(response.statusCode).toBe(200);
 				});
@@ -365,7 +365,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Acceptable",
 						message: "Not Acceptable",
 						statusCode: 406,
@@ -385,7 +385,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Found",
 						message: "Route GET:/invalid not found",
 						statusCode: 404,
@@ -415,7 +415,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message: "invalid authorization header",
 						statusCode: 401,
@@ -445,7 +445,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Acceptable",
 						message: "Not Acceptable",
 						statusCode: 406,
@@ -500,7 +500,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(response.payload).toMatch(
+					expect(response.body).toMatch(
 						/^<\?xml version="1.0" encoding="UTF-8"\?>/
 					);
 					expect(response.headers).toEqual(expResHeadersXml);
@@ -556,7 +556,7 @@ describe("Server deployment", () => {
 							},
 						});
 
-						expect(JSON.parse(response.payload)).toEqual({
+						expect(JSON.parse(response.body)).toEqual({
 							error: "Unauthorized",
 							message: "Unauthorized",
 							statusCode: 401,
@@ -597,7 +597,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Acceptable",
 						message: "Not Acceptable",
 						statusCode: 406,
@@ -781,7 +781,7 @@ describe("Server deployment", () => {
 								},
 							});
 
-							expect(response.payload).toBe("ok");
+							expect(response.body).toBe("ok");
 							expect(response.headers).toEqual(
 								expected.response.headers.text
 							);
@@ -800,7 +800,7 @@ describe("Server deployment", () => {
 									},
 								});
 
-								expect(response.payload).toBe("");
+								expect(response.body).toBe("");
 								expect(response.headers).toEqual({
 									...expResHeaders,
 									"access-control-allow-headers":
@@ -830,7 +830,7 @@ describe("Server deployment", () => {
 								},
 							});
 
-							expect(JSON.parse(response.payload)).toEqual({
+							expect(JSON.parse(response.body)).toEqual({
 								error: "Not Acceptable",
 								message: "Not Acceptable",
 								statusCode: 406,
@@ -853,7 +853,7 @@ describe("Server deployment", () => {
 								},
 							});
 
-							expect(JSON.parse(response.payload)).toEqual({
+							expect(JSON.parse(response.body)).toEqual({
 								error: "Not Found",
 								message: "Route GET:/invalid not found",
 								statusCode: 404,
@@ -909,7 +909,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(isHtml(response.payload)).toBe(true);
+					expect(isHtml(response.body)).toBe(true);
 					expect(response.headers).toEqual(expResHeadersHtmlStatic);
 					expect(response.statusCode).toBe(200);
 				});

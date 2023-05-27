@@ -84,7 +84,7 @@ describe("Receipt route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(response.payload).toBe("");
+					expect(response.body).toBe("");
 					expect(response.statusCode).toBe(204);
 				});
 
@@ -106,7 +106,7 @@ describe("Receipt route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Found",
 						message:
 							"Record does not exist or has already been deleted",
@@ -133,7 +133,7 @@ describe("Receipt route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -162,7 +162,7 @@ describe("Receipt route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(response.payload).toBe("");
+					expect(response.body).toBe("");
 					expect(response.statusCode).toBe(204);
 				});
 
@@ -185,7 +185,7 @@ describe("Receipt route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: No rows were inserted",
 						statusCode: 500,
@@ -212,7 +212,7 @@ describe("Receipt route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -255,7 +255,7 @@ describe("Receipt route", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP DELETE request on this route",
@@ -276,7 +276,7 @@ describe("Receipt route", () => {
 						},
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP PUT request on this route",

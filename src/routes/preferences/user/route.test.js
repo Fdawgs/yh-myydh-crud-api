@@ -7,7 +7,7 @@ const sharedSchemas = require("../../../plugins/shared-schemas");
 
 const testPatientId = 9999999999;
 
-const testReqPayload = {
+const testReqBody = {
 	preferences: [
 		{
 			id: 1,
@@ -49,7 +49,7 @@ const testPatientPreferencesValuesDbResult = [
 	},
 ];
 
-const expResPayload = {
+const expResBody = {
 	id: "9999999999",
 	meta: {
 		created: "2021-01-07T10:49:03.503Z",
@@ -180,7 +180,7 @@ describe("User route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(JSON.parse(response.body)).toEqual(expResBody);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -201,7 +201,7 @@ describe("User route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Found",
 						message: "User not found",
 						statusCode: 404,
@@ -224,7 +224,7 @@ describe("User route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -251,11 +251,11 @@ describe("User route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
-					expect(response.payload).toBe("");
+					expect(response.body).toBe("");
 					expect(response.statusCode).toBe(204);
 				});
 
@@ -276,11 +276,11 @@ describe("User route", () => {
 						headers: {
 							"content-type": "application/javascript",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unsupported Media Type",
 						message:
 							"Unsupported Media Type: application/javascript",
@@ -306,11 +306,11 @@ describe("User route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: 2 rows were not inserted",
 						statusCode: 500,
@@ -333,11 +333,11 @@ describe("User route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
 						message: "Error: Failed to connect to DB",
 						statusCode: 500,
@@ -378,7 +378,7 @@ describe("User route", () => {
 						url: `/${testPatientId}`,
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP GET request on this route",
@@ -396,10 +396,10 @@ describe("User route", () => {
 						headers: {
 							"content-type": "application/json",
 						},
-						payload: testReqPayload,
+						body: testReqBody,
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP PUT request on this route",

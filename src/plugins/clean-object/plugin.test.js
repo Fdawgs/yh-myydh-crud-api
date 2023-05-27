@@ -30,7 +30,7 @@ describe("Clean-Object plugin", () => {
 			headers: {
 				"content-type": "application/json",
 			},
-			payload: {
+			body: {
 				test1: undefined,
 				test2: null,
 				test3: [{ testobj: null }],
@@ -38,17 +38,17 @@ describe("Clean-Object plugin", () => {
 			},
 		});
 
-		expect(JSON.parse(response.payload)).toEqual({ test3: [{}], test4: 2 });
+		expect(JSON.parse(response.body)).toEqual({ test3: [{}], test4: 2 });
 		expect(response.statusCode).toBe(200);
 	});
 
-	it("Returns empty object if request payload not passed to plugin function", async () => {
+	it("Returns empty object if request body not passed to plugin function", async () => {
 		const response = await server.inject({
 			method: "PUT",
 			url: "/empty",
 		});
 
-		expect(JSON.parse(response.payload)).toEqual({});
+		expect(JSON.parse(response.body)).toEqual({});
 		expect(response.statusCode).toBe(200);
 	});
 });
