@@ -42,13 +42,13 @@ async function plugin(server, options) {
 			case "mssql":
 			default:
 				server.log.info("Connecting to MSSQL DB");
-				await mssql.connect(options.connection);
+				pool = await mssql.connect(options.connection);
 				server.log.info("MSSQL DB connection opened");
 
 				server.decorate("db", mssql);
 				server.addHook("onClose", async () => {
 					server.log.info("Closing MSSQL DB connection");
-					await mssql.close();
+					await pool.close();
 					server.log.info("MSSQL DB connection closed");
 				});
 				break;
