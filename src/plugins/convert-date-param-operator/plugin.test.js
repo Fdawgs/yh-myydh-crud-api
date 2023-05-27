@@ -42,11 +42,11 @@ describe("Convert-Date-Param-Operator plugin", () => {
 						headers: {
 							"content-type": "text/plain",
 						},
-						payload: `${key}`,
+						body: `${key}`,
 					})
 					.then((response) => {
 						// eslint-disable-next-line security/detect-object-injection
-						expect(response.payload).toEqual(values[key]);
+						expect(response.body).toEqual(values[key]);
 						expect(response.statusCode).toBe(200);
 
 						return response.statusCode;

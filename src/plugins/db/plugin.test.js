@@ -39,7 +39,7 @@ describe("DB plugin", () => {
 				url: "/",
 			});
 
-			expect(JSON.parse(response.payload).recordsets[0][0].example).toBe(
+			expect(JSON.parse(response.body).recordsets[0][0].example).toBe(
 				"test"
 			);
 			expect(response.statusCode).toBe(200);
@@ -77,7 +77,7 @@ describe("DB plugin", () => {
 				url: "/",
 			});
 
-			expect(JSON.parse(response.payload)[0].example).toBe("test");
+			expect(JSON.parse(response.body)[0].example).toBe("test");
 			expect(response.statusCode).toBe(200);
 		});
 	});

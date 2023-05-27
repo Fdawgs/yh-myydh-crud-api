@@ -27,7 +27,7 @@ const testPreferenceValueOptionsDbResult = [
 	},
 ];
 
-const expResPayload = {
+const expResBody = {
 	preferences: [
 		{
 			type: {
@@ -135,7 +135,7 @@ describe("Options route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual(expResPayload);
+					expect(JSON.parse(response.body)).toEqual(expResBody);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -154,7 +154,7 @@ describe("Options route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Not Found",
 						message: "Invalid or expired search results",
 						statusCode: 404,
@@ -177,9 +177,9 @@ describe("Options route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
-						message: "Error: Failed to connect to DB",
+						message: "Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -218,7 +218,7 @@ describe("Options route", () => {
 						url: "/",
 					});
 
-					expect(JSON.parse(response.payload)).toEqual({
+					expect(JSON.parse(response.body)).toEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP GET request on this route",

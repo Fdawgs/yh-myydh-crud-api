@@ -112,7 +112,7 @@ async function route(server, options) {
 				};
 				return response;
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});

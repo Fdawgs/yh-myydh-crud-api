@@ -4,8 +4,8 @@ const fp = require("fastify-plugin");
 /**
  * @author Frazer Smith
  * @author Felix Meyer-Wolters
- * @description Removes key value pairs from an object where the value is null or undefined.
- * Adapted from Felix's answer at https://stackoverflow.com/a/38340730
+ * @description Recursively removes key value pairs from an object where the value is null
+ * or undefined. Adapted from Felix's answer at https://stackoverflow.com/a/38340730
  * @param {object=} object - Object to be parsed and cleaned.
  * @returns {object} cleaned object.
  */
@@ -13,7 +13,7 @@ function cleanObject(object = {}) {
 	const obj = object;
 	Object.keys(obj).forEach((key) => {
 		if (obj[key] && typeof obj[key] === "object") {
-			cleanObject(obj[key]); // recursive
+			cleanObject(obj[key]);
 		} else if (obj[key] === null || obj[key] === undefined) {
 			delete obj[key];
 		}
