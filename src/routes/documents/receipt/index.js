@@ -74,7 +74,7 @@ async function route(server, options) {
 					"Record does not exist or has already been deleted"
 				);
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
@@ -114,7 +114,7 @@ async function route(server, options) {
 				}
 				throw new Error("No rows were inserted");
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});

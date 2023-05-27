@@ -120,7 +120,7 @@ async function route(server, options) {
 				}
 				return res.notFound("Invalid or expired search results");
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});

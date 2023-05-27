@@ -108,7 +108,7 @@ async function route(server, options) {
 					"Bearer token record does not exist or has already been deleted"
 				);
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
@@ -137,7 +137,7 @@ async function route(server, options) {
 
 				return res.notFound("Bearer token record not found");
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
@@ -329,7 +329,7 @@ async function route(server, options) {
 
 				return server.cleanObject(tokensObject);
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
@@ -399,9 +399,9 @@ async function route(server, options) {
 					return resObj;
 				}
 
-				throw new Error();
+				throw new Error("Failed to create bearer token record");
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});

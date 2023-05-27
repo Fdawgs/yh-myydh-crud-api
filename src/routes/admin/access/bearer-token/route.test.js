@@ -281,7 +281,7 @@ describe("Access route", () => {
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
-					message: "Error: Failed to connect to DB",
+					message: "Failed to connect to DB",
 					statusCode: 500,
 				});
 				expect(response.statusCode).toBe(500);
@@ -348,7 +348,7 @@ describe("Access route", () => {
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
-					message: "Error: Failed to connect to DB",
+					message: "Failed to connect to DB",
 					statusCode: 500,
 				});
 				expect(response.statusCode).toBe(500);
@@ -511,7 +511,7 @@ describe("Access route", () => {
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
-					message: "Error: Failed to connect to DB",
+					message: "Failed to connect to DB",
 					statusCode: 500,
 				});
 				expect(response.statusCode).toBe(500);
@@ -615,7 +615,7 @@ describe("Access route", () => {
 				expect(response.statusCode).toBe(415);
 			});
 
-			it("Returns HTTP status code 500 if unable to update a bearer token record", async () => {
+			it("Returns HTTP status code 500 if unable to create a bearer token record", async () => {
 				const mockQueryFn = jest
 					.fn()
 					.mockResolvedValue(mocks.queryResults.post.error);
@@ -636,7 +636,7 @@ describe("Access route", () => {
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
-					message: "Error",
+					message: "Failed to create bearer token record",
 					statusCode: 500,
 				});
 				expect(response.statusCode).toBe(500);
@@ -663,7 +663,7 @@ describe("Access route", () => {
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
 				expect(JSON.parse(response.body)).toEqual({
 					error: "Internal Server Error",
-					message: "Error: Failed to connect to DB",
+					message: "Failed to connect to DB",
 					statusCode: 500,
 				});
 				expect(response.statusCode).toBe(500);

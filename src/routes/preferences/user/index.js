@@ -135,7 +135,7 @@ async function route(server, options) {
 				}
 				return res.notFound("User not found");
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});
@@ -189,7 +189,7 @@ async function route(server, options) {
 
 				return res.status(204).send();
 			} catch (err) {
-				return res.internalServerError(err);
+				return res.internalServerError(err.message);
 			}
 		},
 	});

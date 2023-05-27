@@ -226,7 +226,7 @@ describe("User route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
 					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
-						message: "Error: Failed to connect to DB",
+						message: "Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -312,7 +312,7 @@ describe("User route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
 					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
-						message: "Error: 2 rows were not inserted",
+						message: "2 rows were not inserted",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
@@ -339,7 +339,7 @@ describe("User route", () => {
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
 					expect(JSON.parse(response.body)).toEqual({
 						error: "Internal Server Error",
-						message: "Error: Failed to connect to DB",
+						message: "Failed to connect to DB",
 						statusCode: 500,
 					});
 					expect(response.statusCode).toBe(500);
