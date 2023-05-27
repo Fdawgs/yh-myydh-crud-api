@@ -106,7 +106,7 @@
 		"@fastify/helmet": "^10.1.1",
 		"@fastify/rate-limit": "^8.0.0",
 		"@fastify/sensible": "^5.2.0",
-		"@fastify/static": "^6.10.1",
+		"@fastify/static": "^6.10.2",
 		"@fastify/swagger": "^8.5.1",
 		"@fastify/under-pressure": "^8.2.0",
 		"bcryptjs": "^2.4.3",
