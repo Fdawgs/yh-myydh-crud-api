@@ -58,10 +58,8 @@ function buildBearerTokenRecord(result, req) {
 				typeof result.scopes === "string"
 					? secJSON.parse(result.scopes)
 					: result.scopes,
-
 			expires: result.expires,
 		},
-
 		meta: {
 			created: result.created,
 			last_updated: result.last_updated,
