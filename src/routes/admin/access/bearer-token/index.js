@@ -58,10 +58,8 @@ function buildBearerTokenRecord(result, req) {
 				typeof result.scopes === "string"
 					? secJSON.parse(result.scopes)
 					: result.scopes,
-
 			expires: result.expires,
 		},
-
 		meta: {
 			created: result.created,
 			last_updated: result.last_updated,
@@ -75,6 +73,8 @@ function buildBearerTokenRecord(result, req) {
  * @param {object} server - Fastify instance.
  * @param {object} options - Route config values.
  * @param {object} options.cors - CORS settings.
+ * @param {object} options.database - Database config values.
+ * @param {('mssql'|'postgresql')} options.database.client - Database client.
  */
 async function route(server, options) {
 	// Register plugins
