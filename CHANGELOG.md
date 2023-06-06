@@ -495,7 +495,7 @@ All notable changes to this project will be documented in this file.
 ### ⚠ BREAKING CHANGES
 
 * minimum required version of node increased from 16.0.0 to 18.12.1
-	* Node 16 becomes EOL in September 2023, which is the same time that [Yeovil District Hospital NHS Foundation Trust is due to merge with Somerset NHS Foundation Trust](https://yeovilhospital.co.uk/better-care-for-local-people-the-merger-of-yeovil-hospital-nhs-foundation-trust-with-somerset-nhs-foundation-trust/). Development will be focused on the merger at that point in time, so this PR preemptively drops support to reduce work load in the future
+	* Node 16 becomes EOL in September 2023, which is the same time that [Yeovil District Hospital NHS Foundation Trust is due to merge with Somerset NHS Foundation Trust](https://somersetft.nhs.uk/?news=two-somerset-nhs-trusts-merge-to-create-unique-nhs-trust). Development will be focused on the merger at that point in time, so this PR preemptively drops support to reduce work load in the future
 * **config:** use port 3000 if `PORT` env variable unset (#1074)
 * **deps:** `LOG_ROTATION_FREQUENCY` env variable accepted values changed from "daily, custom, or test" to "daily, date, [1-12]h, or [1-30]m"
 
