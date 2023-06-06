@@ -94,8 +94,8 @@ jobs:
               with:
                   configFile: ./package.json
 
-    unit-tests:
-        name: Unit Tests
+    db-migration-tests:
+        name: DB Migration Tests
         if: github.event.pull_request.draft == false
         strategy:
             matrix:
@@ -137,13 +137,8 @@ jobs:
             - name: Install
               run: npm ci --ignore-scripts
 
-            - name: Install Playwright
-              run: npx playwright install --with-deps chromium firefox
-
-            - name: Run tests
-              run: |
-                  cp .env.template .env
-                  npm run jest:coverage
+            - name: Copy .env.template to .env
+              run: cp .env.template .env
 
             - name: Run MSSQL migrations
               env:
@@ -156,6 +151,37 @@ jobs:
                   DB_CLIENT: postgresql
                   DB_CONNECTION_STRING: postgresql://postgres:password@localhost:5432/myydh_crud_api
               run: npm run db:migrate
+
+    unit-tests:
+        name: Unit Tests
+        if: github.event.pull_request.draft == false
+        strategy:
+            matrix:
+                node-version: [18]
+                os: [macos-latest, ubuntu-latest, windows-latest]
+        runs-on: ${{ matrix.os }}
+        steps:
+            - name: Check out repo
+              uses: actions/checkout@v3
+              with:
+                  persist-credentials: false
+
+            - name: Setup Node ${{ matrix.node-version }} on ${{ matrix.os }}
+              uses: actions/setup-node@v3
+              with:
+                  cache: npm
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install
+              run: npm ci --ignore-scripts
+
+            - name: Install Playwright
+              run: npx playwright install --with-deps chromium firefox
+
+            - name: Run tests
+              run: |
+                  cp .env.template .env
+                  npm run jest:coverage
 
             - name: Coveralls parallel
               if: github.repository == 'Fdawgs/yh-myydh-crud-api'
@@ -236,7 +262,7 @@ jobs:
     # This job is used to save the PR number in an artifact, for use in the automerge.yml workflow
     save-pr-number:
         name: Save Dependabot PR Number
-        needs: unit-tests
+        needs: [db-migration-tests, unit-tests]
         if: >
             github.event.pull_request.draft == false &&
             github.event_name == 'pull_request' &&
