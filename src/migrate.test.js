@@ -2,8 +2,21 @@ const Postgrator = require("postgrator");
 const migrate = require("./migrate");
 
 jest.mock("postgrator");
+// Mock MSSQL and PostgreSQL clients to prevent DB connection attempts
+jest.mock("mssql", () => ({
+	ConnectionPool: jest.fn().mockImplementation(() => ({
+		connect: jest.fn().mockResolvedValue(),
+		close: jest.fn().mockResolvedValue(),
+		config: { database: "test" },
+	})),
+}));
+jest.mock("pg");
 
 describe("Migrate script", () => {
+	beforeEach(() => {
+		jest.clearAllMocks();
+	});
+
 	const connectionTests = [
 		{
 			testName: "MSSQL connection",
@@ -51,7 +64,6 @@ describe("Migrate script", () => {
 			const mockMigrate = jest.fn().mockImplementation(async () => {
 				throw new Error();
 			});
-
 			const mockLog = jest
 				.spyOn(console, "error")
 				// Used to silence log printing to CLI

@@ -2,6 +2,20 @@ const Fastify = require("fastify");
 const plugin = require(".");
 const getConfig = require("../../config");
 
+// Mock MSSQL and PostgreSQL clients to prevent DB connection attempts
+jest.mock("mssql", () => ({
+	connect: jest.fn().mockResolvedValue({
+		close: jest.fn().mockResolvedValue(),
+	}),
+	query: jest.fn().mockResolvedValue({ recordsets: [[{ example: "test" }]] }),
+}));
+jest.mock("pg", () => ({
+	Pool: jest.fn().mockImplementation(() => ({
+		end: jest.fn().mockResolvedValue(),
+		query: jest.fn().mockResolvedValue({ rows: [{ example: "test" }] }),
+	})),
+}));
+
 describe("DB plugin", () => {
 	let config;
 	let server;

@@ -18,7 +18,7 @@
 		"benchmark": "autocannon -a 1000 \"http://0.0.0.0:3000/preferences/options\"",
 		"build": "node scripts/esbuild.js",
 		"db:migrate": "node src/migrate.js",
-		"jest": "jest",
+		"jest": "jest --runInBand",
 		"jest:coverage": "jest --coverage",
 		"lint": "eslint . --cache --ext js,jsx,ts,tsx --ignore-path .gitignore",
 		"lint:licenses": "node scripts/license-checker.js",
@@ -43,7 +43,6 @@
 		]
 	},
 	"jest": {
-		"clearMocks": true,
 		"collectCoverageFrom": [
 			"src/**/*.js",
 			"!src/app.js"
@@ -52,7 +51,6 @@
 			"text",
 			"lcovonly"
 		],
-		"resetMocks": true,
 		"testEnvironment": "node",
 		"testTimeout": 60000
 	},

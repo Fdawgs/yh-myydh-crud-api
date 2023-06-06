@@ -138,6 +138,20 @@ const expResHeaders404Errors = {
 	vary: undefined,
 };
 
+// Mock MSSQL and PostgreSQL clients to prevent DB connection attempts
+jest.mock("mssql", () => ({
+	connect: jest.fn().mockResolvedValue({
+		close: jest.fn().mockResolvedValue(),
+	}),
+	query: jest.fn().mockResolvedValue({ recordsets: [[{ example: "test" }]] }),
+}));
+jest.mock("pg", () => ({
+	Pool: jest.fn().mockImplementation(() => ({
+		end: jest.fn().mockResolvedValue(),
+		query: jest.fn().mockResolvedValue({ rows: [{ example: "test" }] }),
+	})),
+}));
+
 describe("Server deployment", () => {
 	const connectionTests = [
 		{
