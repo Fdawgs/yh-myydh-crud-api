@@ -40,6 +40,11 @@ describe("Migrate script", () => {
 
 			expect(mockMigrate).toHaveBeenCalledTimes(1);
 			expect(mockLog).toHaveBeenCalledTimes(2);
+			expect(mockLog).toHaveBeenNthCalledWith(
+				1,
+				"No migrations run, already on latest schema version"
+			);
+			expect(mockLog).toHaveBeenNthCalledWith(2, "Migration complete");
 		});
 
 		it("Throws error, and exit, if issue encountered", async () => {
@@ -58,7 +63,7 @@ describe("Migrate script", () => {
 
 			expect(process.exitCode).toBe(1);
 			expect(mockMigrate).toHaveBeenCalledTimes(1);
-			expect(mockLog).toHaveBeenCalledTimes(1);
+			expect(mockLog).toHaveBeenCalledWith(expect.any(Error));
 		});
 	});
 });
