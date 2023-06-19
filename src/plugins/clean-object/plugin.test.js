@@ -38,7 +38,10 @@ describe("Clean-Object plugin", () => {
 			},
 		});
 
-		expect(JSON.parse(response.body)).toEqual({ test3: [{}], test4: 2 });
+		expect(JSON.parse(response.body)).toStrictEqual({
+			test3: [{}],
+			test4: 2,
+		});
 		expect(response.statusCode).toBe(200);
 	});
 
@@ -48,7 +51,7 @@ describe("Clean-Object plugin", () => {
 			url: "/empty",
 		});
 
-		expect(JSON.parse(response.body)).toEqual({});
+		expect(JSON.parse(response.body)).toStrictEqual({});
 		expect(response.statusCode).toBe(200);
 	});
 });

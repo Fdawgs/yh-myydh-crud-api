@@ -255,7 +255,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					error: "Not Found",
 					message:
 						"Bearer token record does not exist or has already been deleted",
@@ -279,7 +279,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					error: "Internal Server Error",
 					message: "Failed to connect to DB",
 					statusCode: 500,
@@ -304,7 +304,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual(testResRecord);
+				expect(JSON.parse(response.body)).toStrictEqual(testResRecord);
 				expect(response.statusCode).toBe(200);
 			});
 
@@ -323,7 +323,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					error: "Not Found",
 					message: "Bearer token record not found",
 					statusCode: 404,
@@ -346,7 +346,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					error: "Internal Server Error",
 					message: "Failed to connect to DB",
 					statusCode: 500,
@@ -381,7 +381,9 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual(expSearchResult);
+				expect(JSON.parse(response.body)).toStrictEqual(
+					expSearchResult
+				);
 				expect(response.statusCode).toBe(200);
 			});
 
@@ -409,7 +411,9 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual(expSearchResult);
+				expect(JSON.parse(response.body)).toStrictEqual(
+					expSearchResult
+				);
 				expect(response.statusCode).toBe(200);
 			});
 
@@ -433,7 +437,9 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual(expSearchResult);
+				expect(JSON.parse(response.body)).toStrictEqual(
+					expSearchResult
+				);
 				expect(response.statusCode).toBe(200);
 			});
 
@@ -453,7 +459,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					link: expect.any(String),
 					meta: {
 						pagination: {
@@ -483,7 +489,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(0);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					error: "Bad Request",
 					message: "No valid query string parameters provided",
 					statusCode: 400,
@@ -509,7 +515,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					error: "Internal Server Error",
 					message: "Failed to connect to DB",
 					statusCode: 500,
@@ -538,7 +544,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					id: testId,
 					access: {
 						token: expect.stringMatching(/^ydhmyydh_/i),
@@ -578,7 +584,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					id: testId,
 					access: {
 						token: expect.stringMatching(/^ydhmyydh_/i),
@@ -607,7 +613,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(0);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					error: "Unsupported Media Type",
 					message: "Unsupported Media Type: application/javascript",
 					statusCode: 415,
@@ -634,7 +640,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					error: "Internal Server Error",
 					message: "Failed to create bearer token record",
 					statusCode: 500,
@@ -661,7 +667,7 @@ describe("Access route", () => {
 				});
 
 				expect(mockQueryFn).toHaveBeenCalledTimes(1);
-				expect(JSON.parse(response.body)).toEqual({
+				expect(JSON.parse(response.body)).toStrictEqual({
 					error: "Internal Server Error",
 					message: "Failed to connect to DB",
 					statusCode: 500,
