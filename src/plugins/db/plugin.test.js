@@ -22,6 +22,10 @@ describe("DB plugin", () => {
 
 	const query = "SELECT 'test' AS \"example\"";
 
+	beforeEach(() => {
+		jest.clearAllMocks();
+	});
+
 	describe("MSSQL connection", () => {
 		beforeAll(async () => {
 			const DB_CLIENT = "mssql";

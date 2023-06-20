@@ -153,6 +153,10 @@ jest.mock("pg", () => ({
 }));
 
 describe("Server deployment", () => {
+	beforeEach(() => {
+		jest.clearAllMocks();
+	});
+
 	const connectionTests = [
 		{
 			testName: "MSSQL connection",
