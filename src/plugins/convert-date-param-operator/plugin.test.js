@@ -46,7 +46,7 @@ describe("Convert-Date-Param-Operator plugin", () => {
 					})
 					.then((response) => {
 						// eslint-disable-next-line security/detect-object-injection
-						expect(response.body).toEqual(values[key]);
+						expect(response.body).toStrictEqual(values[key]);
 						expect(response.statusCode).toBe(200);
 
 						return response.statusCode;

@@ -180,7 +180,7 @@ describe("User route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual(expResBody);
+					expect(JSON.parse(response.body)).toStrictEqual(expResBody);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -201,7 +201,7 @@ describe("User route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Not Found",
 						message: "User not found",
 						statusCode: 404,
@@ -224,7 +224,7 @@ describe("User route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "Failed to connect to DB",
 						statusCode: 500,
@@ -280,7 +280,7 @@ describe("User route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(0);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unsupported Media Type",
 						message:
 							"Unsupported Media Type: application/javascript",
@@ -310,7 +310,7 @@ describe("User route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "2 rows were not inserted",
 						statusCode: 500,
@@ -337,7 +337,7 @@ describe("User route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(2);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "Failed to connect to DB",
 						statusCode: 500,
@@ -378,7 +378,7 @@ describe("User route", () => {
 						url: `/${testPatientId}`,
 					});
 
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP GET request on this route",
@@ -399,7 +399,7 @@ describe("User route", () => {
 						body: testReqBody,
 					});
 
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP PUT request on this route",

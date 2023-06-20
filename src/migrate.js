@@ -62,7 +62,6 @@ async function migrate() {
 		// Migrate to latest version
 		const migrationResult = await postgrator.migrate();
 
-		/* istanbul ignore else */
 		if (migrationResult.length === 0) {
 			console.log("No migrations run, already on latest schema version");
 		}

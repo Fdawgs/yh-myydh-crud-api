@@ -58,9 +58,29 @@ describe("Migrate script", () => {
 				"No migrations run, already on latest schema version"
 			);
 			expect(mockLog).toHaveBeenNthCalledWith(2, "Migration complete");
+
+			mockLog.mockRestore();
 		});
 
-		it("Throws error, and exit, if issue encountered", async () => {
+		it("Runs migrations and only logs once if migrations run", async () => {
+			const mockMigrate = jest.fn().mockResolvedValue([1]);
+			const mockLog = jest
+				.spyOn(console, "log")
+				// Used to silence log printing to CLI
+				.mockImplementation(() => {});
+
+			Postgrator.mockImplementation(() => ({ migrate: mockMigrate }));
+
+			await migrate();
+
+			expect(mockMigrate).toHaveBeenCalledTimes(1);
+			expect(mockLog).toHaveBeenCalledTimes(1);
+			expect(mockLog).toHaveBeenNthCalledWith(1, "Migration complete");
+
+			mockLog.mockRestore();
+		});
+
+		it("Throws error, and exits, if issue encountered", async () => {
 			const mockMigrate = jest.fn().mockImplementation(async () => {
 				throw new Error();
 			});
@@ -76,6 +96,8 @@ describe("Migrate script", () => {
 			expect(process.exitCode).toBe(1);
 			expect(mockMigrate).toHaveBeenCalledTimes(1);
 			expect(mockLog).toHaveBeenCalledWith(expect.any(Error));
+
+			mockLog.mockRestore();
 		});
 	});
 });

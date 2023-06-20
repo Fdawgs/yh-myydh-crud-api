@@ -135,7 +135,7 @@ describe("Options route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual(expResBody);
+					expect(JSON.parse(response.body)).toStrictEqual(expResBody);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -154,7 +154,7 @@ describe("Options route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Not Found",
 						message: "Invalid or expired search results",
 						statusCode: 404,
@@ -177,7 +177,7 @@ describe("Options route", () => {
 					});
 
 					expect(mockQueryFn).toHaveBeenCalledTimes(1);
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Internal Server Error",
 						message: "Failed to connect to DB",
 						statusCode: 500,
@@ -218,7 +218,7 @@ describe("Options route", () => {
 						url: "/",
 					});
 
-					expect(JSON.parse(response.body)).toEqual({
+					expect(JSON.parse(response.body)).toStrictEqual({
 						error: "Unauthorized",
 						message:
 							"You do not have permission to perform an HTTP GET request on this route",
