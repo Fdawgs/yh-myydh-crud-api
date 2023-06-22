@@ -7,7 +7,7 @@ const secJSON = require("secure-json-parse");
  * @author Frazer Smith
  * @description Decorator plugin that adds bearer token authentication,
  * querying a database for bcrypt-hashed bearer token keys.
- * @param {object} server - Fastify instance.
+ * @param {import("fastify").FastifyInstance} server - Fastify instance.
  */
 async function plugin(server) {
 	await server.register(bearer, {

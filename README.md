@@ -1,6 +1,7 @@
 > **Note**
-> This repository is unmaintained as of 2023-05-03 as
-> I am no longer employed by Somerset NHS Foundation Trust.
+> As of 2023-05-03 as I am no longer employed by Somerset NHS Foundation Trust.
+> However, this repository will continue to be maintained as it acts as
+> a 'canary in the coalmine' for changes to Node and other dependencies.
 
 <a href="https://somersetft.nhs.uk/yeovilhospital/">
 	<img alttext="Somerset NHSFT logo" src="https://raw.githubusercontent.com/Fdawgs/yh-myydh-crud-api/main/docs/images/somerset-nhsft-logo-left-aligned-transparent-background.png" width="480" />

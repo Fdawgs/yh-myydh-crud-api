@@ -1,10 +1,10 @@
 const fp = require("fastify-plugin");
-const S = require("fluent-json-schema");
+const S = require("fluent-json-schema").default;
 
 /**
  * @author Frazer Smith
  * @description Plugin that adds a collection of shared schemas for re-use throughout the server.
- * @param {object} server - Fastify instance.
+ * @param {import("fastify").FastifyInstance} server - Fastify instance.
  */
 async function plugin(server) {
 	/**
