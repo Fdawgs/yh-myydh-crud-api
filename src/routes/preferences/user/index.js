@@ -7,7 +7,7 @@ const { userInsert, userSelect } = require("./query");
 /**
  * @author Frazer Smith
  * @description Sets routing options for server.
- * @param {object} server - Fastify instance.
+ * @param {import("fastify").FastifyInstance} server - Fastify instance.
  * @param {object} options - Route config values.
  * @param {boolean=} options.bearerTokenAuthEnabled - Apply `bearerToken` security scheme to route if defined.
  * @param {object} options.cors - CORS settings.

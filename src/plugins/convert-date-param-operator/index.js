@@ -36,7 +36,7 @@ function convDateParamOperator(operator) {
  * @author Frazer Smith
  * @description Plugin that decorates Fastify instance with `convertDateParamOperator` function,
  * which convert date param operators to corresponding values.
- * @param {object} server - Fastify instance.
+ * @param {import("fastify").FastifyInstance} server - Fastify instance.
  */
 async function plugin(server) {
 	server.decorate("convertDateParamOperator", convDateParamOperator);

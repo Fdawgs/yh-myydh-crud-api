@@ -6,7 +6,7 @@ const mssql = require("mssql");
 /**
  * @author Frazer Smith
  * @description Decorator plugin that adds Microsoft SQL Server or PostgreSQL client.
- * @param {object} server - Fastify instance.
+ * @param {import("fastify").FastifyInstance} server - Fastify instance.
  * @param {object} options - Plugin config values.
  * @param {('mssql'|'postgresql')} options.client - Database client.
  * @param {string} options.connection - Database connection string.
