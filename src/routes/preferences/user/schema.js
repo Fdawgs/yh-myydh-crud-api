@@ -148,7 +148,7 @@ const userPutSchema = {
 				.maxItems(4)
 				.uniqueItems(true)
 		)
-		.required("preferences"),
+		.required(["preferences"]),
 	response: {
 		204: S.string().raw({ nullable: true }).description("No Content"),
 		400: S.ref("responses#/properties/badRequest").description(
