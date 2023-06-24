@@ -33,6 +33,7 @@ describe("Convert-Date-Param-Operator plugin", () => {
 			default: "=",
 		};
 
+		expect.assertions(Object.keys(values).length * 2);
 		await Promise.all(
 			Object.keys(values).map((key) =>
 				server
