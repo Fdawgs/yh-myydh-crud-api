@@ -2,6 +2,70 @@
 
 All notable changes to this project will be documented in this file.
 
+## [11.0.12](https://github.com/Fdawgs/yh-myydh-crud-api/compare/v11.0.11...v11.0.12) (2023-06-24)
+
+
+### Improvements
+
+* **server:** remove redundant `await` ([210f2e9](https://github.com/Fdawgs/yh-myydh-crud-api/commit/210f2e9873528d5d886da1d9c0bb870b58e23769))
+
+
+### Continuous integration
+
+* **ci:** separate db migration tests; test on windows and macos ([7ed2dd6](https://github.com/Fdawgs/yh-myydh-crud-api/commit/7ed2dd66d02124b615891f459f564891ec2148c9))
+* **deps:** bump coverallsapp/github-action from 2.1.2 to 2.2.0 ([#1353](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1353)) ([58b4d8b](https://github.com/Fdawgs/yh-myydh-crud-api/commit/58b4d8b7072f074d4660ca06ca2992dba439ec9e))
+
+
+### Bug fixes
+
+* **routes/docs:** stop all redoc files from being served ([d97bd75](https://github.com/Fdawgs/yh-myydh-crud-api/commit/d97bd7594dc9fdf466fb445e647382b77d2bff31))
+* **routes/preferences:** `required` param should be array ([6d1b896](https://github.com/Fdawgs/yh-myydh-crud-api/commit/6d1b896f7ffdd5669598a5d14330a750bc8cb3b8))
+
+
+### Documentation
+
+* **changelog:** fix broken link ([94b2af9](https://github.com/Fdawgs/yh-myydh-crud-api/commit/94b2af94ea8fc09f23b9f76d311c3ee28f28d4c0))
+* **readme:** update maintenance note ([a1a7b00](https://github.com/Fdawgs/yh-myydh-crud-api/commit/a1a7b00c4e110e5db01a170b9d35daa9841ce456))
+
+
+### Miscellaneous
+
+* **.env.template:** punctuation fixes ([da2e18d](https://github.com/Fdawgs/yh-myydh-crud-api/commit/da2e18d3419899f54615d2934459c81dded89f8e))
+* **.eslintrc:** enable additional jest plugin rules ([61e078f](https://github.com/Fdawgs/yh-myydh-crud-api/commit/61e078ff39cd78d588936ec047a8a40dfcff5726))
+* **.eslintrc:** enable additional jsdoc plugin rules ([42ad0cc](https://github.com/Fdawgs/yh-myydh-crud-api/commit/42ad0cc724d116e060dedece965b309f89aede42))
+* **.eslintrc:** only use jest plugin to lint test-related files ([e9c22b7](https://github.com/Fdawgs/yh-myydh-crud-api/commit/e9c22b70fb29fb9095a340d253c2eaf63c6ff91d))
+* **config:** return types don't support promise rejection values ([bfbe35b](https://github.com/Fdawgs/yh-myydh-crud-api/commit/bfbe35bc99bd03f52f1ff417dff2afa07b43bdb0))
+* enable fluent-json-schema type definitions ([8016367](https://github.com/Fdawgs/yh-myydh-crud-api/commit/8016367134e6a1945ad99e20976624fe37819dbf))
+* import fastify type for server jsdoc params ([ec3c652](https://github.com/Fdawgs/yh-myydh-crud-api/commit/ec3c652378445660d6552ea06877a1b7f8082f03))
+* **package:** remove `runInBand` arg from jest script ([0004c78](https://github.com/Fdawgs/yh-myydh-crud-api/commit/0004c789b52c771896510a3628f4e7aea550a604))
+* **package:** set jest coverage threshold ([5418f34](https://github.com/Fdawgs/yh-myydh-crud-api/commit/5418f347dd4db8ac6fbb1125625f8d3b85cd66f6))
+* **routes/admin/access/bearer-token:** add missing jsdoc params ([6c44726](https://github.com/Fdawgs/yh-myydh-crud-api/commit/6c4472696723da70dea5bd221df9ae7f1e6b4eae))
+* **routes/admin/access/bearer-token:** remove excess whitespace ([fd49721](https://github.com/Fdawgs/yh-myydh-crud-api/commit/fd4972196ee661c655c6ccbf94607792af07218b))
+* **routes/documents/register:** add missing jsdoc param ([aeb862c](https://github.com/Fdawgs/yh-myydh-crud-api/commit/aeb862caf6c9d6dcb9a494419fd2f9b23262b203))
+
+
+### Dependencies
+
+* **deps-dev:** bump @commitlint/cli from 17.6.3 to 17.6.5 ([#1345](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1345)) ([8c54619](https://github.com/Fdawgs/yh-myydh-crud-api/commit/8c546198ca1746a9325aa0fbc69c8c86066df852))
+* **deps-dev:** bump @commitlint/config-conventional ([#1342](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1342)) ([ae33b6e](https://github.com/Fdawgs/yh-myydh-crud-api/commit/ae33b6eba88e86c580864e86c4733b9b94ae3aa4))
+* **deps-dev:** bump eslint from 8.41.0 to 8.42.0 ([#1348](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1348)) ([8b93765](https://github.com/Fdawgs/yh-myydh-crud-api/commit/8b93765c1083a12e0b455a11f28c257aade08832))
+* **deps-dev:** bump eslint from 8.42.0 to 8.43.0 ([#1356](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1356)) ([44cbd07](https://github.com/Fdawgs/yh-myydh-crud-api/commit/44cbd0718110944457bc67699c32f3fd55e5d97e))
+* **deps-dev:** bump eslint-plugin-jest from 27.2.1 to 27.2.2 ([#1360](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1360)) ([0daf558](https://github.com/Fdawgs/yh-myydh-crud-api/commit/0daf558cf3efec6daa9cc0892bb7f55ea98fe8d3))
+* **deps-dev:** bump eslint-plugin-jsdoc from 44.2.7 to 46.1.0 ([#1344](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1344)) ([78ac40c](https://github.com/Fdawgs/yh-myydh-crud-api/commit/78ac40c65f1aaee7717168cb5d85d15f03b41a9b))
+* **deps-dev:** bump eslint-plugin-jsdoc from 46.1.0 to 46.2.0 ([#1349](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1349)) ([5083b40](https://github.com/Fdawgs/yh-myydh-crud-api/commit/5083b401d60656c1874a7ef77e56e6d72d5cb8e0))
+* **deps-dev:** bump eslint-plugin-jsdoc from 46.2.0 to 46.2.6 ([#1354](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1354)) ([cad18c2](https://github.com/Fdawgs/yh-myydh-crud-api/commit/cad18c2de34488b7daa67154c65c743158f747a4))
+* **deps-dev:** bump glob from 10.2.6 to 10.3.0 ([#1361](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1361)) ([289801c](https://github.com/Fdawgs/yh-myydh-crud-api/commit/289801c51e6c839ba3630560cc14334ab772a49c))
+* **deps-dev:** bump playwright from 1.34.3 to 1.35.1 ([#1355](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1355)) ([6e66890](https://github.com/Fdawgs/yh-myydh-crud-api/commit/6e66890a1911d3026a87942e58e97a8737ceaa66))
+* **deps:** bump @fastify/accepts from 4.1.0 to 4.2.0 ([#1362](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1362)) ([863f34c](https://github.com/Fdawgs/yh-myydh-crud-api/commit/863f34c20d5aab362d80d32073937c0edc9b11db))
+* **deps:** bump @fastify/rate-limit from 8.0.0 to 8.0.1 ([#1357](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1357)) ([b042ddc](https://github.com/Fdawgs/yh-myydh-crud-api/commit/b042ddc0de43d9079cea9f7c4362403af6895076))
+* **deps:** bump @fastify/swagger from 8.5.1 to 8.6.0 ([#1359](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1359)) ([5d036f6](https://github.com/Fdawgs/yh-myydh-crud-api/commit/5d036f640eaf49f528a3fb0ce293e36657537abb))
+* **deps:** bump dotenv from 16.0.3 to 16.1.3 ([#1343](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1343)) ([9313dcd](https://github.com/Fdawgs/yh-myydh-crud-api/commit/9313dcd41f9d1f2e454c6d9302b2f4b91182e4cf))
+* **deps:** bump dotenv from 16.1.3 to 16.3.1 ([#1358](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1358)) ([352ee77](https://github.com/Fdawgs/yh-myydh-crud-api/commit/352ee770f85c4481e3b2d93ffa6352853ed60d4f))
+* **deps:** bump fastify from 4.17.0 to 4.18.0 ([#1363](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1363)) ([e913614](https://github.com/Fdawgs/yh-myydh-crud-api/commit/e91361409e8051ef0781e82b47f724daf5dce0bc))
+* **deps:** bump fastify-disablecache from 3.1.2 to 3.1.3 ([#1365](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1365)) ([caf278c](https://github.com/Fdawgs/yh-myydh-crud-api/commit/caf278c7b004589c4e568af329c2ecd630f0ca80))
+* **deps:** bump fastify-floc-off from 2.1.2 to 2.1.3 ([#1367](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1367)) ([9ec59ee](https://github.com/Fdawgs/yh-myydh-crud-api/commit/9ec59ee2d3ad9a04b5f03c1a2b0cc8b3dc19d047))
+* **deps:** bump fastify-json-to-xml from 1.1.3 to 1.1.4 ([#1366](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1366)) ([3a14268](https://github.com/Fdawgs/yh-myydh-crud-api/commit/3a1426837b4f6ebe689177b54e9e42b846db3a46))
+
 ## [11.0.11](https://github.com/Fdawgs/yh-myydh-crud-api/compare/v11.0.10...v11.0.11) (2023-05-27)
 
 
