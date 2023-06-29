@@ -10,6 +10,8 @@ const secJSON = require("secure-json-parse");
  * @param {import("fastify").FastifyInstance} server - Fastify instance.
  */
 async function plugin(server) {
+	server.decorateRequest("scopes", null);
+
 	await server.register(bearer, {
 		errorResponse: (err) => ({
 			statusCode: 401,

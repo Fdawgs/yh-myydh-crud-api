@@ -49,6 +49,7 @@ describe("Receipt route", () => {
 
 				server = Fastify();
 				await server
+					.decorateRequest("scopes", null)
 					.addHook("preValidation", async (req) => {
 						req.scopes = [
 							"documents/receipt.delete",
