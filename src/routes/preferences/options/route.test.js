@@ -106,6 +106,7 @@ describe("Options route", () => {
 				server = Fastify();
 				await server
 					.register(cleanObject)
+					.decorateRequest("scopes", null)
 					.addHook("preValidation", async (req) => {
 						req.scopes = ["preferences/options.search"];
 					})

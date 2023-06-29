@@ -118,6 +118,7 @@ describe("Register route", () => {
 				await server
 					.register(cleanObject)
 					.register(convertDateParamOperator)
+					.decorateRequest("scopes", null)
 					.addHook("preValidation", async (req) => {
 						req.scopes = ["documents/register.search"];
 					})
