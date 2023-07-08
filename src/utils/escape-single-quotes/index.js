@@ -1,6 +1,8 @@
 /* eslint-disable jsdoc/require-param-description */
 /* eslint-disable security/detect-object-injection */
 
+"use strict";
+
 /**
  * @author Frazer Smith
  * @description Tagged template function to replace single-quote characters

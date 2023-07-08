@@ -1,3 +1,5 @@
+"use strict";
+
 const escSq = require("../../../../utils/escape-single-quotes");
 
 /**

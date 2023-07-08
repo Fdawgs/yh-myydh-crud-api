@@ -1,4 +1,7 @@
 /* eslint-disable security/detect-object-injection */
+
+"use strict";
+
 const fp = require("fastify-plugin");
 
 /**

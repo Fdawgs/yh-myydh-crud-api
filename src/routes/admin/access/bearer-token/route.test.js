@@ -1,3 +1,5 @@
+"use strict";
+
 const { randomUUID } = require("crypto");
 const Fastify = require("fastify");
 const sensible = require("@fastify/sensible");

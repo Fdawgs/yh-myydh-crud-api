@@ -1,3 +1,5 @@
+"use strict";
+
 // eslint-disable-next-line func-names
 module.exports.generateSql = function () {
 	return `INSERT INTO ${

@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = {
 	env: {
 		es2022: true,
@@ -34,6 +36,8 @@ module.exports = {
 	],
 	parserOptions: {
 		ecmaVersion: 2022,
+		// Explicitly tell ESLint to parse JavaScript as CommonJS, as airbnb-base sets this to "modules" for ECMAScript
+		sourceType: "script",
 	},
 	plugins: [
 		"import",
@@ -51,5 +55,6 @@ module.exports = {
 		"prefer-destructuring": ["error", { object: true, array: false }],
 		"promise/prefer-await-to-callbacks": "warn",
 		"promise/prefer-await-to-then": "warn",
+		strict: ["error", "global"],
 	},
 };

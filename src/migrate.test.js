@@ -1,3 +1,5 @@
+"use strict";
+
 const Postgrator = require("postgrator");
 const migrate = require("./migrate");
 

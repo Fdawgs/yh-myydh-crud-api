@@ -1,3 +1,5 @@
+"use strict";
+
 const Fastify = require("fastify");
 const sensible = require("@fastify/sensible");
 const route = require(".");

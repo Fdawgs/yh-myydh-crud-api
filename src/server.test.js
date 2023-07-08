@@ -1,3 +1,5 @@
+"use strict";
+
 const { chromium, firefox } = require("playwright");
 const bcrypt = require("bcryptjs");
 const { randomUUID } = require("crypto");

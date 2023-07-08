@@ -1,3 +1,5 @@
+"use strict";
+
 const Fastify = require("fastify");
 const startServer = require("./server");
 const getConfig = require("./config");
