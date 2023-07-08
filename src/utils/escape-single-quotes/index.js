@@ -17,7 +17,8 @@ function escapeSingleQuote(strings, ...expressions) {
 
 	expressions.forEach((value, i) => {
 		result += raw[i];
-		result += typeof value === "string" ? value.replace(/'/g, "''") : value;
+		result +=
+			typeof value === "string" ? value.replace(/'/gu, "''") : value;
 	});
 
 	// Add last literal section

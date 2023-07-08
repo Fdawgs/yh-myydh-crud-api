@@ -101,7 +101,7 @@ async function plugin(server) {
 					.prop(
 						"message",
 						S.string().pattern(
-							/^(?:Internal Server Error|Error.*)$/
+							/^(?:Internal Server Error|Error.*)$/u
 						)
 					)
 			)
