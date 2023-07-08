@@ -8,7 +8,7 @@ const getConfig = require("./config");
 
 const testId = randomUUID();
 
-const testAccessToken = `ydhmyydh_${randomUUID().replace(/-/g, "_")}`;
+const testAccessToken = `ydhmyydh_${randomUUID().replace(/-/gu, "_")}`;
 
 const testHash = bcrypt.hashSync(testAccessToken, 10);
 
@@ -50,9 +50,9 @@ const testDbPreferenceValueOptions = [
 const expResHeaders = {
 	"cache-control": "no-store, max-age=0, must-revalidate",
 	connection: "keep-alive",
-	"content-length": expect.stringMatching(/\d+/),
+	"content-length": expect.stringMatching(/\d+/u),
 	"content-security-policy": "default-src 'self';frame-ancestors 'none'",
-	"content-type": expect.stringMatching(/^text\/plain; charset=utf-8$/i),
+	"content-type": expect.stringMatching(/^text\/plain; charset=utf-8$/iu),
 	date: expect.any(String),
 	expires: "0",
 	"permissions-policy": "interest-cohort=()",
@@ -75,7 +75,7 @@ const expResHeadersHtml = {
 	...expResHeaders,
 	"content-security-policy":
 		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content",
-	"content-type": expect.stringMatching(/^text\/html; charset=utf-8$/i),
+	"content-type": expect.stringMatching(/^text\/html; charset=utf-8$/iu),
 	"x-xss-protection": "0",
 };
 
@@ -99,7 +99,7 @@ const expeResHeadersPublicImage = {
 	"accept-ranges": "bytes",
 	"cache-control": "public, max-age=31536000, immutable",
 	"content-length": expect.any(Number), // @fastify/static plugin returns content-length as number
-	"content-type": expect.stringMatching(/^image\//i),
+	"content-type": expect.stringMatching(/^image\//iu),
 	etag: expect.any(String),
 	expires: undefined,
 	"last-modified": expect.any(String),
@@ -111,20 +111,22 @@ const expeResHeadersPublicImage = {
 const expResHeadersJson = {
 	...expResHeaders,
 	"content-type": expect.stringMatching(
-		/^application\/json; charset=utf-8$/i
+		/^application\/json; charset=utf-8$/iu
 	),
 };
 
 const expResHeadersText = {
 	...expResHeaders,
-	"content-type": expect.stringMatching(/^text\/plain; charset=utf-8$/i),
+	"content-type": expect.stringMatching(/^text\/plain; charset=utf-8$/iu),
 };
 
 const expResHeadersXml = {
 	...expResHeaders,
 	"content-security-policy":
 		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content",
-	"content-type": expect.stringMatching(/^application\/xml; charset=utf-8$/i),
+	"content-type": expect.stringMatching(
+		/^application\/xml; charset=utf-8$/iu
+	),
 	"x-xss-protection": "0",
 };
 
@@ -519,7 +521,7 @@ describe("Server deployment", () => {
 					});
 
 					expect(response.body).toMatch(
-						/^<\?xml version="1.0" encoding="UTF-8"\?>/
+						/^<\?xml version="1.0" encoding="UTF-8"\?>/u
 					);
 					expect(response.headers).toEqual(expResHeadersXml);
 					expect(response.statusCode).toBe(200);
@@ -973,7 +975,7 @@ describe("Server deployment", () => {
 					await heading.waitFor();
 
 					await expect(heading.textContent()).resolves.not.toMatch(
-						/something\s*went\s*wrong/i
+						/something\s*went\s*wrong/iu
 					);
 
 					await page.close();

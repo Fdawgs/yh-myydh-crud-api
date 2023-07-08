@@ -8,7 +8,7 @@ const tags = ["Documents"];
  */
 const dateTimeSearchPattern =
 	// eslint-disable-next-line security/detect-unsafe-regex
-	/^(?:eq|ne|ge|le|gt|lt|sa|eb|ap|)\d{4}-[0-1]\d-[0-3]\d(?:T(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:Z|[+-]\d\d(?::?\d\d)?))?$/;
+	/^(?:ap|eb|eq|ge|gt|le|lt|ne|sa)?\d{4}-[01]\d-[0-3]\d(?:T(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:Z|[+-]\d{2}(?::?\d{2})?))?$/u;
 
 const dateTimeSearchPatternExamples = [
 	"2022-01-13",
@@ -86,13 +86,13 @@ const registerGetSchema = {
 								"guid",
 								S.string()
 									.examples(["EXAMPLEGUID-0123456789-99999"])
-									.pattern(/^[\w-]{1,36}$/)
+									.pattern(/^[\w-]{1,36}$/u)
 							)
 							.prop(
 								"fhirId",
 								S.string()
 									.examples(["9999999999"])
-									.pattern(/^\d{1,10}$/)
+									.pattern(/^\d{1,10}$/u)
 							)
 
 							.prop(
