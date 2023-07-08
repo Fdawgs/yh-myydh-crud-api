@@ -1,3 +1,5 @@
+"use strict";
+
 // eslint-disable-next-line func-names
 module.exports.generateSql = function () {
 	return `IF OBJECT_ID('access.tokens', 'U') IS NULL CREATE TABLE access.tokens

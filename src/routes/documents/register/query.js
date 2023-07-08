@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * @author Frazer Smith
  * @description Builds SQL query string.

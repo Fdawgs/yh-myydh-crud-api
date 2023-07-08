@@ -1,3 +1,5 @@
+"use strict";
+
 const util = require(".");
 
 describe("Escape-Single-Quote util", () => {

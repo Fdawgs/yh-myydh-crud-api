@@ -1,4 +1,7 @@
 /* eslint-disable no-console */
+
+"use strict";
+
 const mssql = require("mssql");
 const path = require("upath");
 const pg = require("pg");

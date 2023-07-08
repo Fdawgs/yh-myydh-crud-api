@@ -1,3 +1,5 @@
+"use strict";
+
 const fp = require("fastify-plugin");
 const bcrypt = require("bcryptjs");
 const bearer = require("@fastify/bearer-auth");

@@ -1,3 +1,5 @@
+"use strict";
+
 const bcrypt = require("bcryptjs");
 const { randomUUID } = require("crypto");
 const secJSON = require("secure-json-parse");
