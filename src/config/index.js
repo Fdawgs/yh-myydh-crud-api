@@ -88,7 +88,7 @@ async function getConfig() {
 				S.anyOf([
 					// daily, date, [1-12]h, or [1-30]m
 					S.string().pattern(
-						/^(?:daily|date|(?:[1-9]|1[012])h|(?:[1-9]|[1-2][0-9]|30)m)$/u
+						/^(?:daily|date|(?:[1-9]|1[012])h|(?:[1-9]|[12][0-9]|30)m)$/u
 					),
 					S.null(),
 				])
