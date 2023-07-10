@@ -256,7 +256,7 @@ describe("Server deployment", () => {
 				});
 				config = await getConfig();
 
-				server = Fastify();
+				server = Fastify({ pluginTimeout: 0 });
 				await server.register(startServer, config).ready();
 			});
 
@@ -355,7 +355,7 @@ describe("Server deployment", () => {
 				});
 				config = await getConfig();
 
-				server = Fastify();
+				server = Fastify({ pluginTimeout: 0 });
 				await server.register(startServer, config).ready();
 			});
 
@@ -542,7 +542,7 @@ describe("Server deployment", () => {
 				});
 				config = await getConfig();
 
-				server = Fastify();
+				server = Fastify({ pluginTimeout: 0 });
 				await server.register(startServer, config).ready();
 			});
 
@@ -781,7 +781,7 @@ describe("Server deployment", () => {
 						Object.assign(process.env, corsEnvVariables);
 						config = await getConfig();
 
-						server = Fastify();
+						server = Fastify({ pluginTimeout: 0 });
 						await server.register(startServer, config).ready();
 					});
 
@@ -912,7 +912,7 @@ describe("Server deployment", () => {
 
 			// Turn off logging for test runs
 			config.fastifyInit.logger = undefined;
-			server = Fastify(config.fastifyInit);
+			server = Fastify({ ...config.fastifyInit, pluginTimeout: 0 });
 			await server.register(startServer, config).listen(config.fastify);
 		});
 
