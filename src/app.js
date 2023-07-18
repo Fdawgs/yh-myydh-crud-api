@@ -9,7 +9,7 @@ const migrate = require("./migrate");
  * @author Frazer Smith
  * @description Starts server.
  */
-const main = async () => {
+async function main() {
 	process.on("unhandledRejection", (err) => {
 		// eslint-disable-next-line no-console
 		console.error(err);
@@ -36,6 +36,6 @@ const main = async () => {
 			}
 		});
 	});
-};
+}
 
 main();
