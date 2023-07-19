@@ -68,9 +68,9 @@ const expResHeaders = {
 	"x-download-options": "noopen",
 	"x-frame-options": "SAMEORIGIN",
 	"x-permitted-cross-domain-policies": "none",
-	"x-ratelimit-limit": expect.any(Number),
-	"x-ratelimit-remaining": expect.any(Number),
-	"x-ratelimit-reset": expect.any(Number),
+	"x-ratelimit-limit": expect.stringMatching(/\d+/u),
+	"x-ratelimit-remaining": expect.stringMatching(/\d+/u),
+	"x-ratelimit-reset": expect.stringMatching(/\d+/u),
 };
 
 const expResHeadersHtml = {
@@ -85,30 +85,30 @@ const expResHeadersHtmlStatic = {
 	...expResHeadersHtml,
 	"accept-ranges": "bytes",
 	"cache-control": "public, max-age=300",
-	"content-length": expect.any(Number), // @fastify/static plugin returns content-length as number
+	"content-length": expect.stringMatching(/\d+/u),
 	"content-security-policy":
 		"default-src 'self';base-uri 'self';img-src 'self' data:;object-src 'none';child-src 'self';frame-ancestors 'none';form-action 'self';upgrade-insecure-requests;block-all-mixed-content;script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline'",
 	etag: expect.any(String),
-	expires: undefined,
 	"last-modified": expect.any(String),
-	pragma: undefined,
-	"surrogate-control": undefined,
 	vary: "accept-encoding",
 };
+delete expResHeadersHtmlStatic.expires;
+delete expResHeadersHtmlStatic.pragma;
+delete expResHeadersHtmlStatic["surrogate-control"];
 
-const expeResHeadersPublicImage = {
+const expResHeadersPublicImage = {
 	...expResHeaders,
 	"accept-ranges": "bytes",
 	"cache-control": "public, max-age=31536000, immutable",
-	"content-length": expect.any(Number), // @fastify/static plugin returns content-length as number
+	"content-length": expect.stringMatching(/\d+/u),
 	"content-type": expect.stringMatching(/^image\//iu),
 	etag: expect.any(String),
-	expires: undefined,
 	"last-modified": expect.any(String),
-	pragma: undefined,
-	"surrogate-control": undefined,
 	vary: "accept-encoding",
 };
+delete expResHeadersPublicImage.expires;
+delete expResHeadersPublicImage.pragma;
+delete expResHeadersPublicImage["surrogate-control"];
 
 const expResHeadersJson = {
 	...expResHeaders,
@@ -139,8 +139,8 @@ const expResHeaders4xxErrors = {
 
 const expResHeaders404Errors = {
 	...expResHeadersJson,
-	vary: undefined,
 };
+delete expResHeaders404Errors.vary;
 
 // Mock MSSQL and PostgreSQL clients to prevent DB connection attempts
 jest.mock("mssql", () => ({
@@ -947,7 +947,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(expeResHeadersPublicImage);
+					expect(response.headers).toEqual(expResHeadersPublicImage);
 					expect(response.statusCode).toBe(200);
 				});
 			});
