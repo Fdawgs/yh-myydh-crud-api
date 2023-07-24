@@ -275,7 +275,7 @@ describe("Server deployment", () => {
 					});
 
 					expect(response.body).toBe("ok");
-					expect(response.headers).toEqual(expResHeaders);
+					expect(response.headers).toStrictEqual(expResHeaders);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -293,7 +293,7 @@ describe("Server deployment", () => {
 						message: "Not Acceptable",
 						statusCode: 406,
 					});
-					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.headers).toStrictEqual(expResHeadersJson);
 					expect(response.statusCode).toBe(406);
 				});
 			});
@@ -314,7 +314,9 @@ describe("Server deployment", () => {
 						statusCode: 404,
 					});
 
-					expect(response.headers).toEqual(expResHeaders404Errors);
+					expect(response.headers).toStrictEqual(
+						expResHeaders404Errors
+					);
 					expect(response.statusCode).toBe(404);
 				});
 			});
@@ -374,7 +376,7 @@ describe("Server deployment", () => {
 					});
 
 					expect(response.body).toBe("ok");
-					expect(response.headers).toEqual(expResHeaders);
+					expect(response.headers).toStrictEqual(expResHeaders);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -392,7 +394,7 @@ describe("Server deployment", () => {
 						message: "Not Acceptable",
 						statusCode: 406,
 					});
-					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.headers).toStrictEqual(expResHeadersJson);
 					expect(response.statusCode).toBe(406);
 				});
 			});
@@ -413,7 +415,9 @@ describe("Server deployment", () => {
 						statusCode: 404,
 					});
 
-					expect(response.headers).toEqual(expResHeaders404Errors);
+					expect(response.headers).toStrictEqual(
+						expResHeaders404Errors
+					);
 					expect(response.statusCode).toBe(404);
 				});
 			});
@@ -442,7 +446,7 @@ describe("Server deployment", () => {
 						message: "invalid authorization header",
 						statusCode: 401,
 					});
-					expect(response.headers).toEqual({
+					expect(response.headers).toStrictEqual({
 						...expResHeadersJson,
 						vary: "accept-encoding",
 					});
@@ -472,7 +476,9 @@ describe("Server deployment", () => {
 						message: "Not Acceptable",
 						statusCode: 406,
 					});
-					expect(response.headers).toEqual(expResHeaders4xxErrors);
+					expect(response.headers).toStrictEqual(
+						expResHeaders4xxErrors
+					);
 					expect(response.statusCode).toBe(406);
 				});
 
@@ -497,7 +503,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.headers).toStrictEqual(expResHeadersJson);
 					expect(response.statusCode).toBe(200);
 				});
 
@@ -525,7 +531,7 @@ describe("Server deployment", () => {
 					expect(response.body).toMatch(
 						/^<\?xml version="1.0" encoding="UTF-8"\?>/u
 					);
-					expect(response.headers).toEqual(expResHeadersXml);
+					expect(response.headers).toStrictEqual(expResHeadersXml);
 					expect(response.statusCode).toBe(200);
 				});
 			});
@@ -583,7 +589,7 @@ describe("Server deployment", () => {
 							message: "Unauthorized",
 							statusCode: 401,
 						});
-						expect(response.headers).toEqual(
+						expect(response.headers).toStrictEqual(
 							expResHeaders4xxErrors
 						);
 						expect(response.statusCode).toBe(401);
@@ -602,7 +608,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(expResHeadersJson);
+					expect(response.headers).toStrictEqual(expResHeadersJson);
 					expect(response.statusCode).not.toBe(401);
 					expect(response.statusCode).not.toBe(406);
 				});
@@ -624,7 +630,9 @@ describe("Server deployment", () => {
 						message: "Not Acceptable",
 						statusCode: 406,
 					});
-					expect(response.headers).toEqual(expResHeaders4xxErrors);
+					expect(response.headers).toStrictEqual(
+						expResHeaders4xxErrors
+					);
 					expect(response.statusCode).toBe(406);
 				});
 			});
@@ -804,7 +812,7 @@ describe("Server deployment", () => {
 							});
 
 							expect(response.body).toBe("ok");
-							expect(response.headers).toEqual(
+							expect(response.headers).toStrictEqual(
 								expected.response.headers.text
 							);
 							expect(response.statusCode).toBe(200);
@@ -813,17 +821,7 @@ describe("Server deployment", () => {
 						// Only applicable if CORS enabled
 						if (corsEnvVariables.CORS_ORIGIN) {
 							it("Returns response to CORS preflight request", async () => {
-								const response = await server.inject({
-									method: "OPTIONS",
-									url: "/admin/healthcheck",
-									headers: {
-										"access-control-request-method": "GET",
-										origin: request.headers.origin,
-									},
-								});
-
-								expect(response.body).toBe("");
-								expect(response.headers).toEqual({
+								const expResHeadersCors = {
 									...expResHeaders,
 									"access-control-allow-headers":
 										process.env.CORS_ALLOWED_HEADERS,
@@ -835,9 +833,23 @@ describe("Server deployment", () => {
 									"access-control-max-age": String(
 										process.env.CORS_MAX_AGE
 									),
-									"content-type": undefined,
 									vary: "Origin",
+								};
+								delete expResHeadersCors["content-type"];
+
+								const response = await server.inject({
+									method: "OPTIONS",
+									url: "/admin/healthcheck",
+									headers: {
+										"access-control-request-method": "GET",
+										origin: request.headers.origin,
+									},
 								});
+
+								expect(response.body).toBe("");
+								expect(response.headers).toStrictEqual(
+									expResHeadersCors
+								);
 								expect(response.statusCode).toBe(204);
 							});
 						}
@@ -857,7 +869,7 @@ describe("Server deployment", () => {
 								message: "Not Acceptable",
 								statusCode: 406,
 							});
-							expect(response.headers).toEqual(
+							expect(response.headers).toStrictEqual(
 								expected.response.headers.json
 							);
 							expect(response.statusCode).toBe(406);
@@ -880,7 +892,7 @@ describe("Server deployment", () => {
 								message: "Route GET:/invalid not found",
 								statusCode: 404,
 							});
-							expect(response.headers).toEqual(
+							expect(response.headers).toStrictEqual(
 								expResHeaders404Errors
 							);
 							expect(response.statusCode).toBe(404);
@@ -932,7 +944,9 @@ describe("Server deployment", () => {
 					});
 
 					expect(isHtml(response.body)).toBe(true);
-					expect(response.headers).toEqual(expResHeadersHtmlStatic);
+					expect(response.headers).toStrictEqual(
+						expResHeadersHtmlStatic
+					);
 					expect(response.statusCode).toBe(200);
 				});
 			});
@@ -947,7 +961,9 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(response.headers).toEqual(expResHeadersPublicImage);
+					expect(response.headers).toStrictEqual(
+						expResHeadersPublicImage
+					);
 					expect(response.statusCode).toBe(200);
 				});
 			});
