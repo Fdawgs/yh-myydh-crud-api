@@ -125,7 +125,7 @@
 		"fastify-json-to-xml": "^1.1.5",
 		"fastify-plugin": "^4.5.1",
 		"file-stream-rotator": "^1.0.0",
-		"fluent-json-schema": "^4.1.0",
+		"fluent-json-schema": "^4.1.1",
 		"mssql": "^9.1.1",
 		"pg": "^8.11.2",
 		"pg-connection-string": "^2.6.0",
