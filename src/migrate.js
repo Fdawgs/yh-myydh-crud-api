@@ -2,11 +2,11 @@
 
 "use strict";
 
-const mssql = require("mssql");
-const path = require("upath");
-const pg = require("pg");
+const { ConnectionPool, Request } = require("mssql");
+const { Client } = require("pg");
 const pgParse = require("pg-connection-string").parse;
 const Postgrator = require("postgrator");
+const path = require("upath");
 const getConfig = require("./config");
 
 /**
@@ -25,7 +25,7 @@ async function migrate() {
 
 		switch (db) {
 			case "postgresql":
-				client = new pg.Client(database.connection);
+				client = new Client(database.connection);
 				postgrator = new Postgrator({
 					migrationPattern: path.joinSafe(
 						__dirname,
@@ -40,7 +40,7 @@ async function migrate() {
 
 			case "mssql":
 			default:
-				client = new mssql.ConnectionPool(database.connection);
+				client = new ConnectionPool(database.connection);
 				postgrator = new Postgrator({
 					migrationPattern: path.joinSafe(
 						__dirname,
@@ -49,7 +49,7 @@ async function migrate() {
 					driver: "mssql",
 					database: client.config.database,
 					execQuery: /* istanbul ignore next */ async (query) => {
-						const request = new mssql.Request(client);
+						const request = new Request(client);
 						const result = await request.batch(query);
 
 						return {

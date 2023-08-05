@@ -1,9 +1,9 @@
 "use strict";
 
 const fp = require("fastify-plugin");
-const bcrypt = require("bcryptjs");
+const { compare } = require("bcryptjs");
 const bearer = require("@fastify/bearer-auth");
-const secJSON = require("secure-json-parse");
+const { parse: secureParse } = require("secure-json-parse");
 
 /**
  * @author Frazer Smith
@@ -38,7 +38,7 @@ async function plugin(server) {
 
 			const authorized = await Promise.any(
 				tokens.map((token) =>
-					bcrypt.compare(key, token.hash).then((result) => {
+					compare(key, token.hash).then((result) => {
 						if (result === true) {
 							return token;
 						}
@@ -49,7 +49,7 @@ async function plugin(server) {
 				.then((token) => {
 					req.scopes =
 						typeof token.scopes === "string"
-							? secJSON.parse(token.scopes)
+							? secureParse(token.scopes)
 							: token.scopes;
 
 					req.log.info({ client: token.name }, "requesting client");

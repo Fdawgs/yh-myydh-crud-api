@@ -1,8 +1,8 @@
 "use strict";
 
-const { chromium, firefox } = require("playwright");
-const bcrypt = require("bcryptjs");
 const { randomUUID } = require("crypto");
+const { hashSync } = require("bcryptjs");
+const { chromium, firefox } = require("playwright");
 const Fastify = require("fastify");
 const isHtml = require("is-html");
 const startServer = require("./server");
@@ -12,7 +12,7 @@ const testId = randomUUID();
 
 const testAccessToken = `ydhmyydh_${randomUUID().replace(/-/gu, "_")}`;
 
-const testHash = bcrypt.hashSync(testAccessToken, 10);
+const testHash = hashSync(testAccessToken, 10);
 
 const testScopes = ["preferences/options.search"];
 
