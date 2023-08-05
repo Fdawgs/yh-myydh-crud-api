@@ -1,8 +1,8 @@
 "use strict";
 
-const bcrypt = require("bcryptjs");
 const { randomUUID } = require("crypto");
-const secJSON = require("secure-json-parse");
+const { hash: bcryptHash } = require("bcryptjs");
+const { parse: secureParse } = require("secure-json-parse");
 
 // Import plugins
 const cors = require("@fastify/cors");
@@ -58,7 +58,7 @@ function buildBearerTokenRecord(result, req) {
 			 */
 			scopes:
 				typeof result.scopes === "string"
-					? secJSON.parse(result.scopes)
+					? secureParse(result.scopes)
 					: result.scopes,
 			expires: result.expires,
 		},
@@ -353,7 +353,7 @@ async function route(server, options) {
 				 */
 				const key = `ydhmyydh_${randomUUID().replace(/-/gu, "_")}`;
 
-				const hash = await bcrypt.hash(key, 10);
+				const hash = await bcryptHash(key, 10);
 
 				const results = await server.db.query(
 					accessPost({
@@ -386,7 +386,7 @@ async function route(server, options) {
 							 */
 							scopes:
 								typeof token.scopes === "string"
-									? secJSON.parse(token.scopes)
+									? secureParse(token.scopes)
 									: token.scopes,
 						},
 					};
