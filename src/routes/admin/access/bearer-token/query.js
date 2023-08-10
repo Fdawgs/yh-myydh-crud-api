@@ -75,7 +75,7 @@ FETCH NEXT ${perPage} ROWS ONLY;`;
  * @param {string} options.email - Matching Value.
  * @param {string} options.scopes - JSON string containing actions the bearer token can perform.
  * @param {string} options.hash - Bcrypt-hashed bearer token.
- * @param {string=} options.expires - Datetime the bearer token expires.
+ * @param {string} [options.expires] - Datetime the bearer token expires.
  * @returns {string} Query string.
  */
 const accessPost = ({ client, name, email, scopes, hash, expires }) =>

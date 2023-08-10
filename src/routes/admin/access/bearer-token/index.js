@@ -32,10 +32,10 @@ const {
  * @param {string} result.email - Contact email of client or service accessing API.
  * @param {string} result.scopes - Stringified JSON object containing actions the bearer token can perform.
  * @param {string} result.hash - Bcrypt-hashed bearer token.
- * @param {string=} result.expires - Expiry date of bearer token.
+ * @param {string} [result.expires] - Expiry date of bearer token.
  * @param {string} result.created - Date bearer token record was created.
- * @param {string=} result.last_updated - Date bearer token record was last updated.
- * @param {object=} req - Fastify Request object.
+ * @param {string} [result.last_updated] - Date bearer token record was last updated.
+ * @param {object} [req] - Fastify Request object.
  * @returns {object} bearer token record.
  */
 function buildBearerTokenRecord(result, req) {
