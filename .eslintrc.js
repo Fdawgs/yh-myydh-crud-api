@@ -50,6 +50,7 @@ module.exports = {
 	root: true,
 	rules: {
 		"import/no-extraneous-dependencies": "error",
+		"jsdoc/check-syntax": "error",
 		"jsdoc/require-hyphen-before-param-description": "error",
 		"no-multiple-empty-lines": ["error", { max: 1 }],
 		"prefer-destructuring": ["error", { object: true, array: false }],
