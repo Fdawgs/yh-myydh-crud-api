@@ -131,6 +131,7 @@ src/
 .env.template
 .eslintrc.js
 .gitignore
+.jest.snapshot-resolver.js
 .pm2.config.js
 .prettierignore
 .prettierrc
