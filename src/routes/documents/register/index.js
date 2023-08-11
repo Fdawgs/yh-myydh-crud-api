@@ -14,7 +14,7 @@ const { registerSelect } = require("./query");
  * @description Sets routing options for server.
  * @param {import("fastify").FastifyInstance} server - Fastify instance.
  * @param {object} options - Route config values.
- * @param {boolean=} options.bearerTokenAuthEnabled - Apply `bearerToken` security scheme to route if defined.
+ * @param {boolean} [options.bearerTokenAuthEnabled] - Apply `bearerToken` security scheme to route if defined.
  * @param {object} options.cors - CORS settings.
  * @param {object} options.database - Database config values.
  * @param {('mssql' | 'postgresql')} options.database.client - Database client.
