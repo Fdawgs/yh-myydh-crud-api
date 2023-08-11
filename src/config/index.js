@@ -17,7 +17,7 @@ const { license, version } = require("../../package.json");
  * @description Converts string boolean to boolean
  * or comma-delimited string to array.
  * @param {string} param - CORS parameter.
- * @returns {boolean|string[]|string} CORS parameter.
+ * @returns {boolean|string|string[]} CORS parameter.
  */
 function parseCorsParameter(param) {
 	if (param?.toLowerCase().trim() === "true") {
