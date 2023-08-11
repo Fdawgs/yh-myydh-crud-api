@@ -4,7 +4,6 @@ const { randomUUID } = require("crypto");
 const { hashSync } = require("bcryptjs");
 const { chromium, firefox } = require("playwright");
 const Fastify = require("fastify");
-const isHtml = require("is-html");
 const startServer = require("./server");
 const getConfig = require("./config");
 
@@ -943,7 +942,7 @@ describe("Server deployment", () => {
 						},
 					});
 
-					expect(isHtml(response.body)).toBe(true);
+					expect(response.body).toMatchSnapshot();
 					expect(response.headers).toStrictEqual(
 						expResHeadersHtmlStatic
 					);
