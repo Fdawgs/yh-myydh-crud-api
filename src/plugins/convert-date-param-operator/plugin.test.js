@@ -4,6 +4,9 @@ const Fastify = require("fastify");
 const plugin = require(".");
 
 describe("Convert-Date-Param-Operator plugin", () => {
+	/**
+	 * @type {Fastify.FastifyInstance}
+	 */
 	let server;
 
 	beforeAll(async () => {

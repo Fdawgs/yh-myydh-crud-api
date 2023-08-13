@@ -7,7 +7,7 @@ const getConfig = require("../../../config");
 const sharedSchemas = require("../../../plugins/shared-schemas");
 
 const testId = 1;
-const testPatientId = 9999999999;
+const testPatientId = "9999999999";
 const testTimeStamp = "2018-08-01T03:51:54.000Z";
 
 describe("Receipt route", () => {
@@ -40,6 +40,9 @@ describe("Receipt route", () => {
 	connectionTests.forEach((testObject) => {
 		describe(`${testObject.testName}  - with request scopes`, () => {
 			let config;
+			/**
+			 * @type {Fastify.FastifyInstance}
+			 */
 			let server;
 
 			beforeAll(async () => {
@@ -227,6 +230,9 @@ describe("Receipt route", () => {
 
 		describe(`${testObject.testName}  - without request scopes`, () => {
 			let config;
+			/**
+			 * @type {Fastify.FastifyInstance}
+			 */
 			let server;
 
 			beforeAll(async () => {

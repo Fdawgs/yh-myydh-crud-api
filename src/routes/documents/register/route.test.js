@@ -107,6 +107,9 @@ describe("Register route", () => {
 	connectionTests.forEach((testObject) => {
 		describe(`${testObject.testName}  - with request scopes`, () => {
 			let config;
+			/**
+			 * @type {Fastify.FastifyInstance}
+			 */
 			let server;
 
 			beforeAll(async () => {
@@ -149,8 +152,8 @@ describe("Register route", () => {
 						url: "/",
 						query: {
 							lastModified: testLastModified1,
-							perPage: testPage,
-							page: testPage,
+							perPage: `${testPage}`,
+							page: `${testPage}`,
 						},
 					});
 
@@ -171,8 +174,8 @@ describe("Register route", () => {
 						url: "/",
 						query: {
 							lastModified: testLastModified1,
-							perPage: testPage,
-							page: testPage,
+							perPage: `${testPage}`,
+							page: `${testPage}`,
 						},
 					});
 
@@ -222,8 +225,8 @@ describe("Register route", () => {
 								testLastModified1,
 								testLastModified2,
 							],
-							perPage: testPage,
-							page: testPage,
+							perPage: `${testPage}`,
+							page: `${testPage}`,
 						},
 					});
 
@@ -268,8 +271,8 @@ describe("Register route", () => {
 						url: "/",
 						query: {
 							lastModified: testLastModified1,
-							perPage: testPage,
-							page: testPage,
+							perPage: `${testPage}`,
+							page: `${testPage}`,
 						},
 					});
 
@@ -286,6 +289,9 @@ describe("Register route", () => {
 
 		describe(`${testObject.testName}  - without request scopes`, () => {
 			let config;
+			/**
+			 * @type {Fastify.FastifyInstance}
+			 */
 			let server;
 
 			beforeAll(async () => {
@@ -315,8 +321,8 @@ describe("Register route", () => {
 						url: "/",
 						query: {
 							lastModified: testLastModified1,
-							perPage: testPage,
-							page: testPage,
+							perPage: `${testPage}`,
+							page: `${testPage}`,
 						},
 					});
 

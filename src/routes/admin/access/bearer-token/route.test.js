@@ -202,6 +202,9 @@ describe("Access route", () => {
 	];
 	describe.each(connectionTests)("$testName", ({ envVariables, mocks }) => {
 		let config;
+		/**
+		 * @type {Fastify.FastifyInstance}
+		 */
 		let server;
 
 		beforeAll(async () => {
@@ -377,8 +380,8 @@ describe("Access route", () => {
 						"access.scopes": "documents/register.search",
 						"meta.created": testDate1,
 						"meta.last_updated": testDate1,
-						per_page: testPage,
-						page: testPage,
+						per_page: `${testPage}`,
+						page: `${testPage}`,
 					},
 				});
 

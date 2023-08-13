@@ -96,6 +96,9 @@ describe("Options route", () => {
 	connectionTests.forEach((testObject) => {
 		describe(`${testObject.testName}  - with request scopes`, () => {
 			let config;
+			/**
+			 * @type {Fastify.FastifyInstance}
+			 */
 			let server;
 
 			beforeAll(async () => {
@@ -192,6 +195,9 @@ describe("Options route", () => {
 
 		describe(`${testObject.testName}  - without request scopes`, () => {
 			let config;
+			/**
+			 * @type {Fastify.FastifyInstance}
+			 */
 			let server;
 
 			beforeAll(async () => {
