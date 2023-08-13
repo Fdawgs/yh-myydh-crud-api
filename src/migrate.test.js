@@ -7,8 +7,8 @@ jest.mock("postgrator");
 // Mock MSSQL and PostgreSQL clients to prevent DB connection attempts
 jest.mock("mssql", () => ({
 	ConnectionPool: jest.fn().mockImplementation(() => ({
-		connect: jest.fn().mockResolvedValue(),
-		close: jest.fn().mockResolvedValue(),
+		connect: jest.fn().mockResolvedValue(undefined),
+		close: jest.fn().mockResolvedValue(undefined),
 		config: { database: "test" },
 	})),
 }));
@@ -49,6 +49,7 @@ describe("Migrate script", () => {
 				// Used to silence log printing to CLI
 				.mockImplementation(() => {});
 
+			// @ts-ignore
 			Postgrator.mockImplementation(() => ({ migrate: mockMigrate }));
 
 			await migrate();
@@ -71,6 +72,7 @@ describe("Migrate script", () => {
 				// Used to silence log printing to CLI
 				.mockImplementation(() => {});
 
+			// @ts-ignore
 			Postgrator.mockImplementation(() => ({ migrate: mockMigrate }));
 
 			await migrate();
@@ -91,6 +93,7 @@ describe("Migrate script", () => {
 				// Used to silence log printing to CLI
 				.mockImplementation(() => {});
 
+			// @ts-ignore
 			Postgrator.mockImplementation(() => ({ migrate: mockMigrate }));
 
 			await migrate();
