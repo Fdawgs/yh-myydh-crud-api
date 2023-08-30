@@ -1,6 +1,6 @@
 "use strict";
 
-const { randomUUID } = require("crypto");
+const { randomUUID } = require("node:crypto");
 const { hash: bcryptHash } = require("bcryptjs");
 const { parse: secureParse } = require("secure-json-parse");
 
