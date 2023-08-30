@@ -1,6 +1,6 @@
 "use strict";
 
-const { randomUUID } = require("crypto");
+const { randomUUID } = require("node:crypto");
 const { hashSync } = require("bcryptjs");
 const { chromium, firefox } = require("playwright");
 const Fastify = require("fastify");
