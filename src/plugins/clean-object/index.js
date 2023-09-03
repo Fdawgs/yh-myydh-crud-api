@@ -15,7 +15,7 @@ async function plugin(server) {
 	 * @author Frazer Smith
 	 * @author Felix Meyer-Wolters
 	 * @description Recursively removes key value pairs from an object where the value is null
-	 * or undefined. Adapted from Felix's answer at https://stackoverflow.com/a/38340730
+	 * or undefined.
 	 * @param {object} [object] - Object to be parsed and cleaned.
 	 * @returns {object} cleaned object.
 	 */

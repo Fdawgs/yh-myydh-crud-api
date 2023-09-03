@@ -1004,8 +1004,8 @@ describe("Server deployment", () => {
 						"MyYDH CRUD API | Documentation"
 					);
 					/**
-					 * Checks redoc has not rendered an error component:
-					 * https://github.com/Redocly/redoc/blob/main/src/components/ErrorBoundary.tsx
+					 * Checks redoc has not rendered an error component.
+					 * @see {@link https://github.com/Redocly/redoc/blob/main/src/components/ErrorBoundary.tsx | Redoc ErrorBoundary component}
 					 */
 					const heading = page.locator("h1 >> nth=0");
 					await heading.waitFor();

@@ -19,7 +19,10 @@ const registerSelect = ({
 	perPage,
 }) => `
 SELECT COUNT(*)${
-	// Cast from string to int - https://node-postgres.com/features/types
+	/**
+	 * Cast from string to int.
+	 * @see {@link https://node-postgres.com/features/types | Node-Postgres Type Parsing}
+	 */
 	client === "postgresql" ? "::int" : ""
 } AS total
 FROM ${documentRegisterTable}
