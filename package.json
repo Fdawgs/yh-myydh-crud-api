@@ -70,13 +70,10 @@
 			"NODE_ENV": "development",
 			"SUPPRESS_SUPPORT": 1
 		},
-		"ignore": [
-			"test_resources"
-		],
 		"verbose": true,
 		"watch": [
 			".env",
-			"src"
+			"src/**/!(*.test).*"
 		]
 	},
 	"devDependencies": {
