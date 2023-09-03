@@ -46,7 +46,10 @@ WHERE id = '${id}';`;
 // DISTINCT SQL keyword not needed as PK constraints enforce unique values
 const accessGetSearch = ({ client, whereClausePredicates, page, perPage }) => `
 SELECT COUNT(id)${
-	// Cast from string to int - https://node-postgres.com/features/types
+	/**
+	 * Cast from string to int.
+	 * @see {@link https://node-postgres.com/features/types | Node-Postgres Type Parsing}
+	 */
 	client === "postgresql" ? "::int" : ""
 } AS total
 FROM access.tokens
