@@ -4,9 +4,9 @@
 
 const { ConnectionPool, Request } = require("mssql");
 const { Client } = require("pg");
-const pgParse = require("pg-connection-string").parse;
+const { parse: pgParse } = require("pg-connection-string");
 const Postgrator = require("postgrator");
-const path = require("upath");
+const { joinSafe } = require("upath");
 const getConfig = require("./config");
 
 /**
@@ -27,7 +27,7 @@ async function migrate() {
 			case "postgresql":
 				client = new Client(database.connection);
 				postgrator = new Postgrator({
-					migrationPattern: path.joinSafe(
+					migrationPattern: joinSafe(
 						__dirname,
 						"../migrations/postgres/*"
 					),
@@ -42,7 +42,7 @@ async function migrate() {
 			default:
 				client = new ConnectionPool(database.connection);
 				postgrator = new Postgrator({
-					migrationPattern: path.joinSafe(
+					migrationPattern: joinSafe(
 						__dirname,
 						"../migrations/mssql/*"
 					),

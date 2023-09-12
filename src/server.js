@@ -2,7 +2,7 @@
 
 const autoLoad = require("@fastify/autoload");
 const fp = require("fastify-plugin");
-const path = require("upath");
+const { joinSafe } = require("upath");
 
 // Import plugins
 const accepts = require("@fastify/accepts");
@@ -105,7 +105,7 @@ async function plugin(server, config) {
 
 		// Import and register healthcheck route
 		.register(autoLoad, {
-			dir: path.joinSafe(__dirname, "routes", "admin", "healthcheck"),
+			dir: joinSafe(__dirname, "routes", "admin", "healthcheck"),
 			options: { ...config, prefix: "admin/healthcheck" },
 		})
 
@@ -140,7 +140,7 @@ async function plugin(server, config) {
 					await securedContext
 						// Import and register service routes
 						.register(autoLoad, {
-							dir: path.joinSafe(__dirname, "routes"),
+							dir: joinSafe(__dirname, "routes"),
 							ignorePattern: /(?:admin|docs)/u,
 							options: config,
 						});
@@ -170,7 +170,7 @@ async function plugin(server, config) {
 					await adminContext
 						// Import and register service routes
 						.register(autoLoad, {
-							dir: path.joinSafe(__dirname, "routes", "admin"),
+							dir: joinSafe(__dirname, "routes", "admin"),
 							ignorePattern: /healthcheck/u,
 							options: { ...config, prefix: "admin" },
 						});
@@ -206,14 +206,14 @@ async function plugin(server, config) {
 
 				// Register static files in public
 				.register(staticPlugin, {
-					root: path.joinSafe(__dirname, "public"),
+					root: joinSafe(__dirname, "public"),
 					immutable: true,
 					maxAge: "365 days",
 					prefix: "/public/",
 					wildcard: false,
 				})
 				.register(autoLoad, {
-					dir: path.joinSafe(__dirname, "routes", "docs"),
+					dir: joinSafe(__dirname, "routes", "docs"),
 					options: { ...config, prefix: "docs" },
 				});
 		})
