@@ -141,6 +141,11 @@ const expResHeaders404Errors = {
 };
 delete expResHeaders404Errors.vary;
 
+const expResHeaders5xxErrors = {
+	...expResHeadersJson,
+	vary: "accept-encoding",
+};
+
 // Mock MSSQL and PostgreSQL clients to prevent DB connection attempts
 jest.mock("mssql", () => ({
 	connect: jest.fn().mockResolvedValue({
@@ -997,6 +1002,73 @@ describe("Server deployment", () => {
 
 				await page.close();
 				await browserType.close();
+			});
+		});
+	});
+
+	describe("Error handling", () => {
+		let config;
+		/** @type {Fastify.FastifyInstance} */
+		let server;
+
+		beforeAll(async () => {
+			config = await getConfig();
+
+			server = Fastify({ pluginTimeout: 0 });
+			await server.register(startServer, config);
+
+			server
+				.get("/error", async () => {
+					throw new Error("test");
+				})
+				.get("/error/503", async () => {
+					const error = new Error("test");
+					error.statusCode = 503;
+					throw error;
+				});
+
+			await server.ready();
+		});
+
+		afterAll(async () => {
+			await server.close();
+		});
+
+		describe("/error route", () => {
+			it("Returns HTTP status code 500", async () => {
+				const response = await server.inject({
+					method: "GET",
+					url: "/error",
+					headers: {
+						accept: "*/*",
+					},
+				});
+
+				expect(JSON.parse(response.body)).toStrictEqual({
+					error: "Internal Server Error",
+					message: "Internal Server Error",
+					statusCode: 500,
+				});
+				expect(response.headers).toStrictEqual(expResHeaders5xxErrors);
+				expect(response.statusCode).toBe(500);
+			});
+
+			it("Returns HTTP status code 503 and does not override error message", async () => {
+				const response = await server.inject({
+					method: "GET",
+					url: "/error/503",
+					headers: {
+						accept: "*/*",
+					},
+				});
+
+				expect(JSON.parse(response.body)).toStrictEqual({
+					error: "Service Unavailable",
+					message: "test",
+					statusCode: 503,
+				});
+				expect(response.headers).toStrictEqual(expResHeaders5xxErrors);
+				expect(response.statusCode).toBe(503);
 			});
 		});
 	});
