@@ -202,9 +202,7 @@ describe("Access route", () => {
 	];
 	describe.each(connectionTests)("$testName", ({ envVariables, mocks }) => {
 		let config;
-		/**
-		 * @type {Fastify.FastifyInstance}
-		 */
+		/** @type {Fastify.FastifyInstance} */
 		let server;
 
 		beforeAll(async () => {

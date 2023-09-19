@@ -20,9 +20,7 @@ jest.mock("pg", () => ({
 
 describe("DB plugin", () => {
 	let config;
-	/**
-	 * @type {Fastify.FastifyInstance}
-	 */
+	/** @type {Fastify.FastifyInstance} */
 	let server;
 
 	const query = "SELECT 'test' AS \"example\"";
