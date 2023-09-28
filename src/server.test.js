@@ -564,7 +564,7 @@ describe("Server deployment", () => {
 			});
 
 			describe("/admin/access/bearer-token/:id route", () => {
-				// TODO: use `it.concurrent.each()` once it is no longer experimental
+				/** @todo use `it.concurrent.each()` once it is no longer experimental */
 				it.each([
 					{
 						testName: "basic auth username invalid",
@@ -647,7 +647,7 @@ describe("Server deployment", () => {
 
 		describe("CORS", () => {
 			let config;
-			/** @type {{ [key: string]: any }} */
+			/** @type {{[key: string]: any}} */
 			let currentEnv;
 			/** @type {Fastify.FastifyInstance} */
 			let server;

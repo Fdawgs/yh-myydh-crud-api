@@ -283,8 +283,10 @@ async function route(server, options) {
 				const page = parseInt(req.query.page, 10) - 1;
 				const perPage = parseInt(req.query.per_page, 10);
 
-				// Stops SQL query with empty WHERE clause from being made and throwing errors
-				// TODO: replace with JSON Schema subschemas when supported
+				/**
+				 * Stops SQL query with empty WHERE clause from being made and throwing errors
+				 * @todo replace with JSON Schema subschemas when supported
+				 */
 				if (whereArray.length === 0) {
 					return res.badRequest(
 						"No valid query string parameters provided"
