@@ -216,7 +216,9 @@ describe("User route", () => {
 				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
+						.mockRejectedValue(
+							new Error("Failed to connect to DB")
+						);
 
 					server.db = {
 						query: mockQueryFn,
@@ -325,7 +327,9 @@ describe("User route", () => {
 				it("Returns HTTP status code 500 if connection issue encountered", async () => {
 					const mockQueryFn = jest
 						.fn()
-						.mockRejectedValue(Error("Failed to connect to DB"));
+						.mockRejectedValue(
+							new Error("Failed to connect to DB")
+						);
 
 					server.db = {
 						query: mockQueryFn,

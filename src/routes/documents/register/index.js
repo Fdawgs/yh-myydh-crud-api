@@ -67,11 +67,11 @@ async function route(server, options) {
 				lastModified.forEach((modified) => {
 					let date = modified;
 					const operator = server.convertDateParamOperator(
-						escape(date).substring(0, 2)
+						escape(date).slice(0, 2)
 					);
 
-					if (Number.isNaN(Number(date.substring(0, 2)))) {
-						date = date.substring(2, date.length);
+					if (Number.isNaN(Number(date.slice(0, 2)))) {
+						date = date.slice(2);
 					}
 
 					whereArray.push(escSq`(Modified ${operator} '${date}')`);
