@@ -98,7 +98,7 @@
 		"license-checker": "^25.0.1",
 		"lockfile-lint": "^4.12.1",
 		"nodemon": "^3.0.1",
-		"pino-pretty": "^10.2.0",
+		"pino-pretty": "^10.2.3",
 		"playwright": "^1.38.1",
 		"prettier": "^3.0.3",
 		"spdx-copyleft": "^1.0.0"
@@ -129,7 +129,7 @@
 		"mssql": "^10.0.1",
 		"pg": "^8.11.3",
 		"pg-connection-string": "^2.6.0",
-		"pino": "^8.15.3",
+		"pino": "^8.15.6",
 		"postgrator": "^5.0.1",
 		"redoc": "^2.1.2",
 		"secure-json-parse": "^2.7.0",
