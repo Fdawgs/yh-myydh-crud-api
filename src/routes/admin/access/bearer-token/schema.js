@@ -11,7 +11,7 @@ const tags = ["System administration"];
  */
 const dateTimeSearchPattern =
 	// eslint-disable-next-line security/detect-unsafe-regex
-	/^(?:ap|eb|eq|ge|gt|le|lt|ne|sa)?\d{4}-[01]\d-[0-3]\d(?:T(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:Z|[+-]\d{2}(?::?\d{2})?))?$/u;
+	/^(?:ap|e[bq]|g[et]|l[et]|ne|sa)?\d{4}-[01]\d-[0-3]\d(?:T(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:Z|[+-]\d{2}(?::?\d{2})?))?$/u;
 
 const dateTimeSearchPatternExamples = [
 	"2022-01-13",
