@@ -10,7 +10,7 @@ const tags = ["System administration"];
  * converts this from a RegExp to a String
  */
 const dateTimeSearchPattern =
-	// eslint-disable-next-line security/detect-unsafe-regex
+	// eslint-disable-next-line security/detect-unsafe-regex -- False positive
 	/^(?:ap|e[bq]|g[et]|l[et]|ne|sa)?\d{4}-[01]\d-[0-3]\d(?:T(?:[0-2]\d:[0-5]\d:[0-5]\d|23:59:60)(?:\.\d+)?(?:Z|[+-]\d{2}(?::?\d{2})?))?$/u;
 
 const dateTimeSearchPatternExamples = [
@@ -403,7 +403,7 @@ const accessPostSchema = {
 					"2022-01-13T00:00:01.001Z",
 				])
 				.pattern(
-					// eslint-disable-next-line security/detect-unsafe-regex
+					// eslint-disable-next-line security/detect-unsafe-regex -- False positive
 					/^\d{4}-\d{2}-\d{2}(?:t\d{2}:\d{2}:\d{2})?(?:.\d{3})?z?$/imu
 				)
 		)

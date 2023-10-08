@@ -1,4 +1,4 @@
-/* eslint-disable jsdoc/require-param-description */
+/* eslint-disable jsdoc/require-param-description -- Params are self-explanatory */
 
 "use strict";
 

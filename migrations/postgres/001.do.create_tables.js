@@ -1,6 +1,6 @@
 "use strict";
 
-// eslint-disable-next-line func-names
+// eslint-disable-next-line func-names -- Style required by Postgrator
 module.exports.generateSql = function () {
 	return `CREATE SCHEMA IF NOT EXISTS access;
     
