@@ -1,6 +1,6 @@
 "use strict";
 
-// eslint-disable-next-line func-names
+// eslint-disable-next-line func-names -- Style required by Postgrator
 module.exports.generateSql = function () {
 	return `IF OBJECT_ID('access.tokens', 'U') IS NULL CREATE TABLE access.tokens
     (

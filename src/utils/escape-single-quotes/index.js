@@ -1,5 +1,4 @@
-/* eslint-disable jsdoc/require-param-description */
-/* eslint-disable security/detect-object-injection */
+/* eslint-disable jsdoc/require-param-description -- Params are self-explanatory */
 
 "use strict";
 
