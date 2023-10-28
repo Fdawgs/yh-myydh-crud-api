@@ -129,7 +129,7 @@
 		"mssql": "^10.0.1",
 		"pg": "^8.11.3",
 		"pg-connection-string": "^2.6.0",
-		"pino": "^8.15.6",
+		"pino": "^8.16.1",
 		"postgrator": "^5.0.1",
 		"redoc": "^2.1.2",
 		"secure-json-parse": "^2.7.0",
