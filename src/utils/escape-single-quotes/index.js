@@ -2,6 +2,9 @@
 
 "use strict";
 
+// Cache immutable regex as they are expensive to create and garbage collect
+const quoteRegex = /'/gu;
+
 /**
  * @author Frazer Smith
  * @description Tagged template function to replace single-quote characters
@@ -19,7 +22,7 @@ function escapeSingleQuote(strings, ...expressions) {
 	expressions.forEach((value, i) => {
 		result += raw[i];
 		result +=
-			typeof value === "string" ? value.replace(/'/gu, "''") : value;
+			typeof value === "string" ? value.replace(quoteRegex, "''") : value;
 	});
 
 	// Add last literal section
