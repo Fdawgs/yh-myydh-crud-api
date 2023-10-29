@@ -23,6 +23,12 @@ const {
 	accessPost,
 } = require("./query");
 
+// Cache immutable regex as they are expensive to create and garbage collect
+const sqlLikePercRegex = /%/gu;
+const sqlLikeUnderRegex = /_/gu;
+const sqlLikeWildRegex = /\*/gu;
+const keyDashRegex = /-/gu;
+
 /**
  * @author Frazer Smith
  * @description Builds bearer token object from database result.
@@ -160,9 +166,9 @@ async function route(server, options) {
 						escSq`(LOWER(name) LIKE LOWER('${req.query[
 							"access.name"
 						]
-							.replace(/%/gu, "!%")
-							.replace(/_/gu, "!_")
-							.replace(/\*/gu, "%")}') ESCAPE '!')`
+							.replace(sqlLikePercRegex, "!%")
+							.replace(sqlLikeUnderRegex, "!_")
+							.replace(sqlLikeWildRegex, "%")}') ESCAPE '!')`
 					);
 				}
 
@@ -173,9 +179,9 @@ async function route(server, options) {
 						escSq`(LOWER(email) LIKE LOWER('${req.query[
 							"access.email"
 						]
-							.replace(/%/gu, "!%")
-							.replace(/_/gu, "!_")
-							.replace(/\*/gu, "%")}') ESCAPE '!')`
+							.replace(sqlLikePercRegex, "!%")
+							.replace(sqlLikeUnderRegex, "!_")
+							.replace(sqlLikeWildRegex, "%")}') ESCAPE '!')`
 					);
 				}
 
@@ -198,8 +204,11 @@ async function route(server, options) {
 								// _ and % act as wildcards in SQL LIKE clauses, so need to be escaped
 								whereArray.push(
 									escSq`(scopes LIKE '%${scopesValue
-										.replace(/%/gu, "!%")
-										.replace(/_/gu, "!_")}%' ESCAPE '!')`
+										.replace(sqlLikePercRegex, "!%")
+										.replace(
+											sqlLikeUnderRegex,
+											"!_"
+										)}%' ESCAPE '!')`
 								);
 								break;
 						}
@@ -353,7 +362,10 @@ async function route(server, options) {
 				 * Underscores are also good as they allow for the whole token to be selected
 				 * when double-clicking on it, as opposed to dashes
 				 */
-				const key = `ydhmyydh_${randomUUID().replace(/-/gu, "_")}`;
+				const key = `ydhmyydh_${randomUUID().replace(
+					keyDashRegex,
+					"_"
+				)}`;
 
 				const hash = await bcryptHash(key, 10);
 
