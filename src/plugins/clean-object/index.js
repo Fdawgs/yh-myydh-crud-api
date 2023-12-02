@@ -18,15 +18,14 @@ async function plugin(server) {
 	 * @returns {object} cleaned object.
 	 */
 	function cleanObject(object = {}) {
-		const obj = object;
-		Object.keys(obj).forEach((key) => {
-			if (obj[key] && typeof obj[key] === "object") {
-				cleanObject(obj[key]);
-			} else if (obj[key] === null || obj[key] === undefined) {
-				delete obj[key];
+		Object.keys(object).forEach((key) => {
+			if (object[key] && typeof object[key] === "object") {
+				cleanObject(object[key]);
+			} else if (object[key] === null || object[key] === undefined) {
+				delete object[key];
 			}
 		});
-		return obj;
+		return object;
 	}
 
 	server.decorate("cleanObject", cleanObject);
