@@ -2,6 +2,18 @@
 
 const fp = require("fastify-plugin");
 
+const operatorMap = {
+	ap: "=",
+	eb: "<",
+	eq: "=",
+	ge: ">=",
+	gt: ">",
+	le: "<=",
+	lt: "<",
+	ne: "!=",
+	sa: ">",
+};
+
 /**
  * @author Frazer Smith
  * @description Plugin that decorates Fastify instance with `convertDateParamOperator` function,
@@ -11,34 +23,12 @@ const fp = require("fastify-plugin");
 async function plugin(server) {
 	/**
 	 * @author Frazer Smith
-	 * @author NextGen Healthcare
 	 * @description Converts date param operator to corresponding value.
 	 * @param {string} operator - Date param operator, in any letter case.
 	 * @returns {string} converted date param operator.
 	 */
 	function convDateParamOperator(operator) {
-		switch (operator.toLowerCase()) {
-			case "ap":
-				return "=";
-			case "eb":
-				return "<";
-			case "eq":
-				return "=";
-			case "ge":
-				return ">=";
-			case "gt":
-				return ">";
-			case "le":
-				return "<=";
-			case "lt":
-				return "<";
-			case "ne":
-				return "!=";
-			case "sa":
-				return ">";
-			default:
-				return "=";
-		}
+		return operatorMap[operator.toLowerCase()] || "=";
 	}
 
 	server.decorate("convertDateParamOperator", convDateParamOperator);
