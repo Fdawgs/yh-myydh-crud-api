@@ -136,6 +136,11 @@ const expResHeaders4xxErrors = {
 	vary: "accept-encoding",
 };
 
+const expResHeaders401BasicAuthErrors = {
+	...expResHeaders4xxErrors,
+	"www-authenticate": 'Basic charset="UTF-8"',
+};
+
 const expResHeaders404Errors = {
 	...expResHeadersJson,
 };
@@ -599,7 +604,7 @@ describe("Server deployment", () => {
 							statusCode: 401,
 						});
 						expect(response.headers).toStrictEqual(
-							expResHeaders4xxErrors
+							expResHeaders401BasicAuthErrors
 						);
 						expect(response.statusCode).toBe(401);
 					}

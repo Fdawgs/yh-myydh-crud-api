@@ -162,7 +162,9 @@ async function plugin(server, config) {
 									throw server.httpErrors.unauthorized();
 								}
 							},
-							authenticate: false,
+							authenticate: true,
+							utf8: true,
+							strictCredentials: true,
 						});
 
 					adminContext.addHook("onRequest", adminContext.basicAuth);
