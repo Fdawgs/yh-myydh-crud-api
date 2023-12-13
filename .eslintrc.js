@@ -49,7 +49,6 @@ module.exports = {
 		"jsdoc/check-syntax": "error",
 		"jsdoc/require-hyphen-before-param-description": "error",
 		"no-multiple-empty-lines": ["error", { max: 1 }],
-		"no-param-reassign": ["error", { props: false }],
 		"prefer-destructuring": ["error", { object: true, array: false }],
 		"promise/prefer-await-to-callbacks": "warn",
 		"promise/prefer-await-to-then": "warn",

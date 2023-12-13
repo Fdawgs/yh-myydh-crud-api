@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign -- Mutating original object is intended */
+
 "use strict";
 
 const fp = require("fastify-plugin");
