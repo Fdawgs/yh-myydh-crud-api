@@ -51,7 +51,7 @@ function buildBearerTokenRecord(result, req) {
 			? new URL(
 					`/access/bearer-token/${result.id}`,
 					`${req.protocol}://${req.hostname}`
-			  ).href
+				).href
 			: undefined,
 		id: result.id,
 		access: {
