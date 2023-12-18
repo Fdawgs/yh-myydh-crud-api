@@ -92,7 +92,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining
+				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining.
 				 */
 				const count =
 					results.recordsets?.[0]?.[0]?.total ??

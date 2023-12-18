@@ -17,7 +17,7 @@ async function plugin(server) {
 	 * @description Recursively removes key value pairs from an object where the value is null
 	 * or undefined.
 	 * @param {object} [object] - Object to be parsed and cleaned.
-	 * @returns {object} cleaned object.
+	 * @returns {object} Cleaned object.
 	 */
 	function cleanObject(object = {}) {
 		Object.keys(object).forEach((key) => {

@@ -7,7 +7,7 @@ const tags = ["System administration"];
 
 /**
  * JSON Schema expects a String, `fluent-json-schema`
- * converts this from a RegExp to a String
+ * converts this from a RegExp to a String.
  */
 const dateTimeSearchPattern =
 	// eslint-disable-next-line security/detect-unsafe-regex -- False positive

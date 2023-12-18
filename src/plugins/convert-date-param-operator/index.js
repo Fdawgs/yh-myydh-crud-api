@@ -25,7 +25,7 @@ async function plugin(server) {
 	 * @author Frazer Smith
 	 * @description Converts date param operator to corresponding value.
 	 * @param {string} operator - Date param operator, in any letter case.
-	 * @returns {string} converted date param operator.
+	 * @returns {string} Converted date param operator.
 	 */
 	function convDateParamOperator(operator) {
 		return operatorMap[operator.toLowerCase()] || "=";

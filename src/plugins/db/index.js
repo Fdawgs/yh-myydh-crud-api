@@ -27,7 +27,7 @@ async function plugin(server, options) {
 
 				/**
 				 * Attempt to connect to DB and check connection string
-				 * is valid, will throw error if not
+				 * is valid, will throw error if not.
 				 */
 				await pool.query("SELECT version();");
 

@@ -73,7 +73,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining
+				 * (mssql uses recordsets, pgsql uses rows) thus the optional chaining.
 				 */
 				const patientPreferences =
 					results.recordsets?.[0] ?? results[0]?.rows;

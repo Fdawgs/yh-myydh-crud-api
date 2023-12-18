@@ -42,7 +42,7 @@ const keyDashRegex = /-/gu;
  * @param {string} result.created - Date bearer token record was created.
  * @param {string} [result.last_updated] - Date bearer token record was last updated.
  * @param {object} [req] - Fastify Request object.
- * @returns {object} bearer token record.
+ * @returns {object} Bearer token record.
  */
 function buildBearerTokenRecord(result, req) {
 	return {
@@ -60,7 +60,7 @@ function buildBearerTokenRecord(result, req) {
 			hash: result.hash,
 			/**
 			 * Database client packages return result in different structures:
-			 * mssql returns JSON as string; pg returns JSON as object
+			 * mssql returns JSON as string; pg returns JSON as object.
 			 */
 			scopes:
 				typeof result.scopes === "string"
@@ -107,7 +107,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining.
 				 */
 				if (results.rowsAffected?.[0] > 0 || results.rowCount > 0) {
 					return res.status(204).send();
@@ -135,7 +135,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
+				 * (mssql uses recordsets, pg uses rows) thus the optional chaining.
 				 */
 				const token = results.recordsets?.[0] ?? results.rows;
 
@@ -216,8 +216,8 @@ async function route(server, options) {
 				}
 
 				/**
-				 * access.expires - Datetime when bearer token expires,
-				 * can be a string or array
+				 * Access.expires - Datetime when bearer token expires,
+				 * can be a string or array.
 				 */
 				if (req.query?.["access.expires"]) {
 					const expires = Array.isArray(req.query["access.expires"])
@@ -239,8 +239,8 @@ async function route(server, options) {
 				}
 
 				/**
-				 * meta.created - Datetime when bearer token record was created,
-				 * can be a string or array
+				 * Meta.created - Datetime when bearer token record was created,
+				 * can be a string or array.
 				 */
 				if (req.query?.["meta.created"]) {
 					const created = Array.isArray(req.query["meta.created"])
@@ -262,8 +262,8 @@ async function route(server, options) {
 				}
 
 				/**
-				 * meta.last_updated - Last modified datetime of bearer token record,
-				 * can be a string or array
+				 * Meta.last_updated - Last modified datetime of bearer token record,
+				 * can be a string or array.
 				 */
 				if (req.query?.["meta.last_updated"]) {
 					const lastUpdated = Array.isArray(
@@ -293,8 +293,8 @@ async function route(server, options) {
 				const perPage = parseInt(req.query.per_page, 10);
 
 				/**
-				 * Stops SQL query with empty WHERE clause from being made and throwing errors
-				 * @todo replace with JSON Schema subschemas when supported
+				 * Stops SQL query with empty WHERE clause from being made and throwing errors.
+				 * @todo Replace with JSON Schema subschemas when supported.
 				 */
 				if (whereArray.length === 0) {
 					return res.badRequest(
@@ -314,7 +314,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
+				 * (mssql uses recordsets, pg uses rows) thus the optional chaining.
 				 */
 				const count =
 					results.recordsets?.[0]?.[0]?.total ??
@@ -360,7 +360,7 @@ async function route(server, options) {
 				 * generated strings.
 				 *
 				 * Underscores are also good as they allow for the whole token to be selected
-				 * when double-clicking on it, as opposed to dashes
+				 * when double-clicking on it, as opposed to dashes.
 				 */
 				const key = `ydhmyydh_${randomUUID().replace(
 					keyDashRegex,
@@ -383,7 +383,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses recordsets, pg uses rows) thus the optional chaining
+				 * (mssql uses recordsets, pg uses rows) thus the optional chaining.
 				 */
 				let token = results.recordsets?.[0] ?? results.rows;
 
@@ -396,7 +396,7 @@ async function route(server, options) {
 							token: key,
 							/**
 							 * Database client packages return results in different structures:
-							 * mssql returns JSON as string; pg returns JSON as object
+							 * mssql returns JSON as string; pg returns JSON as object.
 							 */
 							scopes:
 								typeof token.scopes === "string"

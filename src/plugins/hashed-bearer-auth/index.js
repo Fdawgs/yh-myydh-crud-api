@@ -32,7 +32,7 @@ async function plugin(server) {
 
 			/**
 			 * Database client packages return results in different structures,
-			 * (mssql uses recordsets, pg uses rows) thus the optional chaining
+			 * (mssql uses recordsets, pg uses rows) thus the optional chaining.
 			 */
 			const tokens = results.recordsets?.[0] ?? results.rows;
 

@@ -67,7 +67,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining.
 				 */
 				if (results.rowsAffected?.[0] > 0 || results.rowCount > 0) {
 					return res.status(204).send();
@@ -109,7 +109,7 @@ async function route(server, options) {
 
 				/**
 				 * Database client packages return results in different structures,
-				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining
+				 * (mssql uses rowsAffected, pg uses rowCount) thus the optional chaining.
 				 */
 				if (rows.rowsAffected?.[0] > 0 || rows.rowCount > 0) {
 					return res.status(204).send();
