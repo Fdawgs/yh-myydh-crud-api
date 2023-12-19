@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [11.0.17](https://github.com/Fdawgs/yh-myydh-crud-api/compare/v11.0.16...v11.0.17) (2023-12-19)
+
+
+### Dependencies
+
+* **deps-dev:** bump @types/jest from 29.5.10 to 29.5.11 ([#1525](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1525)) ([7e09c31](https://github.com/Fdawgs/yh-myydh-crud-api/commit/7e09c311a931ba84f0051b70b6f140aa79f7e917))
+* **deps-dev:** bump esbuild from 0.19.8 to 0.19.10 ([6586412](https://github.com/Fdawgs/yh-myydh-crud-api/commit/65864128016db55005767b449e4cfc8be07067ee))
+* **deps-dev:** bump prettier from 3.1.0 to 3.1.1 ([#1524](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1524)) ([cd9f9a2](https://github.com/Fdawgs/yh-myydh-crud-api/commit/cd9f9a2583b00ac0cd0c77f13d4076bf77c1fafc))
+* **deps-dev:** bump the eslint group with 5 updates ([#1529](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1529)) ([a40a5a3](https://github.com/Fdawgs/yh-myydh-crud-api/commit/a40a5a3f4fae705d4a261d611e42f20551c46094))
+* **deps:** bump the fastify-core group with 5 updates ([#1530](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1530)) ([2d0a6d0](https://github.com/Fdawgs/yh-myydh-crud-api/commit/2d0a6d02beddf5e10e51d4917d10ba61de91eafe))
+* **deps:** bump the pino-core group with 1 update ([#1523](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1523)) ([9770a96](https://github.com/Fdawgs/yh-myydh-crud-api/commit/9770a9690bd10803f4908aa430cce2a6323e8309))
+* **deps:** bump the pino-core group with 2 updates ([#1528](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1528)) ([85dabba](https://github.com/Fdawgs/yh-myydh-crud-api/commit/85dabba585f1addcee1d12addd86859efbd29f45))
+* **deps:** bump transistive dependencies ([9e57e51](https://github.com/Fdawgs/yh-myydh-crud-api/commit/9e57e51c97ef22eda682039fab5474d7ffb4c982))
+
+
+### Miscellaneous
+
+* jsdoc comments must be complete sentences ([dcff9c9](https://github.com/Fdawgs/yh-myydh-crud-api/commit/dcff9c902acbb57eced28ec3419adbb9b8e2c61a))
+* **plugins/clean-object:** allow mutation ([a48ecaf](https://github.com/Fdawgs/yh-myydh-crud-api/commit/a48ecaf02ad35e77e2bb5e73890af33bc7e2f3ab))
+
+
+### Continuous integration
+
+* **deps:** bump actions/upload-artifact from 3 to 4 ([#1527](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1527)) ([8965416](https://github.com/Fdawgs/yh-myydh-crud-api/commit/896541688f6651b991541e6f568128f3529cfbd6))
+* **deps:** bump github/codeql-action from 2 to 3 ([#1520](https://github.com/Fdawgs/yh-myydh-crud-api/issues/1520)) ([e7ec2c4](https://github.com/Fdawgs/yh-myydh-crud-api/commit/e7ec2c468a438e4b4377b6d2ae6504e697371cce))
+
 ## [11.0.16](https://github.com/Fdawgs/yh-myydh-crud-api/compare/v11.0.15...v11.0.16) (2023-12-02)
 
 
